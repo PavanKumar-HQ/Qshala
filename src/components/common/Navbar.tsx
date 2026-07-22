@@ -127,10 +127,6 @@ export default function Navbar() {
           <Link href="/blog" className="hover:text-[#30B2E7] transition-colors">
             Blog
           </Link>
-
-          <Link href="/archive" className="hover:text-[#30B2E7] transition-colors">
-            Archive & Map
-          </Link>
         </nav>
 
         {/* Action CTAs */}
