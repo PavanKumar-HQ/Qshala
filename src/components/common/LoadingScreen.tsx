@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { triggerConfetti } from '@/lib/utils';
 import QTMascot from '../mascot/QTMascot';
 
-// Static deterministic particle coordinates to prevent SSR/Client hydration mismatch
 const PARTICLE_POSITIONS = [
   { x: '10%', y: '15%', symbol: '✨' },
   { x: '85%', y: '20%', symbol: '📚' },
@@ -21,26 +20,13 @@ const PARTICLE_POSITIONS = [
 export default function LoadingScreen() {
   const [scene, setScene] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [isVisible, setIsVisible] = useState(true);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
-    // Check if user already saw loader this session
-    if (typeof window !== 'undefined' && sessionStorage.getItem('qshala_loader_seen')) {
-      setIsVisible(false);
-      return;
-    }
-
     // Timeline sequence (3.8s total max)
     const t1 = setTimeout(() => setScene(2), 800);   // Scene 2: Card & Options grow
     const t2 = setTimeout(() => setScene(3), 1800);  // Scene 3: QT taps Curiosity & Confetti
     const t3 = setTimeout(() => setScene(4), 2800);  // Scene 4: Particles morph into Logo Q
-    const t4 = setTimeout(() => {
-      setScene(5);                                   // Final Transition
-      sessionStorage.setItem('qshala_loader_seen', 'true');
-    }, 3600);
-
+    const t4 = setTimeout(() => setScene(5), 3600);  // Final Transition
     const t5 = setTimeout(() => setIsVisible(false), 4200);
 
     return () => {
@@ -52,11 +38,11 @@ export default function LoadingScreen() {
     };
   }, []);
 
-  if (!mounted || !isVisible) return null;
+  if (!isVisible) return null;
 
   return (
     <AnimatePresence>
-      {scene < 5 ? (
+      {scene < 5 && (
         <motion.div
           key="loader-overlay"
           initial={{ opacity: 1 }}
@@ -96,7 +82,7 @@ export default function LoadingScreen() {
             >
               <motion.div
                 animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 0.6, repeat: 1, ease: 'easeOut' }}
+                transition={{ duration: 0.6, repeat: Infinity, ease: 'easeOut' }}
                 className="w-12 h-12 rounded-full bg-[#30B2E7] border-2 border-black flex items-center justify-center text-white font-black text-2xl font-causten-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
               >
                 ?
@@ -104,7 +90,7 @@ export default function LoadingScreen() {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.2 }}
                 className="mt-6 text-lg font-black text-slate-900 font-causten-black tracking-tight"
               >
                 Every great journey begins with a question.
@@ -120,7 +106,6 @@ export default function LoadingScreen() {
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
               className="relative bg-[#FFFDF5] rounded-3xl p-6 md:p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-md w-full mx-4"
             >
-              {/* QT Mascot Peeking from behind the Card */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: -45, opacity: 1 }}
@@ -198,7 +183,7 @@ export default function LoadingScreen() {
             </motion.div>
           )}
         </motion.div>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 }
