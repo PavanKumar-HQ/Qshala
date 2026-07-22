@@ -5,14 +5,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { QuizCardData } from '@/lib/sanity.client';
 import { triggerConfetti } from '@/lib/utils';
 import { CheckCircle2, XCircle, HelpCircle } from 'lucide-react';
+import QTMascot, { QTMascotVariant } from '../mascot/QTMascot';
 
 interface InteractiveQuizCardProps {
   quiz: QuizCardData;
 }
 
+const MASCOT_VARIANTS: QTMascotVariant[] = ['curious', 'sherlock', 'idea', 'quizzing'];
+
 export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
+
+  // Pick mascot based on quiz category/id
+  const mascotVariant: QTMascotVariant =
+    quiz.category.toLowerCase().includes('science')
+      ? 'sherlock'
+      : quiz.category.toLowerCase().includes('physics')
+      ? 'curious'
+      : quiz.category.toLowerCase().includes('money')
+      ? 'holding_money'
+      : 'idea';
 
   const handleSelectOption = (index: number) => {
     if (selectedOption !== null) return;
@@ -44,14 +57,14 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
           </span>
         </div>
 
-        {/* Fixed Height Question Header so cards stay aligned */}
+        {/* Question Header */}
         <div className="min-h-[56px] flex items-center mb-4">
           <h3 className="text-lg md:text-xl font-black text-black leading-snug font-causten-black line-clamp-2">
             {quiz.question}
           </h3>
         </div>
 
-        {/* Options List with Fixed Min-Height */}
+        {/* Options List */}
         <div className="space-y-2.5 mb-4">
           {quiz.options.map((option, idx) => {
             const isSelected = selectedOption === idx;
@@ -105,11 +118,16 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         )}
       </AnimatePresence>
 
-      {!showExplanation && (
-        <div className="text-[10px] text-center font-black text-slate-500 uppercase tracking-wider py-1">
+      {/* Lower Right Mascot Placement */}
+      <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+        <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider">
           Click an option to test your curiosity!
+        </span>
+
+        <div className="shrink-0 -mb-2 -mr-2 scale-75 origin-bottom-right">
+          <QTMascot variant={mascotVariant} size="sm" />
         </div>
-      )}
+      </div>
     </motion.div>
   );
 }
