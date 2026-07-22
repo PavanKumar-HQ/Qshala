@@ -72,7 +72,7 @@ export default function HeroSection() {
           {/* Headline with Typewriter Effect */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] font-causten-black min-h-[160px] sm:min-h-[180px] md:min-h-[220px]">
             Replacing Rote Learning With{' '}
-            <span className="relative inline-block text-[#30B2E7] font-mikado underline decoration-[#FDB913] decoration-wavy decoration-2">
+            <span className="relative inline-block text-[#30B2E7] font-mikado">
               {displayedText}
               <motion.span
                 animate={{ opacity: [1, 0] }}
