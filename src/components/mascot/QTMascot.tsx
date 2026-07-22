@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -23,7 +23,6 @@ interface QTMascotProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   badgeText?: string;
-  interactiveEyes?: boolean;
 }
 
 const VARIANT_MAP: Record<QTMascotVariant, string> = {
@@ -53,51 +52,52 @@ export default function QTMascot({
   size = 'md',
   className = '',
   badgeText,
-  interactiveEyes = true
 }: QTMascotProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const imageSrc = VARIANT_MAP[variant] || VARIANT_MAP.normal;
   const dimension = SIZE_MAP[size];
-  const [clickState, setClickState] = useState(0);
-  const [eyePos, setEyePos] = useState({ x: 0, y: 0 });
 
+  const [clickCount, setClickCount] = useState(0);
+  const [pupilShift, setPupilShift] = useState({ x: 0, y: 0, rotate: 0 });
+
+  // Calculate mouse position relative to THIS specific mascot's bounding box
   useEffect(() => {
-    if (!interactiveEyes) return;
     const handleMouseMove = (e: MouseEvent) => {
-      // Calculate cursor direction relative to window center
-      const angle = Math.atan2(
-        e.clientY - window.innerHeight / 2,
-        e.clientX - window.innerWidth / 2
-      );
-      const distance = 8;
-      const x = Math.cos(angle) * distance;
-      const y = Math.sin(angle) * distance;
-      setEyePos({ x, y });
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const mascotCenterX = rect.left + rect.width / 2;
+      const mascotCenterY = rect.top + rect.height / 2;
+
+      const deltaX = e.clientX - mascotCenterX;
+      const deltaY = e.clientY - mascotCenterY;
+      const distance = Math.hypot(deltaX, deltaY);
+
+      // Max eye/head tilt shift of 12px
+      const maxShift = 12;
+      const factor = Math.min(distance / 400, 1);
+      const angle = Math.atan2(deltaY, deltaX);
+
+      const shiftX = Math.cos(angle) * maxShift * factor;
+      const shiftY = Math.sin(angle) * maxShift * factor;
+      const tiltAngle = (deltaX / window.innerWidth) * 15;
+
+      setPupilShift({ x: shiftX, y: shiftY, rotate: tiltAngle });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [interactiveEyes]);
+  }, []);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setClickState((prev) => prev + 1);
+    setClickCount((prev) => prev + 1);
   };
 
   return (
-    <motion.div
+    <div
+      ref={containerRef}
       onClick={handleClick}
-      className={`relative inline-flex flex-col items-center justify-center cursor-pointer group select-none ${className}`}
-      whileHover={{ scale: 1.12 }}
-      animate={
-        clickState > 0
-          ? {
-              y: [0, -25, 0],
-              rotate: [0, -15, 15, 0],
-              scale: [1, 1.25, 1],
-            }
-          : {}
-      }
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`relative inline-flex flex-col items-center justify-center cursor-pointer select-none ${className}`}
     >
       {badgeText && (
         <motion.span
@@ -109,38 +109,53 @@ export default function QTMascot({
         </motion.span>
       )}
 
-      {/* SVG Image Container with Mouse Eye Tracking Offset */}
-      <div className="relative flex items-center justify-center drop-shadow-md">
-        <motion.div
-          animate={{ x: eyePos.x, y: eyePos.y }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        >
-          <Image
-            src={imageSrc}
-            alt={`QT Mascot ${variant}`}
-            width={dimension}
-            height={dimension}
-            className="object-contain pointer-events-none"
-            priority={size === 'xl' || size === 'lg'}
-          />
-        </motion.div>
+      {/* Mascot Container with Dynamic Mouse Position Shift & Click Bounce Animation */}
+      <motion.div
+        className="relative flex items-center justify-center drop-shadow-md"
+        animate={
+          clickCount > 0
+            ? {
+                y: [0, -30, 0],
+                rotate: [0, -20, 20, 0],
+                scale: [1, 1.3, 1],
+              }
+            : {
+                x: pupilShift.x,
+                y: pupilShift.y,
+                rotate: pupilShift.rotate,
+              }
+        }
+        transition={
+          clickCount > 0
+            ? { duration: 0.5, ease: 'easeOut' }
+            : { type: 'spring', stiffness: 250, damping: 18 }
+        }
+      >
+        <Image
+          src={imageSrc}
+          alt={`QT Mascot ${variant}`}
+          width={dimension}
+          height={dimension}
+          className="object-contain pointer-events-none"
+          priority={size === 'xl' || size === 'lg'}
+        />
 
-        {/* Playful Floating Question Mark on Mascot Click */}
+        {/* Floating Question Mark Pop-up on Click */}
         <AnimatePresence>
-          {clickState > 0 && (
+          {clickCount > 0 && (
             <motion.span
-              key={clickState}
+              key={clickCount}
               initial={{ opacity: 0, y: 0, scale: 0.5 }}
-              animate={{ opacity: [0, 1, 0], y: -45, scale: 1.4 }}
+              animate={{ opacity: [0, 1, 0], y: -50, scale: 1.5 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="absolute -top-8 text-2xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow"
+              transition={{ duration: 0.7 }}
+              className="absolute -top-8 text-2xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow-md"
             >
               ?
             </motion.span>
           )}
         </AnimatePresence>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
