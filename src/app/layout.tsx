@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { caustenRound, caustenRoundBlack, mikadoFont } from "@/lib/fonts";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "QShala | Questions • Quriosity • Quests",
@@ -16,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${caustenRound.variable} ${caustenRoundBlack.variable} ${mikadoFont.variable}`}
+      className={cn(caustenRound.variable, caustenRoundBlack.variable, mikadoFont.variable, "font-sans", geist.variable)}
     >
       <body className="antialiased bg-[#FFFDF5] text-black font-causten-body">
         <LoadingScreen />
