@@ -7,11 +7,11 @@ export default function DynamicTabTitle() {
     const originalTitle = document.title || "QShala | Questions • Quriosity • Quests";
 
     const funnyMessages = [
-      "🐱 QT misses you! Come back!",
-      "⚡ Still curious? Click back!",
-      "🧐 Don't leave QT alone with questions!",
-      "✨ A wild quiz question appeared!",
-      "👀 QT is peeking... Where did you go?"
+      "QT misses you! Come back!",
+      "Still curious? Click back!",
+      "Don't leave QT alone with questions!",
+      "A wild quiz question appeared!",
+      "QT is peeking... Where did you go?"
     ];
 
     const handleVisibilityChange = () => {

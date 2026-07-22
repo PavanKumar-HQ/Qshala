@@ -105,7 +105,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
 
       {!showExplanation && (
         <div className="text-xs text-center font-black text-slate-500 mt-2 uppercase tracking-wider">
-          Click an option to test your curiosity! 🎉
+          Click an option to test your curiosity!
         </div>
       )}
     </motion.div>

@@ -20,7 +20,7 @@ export default function ShopPage() {
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto">
             <span className="px-4 py-1.5 rounded-full bg-[#FDB913]/20 text-amber-900 font-black text-xs uppercase tracking-wider">
-              🛍️ Official Curiosity Merch & Games
+              Official Curiosity Merch & Games
             </span>
             <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mt-3">
               The QShala <span className="text-[#FDB913]">Store.</span>

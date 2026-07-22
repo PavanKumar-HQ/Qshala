@@ -48,7 +48,7 @@ export default function MultiStepBooking() {
       <div className="mb-8">
         <div className="flex items-center justify-between text-xs font-black uppercase text-slate-500 mb-2">
           <span>Step {step} of 4</span>
-          <span>{step === 1 ? 'Audience' : step === 2 ? 'Contact Details' : step === 3 ? 'Event Specifications' : 'Confirmed! 🎉'}</span>
+          <span>{step === 1 ? 'Audience' : step === 2 ? 'Contact Details' : step === 3 ? 'Event Specifications' : 'Confirmed!'}</span>
         </div>
         <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
           <div
