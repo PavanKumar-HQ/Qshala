@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import QTMascot from '../mascot/QTMascot';
 import InteractiveQuizCard from './InteractiveQuizCard';
-import CuriosityGlobe from './CuriosityGlobe';
 import { FEATURED_QUIZZES } from '@/lib/sanity.client';
 import { ArrowRight, Star } from 'lucide-react';
 
@@ -107,17 +106,6 @@ export default function HeroSection() {
             <span>150+ Corporate Partners</span>
           </motion.div>
         </motion.div>
-
-        {/* 3D Interactive Curiosity Globe Engine */}
-        <div className="mt-8 relative">
-          <div className="text-center mb-2">
-            <span className="px-3 py-1 rounded-full bg-[#FDB913] text-black font-black text-xs border border-black uppercase font-causten-black">
-              🌍 Interactive Curiosity Engine
-            </span>
-          </div>
-
-          <CuriosityGlobe />
-        </div>
 
         {/* Daily Quiz Playground Section with Floating QT Mascot Parallax */}
         <div className="mt-12 relative">
