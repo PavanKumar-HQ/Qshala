@@ -1,187 +1,219 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { triggerConfetti } from '@/lib/utils';
 import QTMascot from '../mascot/QTMascot';
+import { Sparkles, HelpCircle, BookOpen, Lightbulb, Puzzle, Compass, Rocket } from 'lucide-react';
 
-const PARTICLE_POSITIONS = [
-  { x: '10%', y: '15%', symbol: '✨' },
-  { x: '85%', y: '20%', symbol: '📚' },
-  { x: '25%', y: '75%', symbol: '🧩' },
-  { x: '75%', y: '80%', symbol: '❓' },
-  { x: '50%', y: '10%', symbol: '✨' },
-  { x: '90%', y: '60%', symbol: '📚' },
-  { x: '15%', y: '50%', symbol: '🧩' },
-  { x: '60%', y: '85%', symbol: '❓' },
+const CURIOSITY_PROMPTS = [
+  "Why is the sky blue?",
+  "What causes a rainbow?",
+  "How do octopuses breathe?",
+  "Why do we dream?",
+  "What makes stars shine?",
+  "Growth through Curiosity..."
+];
+
+const ORBIT_ICONS = [
+  { icon: Sparkles, color: 'text-[#FDB913]' },
+  { icon: BookOpen, color: 'text-[#30B2E7]' },
+  { icon: Lightbulb, color: 'text-[#FDB913]' },
+  { icon: Puzzle, color: 'text-[#75B543]' },
+  { icon: Compass, color: 'text-[#30B2E7]' },
+  { icon: Rocket, color: 'text-[#75B543]' },
 ];
 
 export default function LoadingScreen() {
+  const [loading, setLoading] = useState(true);
+  const [promptIdx, setPromptIdx] = useState(0);
   const [scene, setScene] = useState<1 | 2 | 3 | 4 | 5>(1);
-  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Timeline sequence (3.8s total max)
-    const t1 = setTimeout(() => setScene(2), 800);   // Scene 2: Card & Options grow
-    const t2 = setTimeout(() => setScene(3), 1800);  // Scene 3: QT taps Curiosity & Confetti
-    const t3 = setTimeout(() => setScene(4), 2800);  // Scene 4: Particles morph into Logo Q
-    const t4 = setTimeout(() => setScene(5), 3600);  // Final Transition
-    const t5 = setTimeout(() => setIsVisible(false), 4200);
+    // Timeline orchestration (2.8s total sequence)
+    const t1 = setTimeout(() => setScene(2), 400);  // Question stroke
+    const t2 = setTimeout(() => setScene(3), 1000); // QT Cat appears
+    const t3 = setTimeout(() => setScene(4), 1700); // Orbiting icons
+    const t4 = setTimeout(() => setScene(5), 2400); // Reveal morph
+    const tEnd = setTimeout(() => setLoading(false), 2900);
+
+    const promptInterval = setInterval(() => {
+      setPromptIdx(prev => (prev + 1) % CURIOSITY_PROMPTS.length);
+    }, 500);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
-      clearTimeout(t5);
+      clearTimeout(tEnd);
+      clearInterval(promptInterval);
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
     <AnimatePresence>
-      {scene < 5 && (
+      {loading && (
         <motion.div
-          key="loader-overlay"
+          key="curiosity-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.6 } }}
-          className="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center select-none overflow-hidden"
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#FFFDF5] text-black overflow-hidden select-none"
         >
-          {/* Floating Background Particles */}
+          {/* Parallax Background Drifting Elements */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {PARTICLE_POSITIONS.map((p, i) => (
-              <motion.div
-                key={i}
-                style={{ left: p.x, top: p.y }}
-                className="absolute text-slate-300 font-mono text-sm"
-                initial={{ scale: 0.6, opacity: 0.4 }}
-                animate={{
-                  y: [0, -25, 0],
-                  rotate: [0, 180, 360],
-                  opacity: [0.3, 0.7, 0.3],
-                }}
-                transition={{
-                  duration: 3 + (i % 3),
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#30B2E7]/10 rounded-full blur-3xl animate-blob" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FDB913]/15 rounded-full blur-3xl animate-blob-delayed" />
+            
+            {['?', '?', '?', '?'].map((q, idx) => (
+              <motion.span
+                key={idx}
+                className="absolute text-slate-300 font-mono font-black text-3xl"
+                initial={{ x: (idx * 220) % 600 - 300, y: 500, opacity: 0 }}
+                animate={{ y: -100, opacity: [0, 0.3, 0], rotate: [0, 20, -20, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, delay: idx * 0.7, ease: 'linear' }}
               >
-                {p.symbol}
-              </motion.div>
+                {q}
+              </motion.span>
             ))}
           </div>
 
-          {/* SCENE 1: Tiny Blue Dot -> Bounces -> Question Mark & Story Text */}
-          {scene === 1 && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center text-center px-6"
-            >
+          {/* Central Stage */}
+          <div className="relative z-10 flex flex-col items-center justify-center min-h-[300px]">
+            
+            {/* SCENE 1: Bouncing Blue Dot */}
+            {scene === 1 && (
               <motion.div
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 0.6, repeat: Infinity, ease: 'easeOut' }}
-                className="w-12 h-12 rounded-full bg-[#30B2E7] border-2 border-black flex items-center justify-center text-white font-black text-2xl font-causten-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-              >
-                ?
-              </motion.div>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mt-6 text-lg font-black text-slate-900 font-causten-black tracking-tight"
-              >
-                Every great journey begins with a question.
-              </motion.p>
-            </motion.div>
-          )}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: [0, 1.2, 1], y: [0, -12, 0] }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className="w-8 h-8 rounded-full bg-[#30B2E7] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+              />
+            )}
 
-          {/* SCENE 2: Quiz Card Grows & QT Walks onto Card */}
-          {scene === 2 && (
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-              className="relative bg-[#FFFDF5] rounded-3xl p-6 md:p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-md w-full mx-4"
-            >
+            {/* SCENE 2: The Hand-Drawn Question Mark Stroke */}
+            {scene === 2 && (
               <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: -45, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="absolute -top-6 right-8 z-20"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 1.1, opacity: 0 }}
+                className="relative flex items-center justify-center"
               >
-                <QTMascot variant="curious" size="sm" badgeText="What changes the world?" />
-              </motion.div>
+                <svg viewBox="0 0 100 100" className="w-32 h-32 overflow-visible">
+                  <motion.path
+                    d="M 30 35 C 30 15, 70 15, 70 35 C 70 50, 50 45, 50 65 L 50 72"
+                    fill="none"
+                    stroke="#FDB913"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  />
+                  <motion.circle
+                    cx="50"
+                    cy="88"
+                    r="6"
+                    fill="#30B2E7"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.4, duration: 0.2 }}
+                  />
+                </svg>
 
-              <h3 className="text-xl font-black text-black mb-4 font-causten-black">What changes the world?</h3>
-
-              <div className="grid grid-cols-2 gap-3">
-                {['Money', 'Luck', 'Curiosity', 'Technology'].map((opt, idx) => (
+                {[0, 60, 120, 180, 240, 300].map((deg, idx) => (
                   <motion.div
-                    key={opt}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * idx }}
-                    className={`p-3 rounded-2xl border-2 text-xs font-black text-center ${
-                      opt === 'Curiosity'
-                        ? 'border-black bg-[#FDB913] text-black shadow-md scale-105 font-causten-black'
-                        : 'border-slate-200 bg-white text-slate-500'
-                    }`}
-                  >
-                    {opt === 'Curiosity' ? '✔ Curiosity' : opt}
-                  </motion.div>
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0],
+                      x: Math.cos((deg * Math.PI) / 180) * 48,
+                      y: Math.sin((deg * Math.PI) / 180) * 48
+                    }}
+                    transition={{ duration: 0.4, delay: 0.25 }}
+                    className="absolute w-3 h-3 rounded-full bg-[#75B543] border border-black"
+                  />
                 ))}
-              </div>
-            </motion.div>
-          )}
-
-          {/* SCENE 3: Success Glow & Confetti Explosion */}
-          {scene === 3 && (
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: [0.95, 1.05, 1] }}
-              onAnimationStart={() => triggerConfetti()}
-              className="relative bg-[#75B543] text-white rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-md w-full mx-4 text-center"
-            >
-              <div className="flex justify-center mb-2">
-                <QTMascot variant="happy" size="md" />
-              </div>
-              <h3 className="text-2xl font-black font-causten-black mb-1">Curiosity Unlocked!</h3>
-              <p className="text-xs font-bold font-causten-body opacity-90">Questions turn into superpowers.</p>
-            </motion.div>
-          )}
-
-          {/* SCENE 4: Particles Morph into Official QShala Logo */}
-          {scene === 4 && (
-            <motion.div
-              initial={{ scale: 0.7, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-              className="flex flex-col items-center justify-center text-center"
-            >
-              <div className="relative w-48 h-16 flex items-center justify-center">
-                <Image
-                  src="/assets/logos/QShala Logo 1.svg"
-                  alt="QShala Logo"
-                  width={200}
-                  height={60}
-                  className="object-contain"
-                  priority
-                />
-              </div>
-
-              <motion.div
-                initial={{ y: 15, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="mt-4"
-              >
-                <QTMascot variant="idea" size="md" badgeText="Welcome to QShala!" />
               </motion.div>
-            </motion.div>
-          )}
+            )}
+
+            {/* SCENE 3, 4 & 5: QT Cat Mascot & Orbiting Vector Icons */}
+            {(scene === 3 || scene === 4 || scene === 5) && (
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="relative flex items-center justify-center"
+              >
+                {/* Orbiting Lucide Vector Icons */}
+                {scene >= 4 && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {ORBIT_ICONS.map((item, idx) => {
+                      const IconComp = item.icon;
+                      const angle = (idx / ORBIT_ICONS.length) * 2 * Math.PI;
+                      const radius = 110;
+                      return (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{
+                            opacity: scene === 5 ? 0 : 1,
+                            scale: scene === 5 ? 1.8 : 1,
+                            x: Math.cos(angle) * (scene === 5 ? radius * 2.2 : radius),
+                            y: Math.sin(angle) * (scene === 5 ? radius * 2.2 : radius),
+                          }}
+                          transition={{ duration: 0.5, delay: idx * 0.04 }}
+                          className={`absolute p-2.5 rounded-2xl bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${item.color}`}
+                        >
+                          <IconComp className="w-5 h-5 stroke-[2.5]" />
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* QT Mascot */}
+                <motion.div
+                  animate={
+                    scene === 5
+                      ? { y: -120, scale: 0.6, opacity: 0 }
+                      : { y: [0, -6, 0], rotate: [0, -2, 2, 0] }
+                  }
+                  transition={{ duration: 0.5 }}
+                >
+                  <QTMascot size="lg" badgeText={scene === 3 ? "Curiosity Awakens..." : "Ready to Explore!"} />
+                </motion.div>
+              </motion.div>
+            )}
+
+          </div>
+
+          {/* Rotating Curiosity Prompts */}
+          <div className="mt-8 h-8 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={promptIdx}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="text-base font-black text-slate-900 font-causten-black tracking-tight"
+              >
+                {CURIOSITY_PROMPTS[promptIdx]}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="w-48 h-2.5 bg-white rounded-full border-2 border-black overflow-hidden mt-4 relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: '0%' }}
+              transition={{ duration: 2.8, ease: 'easeInOut' }}
+              className="h-full bg-[#30B2E7] rounded-full"
+            />
+          </div>
+
         </motion.div>
       )}
     </AnimatePresence>
