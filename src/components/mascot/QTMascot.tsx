@@ -4,14 +4,28 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+export type QTMascotVariant =
+  | 'normal'
+  | 'curious'
+  | 'idea'
+  | 'quizzing'
+  | 'reading'
+  | 'sherlock'
+  | 'sleeping'
+  | 'happy'
+  | 'trophy'
+  | 'jumping'
+  | 'holding_money'
+  | 'professional';
+
 interface QTMascotProps {
-  variant?: 'normal' | 'curious' | 'idea' | 'quizzing' | 'reading' | 'sherlock' | 'sleeping' | 'happy' | 'trophy' | 'jumping';
+  variant?: QTMascotVariant;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   badgeText?: string;
 }
 
-const VARIANT_MAP: Record<string, string> = {
+const VARIANT_MAP: Record<QTMascotVariant, string> = {
   normal: '/assets/qt/QT normal.svg',
   curious: '/assets/qt/Qt curious.svg',
   idea: '/assets/qt/QT Idea.svg',
@@ -22,6 +36,8 @@ const VARIANT_MAP: Record<string, string> = {
   happy: '/assets/qt/QT happy.svg',
   trophy: '/assets/qt/QT with trophy.svg',
   jumping: '/assets/qt/QT jumping.svg',
+  holding_money: '/assets/qt/QT holding money.svg',
+  professional: '/assets/qt/QT professional.svg',
 };
 
 const SIZE_MAP = {
