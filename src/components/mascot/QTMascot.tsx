@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export type QTMascotVariant =
   | 'normal'
@@ -57,33 +57,47 @@ export default function QTMascot({
 }: QTMascotProps) {
   const imageSrc = VARIANT_MAP[variant] || VARIANT_MAP.normal;
   const dimension = SIZE_MAP[size];
-  const [clickCount, setClickCount] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [clickState, setClickState] = useState(0);
+  const [eyePos, setEyePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!interactiveEyes) return;
     const handleMouseMove = (e: MouseEvent) => {
-      // Calculate smooth pupil shift following cursor
-      const xShift = (e.clientX / window.innerWidth - 0.5) * 10;
-      const yShift = (e.clientY / window.innerHeight - 0.5) * 8;
-      setMousePos({ x: xShift, y: yShift });
+      // Calculate cursor direction relative to window center
+      const angle = Math.atan2(
+        e.clientY - window.innerHeight / 2,
+        e.clientX - window.innerWidth / 2
+      );
+      const distance = 8;
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
+      setEyePos({ x, y });
     };
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [interactiveEyes]);
 
-  const handleClick = () => {
-    setClickCount((prev) => prev + 1);
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setClickState((prev) => prev + 1);
   };
 
   return (
     <motion.div
       onClick={handleClick}
       className={`relative inline-flex flex-col items-center justify-center cursor-pointer group select-none ${className}`}
-      whileHover={{ scale: 1.12, rotate: [0, -5, 5, 0] }}
-      whileTap={{ scale: 0.9, rotate: -8 }}
-      animate={clickCount > 0 ? { y: [0, -15, 0], scale: [1, 1.15, 1] } : {}}
-      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.12 }}
+      animate={
+        clickState > 0
+          ? {
+              y: [0, -25, 0],
+              rotate: [0, -15, 15, 0],
+              scale: [1, 1.25, 1],
+            }
+          : {}
+      }
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       {badgeText && (
         <motion.span
@@ -95,11 +109,11 @@ export default function QTMascot({
         </motion.span>
       )}
 
-      {/* SVG Container with Mouse Tracking Shift */}
+      {/* SVG Image Container with Mouse Eye Tracking Offset */}
       <div className="relative flex items-center justify-center drop-shadow-md">
         <motion.div
-          animate={{ x: mousePos.x, y: mousePos.y }}
-          transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+          animate={{ x: eyePos.x, y: eyePos.y }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
           <Image
             src={imageSrc}
@@ -110,6 +124,22 @@ export default function QTMascot({
             priority={size === 'xl' || size === 'lg'}
           />
         </motion.div>
+
+        {/* Playful Floating Question Mark on Mascot Click */}
+        <AnimatePresence>
+          {clickState > 0 && (
+            <motion.span
+              key={clickState}
+              initial={{ opacity: 0, y: 0, scale: 0.5 }}
+              animate={{ opacity: [0, 1, 0], y: -45, scale: 1.4 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="absolute -top-8 text-2xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow"
+            >
+              ?
+            </motion.span>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
