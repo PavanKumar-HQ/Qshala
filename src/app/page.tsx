@@ -25,18 +25,8 @@ export default function Home() {
         {/* Hero Section with Parallax & Word Reveal */}
         <HeroSection />
 
-        {/* Playful Divider 1: QT Catching Mouse Mascot */}
-        <div className="flex justify-center py-6 relative">
-          <QTMascot variant="normal" size="lg" badgeText="Catching Curiosity!" />
-        </div>
-
         {/* Bento Grid Audiences with Staggered Scroll */}
         <BentoGrid />
-
-        {/* Playful Divider 2: QT Jumping Mascot */}
-        <div className="flex justify-center py-6 relative">
-          <QTMascot variant="jumping" size="lg" badgeText="Jump In!" />
-        </div>
 
         {/* Stats Counter with Live Count-Up */}
         <StatsCounter />
@@ -44,9 +34,9 @@ export default function Home() {
         {/* Case Studies Section */}
         <section className="py-20 bg-white border-b-4 border-black relative">
           
-          {/* Peeking QT Mascot Accent */}
-          <div className="absolute -top-12 left-10 z-20 hidden md:block">
-            <QTMascot variant="sherlock" size="md" badgeText="Investigating Impact" />
+          {/* Peeking QT Mascot Accent in Corner */}
+          <div className="absolute -top-10 right-10 z-20 hidden md:block">
+            <QTMascot variant="sherlock" size="sm" />
           </div>
 
           <div className="max-w-7xl mx-auto px-6">
@@ -66,7 +56,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {CASE_STUDIES_DATA.map((cs) => (
-                <div key={cs.id} className="bg-[#FFFDF5] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
+                <div key={cs.id} className="bg-[#FFFDF5] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all relative overflow-hidden">
                   <span className="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs">{cs.clientType} • {cs.clientName}</span>
                   <h3 className="text-2xl font-black text-slate-900 mt-4 mb-3 leading-snug font-causten-black">{cs.title}</h3>
                   <p className="text-slate-700 text-sm leading-relaxed mb-6 font-causten-body font-semibold">{cs.summary}</p>
@@ -93,11 +83,6 @@ export default function Home() {
         {/* Featured Store Products */}
         <section className="py-20 bg-[#FFFDF5] relative">
           
-          {/* QT Holding Trophy Mascot Accent */}
-          <div className="absolute top-8 right-10 z-20 hidden md:block">
-            <QTMascot variant="trophy" size="md" badgeText="Curiosity Merch!" />
-          </div>
-
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <span className="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-causten-black">
