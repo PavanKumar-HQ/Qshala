@@ -30,6 +30,10 @@ export default function Navbar() {
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-8 font-black text-slate-900 text-sm font-causten-black">
+          <Link href="/" className="hover:text-[#30B2E7] transition-colors">
+            Home
+          </Link>
+
           <Link href="/about" className="hover:text-[#30B2E7] transition-colors">
             About Us
           </Link>
@@ -157,6 +161,7 @@ export default function Navbar() {
             className="lg:hidden mt-3 max-w-7xl mx-auto bg-white rounded-3xl p-6 shadow-2xl border-2 border-black overflow-hidden"
           >
             <div className="flex flex-col gap-4 font-black text-slate-900 font-causten-black">
+              <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
               <Link href="/about" onClick={() => setIsOpen(false)}>About Us</Link>
               <Link href="/services" onClick={() => setIsOpen(false)}>Services</Link>
               <Link href="/schools" onClick={() => setIsOpen(false)}>QShala for Schools</Link>
