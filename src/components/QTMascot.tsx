@@ -54,7 +54,7 @@ export default function QTMascot({
   const imageSrc = VARIANT_MAP[variant] || VARIANT_MAP.normal;
   const dimension = SIZE_MAP[size];
 
-  const [clickCount, setClickCount] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
   const [pupilShift, setPupilShift] = useState({ x: 0, y: 0, rotate: 0 });
 
   useEffect(() => {
@@ -68,13 +68,13 @@ export default function QTMascot({
       const deltaY = e.clientY - mascotCenterY;
       const distance = Math.hypot(deltaX, deltaY);
 
-      const maxShift = 10;
-      const factor = Math.min(distance / 400, 1);
+      const maxShift = 12;
+      const factor = Math.min(distance / 300, 1);
       const angle = Math.atan2(deltaY, deltaX);
 
       const shiftX = Math.cos(angle) * maxShift * factor;
       const shiftY = Math.sin(angle) * maxShift * factor;
-      const tiltAngle = (deltaX / window.innerWidth) * 12;
+      const tiltAngle = (deltaX / window.innerWidth) * 15;
 
       setPupilShift({ x: shiftX, y: shiftY, rotate: tiltAngle });
     };
@@ -85,7 +85,8 @@ export default function QTMascot({
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setClickCount((prev) => prev + 1);
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 600);
   };
 
   return (
@@ -95,23 +96,20 @@ export default function QTMascot({
       className={`relative inline-flex flex-col items-center justify-center cursor-pointer select-none ${className}`}
     >
       {badgeText && (
-        <motion.span
-          className="absolute -top-6 px-3 py-1 bg-[#FDB913] text-black text-xs font-black rounded-full shadow-md z-10 border-2 border-black whitespace-nowrap font-heading"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
+        <span className="absolute -top-6 px-3 py-1 bg-[#FDB913] text-black text-xs font-black rounded-full shadow-md z-10 border-2 border-black whitespace-nowrap font-heading">
           {badgeText}
-        </motion.span>
+        </span>
       )}
 
+      {/* Mascot Container with Dynamic Mouse Position Shift & Click Bounce Animation */}
       <motion.div
-        className="relative flex items-center justify-center drop-shadow-md"
+        className="relative flex items-center justify-center"
         animate={
-          clickCount > 0
+          isClicked
             ? {
-                y: [0, -25, 0],
-                rotate: [0, -15, 15, 0],
-                scale: [1, 1.2, 1],
+                y: [0, -35, 0],
+                rotate: [0, -25, 25, 0],
+                scale: [1, 1.35, 1],
               }
             : {
                 x: pupilShift.x,
@@ -120,9 +118,9 @@ export default function QTMascot({
               }
         }
         transition={
-          clickCount > 0
-            ? { duration: 0.4, ease: 'easeOut' }
-            : { type: 'spring', stiffness: 250, damping: 20 }
+          isClicked
+            ? { duration: 0.5, ease: 'easeOut' }
+            : { type: 'spring', stiffness: 300, damping: 15 }
         }
       >
         <img
@@ -130,19 +128,19 @@ export default function QTMascot({
           alt={`QT Mascot ${variant}`}
           width={dimension}
           height={dimension}
-          className="object-contain pointer-events-none"
-          loading="lazy"
+          className="object-contain pointer-events-none drop-shadow-lg"
+          loading="eager"
         />
 
+        {/* Floating Question Mark Pop-up on Click */}
         <AnimatePresence>
-          {clickCount > 0 && (
+          {isClicked && (
             <motion.span
-              key={clickCount}
               initial={{ opacity: 0, y: 0, scale: 0.5 }}
-              animate={{ opacity: [0, 1, 0], y: -45, scale: 1.4 }}
+              animate={{ opacity: [0, 1, 0], y: -50, scale: 1.6 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="absolute -top-8 text-2xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow-md"
+              className="absolute -top-10 text-3xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow-lg z-20"
             >
               ?
             </motion.span>

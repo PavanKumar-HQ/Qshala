@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   OFFICIAL QSHALA BRAND GUIDELINES (JUNE 2026 AUDIT COMPLIANT)
+   ========================================================================== */
+
 /* -------------------------------------------------------------------------- */
-/*  OFFICIAL QSHALA BRAND FONTS (@font-face declarations)                    */
+/*  1. TYPOGRAPHY DECLARATIONS                                               */
+/*  - Primary Font for Schools: Mikado Black                                 */
+/*  - Primary Font for Others/Headings: Causten Round Black                  */
+/*  - Secondary Font for Body: Causten Round (Regular/Medium/Bold)           */
 /* -------------------------------------------------------------------------- */
 
-/* 1. Primary Font for Schools: Mikado Black */
 @font-face {
   font-family: 'Mikado';
   src: url('/fonts/HVD Fonts - Mikado Black.otf') format('opentype');
@@ -13,7 +19,6 @@
   font-display: swap;
 }
 
-/* 2. Primary Font for Headings/Others: Causten Round Black */
 @font-face {
   font-family: 'Causten Round Black';
   src: url('/fonts/Trustha - Causten Round Black.otf') format('opentype');
@@ -22,7 +27,6 @@
   font-display: swap;
 }
 
-/* 3. Secondary Font for Body Copy: Causten Round Regular & Medium */
 @font-face {
   font-family: 'Causten Round';
   src: url('/fonts/Trustha - Causten Round Regular.otf') format('opentype');
@@ -48,22 +52,23 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/*  QSHALA GLOBAL DESIGN TOKENS (CSS Custom Properties)                      */
+/*  2. COLOR PALETTE (PDF Page 13 Strict CMYK / HEX Values)                   */
+/*  - Qurious Sky: #30B2E7 (C67 M10 Y0 K0)                                   */
+/*  - Joy of Quest: #FDB913 (C0 M30 Y100 K0)                                  */
+/*  - Always Questioning: #75B543 (C60 M7 Y100 K0)                           */
+/*  - Warm Off-White Canvas: #FFFDF5                                          */
 /* -------------------------------------------------------------------------- */
-:root {
-  /* Brand Palette */
-  --color-sky: #30B2E7;
-  --color-yellow: #FDB913;
-  --color-green: #75B543;
-  --color-canvas: #FFFDF5;
-  --color-black: #000000;
-  --color-white: #FFFFFF;
-  --color-slate-900: #0f172a;
-  --color-slate-700: #334155;
-  --color-slate-500: #64748b;
-  --color-slate-100: #f1f5f9;
 
-  /* Typography Rules (Strict Brand PDF Guidelines) */
+:root {
+  /* Exact PDF Hex Tokens */
+  --qurious-sky: #30B2E7;
+  --joy-of-quest: #FDB913;
+  --always-questioning: #75B543;
+  --canvas-bg: #FFFDF5;
+  --brand-black: #000000;
+  --brand-white: #FFFFFF;
+
+  /* Typography Font Families */
   --font-mikado: 'Mikado', cursive, sans-serif;
   --font-causten-black: 'Causten Round Black', sans-serif;
   --font-causten-round: 'Causten Round', sans-serif;
@@ -85,7 +90,7 @@
   --radius-xl: 2rem;
   --radius-full: 9999px;
 
-  /* Shadows */
+  /* Neobrutalist Shadow System */
   --shadow-card: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --shadow-card-hover: 6px 6px 0px 0px rgba(0, 0, 0, 1);
 
@@ -94,33 +99,60 @@
   --transition-base: 0.3s ease-out;
 }
 
-/* Base Body Font Rule: Secondary Font Causten Round for Body Copy */
+/* -------------------------------------------------------------------------- */
+/*  3. GLOBAL TYPOGRAPHY RULE ASSIGNMENTS                                      */
+/* -------------------------------------------------------------------------- */
+
+/* Rule: Body copy MUST use Causten Round (Secondary Font) */
 body {
-  background-color: var(--color-canvas);
-  color: var(--color-black);
-  font-family: var(--font-causten-round);
+  background-color: var(--canvas-bg);
+  color: var(--brand-black);
+  font-family: var(--font-causten-round) !important;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Headings: Causten Round Black */
-h1, h2, h3, h4, .font-heading {
-  font-family: var(--font-causten-black);
+/* Rule: Primary Font for Others/Headings MUST use Causten Round Black */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-causten-black) !important;
 }
 
-/* Schools Specific Font: Mikado Black */
+/* Rule: Primary Font for Schools MUST use Mikado */
 .font-mikado, .font-school-heading {
-  font-family: var(--font-mikado);
+  font-family: var(--font-mikado) !important;
 }
 
 .font-body {
-  font-family: var(--font-causten-round);
+  font-family: var(--font-causten-round) !important;
 }
 
+/* -------------------------------------------------------------------------- */
+/*  4. STRICT BRAND COLOR UTILITY CLASSES                                      */
+/* -------------------------------------------------------------------------- */
+
+/* Qurious Sky (#30B2E7) */
+.bg-qurious-sky, .bg-\[\#30B2E7\] { background-color: var(--qurious-sky) !important; }
+.text-qurious-sky, .text-\[\#30B2E7\] { color: var(--qurious-sky) !important; }
+.border-qurious-sky, .border-\[\#30B2E7\] { border-color: var(--qurious-sky) !important; }
+
+/* Joy of Quest (#FDB913) */
+.bg-joy-of-quest, .bg-\[\#FDB913\] { background-color: var(--joy-of-quest) !important; }
+.text-joy-of-quest, .text-\[\#FDB913\] { color: var(--joy-of-quest) !important; }
+.border-joy-of-quest, .border-\[\#FDB913\] { border-color: var(--joy-of-quest) !important; }
+
+/* Always Questioning (#75B543) */
+.bg-always-questioning, .bg-\[\#75B543\] { background-color: var(--always-questioning) !important; }
+.text-always-questioning, .text-\[\#75B543\] { color: var(--always-questioning) !important; }
+.border-always-questioning, .border-\[\#75B543\] { border-color: var(--always-questioning) !important; }
+
+/* Canvas Background (#FFFDF5) */
+.bg-canvas, .bg-\[\#FFFDF5\] { background-color: var(--canvas-bg) !important; }
+
+/* Card Neobrutalist Base */
 .card-neobrutalist {
-  background-color: var(--color-white);
-  border: 2px solid var(--color-black);
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-black);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);

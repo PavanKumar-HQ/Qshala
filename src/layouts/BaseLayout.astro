@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import LoadingScreen from '../components/LoadingScreen';
 
 interface Props {
   title?: string;
@@ -12,7 +13,7 @@ const {
 } = Astro.props;
 ---
 
-<!usr/bin/env html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,9 +33,13 @@ const {
     <link rel="preload" href="/fonts/Causten-Round.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
+
+    <!-- Original 5-scene Curiosity Loader (client:only prevents SSR, no hydration block) -->
+    <LoadingScreen client:only="react" />
+
     <slot />
 
-    <!-- Pure JS Tab Title Switcher (Zero Client Framework Overhead) -->
+    <!-- Pure JS Tab Title Switcher -->
     <script>
       const originalTitle = document.title;
       const funnyMessages = [
@@ -44,14 +49,10 @@ const {
         "A wild quiz question appeared!",
         "QT is peeking... Where did you go?"
       ];
-
       document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          const randomMsg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-          document.title = randomMsg;
-        } else {
-          document.title = originalTitle;
-        }
+        document.title = document.hidden
+          ? funnyMessages[Math.floor(Math.random() * funnyMessages.length)]
+          : originalTitle;
       });
     </script>
   </body>

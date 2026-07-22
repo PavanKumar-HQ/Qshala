@@ -12,12 +12,16 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
   <Navbar />
 
   <main class="flex-grow">
-    <!-- Hero Section -->
+    <!-- Hero Section with Soft Radial Blobs & Dotted Grid Background -->
     <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFFDF5] via-white to-[#FFFDF5]">
       
-      {/* Soft Decorative Brand Background Blobs */}
-      <div class="absolute top-10 left-1/4 w-72 h-72 bg-[#30B2E7]/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute top-40 right-1/4 w-80 h-80 bg-[#FDB913]/15 rounded-full blur-3xl pointer-events-none"></div>
+      {/* Subtle Dotted Pattern Grid */}
+      <div class="absolute inset-0 bg-[radial-gradient(#30B2E7_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none"></div>
+
+      {/* Decorative Brand Ambient Glowing Orbs */}
+      <div class="absolute top-10 left-1/4 w-80 h-80 bg-[#30B2E7]/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+      <div class="absolute top-40 right-1/4 w-96 h-96 bg-[#FDB913]/25 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+      <div class="absolute bottom-10 left-1/3 w-72 h-72 bg-[#75B543]/20 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="text-center max-w-4xl mx-auto">
@@ -61,6 +65,11 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
           </div>
         </div>
 
+        {/* Hero QT Mascot Showcase - Updated to 'QT quizzing' */}
+        <div class="mt-12 flex justify-center">
+          <QTMascot client:visible variant="quizzing" size="xl" badgeText="Curiosity Champion!" />
+        </div>
+
         {/* Daily Quiz Playground Section with Interactive Cards */}
         <div class="mt-16 relative">
           <div class="text-center mb-6">
@@ -74,7 +83,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {FEATURED_QUIZZES.map((quiz) => (
-              <InteractiveQuizCard client:visible quiz={quiz} />
+              <InteractiveQuizCard client:load quiz={quiz} />
             ))}
           </div>
         </div>
