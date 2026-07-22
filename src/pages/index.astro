@@ -15,7 +15,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFFDF5] via-white to-[#FFFDF5]">
       
-      <!-- Soft Decorative Brand Background Blobs -->
+      {/* Soft Decorative Brand Background Blobs */}
       <div class="absolute top-10 left-1/4 w-72 h-72 bg-[#30B2E7]/10 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute top-40 right-1/4 w-80 h-80 bg-[#FDB913]/15 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -29,7 +29,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
             </span>
           </div>
 
-          <!-- Typewriter React Island -->
+          {/* Typewriter React Island */}
           <TypewriterHeadline client:idle />
 
           <p class="mt-6 text-lg sm:text-xl font-semibold text-slate-700 max-w-2xl mx-auto leading-relaxed">
@@ -61,7 +61,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
           </div>
         </div>
 
-        <!-- Daily Quiz Playground React Island hydrated when visible -->
+        {/* Daily Quiz Playground Section with Interactive Cards */}
         <div class="mt-16 relative">
           <div class="text-center mb-6">
             <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs border border-black uppercase font-heading">
@@ -82,7 +82,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
       </div>
     </section>
 
-    <!-- Bento Grid Section -->
+    {/* Bento Grid Section */}
     <section class="py-20 relative">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16 relative">
@@ -95,6 +95,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Schools Card */}
           <div class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
             <div class="absolute top-4 right-4 z-10">
               <QTMascot client:visible variant="reading" size="sm" />
@@ -112,6 +113,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
             </div>
           </div>
 
+          {/* Corporates Card */}
           <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
             <div class="absolute top-4 right-4 z-10">
               <QTMascot client:visible variant="professional" size="sm" />
@@ -127,11 +129,46 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
               </a>
             </div>
           </div>
+
+          {/* Colleges Card */}
+          <div class="bg-[#75B543] text-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10">
+              <QTMascot client:visible variant="jumping" size="sm" />
+            </div>
+            <span class="text-xs font-black uppercase text-black">Higher Education & Fests</span>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Colleges</h3>
+            <p class="text-sm font-semibold opacity-90 leading-relaxed">
+              Campus fest quiz championships, employability challenges, and real-world case study simulations.
+            </p>
+            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
+              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+                Host Campus Fest →
+              </a>
+            </div>
+          </div>
+
+          {/* Communities Card */}
+          <div class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10">
+              <QTMascot client:visible variant="happy" size="sm" />
+            </div>
+            <span class="text-xs font-black uppercase text-purple-600">Neighborhoods & Families</span>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala Communities & Pub Quizzes</h3>
+            <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
+              Bringing parents, kids, and friends together with weekend family game nights, pub quizzes, wedding trivia, and apartment complex leagues.
+            </p>
+            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
+              <span class="text-xs font-black">Screen-free weekend fun</span>
+              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+                Explore Community Events →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Case Studies Section -->
+    {/* Case Studies Section */}
     <section class="py-20 bg-white border-b-4 border-black relative">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -157,6 +194,16 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
               <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs">{cs.clientType} • {cs.clientName}</span>
               <h3 class="text-2xl font-black text-slate-900 mt-4 mb-3 leading-snug font-heading pr-12">{cs.title}</h3>
               <p class="text-slate-700 text-sm leading-relaxed mb-6 font-semibold">{cs.summary}</p>
+              
+              <div class="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-[#30B2E7]/15 border border-black mb-6">
+                {cs.impactMetrics.map((m) => (
+                  <div class="text-center">
+                    <div class="text-xl font-black text-[#30B2E7] font-heading">{m.value}</div>
+                    <div class="text-[10px] font-black uppercase text-slate-700">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
               <blockquote class="border-l-4 border-[#FDB913] pl-4 text-xs italic text-slate-800 font-semibold py-1">
                 &ldquo;{cs.quote.text}&rdquo;
                 <footer class="text-slate-600 font-black not-italic mt-1">— {cs.quote.author}, {cs.quote.role}</footer>
@@ -175,6 +222,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
             QShala Curiosity Store
           </span>
           <h2 class="text-4xl font-black text-slate-900 mt-3 font-heading">Interactive Games, Books & Kits</h2>
+          <p class="text-slate-700 text-base mt-2 font-semibold">Bring curiosity home with our handcrafted learning products.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -187,15 +235,18 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
                 </div>
                 <div>
                   <div class={`h-40 rounded-2xl ${product.imageColor} flex items-center justify-center text-white font-black text-xl p-4 shadow-inner mb-4 relative`}>
+                    {product.isPopular && (
+                      <span class="absolute top-2 left-2 px-2.5 py-1 bg-black text-white font-black text-[10px] rounded-full border border-white">BESTSELLER</span>
+                    )}
                     <span class="font-mikado">{product.title.split(' ')[0]}</span>
                   </div>
                   <span class="text-[10px] font-black uppercase text-[#30B2E7]">{product.category}</span>
-                  <h3 class="text-lg font-black text-slate-900 mt-1 font-heading">{product.title}</h3>
-                  <p class="text-slate-600 text-xs mt-1 font-medium">{product.description}</p>
+                  <h3 class="text-lg font-black text-slate-900 mt-1 font-heading line-clamp-1">{product.title}</h3>
+                  <p class="text-slate-600 text-xs mt-1 font-medium line-clamp-2">{product.description}</p>
                 </div>
                 <div class="mt-4 pt-4 border-t border-black/20 flex items-center justify-between">
                   <span class="text-lg font-black text-slate-900 font-heading">{product.price}</span>
-                  <a href="/shop" class="px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs border border-black font-heading">
+                  <a href="/shop" class="px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs border border-black font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     View Details
                   </a>
                 </div>
