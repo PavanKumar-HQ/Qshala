@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import TypewriterHeadline from '../components/TypewriterHeadline';
+import InteractiveQuizCard from '../components/InteractiveQuizCard';
+import QTMascot from '../components/QTMascot';
+import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
+---
+
+<BaseLayout title="QShala | Questions • Quriosity • Quests — India's Curiosity Company">
+  <Navbar />
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFFDF5] via-white to-[#FFFDF5]">
+      
+      <!-- Soft Decorative Brand Background Blobs -->
+      <div class="absolute top-10 left-1/4 w-72 h-72 bg-[#30B2E7]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-40 right-1/4 w-80 h-80 bg-[#FDB913]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mb-6">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
+            <span class="text-xs font-black uppercase text-slate-900 tracking-wider font-heading">
+              India&apos;s Curiosity Company
+            </span>
+          </div>
+
+          <!-- Typewriter React Island -->
+          <TypewriterHeadline client:idle />
+
+          <p class="mt-6 text-lg sm:text-xl font-semibold text-slate-700 max-w-2xl mx-auto leading-relaxed">
+            QShala designs interactive quiz experiences, weekly learning clubs, and corporate offsites that encourage children and adults to ask <span class="text-[#75B543] font-black underline decoration-2">&ldquo;Why?&rdquo;</span>
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="/book-a-quiz"
+              class="px-8 py-4 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center gap-2 font-heading"
+            >
+              Book a Quiz Experience →
+            </a>
+
+            <a
+              href="/about"
+              class="px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-black text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-heading"
+            >
+              Explore Our Mission
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-slate-700 text-sm font-bold">
+            <div>4.9/5 Rating ★★★★★</div>
+            <span>•</span>
+            <div>400,000+ Learners Engaged</div>
+            <span>•</span>
+            <div>250+ Schools Across India</div>
+          </div>
+        </div>
+
+        <!-- Daily Quiz Playground React Island hydrated when visible -->
+        <div class="mt-16 relative">
+          <div class="text-center mb-6">
+            <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs border border-black uppercase font-heading">
+              Try a Quick Curiosity Quiz
+            </span>
+            <p class="text-xs font-bold text-slate-700 mt-1">
+              Pick an answer below &amp; trigger the celebration!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {FEATURED_QUIZZES.map((quiz) => (
+              <InteractiveQuizCard client:visible quiz={quiz} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16 relative">
+          <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+            Curiosity Solutions
+          </span>
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
+            Designed for Every Stage of Curiosity.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10">
+              <QTMascot client:visible variant="reading" size="sm" />
+            </div>
+            <span class="text-xs font-black uppercase text-[#30B2E7]">K-12 Educational Institutions</span>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Schools</h3>
+            <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
+              Replace passive memorization with active weekly curiosity clubs, current affairs storytelling, teacher empowerment workshops, and inter-school competitions.
+            </p>
+            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
+              <span class="text-xs font-black">250+ Schools Active Across India</span>
+              <a href="/schools" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+                Explore School Programs →
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10">
+              <QTMascot client:visible variant="professional" size="sm" />
+            </div>
+            <span class="text-xs font-black uppercase text-black">Corporate L&D & HR</span>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Corporates</h3>
+            <p class="text-sm font-semibold opacity-90 leading-relaxed">
+              High-octane team bonding, trivia nights, leadership offsites, and brand knowledge gamification.
+            </p>
+            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
+              <a href="/companies" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+                Corporate Offsites →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="py-20 bg-white border-b-4 border-black relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+              Real Impact
+            </span>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
+              Apple-Style Storytelling Case Studies.
+            </h2>
+          </div>
+          <a href="/case-studies" class="mt-4 md:mt-0 text-sm font-black text-[#30B2E7] hover:underline font-heading">
+            View All Case Studies →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {CASE_STUDIES_DATA.map((cs, idx) => (
+            <div class="bg-[#FFFDF5] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden group">
+              <div class="absolute top-4 right-4 z-10">
+                <QTMascot client:visible variant={idx === 0 ? "sherlock" : "quizzing"} size="sm" />
+              </div>
+              <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs">{cs.clientType} • {cs.clientName}</span>
+              <h3 class="text-2xl font-black text-slate-900 mt-4 mb-3 leading-snug font-heading pr-12">{cs.title}</h3>
+              <p class="text-slate-700 text-sm leading-relaxed mb-6 font-semibold">{cs.summary}</p>
+              <blockquote class="border-l-4 border-[#FDB913] pl-4 text-xs italic text-slate-800 font-semibold py-1">
+                &ldquo;{cs.quote.text}&rdquo;
+                <footer class="text-slate-600 font-black not-italic mt-1">— {cs.quote.author}, {cs.quote.role}</footer>
+              </blockquote>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Section -->
+    <section class="py-20 bg-[#FFFDF5] relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">
+            QShala Curiosity Store
+          </span>
+          <h2 class="text-4xl font-black text-slate-900 mt-3 font-heading">Interactive Games, Books & Kits</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PRODUCTS_DATA.map((product, pIdx) => {
+            const productMascots = ["idea", "reading", "holding_money", "trophy"] as const;
+            return (
+              <div class="bg-white rounded-3xl p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between group relative overflow-hidden">
+                <div class="absolute top-2 right-2 z-10 scale-75 origin-top-right">
+                  <QTMascot client:visible variant={productMascots[pIdx % productMascots.length]} size="sm" />
+                </div>
+                <div>
+                  <div class={`h-40 rounded-2xl ${product.imageColor} flex items-center justify-center text-white font-black text-xl p-4 shadow-inner mb-4 relative`}>
+                    <span class="font-mikado">{product.title.split(' ')[0]}</span>
+                  </div>
+                  <span class="text-[10px] font-black uppercase text-[#30B2E7]">{product.category}</span>
+                  <h3 class="text-lg font-black text-slate-900 mt-1 font-heading">{product.title}</h3>
+                  <p class="text-slate-600 text-xs mt-1 font-medium">{product.description}</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-black/20 flex items-center justify-between">
+                  <span class="text-lg font-black text-slate-900 font-heading">{product.price}</span>
+                  <a href="/shop" class="px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs border border-black font-heading">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

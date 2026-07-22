@@ -1,0 +1,86 @@
+---
+// Pure static HTML Header component for maximum performance
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 md:px-8 md:py-4 transition-all">
+  <div class="max-w-7xl mx-auto bg-white/95 rounded-full px-6 py-2.5 flex items-center justify-between shadow-md border-2 border-black">
+    
+    <!-- Official QShala SVG Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <img
+        src="/assets/logos/QShala Logo 1.svg"
+        alt="QShala Logo"
+        width="140"
+        height="40"
+        class="h-10 w-auto object-contain"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <nav class="hidden lg:flex items-center gap-8 font-black text-slate-900 text-sm font-heading">
+      <a href="/" class="hover:text-[#30B2E7] transition-colors">Home</a>
+      <a href="/about" class="hover:text-[#30B2E7] transition-colors">About Us</a>
+      <a href="/services" class="hover:text-[#30B2E7] transition-colors">Services</a>
+      <a href="/schools" class="hover:text-[#30B2E7] transition-colors">For Schools</a>
+      <a href="/companies" class="hover:text-[#30B2E7] transition-colors">For Corporates</a>
+      <a href="/learn" class="hover:text-[#30B2E7] transition-colors">Kids Corner</a>
+      <a href="/case-studies" class="hover:text-[#30B2E7] transition-colors">Case Studies</a>
+      <a href="/shop" class="hover:text-[#30B2E7] transition-colors">Shop</a>
+      <a href="/blog" class="hover:text-[#30B2E7] transition-colors">Blog</a>
+    </nav>
+
+    <!-- Action CTAs -->
+    <div class="hidden lg:flex items-center gap-3">
+      <a
+        href="/book-a-quiz"
+        class="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all font-heading"
+      >
+        Book a Quiz
+      </a>
+    </div>
+
+    <!-- Mobile Navigation Menu Toggle -->
+    <button
+      id="menuToggleBtn"
+      class="lg:hidden p-2 rounded-full bg-slate-100 text-black border-2 border-black font-bold text-xs px-3"
+      aria-label="Toggle Menu"
+    >
+      Menu
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Panel -->
+  <div
+    id="mobileMenu"
+    class="hidden lg:hidden mt-3 max-w-7xl mx-auto bg-white rounded-3xl p-6 shadow-2xl border-2 border-black"
+  >
+    <div class="flex flex-col gap-3 font-black text-slate-900 font-heading text-sm">
+      <a href="/" class="hover:text-[#30B2E7]">Home</a>
+      <a href="/about" class="hover:text-[#30B2E7]">About Us</a>
+      <a href="/services" class="hover:text-[#30B2E7]">Services</a>
+      <a href="/schools" class="hover:text-[#30B2E7]">QShala for Schools</a>
+      <a href="/companies" class="hover:text-[#30B2E7]">QShala for Corporates</a>
+      <a href="/learn" class="hover:text-[#30B2E7]">Kids Corner</a>
+      <a href="/case-studies" class="hover:text-[#30B2E7]">Case Studies</a>
+      <a href="/shop" class="hover:text-[#30B2E7]">Store</a>
+      <a href="/blog" class="hover:text-[#30B2E7]">Blog</a>
+      <a href="/contact" class="hover:text-[#30B2E7]">Contact</a>
+      <a
+        href="/book-a-quiz"
+        class="mt-2 text-center py-3 rounded-2xl bg-[#FDB913] text-black font-black border-2 border-black shadow-md"
+      >
+        Book a Quiz
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('menuToggleBtn');
+  const menu = document.getElementById('mobileMenu');
+
+  toggleBtn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "QShala | Questions • Quriosity • Quests — India's Curiosity Company",
+  description = "Replacing Rote Learning with Curiosity, Questions, Discovery, and Wonder."
+} = Astro.props;
+---
+
+<!usr/bin/env html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- OpenGraph / Social SEO -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Self-hosted font preloads for performance -->
+    <link rel="preload" href="/fonts/Causten-Round-Black.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Causten-Round.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
+    <slot />
+
+    <!-- Pure JS Tab Title Switcher (Zero Client Framework Overhead) -->
+    <script>
+      const originalTitle = document.title;
+      const funnyMessages = [
+        "QT misses you! Come back!",
+        "Still curious? Click back!",
+        "Don't leave QT alone with questions!",
+        "A wild quiz question appeared!",
+        "QT is peeking... Where did you go?"
+      ];
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          const randomMsg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+          document.title = randomMsg;
+        } else {
+          document.title = originalTitle;
+        }
+      });
+    </script>
+  </body>
+</html>

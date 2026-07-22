@@ -1,12 +1,12 @@
 import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import confetti from 'canvas-confetti';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return clsx(inputs);
 }
 
-export function triggerConfetti() {
+export async function triggerConfetti() {
+  const { default: confetti } = await import('canvas-confetti');
+  
   const count = 200;
   const defaults = {
     origin: { y: 0.7 }
@@ -33,18 +33,6 @@ export function triggerConfetti() {
     spread: 100,
     decay: 0.91,
     scalar: 0.8,
-    colors: ['#30B2E7', '#FDB913', '#75B543']
-  });
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 25,
-    decay: 0.92,
-    scalar: 1.2,
-    colors: ['#30B2E7', '#FDB913', '#75B543']
-  });
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 45,
     colors: ['#30B2E7', '#FDB913', '#75B543']
   });
 }

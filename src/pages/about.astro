@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
+---
+
+<BaseLayout title="About Us | QShala - India's Curiosity Company">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto space-y-20">
+      <div class="text-center max-w-4xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">
+          Our Story & Philosophy
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mt-4 font-heading">
+          We Believe <span class="text-[#30B2E7]">Curiosity</span> is the Greatest Superpower.
+        </h1>
+        <p class="text-slate-700 text-xl font-semibold mt-6 leading-relaxed">
+          In a world obsessed with standard answers and test marks, QShala was born with one simple goal: <span class="text-[#75B543] font-black">&ldquo;Growth through Curiosity.&rdquo;</span>
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3.5 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading">
+            Meet QT The Curious Cat
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-4 mb-4 font-heading">
+            The Heartbeat of QShala.
+          </h2>
+          <p class="text-slate-700 text-base leading-relaxed mb-4 font-medium">
+            QT isn&apos;t just a mascot—QT represents every child and adult who refuses to stop asking &ldquo;Why?&rdquo;. Inspired by the letter &apos;Q&apos;, QT rolls, explores, and guides learners through mind-bending trivia, science puzzles, and real-life stories.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <QTMascot client:visible variant="curious" size="xl" badgeText="Curiosity Champion!" />
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

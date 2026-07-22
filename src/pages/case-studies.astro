@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { CASE_STUDIES_DATA } from '../lib/data';
+---
+
+<BaseLayout title="Impact & Case Studies | QShala">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading">Case Studies</span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Real Curiosity Impact</h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {CASE_STUDIES_DATA.map((cs) => (
+          <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs">{cs.clientType} • {cs.clientName}</span>
+            <h2 class="text-2xl font-black text-slate-900 mt-4 mb-3 font-heading">{cs.title}</h2>
+            <p class="text-slate-700 text-sm font-semibold">{cs.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

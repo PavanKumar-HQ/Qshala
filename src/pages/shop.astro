@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { PRODUCTS_DATA } from '../lib/data';
+---
+
+<BaseLayout title="Curiosity Store | QShala">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase border border-black font-heading">Store</span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Interactive Games & Books</h1>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {PRODUCTS_DATA.map((p) => (
+          <div class="bg-white rounded-3xl p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h2 class="text-lg font-black font-heading">{p.title}</h2>
+            <p class="text-xs text-slate-600 font-semibold">{p.description}</p>
+            <div class="mt-4 pt-4 border-t border-black/20 flex justify-between font-black">
+              <span>{p.price}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

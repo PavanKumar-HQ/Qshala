@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*  QSHALA GLOBAL DESIGN TOKENS (CSS Custom Properties)                      */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Primary & Brand Colors */
+  --color-sky: #30B2E7;
+  --color-brand-sky: #30B2E7;
+  --color-brand-yellow: #FDB913;
+  --color-brand-green: #75B543;
+  --color-canvas: #FFFDF5;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-slate-900: #0f172a;
+  --color-slate-700: #334155;
+  --color-slate-500: #64748b;
+  --color-slate-100: #f1f5f9;
+
+  /* Typography */
+  --font-mikado: 'Mikado', cursive, sans-serif;
+  --font-causten-black: 'Causten Round Black', sans-serif;
+  --font-causten-round: 'Causten Round', sans-serif;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radius Scale */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Shadow System (Neobrutalist & Soft Glow) */
+  --shadow-card: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-card-hover: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-sky-glow: 0 0 25px rgba(48, 178, 231, 0.25);
+  --shadow-yellow-glow: 0 0 25px rgba(253, 185, 19, 0.25);
+
+  /* Container Widths */
+  --container-max: 80rem;
+  --container-px: 1.5rem;
+
+  /* Transitions & Timing */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-out;
+
+  /* Z-Index Scale */
+  --z-nav: 50;
+  --z-modal: 100;
+  --z-badge: 10;
+}
+
+/* Base Reset & Typography Setup */
+@font-face {
+  font-family: 'Mikado';
+  src: url('/fonts/Mikado.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Causten Round Black';
+  src: url('/fonts/Causten-Round-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Causten Round';
+  src: url('/fonts/Causten-Round.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-black);
+  font-family: var(--font-causten-round);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-causten-black);
+}
+
+.font-mikado {
+  font-family: var(--font-mikado);
+}
+
+.card-neobrutalist {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card-neobrutalist:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}

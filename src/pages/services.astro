@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
+---
+
+<BaseLayout title="Offerings & Services | QShala">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+          Programs & Formats
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mt-3 font-heading">
+          Curiosity Services Built for Impact.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+          <div class="absolute top-4 right-4"><QTMascot client:visible variant="reading" size="sm" /></div>
+          <span class="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs">For Schools</span>
+          <h2 class="text-2xl font-black text-slate-900 mt-4 mb-2 font-heading">Weekly Curiosity Clubs & Storytelling</h2>
+          <p class="text-slate-700 text-sm font-semibold">Transforming K-12 classrooms into hubs of active questioning and design thinking.</p>
+        </div>
+
+        <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+          <div class="absolute top-4 right-4"><QTMascot client:visible variant="professional" size="sm" /></div>
+          <span class="px-3 py-1 rounded-full bg-black text-white font-black text-xs">For Corporates</span>
+          <h2 class="text-2xl font-black text-slate-900 mt-4 mb-2 font-heading">Corporate Trivia & Leadership Offsites</h2>
+          <p class="text-slate-900 text-sm font-semibold">Engaging hybrid teams across cities with high-octane trivia championships.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

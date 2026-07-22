@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
+---
+
+<BaseLayout title="Meet the Team | QShala">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading">Curiosity Crew</span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Meet the Minds Behind QShala</h1>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="bg-white rounded-3xl p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <QTMascot client:visible variant="sherlock" size="lg" />
+          <h2 class="text-xl font-black text-slate-900 mt-4 font-heading">Raghavan A.</h2>
+          <p class="text-xs font-bold text-slate-600">Co-Founder & Chief Officer</p>
+        </div>
+        <div class="bg-[#FDB913] rounded-3xl p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <QTMascot client:visible variant="quizzing" size="lg" />
+          <h2 class="text-xl font-black text-slate-900 mt-4 font-heading">Sachin Ravi</h2>
+          <p class="text-xs font-bold text-slate-800">Co-Founder & Storyteller</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

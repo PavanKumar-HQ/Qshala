@@ -1,0 +1,94 @@
+---
+import QTMascot from './QTMascot';
+---
+
+<footer class="relative bg-slate-950 text-white rounded-t-[3rem] pt-20 pb-12 overflow-hidden mt-20 border-t-4 border-[#FDB913]">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Top Banner with Joy of Quest Yellow -->
+    <div class="bg-[#FDB913] rounded-3xl p-8 md:p-12 mb-16 flex flex-col md:flex-row items-center justify-between shadow-2xl relative overflow-hidden border-2 border-black">
+      <div class="max-w-xl text-center md:text-left mb-6 md:mb-0">
+        <span class="inline-block px-4 py-1.5 bg-black text-white rounded-full text-xs font-black uppercase tracking-wider mb-3 font-heading">
+          Joy of Quest
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight font-heading">
+          Ready to replace rote learning with curiosity?
+        </h2>
+        <p class="text-slate-900 font-bold text-base mt-2">
+          Book an interactive quiz session or workshop for your school, office, or community!
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center gap-4">
+        <!-- React Mascot Island hydrated on visibility -->
+        <QTMascot client:visible variant="idea" size="lg" badgeText="Ask QT Anything!" />
+        <a
+          href="/book-a-quiz"
+          class="px-8 py-4 bg-black hover:bg-slate-900 text-white font-black rounded-full shadow-lg hover:scale-105 transition-all text-lg border-2 border-white font-heading"
+        >
+          Book a Quiz Experience →
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Navigation Columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+      
+      <!-- Brand Column with Official White Logo -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-3">
+          <img
+            src="/assets/logos/QShala Logo 1 W.svg"
+            alt="QShala Logo"
+            width="150"
+            height="40"
+            class="h-10 w-auto object-contain"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-slate-400 text-sm max-w-sm leading-relaxed font-medium">
+          QShala is India&apos;s curiosity learning platform that encourages creativity, curiosity, and compassion for school-going children, parents, and corporate teams.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4 font-heading">Offerings</h3>
+        <ul class="space-y-2.5 text-sm text-slate-400 font-medium">
+          <li><a href="/schools" class="hover:text-[#30B2E7]">For Schools & K-12</a></li>
+          <li><a href="/companies" class="hover:text-[#FDB913]">For Corporate Teams</a></li>
+          <li><a href="/colleges" class="hover:text-[#75B543]">For Colleges & Fests</a></li>
+          <li><a href="/communities" class="hover:text-purple-400">Neighborhood Quizzes</a></li>
+        </ul>
+      </div>
+
+      <!-- Discover -->
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4 font-heading">Discover</h3>
+        <ul class="space-y-2.5 text-sm text-slate-400 font-medium">
+          <li><a href="/learn" class="hover:text-[#FDB913]">Kids Corner</a></li>
+          <li><a href="/case-studies" class="hover:text-[#30B2E7]">Impact & Case Studies</a></li>
+          <li><a href="/shop" class="hover:text-[#FDB913]">Curiosity Store</a></li>
+          <li><a href="/blog" class="hover:text-white">Magazine & Articles</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4 font-heading">Company</h3>
+        <ul class="space-y-2.5 text-sm text-slate-400 font-medium">
+          <li><a href="/about" class="hover:text-white">About Our Mission</a></li>
+          <li><a href="/team" class="hover:text-[#30B2E7]">Meet the Team</a></li>
+          <li><a href="/contact" class="hover:text-[#FDB913]">Contact Us</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 font-medium gap-4">
+      <p>© {new Date().getFullYear()} QShala (Curiosita Educational Services). All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
