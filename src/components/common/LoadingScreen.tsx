@@ -6,11 +6,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { triggerConfetti } from '@/lib/utils';
 import QTMascot from '../mascot/QTMascot';
 
+// Static deterministic particle coordinates to prevent SSR/Client hydration mismatch
+const PARTICLE_POSITIONS = [
+  { x: '10%', y: '15%', symbol: '✨' },
+  { x: '85%', y: '20%', symbol: '📚' },
+  { x: '25%', y: '75%', symbol: '🧩' },
+  { x: '75%', y: '80%', symbol: '❓' },
+  { x: '50%', y: '10%', symbol: '✨' },
+  { x: '90%', y: '60%', symbol: '📚' },
+  { x: '15%', y: '50%', symbol: '🧩' },
+  { x: '60%', y: '85%', symbol: '❓' },
+];
+
 export default function LoadingScreen() {
   const [scene, setScene] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [isVisible, setIsVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     // Check if user already saw loader this session
     if (typeof window !== 'undefined' && sessionStorage.getItem('qshala_loader_seen')) {
       setIsVisible(false);
@@ -22,7 +37,7 @@ export default function LoadingScreen() {
     const t2 = setTimeout(() => setScene(3), 1800);  // Scene 3: QT taps Curiosity & Confetti
     const t3 = setTimeout(() => setScene(4), 2800);  // Scene 4: Particles morph into Logo Q
     const t4 = setTimeout(() => {
-      setScene(5);                                   // Final Seamless Transition to Nav
+      setScene(5);                                   // Final Transition
       sessionStorage.setItem('qshala_loader_seen', 'true');
     }, 3600);
 
@@ -37,7 +52,7 @@ export default function LoadingScreen() {
     };
   }, []);
 
-  if (!isVisible) return null;
+  if (!mounted || !isVisible) return null;
 
   return (
     <AnimatePresence>
@@ -48,19 +63,16 @@ export default function LoadingScreen() {
           exit={{ opacity: 0, transition: { duration: 0.6 } }}
           className="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center select-none overflow-hidden"
         >
-          {/* Floating Background Particles: Stars, Books, Puzzle Pieces */}
+          {/* Floating Background Particles */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(12)].map((_, i) => (
+            {PARTICLE_POSITIONS.map((p, i) => (
               <motion.div
                 key={i}
+                style={{ left: p.x, top: p.y }}
                 className="absolute text-slate-300 font-mono text-sm"
-                initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                  scale: 0.6,
-                }}
+                initial={{ scale: 0.6, opacity: 0.4 }}
                 animate={{
-                  y: [0, -30, 0],
+                  y: [0, -25, 0],
                   rotate: [0, 180, 360],
                   opacity: [0.3, 0.7, 0.3],
                 }}
@@ -70,7 +82,7 @@ export default function LoadingScreen() {
                   ease: 'easeInOut',
                 }}
               >
-                {i % 4 === 0 ? '✨' : i % 4 === 1 ? '📚' : i % 4 === 2 ? '🧩' : '❓'}
+                {p.symbol}
               </motion.div>
             ))}
           </div>
