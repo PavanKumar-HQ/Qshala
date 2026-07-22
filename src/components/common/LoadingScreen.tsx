@@ -1,26 +1,31 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QTMascot from '../mascot/QTMascot';
-import { Sparkles, HelpCircle, BookOpen, Lightbulb, Puzzle, Compass, Rocket } from 'lucide-react';
+import { BookOpen, Globe, Lightbulb, Palette, Microscope, Music, Puzzle, Rocket, Sprout, Gamepad2, Coins } from 'lucide-react';
 
 const CURIOSITY_PROMPTS = [
-  "Why is the sky blue?",
-  "What causes a rainbow?",
-  "How do octopuses breathe?",
-  "Why do we dream?",
-  "What makes stars shine?",
-  "Growth through Curiosity..."
+  "What will you discover today?",
+  "Every great idea begins with a question.",
+  "Curiosity is waking up...",
+  "Gathering amazing questions...",
+  "Ready?"
 ];
 
+// Brand vector icons replacing raw emoji text
 const ORBIT_ICONS = [
-  { icon: Sparkles, color: 'text-[#FDB913]' },
   { icon: BookOpen, color: 'text-[#30B2E7]' },
+  { icon: Globe, color: 'text-[#75B543]' },
   { icon: Lightbulb, color: 'text-[#FDB913]' },
-  { icon: Puzzle, color: 'text-[#75B543]' },
-  { icon: Compass, color: 'text-[#30B2E7]' },
-  { icon: Rocket, color: 'text-[#75B543]' },
+  { icon: Palette, color: 'text-purple-600' },
+  { icon: Microscope, color: 'text-[#30B2E7]' },
+  { icon: Music, color: 'text-[#75B543]' },
+  { icon: Puzzle, color: 'text-[#FDB913]' },
+  { icon: Rocket, color: 'text-[#30B2E7]' },
+  { icon: Sprout, color: 'text-[#75B543]' },
+  { icon: Gamepad2, color: 'text-[#FDB913]' },
+  { icon: Coins, color: 'text-[#75B543]' }
 ];
 
 export default function LoadingScreen() {
