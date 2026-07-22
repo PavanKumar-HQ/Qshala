@@ -5,9 +5,10 @@ import BentoGrid from "@/components/home/BentoGrid";
 import StatsCounter from "@/components/home/StatsCounter";
 import ScrollProgressBar from "@/components/common/ScrollProgressBar";
 import CursorFollower from "@/components/common/CursorFollower";
+import QTMascot from "@/components/mascot/QTMascot";
 import Link from "next/link";
 import { CASE_STUDIES_DATA, PRODUCTS_DATA } from "@/lib/sanity.client";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -24,18 +25,34 @@ export default function Home() {
         {/* Hero Section with Parallax & Word Reveal */}
         <HeroSection />
 
+        {/* Playful Divider 1: QT Catching Mouse Mascot */}
+        <div className="flex justify-center py-6 relative">
+          <QTMascot variant="normal" size="lg" badgeText="Catching Curiosity!" />
+        </div>
+
         {/* Bento Grid Audiences with Staggered Scroll */}
         <BentoGrid />
+
+        {/* Playful Divider 2: QT Jumping Mascot */}
+        <div className="flex justify-center py-6 relative">
+          <QTMascot variant="jumping" size="lg" badgeText="Jump In!" />
+        </div>
 
         {/* Stats Counter with Live Count-Up */}
         <StatsCounter />
 
         {/* Case Studies Section */}
-        <section className="py-20 bg-white border-b-4 border-black">
+        <section className="py-20 bg-white border-b-4 border-black relative">
+          
+          {/* Peeking QT Mascot Accent */}
+          <div className="absolute -top-12 left-10 z-20 hidden md:block">
+            <QTMascot variant="sherlock" size="md" badgeText="Investigating Impact" />
+          </div>
+
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
               <div>
-                <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black">
+                <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black font-causten-black">
                   Real Impact
                 </span>
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-causten-black">
@@ -74,10 +91,16 @@ export default function Home() {
         </section>
 
         {/* Featured Store Products */}
-        <section className="py-20 bg-[#FFFDF5]">
+        <section className="py-20 bg-[#FFFDF5] relative">
+          
+          {/* QT Holding Trophy Mascot Accent */}
+          <div className="absolute top-8 right-10 z-20 hidden md:block">
+            <QTMascot variant="trophy" size="md" badgeText="Curiosity Merch!" />
+          </div>
+
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black">
+              <span className="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-causten-black">
                 QShala Curiosity Store
               </span>
               <h2 className="text-4xl font-black text-slate-900 mt-3 font-causten-black">Interactive Games, Books & Kits</h2>
