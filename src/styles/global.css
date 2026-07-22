@@ -1,14 +1,60 @@
 @import "tailwindcss";
 
 /* -------------------------------------------------------------------------- */
+/*  OFFICIAL QSHALA BRAND FONTS (@font-face declarations)                    */
+/* -------------------------------------------------------------------------- */
+
+/* 1. Primary Font for Schools: Mikado Black */
+@font-face {
+  font-family: 'Mikado';
+  src: url('/fonts/HVD Fonts - Mikado Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Primary Font for Headings/Others: Causten Round Black */
+@font-face {
+  font-family: 'Causten Round Black';
+  src: url('/fonts/Trustha - Causten Round Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. Secondary Font for Body Copy: Causten Round Regular & Medium */
+@font-face {
+  font-family: 'Causten Round';
+  src: url('/fonts/Trustha - Causten Round Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Causten Round';
+  src: url('/fonts/Trustha - Causten Round Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Causten Round';
+  src: url('/fonts/Trustha - Causten Round Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------- */
 /*  QSHALA GLOBAL DESIGN TOKENS (CSS Custom Properties)                      */
 /* -------------------------------------------------------------------------- */
 :root {
-  /* Primary & Brand Colors */
+  /* Brand Palette */
   --color-sky: #30B2E7;
-  --color-brand-sky: #30B2E7;
-  --color-brand-yellow: #FDB913;
-  --color-brand-green: #75B543;
+  --color-yellow: #FDB913;
+  --color-green: #75B543;
   --color-canvas: #FFFDF5;
   --color-black: #000000;
   --color-white: #FFFFFF;
@@ -17,7 +63,7 @@
   --color-slate-500: #64748b;
   --color-slate-100: #f1f5f9;
 
-  /* Typography */
+  /* Typography Rules (Strict Brand PDF Guidelines) */
   --font-mikado: 'Mikado', cursive, sans-serif;
   --font-causten-black: 'Causten Round Black', sans-serif;
   --font-causten-round: 'Causten Round', sans-serif;
@@ -39,52 +85,16 @@
   --radius-xl: 2rem;
   --radius-full: 9999px;
 
-  /* Shadow System (Neobrutalist & Soft Glow) */
+  /* Shadows */
   --shadow-card: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --shadow-card-hover: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-  --shadow-sky-glow: 0 0 25px rgba(48, 178, 231, 0.25);
-  --shadow-yellow-glow: 0 0 25px rgba(253, 185, 19, 0.25);
 
-  /* Container Widths */
-  --container-max: 80rem;
-  --container-px: 1.5rem;
-
-  /* Transitions & Timing */
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Transitions */
   --transition-fast: 0.15s ease-out;
   --transition-base: 0.3s ease-out;
-
-  /* Z-Index Scale */
-  --z-nav: 50;
-  --z-modal: 100;
-  --z-badge: 10;
 }
 
-/* Base Reset & Typography Setup */
-@font-face {
-  font-family: 'Mikado';
-  src: url('/fonts/Mikado.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Causten Round Black';
-  src: url('/fonts/Causten-Round-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Causten Round';
-  src: url('/fonts/Causten-Round.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* Base Body Font Rule: Secondary Font Causten Round for Body Copy */
 body {
   background-color: var(--color-canvas);
   color: var(--color-black);
@@ -94,12 +104,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Headings: Causten Round Black */
 h1, h2, h3, h4, .font-heading {
   font-family: var(--font-causten-black);
 }
 
-.font-mikado {
+/* Schools Specific Font: Mikado Black */
+.font-mikado, .font-school-heading {
   font-family: var(--font-mikado);
+}
+
+.font-body {
+  font-family: var(--font-causten-round);
 }
 
 .card-neobrutalist {
