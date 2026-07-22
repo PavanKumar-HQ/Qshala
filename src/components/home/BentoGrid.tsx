@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { GraduationCap, Building2, School, Users, ArrowUpRight } from 'lucide-react';
+import QTMascot from '../mascot/QTMascot';
 
 export default function BentoGrid() {
   const cards = [
@@ -19,7 +20,8 @@ export default function BentoGrid() {
       icon: GraduationCap,
       bg: 'bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]',
       iconBg: 'bg-[#30B2E7] text-white',
-      span: 'md:col-span-2'
+      span: 'md:col-span-2',
+      mascot: 'reading' as const
     },
     {
       type: 'companies',
@@ -31,7 +33,8 @@ export default function BentoGrid() {
       icon: Building2,
       bg: 'bg-[#FDB913] border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]',
       iconBg: 'bg-black text-[#FDB913]',
-      span: ''
+      span: '',
+      mascot: 'professional' as const
     },
     {
       type: 'colleges',
@@ -43,7 +46,8 @@ export default function BentoGrid() {
       icon: School,
       bg: 'bg-[#75B543] text-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]',
       iconBg: 'bg-black text-[#75B543]',
-      span: ''
+      span: '',
+      mascot: 'jumping' as const
     },
     {
       type: 'communities',
@@ -56,7 +60,8 @@ export default function BentoGrid() {
       icon: Users,
       bg: 'bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]',
       iconBg: 'bg-purple-600 text-white',
-      span: 'md:col-span-2'
+      span: 'md:col-span-2',
+      mascot: 'happy' as const
     }
   ];
 
@@ -72,14 +77,18 @@ export default function BentoGrid() {
 
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header */}
+        {/* Header with Peeking QT Mascot */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 relative"
         >
+          <div className="absolute -top-12 left-1/2 -translate-x-1/2 hidden md:block">
+            <QTMascot variant="curious" size="sm" />
+          </div>
+
           <span className="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider border border-black">
             Curiosity Solutions
           </span>
@@ -91,7 +100,7 @@ export default function BentoGrid() {
           </p>
         </motion.div>
 
-        {/* Pattern B: Staggered Entrance Bento Grid */}
+        {/* Bento Grid with Embedded QT Mascots on every card */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cards.map((card, idx) => {
             const IconComp = card.icon;
@@ -103,8 +112,13 @@ export default function BentoGrid() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.12 }}
                 whileHover={{ y: -6, rotate: idx % 2 === 0 ? 1 : -1 }}
-                className={`${card.span} ${card.bg} rounded-3xl p-8 transition-all flex flex-col justify-between group`}
+                className={`${card.span} ${card.bg} rounded-3xl p-8 transition-all flex flex-col justify-between group relative overflow-hidden`}
               >
+                {/* Embedded QT Mascot inside top right of card */}
+                <div className="absolute top-4 right-4 z-10">
+                  <QTMascot variant={card.mascot} size="sm" />
+                </div>
+
                 <div>
                   <div className={`w-14 h-14 rounded-2xl ${card.iconBg} flex items-center justify-center mb-6 shadow-md border border-black`}>
                     <IconComp className="w-7 h-7" />
