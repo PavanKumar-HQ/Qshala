@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 
 interface StatItem {
   id: string;
@@ -22,7 +22,7 @@ const STATS: StatItem[] = [
   },
   {
     id: 'corporates',
-    target: 100,
+    target: 80,
     suffix: '+',
     label: 'CORPORATE CLIENTS',
     bgColor: 'bg-[#FFF8E1]',
@@ -53,7 +53,6 @@ function RollingCounter({ item, inView }: { item: StatItem; inView: boolean }) {
   useEffect(() => {
     if (!inView) return;
 
-    let start = 0;
     const duration = 2000; // 2 seconds rolling duration
     const startTime = performance.now();
 

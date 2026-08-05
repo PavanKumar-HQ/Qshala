@@ -61,25 +61,6 @@ export default function AnimatedHeroMascotStage() {
       {/* Background Glowing Ambient Rings */}
       <div className="absolute inset-0 bg-gradient-to-tr from-[#30B2E7]/20 via-[#FDB913]/25 to-[#75B543]/20 rounded-full blur-3xl pointer-events-none scale-110 animate-pulse" />
 
-      {/* Floating Orbiting Icon Badges */}
-      <motion.div
-        animate={{ y: [-6, 6, -6], rotate: [0, 5, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-4 -left-6 z-20 px-3.5 py-1.5 rounded-2xl bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 text-xs font-black font-heading text-slate-900"
-      >
-        <span className="w-2 h-2 rounded-full bg-[#30B2E7] animate-ping" />
-        <span>400k+ Learners</span>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [6, -6, 6], rotate: [0, -5, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        className="absolute -top-4 -right-6 z-20 px-3.5 py-1.5 rounded-2xl bg-[#FFF8E1] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 text-xs font-black font-heading text-slate-900"
-      >
-        <Trophy className="w-4 h-4 text-[#FDB913]" />
-        <span>250+ Partner Schools</span>
-      </motion.div>
-
       {/* Live Interactive Mascot Stage Container */}
       <div className="relative w-full bg-white rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center text-center space-y-6 overflow-hidden">
         
