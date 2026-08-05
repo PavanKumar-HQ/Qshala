@@ -15,74 +15,75 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
 <BaseLayout title="QShala | Questions • Quriosity • Quests — India's Curiosity Company">
   <Navbar />
 
-  <main class="flex-grow">
-    <!-- Hero Section with Soft Radial Blobs & Dotted Grid Background -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFFDF5] via-white to-[#FFFDF5]">
+  <main class="flex-grow overflow-x-hidden">
+    
+    <!-- 1. HERO SECTION: Open, Fluid, Ambient Atmosphere (No Box Clutter) -->
+    <section class="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-[#FFFDF5]">
       
-      {/* Subtle Dotted Pattern Grid */}
-      <div class="absolute inset-0 bg-[radial-gradient(#30B2E7_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none"></div>
-
-      {/* Decorative Brand Ambient Glowing Orbs */}
-      <div class="absolute top-10 left-1/4 w-80 h-80 bg-[#30B2E7]/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-      <div class="absolute top-40 right-1/4 w-96 h-96 bg-[#FDB913]/25 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-      <div class="absolute bottom-10 left-1/3 w-72 h-72 bg-[#75B543]/20 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- Ambient Glowing Light Orbs -->
+      <div class="absolute top-10 left-1/4 w-96 h-96 bg-[#30B2E7]/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+      <div class="absolute top-40 right-1/4 w-[28rem] h-[28rem] bg-[#FDB913]/20 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div class="absolute bottom-10 left-1/3 w-80 h-80 bg-[#75B543]/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="text-center max-w-4xl mx-auto">
+        <div class="text-center max-w-4xl mx-auto space-y-6">
           
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mb-6">
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-black/10 shadow-sm">
             <span class="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
-            <span class="text-xs font-black uppercase text-slate-900 tracking-wider font-heading">
-              India&apos;s Curiosity Company
+            <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
+              India&apos;s Curiosity Platform
             </span>
           </div>
 
-          {/* Typewriter React Island */}
+          <!-- Typewriter Headline Island -->
           <TypewriterHeadline client:idle />
 
-          <p class="mt-6 text-lg sm:text-xl font-semibold text-slate-700 max-w-2xl mx-auto leading-relaxed">
-            QShala designs interactive quiz experiences, weekly learning clubs, and corporate offsites that encourage children and adults to ask <span class="text-[#75B543] font-black underline decoration-2">&ldquo;Why?&rdquo;</span>
+          <p class="text-lg sm:text-xl font-semibold text-slate-700 max-w-2xl mx-auto leading-relaxed pt-2">
+            QShala replaces rote memorization with socratic storytelling, interactive trivia, and weekly curiosity clubs that empower minds to ask <span class="text-[#75B543] font-black underline decoration-[#75B543]/40 decoration-4">&ldquo;Why?&rdquo;</span>
           </p>
 
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
             <a
               href="/book-a-quiz"
-              class="px-8 py-4 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center gap-2 font-heading"
+              class="px-8 py-4 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center gap-2 font-heading"
             >
-              Book a Quiz Experience →
+              Book a Curiosity Experience →
             </a>
 
             <a
               href="/about"
-              class="px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-black text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-heading"
+              class="px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-black text-base border border-slate-200 shadow-sm hover:border-black transition-all font-heading"
             >
               Explore Our Mission
             </a>
           </div>
 
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-slate-700 text-sm font-bold">
-            <div>4.9/5 Rating ★★★★★</div>
-            <span>•</span>
-            <div>400,000+ Learners Engaged</div>
-            <span>•</span>
-            <div>250+ Schools Across India</div>
+          <!-- High-Impact Trust Counters -->
+          <div class="pt-8 flex flex-wrap items-center justify-center gap-8 text-slate-600 text-sm font-bold">
+            <div class="flex items-center gap-2">
+              <span class="text-[#FDB913] text-base">★★★★★</span>
+              <span>4.9/5 Rating</span>
+            </div>
+            <span class="text-slate-300">•</span>
+            <div><strong class="text-slate-900 font-heading text-base">400,000+</strong> Learners Engaged</div>
+            <span class="text-slate-300">•</span>
+            <div><strong class="text-slate-900 font-heading text-base">250+</strong> Partner Schools</div>
           </div>
         </div>
 
-        {/* Hero QT Mascot Showcase - Updated to 'QT quizzing' */}
-        <div class="mt-12 flex justify-center">
+        <!-- QT Hero Spotlight -->
+        <div class="mt-14 flex justify-center">
           <QTMascot client:visible variant="quizzing" size="xl" badgeText="Curiosity Champion!" />
         </div>
 
-        {/* Daily Quiz Playground Section with Interactive Cards */}
-        <div class="mt-16 relative">
-          <div class="text-center mb-6">
-            <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs border border-black uppercase font-heading">
-              Try a Quick Curiosity Quiz
+        <!-- 2. DAILY QUIZ PLAYGROUND: Integrated Open Flow -->
+        <div class="mt-20">
+          <div class="text-center max-w-xl mx-auto mb-10">
+            <span class="px-4 py-1 rounded-full bg-[#75B543]/15 text-[#75B543] font-black text-xs uppercase font-heading">
+              Daily Quiz Playground
             </span>
-            <p class="text-xs font-bold text-slate-700 mt-1">
-              Pick an answer below &amp; trigger the celebration!
-            </p>
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-heading">Test Your Curiosity</h3>
+            <p class="text-xs font-semibold text-slate-600 mt-1">Pick an answer below to reveal the answer &amp; trigger celebration!</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -95,126 +96,144 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
       </div>
     </section>
 
-    {/* Bento Grid Section */}
-    <section class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16 relative">
-          <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
-            Curiosity Solutions
+    <!-- 3. CLIENT LOGO MARQUEE -->
+    <ClientMarquee />
+
+    <!-- 4. EDITORIAL SOLUTIONS SHOWCASE (Organic Split Layouts Instead of Heavy Card Grid) -->
+    <section class="py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-6 space-y-24">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="px-4 py-1.5 rounded-full bg-[#30B2E7]/15 text-[#30B2E7] font-black text-xs uppercase tracking-wider font-heading">
+            Curiosity Formats
           </span>
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
-            Designed for Every Stage of Curiosity.
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
+            Built for Schools, Corporates &amp; Communities.
           </h2>
+          <p class="text-slate-600 text-base font-semibold max-w-xl mx-auto">
+            From K-12 classrooms to high-stakes corporate leadership offsites.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Schools Card */}
-          <div class="group md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
-              <QTMascot client:visible variant="reading" size="sm" />
-            </div>
-            <span class="text-xs font-black uppercase text-[#30B2E7]">K-12 Educational Institutions</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading group-hover:text-[#30B2E7] transition-colors">QShala for Schools</h3>
-            <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
-              Replace passive memorization with active weekly curiosity clubs, current affairs storytelling, teacher empowerment workshops, and inter-school competitions.
+        <!-- Feature 1: Schools (Split Editorial Row) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-[#E8F6FD] text-[#30B2E7] font-black text-xs uppercase font-heading">
+              For K-12 Educational Institutions
+            </span>
+            <h3 class="text-3xl md:text-4xl font-black text-slate-900 font-heading leading-tight">
+              Transforming Classrooms into Hubs of Active Questioning.
+            </h3>
+            <p class="text-slate-700 text-base leading-relaxed font-semibold">
+              QShala for Schools replaces static textbook learning with structured weekly curiosity clubs, current affairs storytelling, and socratic debate. Over 250+ leading schools across India use QShala to foster 21st-century skills.
             </p>
-            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <span class="text-xs font-black">250+ Schools Active Across India</span>
-              <a href="/schools" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-[#30B2E7] hover:text-black transition-colors">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 rounded-2xl bg-[#FFFDF5] border border-slate-200 space-y-1">
+                <div class="font-black text-slate-900 text-sm font-heading">Weekly Curiosity Clubs</div>
+                <div class="text-xs text-slate-600 font-medium">Integrated directly into weekly timetables for Grades 1–12.</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-[#FFFDF5] border border-slate-200 space-y-1">
+                <div class="font-black text-slate-900 text-sm font-heading">Current Affairs Storytelling</div>
+                <div class="text-xs text-slate-600 font-medium">Decoding global science, civics, and history into engaging stories.</div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="/schools" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#30B2E7] text-white font-black text-sm hover:bg-sky-500 transition-all font-heading shadow-md">
                 Explore School Programs →
               </a>
             </div>
           </div>
 
-          {/* Corporates Card */}
-          <div class="group bg-[#FDB913] rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-              <QTMascot client:visible variant="professional" size="sm" />
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative p-8 rounded-3xl bg-[#E8F6FD] border border-[#30B2E7]/30 w-full flex flex-col items-center text-center space-y-6">
+              <QTMascot client:visible variant="reading" size="lg" badgeText="Study Squad!" />
+              <div class="space-y-1">
+                <div class="text-3xl font-black text-slate-900 font-heading">250+ Schools</div>
+                <div class="text-xs font-bold text-slate-600">DPS, National Public School, Inventure Academy &amp; more</div>
+              </div>
             </div>
-            <span class="text-xs font-black uppercase text-black">Corporate L&D & HR</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Corporates</h3>
-            <p class="text-sm font-semibold opacity-90 leading-relaxed">
-              High-octane team bonding, trivia nights, leadership offsites, and brand knowledge gamification.
+          </div>
+        </div>
+
+        <!-- Feature 2: Corporates (Reversed Split Editorial Row) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5 order-2 lg:order-1 flex justify-center">
+            <div class="relative p-8 rounded-3xl bg-[#FFF8E1] border border-[#FDB913]/30 w-full flex flex-col items-center text-center space-y-6">
+              <QTMascot client:visible variant="professional" size="lg" badgeText="Team Spirit!" />
+              <div class="space-y-1">
+                <div class="text-3xl font-black text-slate-900 font-heading">10% Lower Attrition</div>
+                <div class="text-xs font-bold text-slate-600">Proven bonding impact across 100+ corporate clients</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-[#FFF8E1] text-amber-600 font-black text-xs uppercase font-heading">
+              For Corporate L&amp;D &amp; HR Leaders
+            </span>
+            <h3 class="text-3xl md:text-4xl font-black text-slate-900 font-heading leading-tight">
+              High-Octane Team Bonding &amp; Leadership Offsites.
+            </h3>
+            <p class="text-slate-700 text-base leading-relaxed font-semibold">
+              Bring remote and hybrid teams together with interactive trivia leagues, brand story championships, and socratic leadership workshops that reduce employee attrition and build authentic camaraderie.
             </p>
-            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <a href="/companies" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-white hover:text-black transition-colors">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 rounded-2xl bg-[#FFFDF5] border border-slate-200 space-y-1">
+                <div class="font-black text-slate-900 text-sm font-heading">Culture Circles &amp; Calendars</div>
+                <div class="text-xs text-slate-600 font-medium">Year-round employee engagement and friendly team competitions.</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-[#FFFDF5] border border-slate-200 space-y-1">
+                <div class="font-black text-slate-900 text-sm font-heading">Custom Brand Trivia</div>
+                <div class="text-xs text-slate-600 font-medium">Gamifying company history, product knowledge, and onboarding.</div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="/companies" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm transition-all font-heading shadow-md">
                 Corporate Offsites →
               </a>
             </div>
           </div>
-
-          {/* Colleges Card */}
-          <div class="group bg-[#75B543] text-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
-              <QTMascot client:visible variant="jumping" size="sm" />
-            </div>
-            <span class="text-xs font-black uppercase text-black">Higher Education & Fests</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Colleges</h3>
-            <p class="text-sm font-semibold opacity-90 leading-relaxed">
-              Campus fest quiz championships, employability challenges, and real-world case study simulations.
-            </p>
-            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-[#FDB913] hover:text-black transition-colors">
-                Host Campus Fest →
-              </a>
-            </div>
-          </div>
-
-          {/* Communities Card */}
-          <div class="group md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-              <QTMascot client:visible variant="happy" size="sm" />
-            </div>
-            <span class="text-xs font-black uppercase text-purple-600">Neighborhoods & Families</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading group-hover:text-purple-600 transition-colors">QShala Communities & Pub Quizzes</h3>
-            <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
-              Bringing parents, kids, and friends together with weekend family game nights, pub quizzes, wedding trivia, and apartment complex leagues.
-            </p>
-            <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <span class="text-xs font-black">Screen-free weekend fun</span>
-              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-purple-600 hover:text-white transition-colors">
-                Explore Community Events →
-              </a>
-            </div>
-          </div>
         </div>
+
       </div>
     </section>
 
-    <ClientMarquee />
-
-    <!-- QShala Effect Showcase Tabs Section -->
-    <section class="py-20 bg-[#FFFDF5] relative">
+    <!-- 5. THE QSHALA EFFECT (Tabbed Interactive Showcase) -->
+    <section class="py-24 bg-[#FFFDF5] relative">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">
-            The QShala Effect
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-2">
+          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider font-heading">
+            Measured Results
           </span>
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
-            Transforming Organizations &amp; Classrooms.
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
+            Explore the QShala Effect.
           </h2>
         </div>
         <QShalaEffectTabs client:visible />
       </div>
     </section>
 
-    <!-- Interactive Curiosity Program Finder -->
-    <section class="py-20 bg-white border-y-2 border-black relative">
+    <!-- 6. PROGRAM FINDER & RECOMMENDATION WIDGET -->
+    <section class="py-24 bg-white border-y border-slate-200 relative">
       <div class="max-w-7xl mx-auto px-6">
         <CuriosityRecommendationWidget client:visible />
       </div>
     </section>
 
-    {/* Case Studies Section */}
-    <section class="py-20 bg-white border-b-4 border-black relative">
+    <!-- 7. CASE STUDIES (Magazine-Style Open Cards) -->
+    <section class="py-24 bg-[#FFFDF5] relative">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
           <div>
-            <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+            <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
               Real Impact
             </span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
-              Apple-Style Storytelling Case Studies.
+              Storytelling Case Studies.
             </h2>
           </div>
           <a href="/case-studies" class="mt-4 md:mt-0 text-sm font-black text-[#30B2E7] hover:underline font-heading">
@@ -224,15 +243,15 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {CASE_STUDIES_DATA.map((cs, idx) => (
-            <div class="bg-[#FFFDF5] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden group">
-              <div class="absolute top-4 right-4 z-10">
+            <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden group hover:border-black transition-all">
+              <div class="absolute top-6 right-6 z-10">
                 <QTMascot client:visible variant={idx === 0 ? "sherlock" : "quizzing"} size="sm" />
               </div>
-              <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs">{cs.clientType} • {cs.clientName}</span>
+              <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading">{cs.clientType} • {cs.clientName}</span>
               <h3 class="text-2xl font-black text-slate-900 mt-4 mb-3 leading-snug font-heading pr-12">{cs.title}</h3>
               <p class="text-slate-700 text-sm leading-relaxed mb-6 font-semibold">{cs.summary}</p>
               
-              <div class="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-[#30B2E7]/15 border border-black mb-6">
+              <div class="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-[#30B2E7]/10 border border-[#30B2E7]/20 mb-6">
                 {cs.impactMetrics.map((m) => (
                   <div class="text-center">
                     <div class="text-xl font-black text-[#30B2E7] font-heading">{m.value}</div>
@@ -251,22 +270,22 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
       </div>
     </section>
 
-    <!-- Store Section -->
-    <section class="py-20 bg-[#FFFDF5] relative">
+    <!-- 8. CURIOSITY STORE SHOWCASE -->
+    <section class="py-24 bg-white relative">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">
-            QShala Curiosity Store
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider font-heading">
+            Curiosity Store
           </span>
-          <h2 class="text-4xl font-black text-slate-900 mt-3 font-heading">Interactive Games, Books & Kits</h2>
-          <p class="text-slate-700 text-base mt-2 font-semibold">Bring curiosity home with our handcrafted learning products.</p>
+          <h2 class="text-4xl font-black text-slate-900 font-heading">Interactive Games, Books &amp; Kits</h2>
+          <p class="text-slate-600 text-sm font-semibold">Handcrafted learning decks and journals to bring curiosity home.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {PRODUCTS_DATA.map((product, pIdx) => {
             const productMascots = ["idea", "reading", "holding_money", "trophy"] as const;
             return (
-              <div class="bg-white rounded-3xl p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between group relative overflow-hidden">
+              <div class="bg-[#FFFDF5] rounded-3xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between group relative overflow-hidden hover:border-black transition-all">
                 <div class="absolute top-2 right-2 z-10 scale-75 origin-top-right">
                   <QTMascot client:visible variant={productMascots[pIdx % productMascots.length]} size="sm" />
                 </div>
@@ -281,9 +300,9 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
                   <h3 class="text-lg font-black text-slate-900 mt-1 font-heading line-clamp-1">{product.title}</h3>
                   <p class="text-slate-600 text-xs mt-1 font-medium line-clamp-2">{product.description}</p>
                 </div>
-                <div class="mt-4 pt-4 border-t border-black/20 flex items-center justify-between">
+                <div class="mt-4 pt-4 border-t border-slate-200 flex items-center justify-between">
                   <span class="text-lg font-black text-slate-900 font-heading">{product.price}</span>
-                  <a href="/shop" class="px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs border border-black font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <a href="/shop" class="px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs font-heading hover:bg-sky-500 transition-colors">
                     View Details
                   </a>
                 </div>
@@ -294,19 +313,20 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="py-20 bg-white border-t-2 border-black relative">
+    <!-- 9. FAQ ACCORDION SECTION -->
+    <section class="py-24 bg-[#FFFDF5] relative">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+          <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
             Got Questions?
           </span>
-          <h2 class="text-4xl font-black text-slate-900 mt-3 font-heading">Frequently Asked Questions</h2>
-          <p class="text-slate-600 text-sm mt-2 font-semibold">Everything you need to know about QShala sessions and methodology.</p>
+          <h2 class="text-4xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
+          <p class="text-slate-600 text-sm font-semibold">Everything you need to know about QShala sessions and methodology.</p>
         </div>
         <FAQSection client:visible />
       </div>
     </section>
+
   </main>
 
   <Footer />

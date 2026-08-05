@@ -149,21 +149,22 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 /* Canvas Background (#FFFDF5) */
 .bg-canvas, .bg-\[\#FFFDF5\] { background-color: var(--canvas-bg) !important; }
 
-/* Card Neobrutalist Base & Hover Card Effects */
+/* Card Base & Fluid Hover Lift Effects */
 .card-neobrutalist,
 .card-hover-lift {
   background-color: var(--brand-white);
-  border: 2px solid var(--brand-black);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease-out, border-color 0.2s ease;
   will-change: transform, box-shadow;
 }
 
 .card-neobrutalist:hover,
 .card-hover-lift:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
 }
 
 /* Subtle Shimmer Overlay for Cards */
