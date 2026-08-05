@@ -10,6 +10,7 @@ import QShalaEffectTabs from '../components/QShalaEffectTabs';
 import CuriosityRecommendationWidget from '../components/CuriosityRecommendationWidget';
 import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudiesShowcase';
 import AnimatedHeroMascotStage from '../components/AnimatedHeroMascotStage';
+import RollingStatCounters from '../components/RollingStatCounters';
 import FAQSection from '../components/FAQSection';
 import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
 ---
@@ -102,6 +103,11 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
         </div>
 
       </div>
+    </section>
+
+    <!-- ROLLING STAT METRIC COUNTERS SECTION -->
+    <section class="bg-[#FFFDF5] pt-4 pb-12">
+      <RollingStatCounters client:visible />
     </section>
 
     <!-- 2. TRUSTED PARTNERS MARQUEE: Clean Full-Bleed -->
