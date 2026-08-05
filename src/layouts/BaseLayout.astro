@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -14,7 +15,7 @@ const {
 
 const siteUrl = 'https://qshala.vercel.app';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
-const ogImageUrl = `${siteUrl}/og-image.jpg?v=8`;
+const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
 ---
 
 <!DOCTYPE html>
@@ -65,31 +66,82 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=8`;
     })} />
     
     <!-- Self-hosted font preloads for performance -->
-    <link rel="preload" href="/fonts/Causten-Round-Black.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Causten-Round.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Trustha%20-%20Causten%20Round%20Black.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/Trustha%20-%20Causten%20Round%20Regular.otf" as="font" type="font/otf" crossorigin />
+    <ViewTransitions />
+
+    <!-- Inline script to prevent FOUC -->
+    <script is:inline data-astro-rerun>
+      (function() {
+        try {
+          // Astro ViewTransitions preserves the window object between pages.
+          // This ensures the loader only runs on a fresh load or hard reload (F5).
+          if (window.hasLoaderShown) {
+            document.documentElement.classList.add('skip-loader');
+          } else {
+            document.documentElement.classList.add('loading-active');
+            window.hasLoaderShown = true;
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <style is:global>
+      html.skip-loader #loader-root {
+        display: none !important;
+      }
+      html.loading-active body {
+        overflow: hidden;
+      }
+      html.loading-active body > *:not(#loader-root) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+    </style>
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
 
     <!-- 5-scene Curiosity Loader -->
-    <LoadingScreen client:only="react" />
+    <div id="loader-root">
+      <LoadingScreen client:load />
+    </div>
 
     <slot />
 
     <!-- Pure JS Tab Title Switcher -->
-    <script>
-      const originalTitle = document.title;
-      const funnyMessages = [
-        "QT misses you! Come back!",
-        "Still curious? Click back!",
-        "Don't leave QT alone with questions!",
-        "A wild quiz question appeared!",
-        "QT is peeking... Where did you go?"
-      ];
-      document.addEventListener('visibilitychange', () => {
-        document.title = document.hidden
-          ? funnyMessages[Math.floor(Math.random() * funnyMessages.length)]
-          : originalTitle;
-      });
+    <script is:inline>
+      (function() {
+        var originalTitle = document.title;
+        var funnyMessages = [
+          "QT misses you! Come back!",
+          "Still curious? Click back!",
+          "Don't leave QT alone with questions!",
+          "A wild quiz question appeared!",
+          "QT is peeking... Where did you go?"
+        ];
+        var titleInterval;
+
+        // Ensure we always have the correct title for the current page
+        document.addEventListener('astro:page-load', function() {
+          if (!document.hidden) {
+            originalTitle = document.title;
+          }
+        });
+
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) {
+            var msg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+            document.title = msg;
+            
+            // Force the title to stay even if React or other scripts try to revert it in the background
+            titleInterval = setInterval(function() {
+              if (document.title !== msg) document.title = msg;
+            }, 1000);
+          } else {
+            clearInterval(titleInterval);
+            document.title = originalTitle;
+          }
+        });
+      })();
     </script>
   </body>
 </html>

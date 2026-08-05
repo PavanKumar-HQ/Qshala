@@ -69,41 +69,45 @@ export default function AnimatedHeroMascotStage() {
           <span>Interactive Mascot Guide</span>
         </div>
 
-        {/* Live Dynamic Speech Bubble */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={mood.id}
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.25 }}
-            className="relative px-5 py-3 rounded-2xl bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] max-w-xs flex items-center gap-2.5"
-          >
-            <div className={`p-1.5 rounded-xl ${mood.badgeBg} text-white shrink-0`}>
-              <ActiveIcon className="w-4 h-4" />
-            </div>
-            <p className="text-xs font-black text-slate-800 leading-snug font-heading text-left">
-              &ldquo;{mood.speech}&rdquo;
-            </p>
-            {/* Speech Bubble Arrow */}
-            <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#FFFDF5] border-r-2 border-b-2 border-black rotate-45" />
-          </motion.div>
-        </AnimatePresence>
+        {/* Live Dynamic Speech Bubble Container (Fixed height to prevent jumping) */}
+        <div className="min-h-[88px] w-full flex items-end justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={mood.id}
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="relative px-5 py-3 rounded-2xl bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] max-w-xs flex items-center gap-2.5"
+            >
+              <div className={`p-1.5 rounded-xl ${mood.badgeBg} text-white shrink-0`}>
+                <ActiveIcon className="w-4 h-4" />
+              </div>
+              <p className="text-xs font-black text-slate-800 leading-snug font-heading text-left">
+                &ldquo;{mood.speech}&rdquo;
+              </p>
+              {/* Speech Bubble Arrow */}
+              <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#FFFDF5] border-r-2 border-b-2 border-black rotate-45" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Center Mascot Render with Spring Motion */}
-        <motion.div
-          key={currentMood}
-          initial={{ scale: 0.8, rotate: -5 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-          className="py-4 cursor-pointer"
-          onClick={() => {
-            const nextIdx = (MOODS.findIndex(m => m.id === currentMood) + 1) % MOODS.length;
-            setCurrentMood(MOODS[nextIdx].id);
-          }}
-        >
-          <QTMascot variant={currentMood} size="xl" />
-        </motion.div>
+        <div className="h-[224px] w-full flex items-center justify-center">
+          <motion.div
+            key={currentMood}
+            initial={{ scale: 0.8, rotate: -5 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            className="cursor-pointer"
+            onClick={() => {
+              const nextIdx = (MOODS.findIndex(m => m.id === currentMood) + 1) % MOODS.length;
+              setCurrentMood(MOODS[nextIdx].id);
+            }}
+          >
+            <QTMascot variant={currentMood} size="xl" />
+          </motion.div>
+        </div>
 
         {/* Mood Selector Buttons (Vector Icons Only - No Emojis) */}
         <div className="w-full space-y-2 pt-2 border-t border-black/10">
@@ -138,9 +142,9 @@ export default function AnimatedHeroMascotStage() {
       <motion.div
         animate={{ y: [-4, 4, -4] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="mt-4 px-4 py-2 rounded-2xl bg-[#75B543] text-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 text-xs font-black font-heading"
+        className="mt-4 px-4 py-2 rounded-2xl bg-[#75B543] text-black border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 text-xs font-black font-heading"
       >
-        <ShieldCheck className="w-4 h-4 text-white" />
+        <ShieldCheck className="w-4 h-4 text-black" />
         <span>98.4% Parent &amp; Teacher Satisfaction</span>
       </motion.div>
 

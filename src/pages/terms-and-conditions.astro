@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Terms and Conditions | QShala">
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+      <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading mb-8">Terms and Conditions</h1>
+      <div class="prose prose-slate max-w-none text-slate-700 space-y-6 font-medium">
+        <p>Welcome to QShala. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
+        
+        <h2 class="text-2xl font-black text-slate-900 font-heading mt-8 mb-4">1. Acceptance of Terms</h2>
+        <p>By registering for our curiosity clubs, corporate offsites, or interacting with our digital platform, you acknowledge that you have read, understood, and agreed to be legally bound by these terms.</p>
+
+        <h2 class="text-2xl font-black text-slate-900 font-heading mt-8 mb-4">2. Intellectual Property</h2>
+        <p>All content, including but not limited to the "QT" mascot, logos, text, graphics, interactive trivia, and course materials, are the intellectual property of Curiosita Educational Services. Unauthorized reproduction or distribution is strictly prohibited.</p>
+
+        <h2 class="text-2xl font-black text-slate-900 font-heading mt-8 mb-4">3. User Conduct</h2>
+        <p>Users must use the platform responsibly. Any behavior that compromises the safety, learning environment, or technical infrastructure of QShala may result in immediate termination of services.</p>
+
+        <h2 class="text-2xl font-black text-slate-900 font-heading mt-8 mb-4">4. Payment and Refunds</h2>
+        <p>Fees for workshops, subscriptions, or physical products are outlined on the respective service pages. Refunds will be processed according to our standard cancellation policy, which requires at least 48 hours notice prior to the start of a session.</p>
+
+        <p class="mt-8 text-sm text-slate-500 italic">Last updated: {new Date().toLocaleDateString()}</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

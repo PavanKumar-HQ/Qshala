@@ -9,9 +9,9 @@ const WORDS_TO_ROTATE = [
 
 export default function TypewriterHeadline() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState(WORDS_TO_ROTATE[0]);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
     const currentWord = WORDS_TO_ROTATE[currentWordIndex];

@@ -93,7 +93,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
       {viewMode === 'carousel' && filteredData.length > 0 && (
         <div className="space-y-6">
           <div className="relative">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {(() => {
                 const cs = filteredData[currentIndex % filteredData.length];
                 const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional', 'trophy'] as const;

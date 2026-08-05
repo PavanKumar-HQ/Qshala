@@ -21,21 +21,16 @@ const ORBIT_ICONS = [
 ];
 
 export default function LoadingScreen() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [promptIdx, setPromptIdx] = useState(0);
   const [scene, setScene] = useState<1 | 2 | 3 | 4>(1);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const navEntries = performance.getEntriesByType('navigation');
-      const navType = navEntries.length > 0 ? (navEntries[0] as PerformanceNavigationTiming).type : '';
-      
-      const isReload = navType === 'reload';
-      const isInternalNav = navType === 'navigate' && document.referrer && document.referrer.startsWith(window.location.origin);
-
-      // Skip loader ONLY on internal link clicks between pages (not reload, not initial load)
-      if (isInternalNav && !isReload) {
+      // The inline script in BaseLayout.astro adds 'skip-loader' if it's an internal ViewTransitions navigation.
+      if (document.documentElement.classList.contains('skip-loader')) {
         setLoading(false);
+        document.documentElement.classList.remove('loading-active');
         return;
       }
     }
@@ -48,6 +43,7 @@ export default function LoadingScreen() {
     const t3 = setTimeout(() => setScene(4), 1900); // Orbiting icons & reveal
     const tEnd = setTimeout(() => {
       setLoading(false);
+      document.documentElement.classList.remove('loading-active');
     }, 2600); // Fade out
 
     const promptInterval = setInterval(() => {
