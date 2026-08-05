@@ -26,16 +26,21 @@ export default function LoadingScreen() {
   const [scene, setScene] = useState<1 | 2 | 3 | 4>(1);
 
   useEffect(() => {
-    // Check if site has already loaded in this session
     if (typeof window !== 'undefined') {
-      const hasLoaded = sessionStorage.getItem('qshala_loaded');
-      if (hasLoaded) {
+      const navEntries = performance.getEntriesByType('navigation');
+      const navType = navEntries.length > 0 ? (navEntries[0] as PerformanceNavigationTiming).type : '';
+      
+      const isReload = navType === 'reload';
+      const isInternalNav = navType === 'navigate' && document.referrer && document.referrer.startsWith(window.location.origin);
+
+      // Skip loader ONLY on internal link clicks between pages (not reload, not initial load)
+      if (isInternalNav && !isReload) {
         setLoading(false);
         return;
       }
     }
 
-    // First load in session: show loader & start timeline
+    // Play loader for initial load or page refresh
     setLoading(true);
 
     const t1 = setTimeout(() => setScene(2), 500);  // Question mark animation
@@ -43,7 +48,6 @@ export default function LoadingScreen() {
     const t3 = setTimeout(() => setScene(4), 1900); // Orbiting icons & reveal
     const tEnd = setTimeout(() => {
       setLoading(false);
-      sessionStorage.setItem('qshala_loaded', 'true');
     }, 2600); // Fade out
 
     const promptInterval = setInterval(() => {
