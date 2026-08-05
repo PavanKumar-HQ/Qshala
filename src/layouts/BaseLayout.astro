@@ -16,8 +16,9 @@ const {
 
 const siteUrl = Astro.site ? Astro.site.href : 'https://qshala.vercel.app';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
-const ogImageUrl = new URL(image, siteUrl).href;
-const ogGifUrl = new URL('/og-image.gif', siteUrl).href;
+// Add cache-busting query parameter ?v=3 to bust WhatsApp/Social scrapers cache
+const ogImageUrl = new URL(`${image}?v=3`, siteUrl).href;
+const ogGifUrl = new URL(`/og-image.gif?v=3`, siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ const ogGifUrl = new URL('/og-image.gif', siteUrl).href;
     <meta name="theme-color" content="#30B2E7" />
     <link rel="canonical" href={canonicalURL.href} />
 
-    <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Standalone Mascot Preview -->
+    <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Standalone Mascot Banner -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:site_name" content="QShala — India's Curiosity Company" />
@@ -44,10 +45,10 @@ const ogGifUrl = new URL('/og-image.gif', siteUrl).href;
     <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="QShala Animated QT Mascot" />
+    <meta property="og:image:height" content="628" />
+    <meta property="og:image:alt" content="QShala Official QT Mascot" />
 
-    <!-- Animated GIF Link Preview for Apps Supporting Animated OpenGraph -->
+    <!-- Animated GIF Link Preview -->
     <meta property="og:image" content={ogGifUrl} />
     <meta property="og:image:type" content="image/gif" />
 
