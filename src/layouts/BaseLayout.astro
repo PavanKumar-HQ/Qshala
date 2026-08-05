@@ -11,14 +11,14 @@ interface Props {
 const {
   title = "QShala | Questions • Quriosity • Quests — India's Curiosity Company",
   description = "Replacing Rote Learning with Curiosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India.",
-  image = "/og-image.jpg"
+  image = "/og-mascot-v5.jpg"
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.href : 'https://qshala.vercel.app';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
-// Cache-busting v=4 to purge social crawler cache instantly
-const ogImageUrl = new URL(`${image}?v=4`, siteUrl).href;
-const ogGifUrl = new URL(`/og-image.gif?v=4`, siteUrl).href;
+// Completely new filename og-mascot-v5.jpg to force WhatsApp and social scrapers to flush cache
+const ogImageUrl = new URL(image, siteUrl).href;
+const ogGifUrl = new URL('/og-mascot-v5.gif', siteUrl).href;
 ---
 
 <!DOCTYPE html>
