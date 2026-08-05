@@ -52,13 +52,29 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    <!-- No-JS Fallback for Loader -->
+    <noscript>
+      <style>
+        #loader-root { display: none !important; }
+        body { overflow: visible !important; }
+        body > *:not(#loader-root) { opacity: 1 !important; visibility: visible !important; }
+      </style>
+    </noscript>
+
     <!-- JSON-LD Structured Data for Rich Search Results -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
-      "name": "QShala",
+      "name": "QShala - Curiosita Educational Services",
       "url": siteUrl,
+      "logo": "https://qshala.vercel.app/assets/logos/QShala%20Logo%201.svg",
       "description": description,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-89716-76100",
+        "contactType": "customer service",
+        "email": "qshala@walnuts.co.in"
+      },
       "sameAs": [
         "https://twitter.com/qshala",
         "https://linkedin.com/company/qshala"
@@ -96,6 +112,17 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
         opacity: 0 !important;
         visibility: hidden !important;
       }
+
+      /* Scroll animations */
+      [data-animate="fade-up"] {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      [data-animate="fade-up"].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
@@ -106,6 +133,43 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     </div>
 
     <slot />
+
+    <!-- Dynamic Reading Progress Bar -->
+    <div id="reading-progress" class="fixed top-0 left-0 h-1 bg-[#30B2E7] z-[9999] origin-left scale-x-0 transition-transform duration-150 ease-out" style="width: 100%;"></div>
+
+    <!-- Scroll Animations & Progress Bar Logic -->
+    <script is:inline>
+      let isScrollAttached = false;
+      document.addEventListener('astro:page-load', () => {
+        
+        // 1. Progress Bar Logic
+        const bar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+          const winScroll = window.scrollY;
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolled = height > 0 ? (winScroll / height) : 0;
+          if (bar) bar.style.transform = `scaleX(${scrolled})`;
+        };
+        
+        if (!isScrollAttached) {
+          window.addEventListener('scroll', updateProgress, { passive: true });
+          isScrollAttached = true;
+        }
+        updateProgress();
+
+        // 2. Scroll-triggered Micro-Animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+      });
+    </script>
 
     <!-- Pure JS Tab Title Switcher -->
     <script is:inline>

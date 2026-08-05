@@ -92,8 +92,8 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
       {/* VIEW MODE 1: CAROUSEL SLIDER VIEW */}
       {viewMode === 'carousel' && filteredData.length > 0 && (
         <div className="space-y-6">
-          <div className="relative">
-            <AnimatePresence>
+          <div className="relative h-[680px] sm:h-[580px] md:h-[540px] lg:h-[500px]">
+            <AnimatePresence mode="popLayout">
               {(() => {
                 const cs = filteredData[currentIndex % filteredData.length];
                 const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional', 'trophy'] as const;
@@ -106,10 +106,11 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden space-y-6"
+                    className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full"
                   >
-                    {/* Header Row */}
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="space-y-6">
+                      {/* Header Row */}
+                      <div className="flex items-center justify-between gap-4">
                       <div className="flex flex-wrap items-center gap-2.5">
                         <span className="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[11px] uppercase font-heading">
                           {cs.clientType} • {cs.clientName}
@@ -158,9 +159,10 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                         </footer>
                       </div>
                     </blockquote>
+                    </div>
 
                     {/* Action & Carousel Controls Bar (Inside Card) */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100">
                       <button
                         onClick={() => setSelectedModalCase(cs)}
                         className="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading transition-all"

@@ -19,21 +19,22 @@
 
     <!-- Desktop Nav Links -->
     <nav class="hidden lg:flex items-center gap-6 font-black text-slate-900 text-sm font-heading">
-      <a href="/" class="hover:text-[#30B2E7] transition-colors">Home</a>
-      <a href="/about" class="hover:text-[#30B2E7] transition-colors">About Us</a>
-      <a href="/services" class="hover:text-[#30B2E7] transition-colors">Services</a>
-      <a href="/schools" class="hover:text-[#30B2E7] transition-colors">For Schools</a>
-      <a href="/companies" class="hover:text-[#30B2E7] transition-colors">For Corporates</a>
-      <a href="/learn" class="hover:text-[#30B2E7] transition-colors">Kids Corner</a>
-      <a href="/case-studies" class="hover:text-[#30B2E7] transition-colors">Case Studies</a>
-      <a href="/shop" class="hover:text-[#30B2E7] transition-colors">Shop</a>
-      <a href="/blog" class="hover:text-[#30B2E7] transition-colors">Blog</a>
+      <a href="/" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Home</a>
+      <a href="/about" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">About Us</a>
+      <a href="/services" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Services</a>
+      <a href="/schools" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">For Schools</a>
+      <a href="/companies" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">For Corporates</a>
+      <a href="/learn" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Kids Corner</a>
+      <a href="/case-studies" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Case Studies</a>
+      <a href="/shop" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Shop</a>
+      <a href="/blog" data-astro-prefetch="hover" class="hover:text-[#30B2E7] transition-colors">Blog</a>
     </nav>
 
     <!-- Action CTAs -->
     <div class="hidden lg:flex items-center gap-3">
       <a
         href="/book-a-quiz"
+        data-astro-prefetch="hover"
         class="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all font-heading"
       >
         Book a Quiz
@@ -77,10 +78,26 @@
 </header>
 
 <script>
-  const toggleBtn = document.getElementById('menuToggleBtn');
-  const menu = document.getElementById('mobileMenu');
+  document.addEventListener('astro:page-load', () => {
+    const toggleBtn = document.getElementById('menuToggleBtn');
+    const menu = document.getElementById('mobileMenu');
 
-  toggleBtn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    toggleBtn?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+      if (menu && !menu.classList.contains('hidden')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Ensure scroll unlocks when clicking a link
+    const mobileLinks = menu?.querySelectorAll('a');
+    mobileLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        menu?.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
   });
 </script>

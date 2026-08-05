@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://qshala.vercel.app',
+  prefetch: true,
   integrations: [react(), sitemap()],
   output: 'static',
   build: {
