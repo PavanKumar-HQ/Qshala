@@ -41,14 +41,14 @@ export default function CuriosityRecommendationWidget() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="text-center space-y-1.5">
-        <span className="px-3.5 py-1 rounded-full bg-[#FDB913]/20 text-black font-black text-[11px] uppercase tracking-wider font-heading">
+        <span className="px-3.5 py-1 rounded-full bg-[#FDB913] text-black font-black text-[11px] uppercase tracking-wider font-heading border border-black/20">
           Curiosity Finder
         </span>
         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Find Your Tailored Program</h3>
       </div>
 
-      {/* Sleek Segmented Role Selector Pills */}
-      <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 bg-slate-100 rounded-full max-w-2xl mx-auto">
+      {/* Role Selector Pills */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5">
         {[
           { id: 'school', label: 'School Educator' },
           { id: 'corporate', label: 'HR / Corporate' },
@@ -58,10 +58,10 @@ export default function CuriosityRecommendationWidget() {
           <button
             key={item.id}
             onClick={() => setRole(item.id as Role)}
-            className={`px-5 py-2.5 rounded-full font-black text-xs transition-all font-heading ${
+            className={`px-5 py-2.5 rounded-full font-black text-xs font-heading transition-all border-2 border-black ${
               role === item.id
-                ? 'bg-[#30B2E7] text-white shadow-md -translate-y-0.5'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+                ? 'bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5'
+                : 'bg-white text-slate-800 hover:bg-slate-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
             }`}
           >
             {item.label}
@@ -69,8 +69,8 @@ export default function CuriosityRecommendationWidget() {
         ))}
       </div>
 
-      {/* Clean Compact Output Card */}
-      <div className={`p-6 md:p-8 rounded-3xl border border-slate-200/90 shadow-sm ${rec.bg} flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all`}>
+      {/* Output Card */}
+      <div className={`p-6 md:p-8 rounded-3xl border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] ${rec.bg} flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all`}>
         <div className="space-y-2">
           <span className="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading">
             {rec.tag}
