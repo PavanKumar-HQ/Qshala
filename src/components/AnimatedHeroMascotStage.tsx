@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Trophy, Star, HelpCircle, Search, Lightbulb, BookOpen, ShieldCheck } from 'lucide-react';
+import { Trophy, Star, HelpCircle, Search, Lightbulb, BookOpen, ShieldCheck } from 'lucide-react';
 import QTMascot, { type QTMascotVariant } from './QTMascot';
 
 interface MascotMood {
@@ -84,8 +84,7 @@ export default function AnimatedHeroMascotStage() {
       <div className="relative w-full bg-white rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center text-center space-y-6 overflow-hidden">
         
         {/* Decorative Top Accent Tag */}
-        <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFFDF5] border border-black/20 text-[11px] font-black uppercase text-slate-700 font-heading">
-          <Sparkles className="w-3.5 h-3.5 text-[#FDB913]" />
+        <div className="px-3.5 py-1 rounded-full bg-[#FFFDF5] border border-black/20 text-[11px] font-black uppercase text-slate-700 font-heading">
           <span>Interactive Mascot Guide</span>
         </div>
 

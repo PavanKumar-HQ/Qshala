@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, BookOpen, Lightbulb, Puzzle, Compass, Rocket } from 'lucide-react';
+import { HelpCircle, BookOpen, Lightbulb, Puzzle, Compass, Rocket } from 'lucide-react';
 
 const CURIOSITY_PROMPTS = [
   "Why is the sky blue?",
@@ -12,7 +12,7 @@ const CURIOSITY_PROMPTS = [
 ];
 
 const ORBIT_ICONS = [
-  { icon: Sparkles, color: 'text-[#FDB913]' },
+  { icon: HelpCircle, color: 'text-[#30B2E7]' },
   { icon: BookOpen, color: 'text-[#30B2E7]' },
   { icon: Lightbulb, color: 'text-[#FDB913]' },
   { icon: Puzzle, color: 'text-[#75B543]' },
