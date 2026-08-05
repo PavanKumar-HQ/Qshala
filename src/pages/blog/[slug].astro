@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import QTMascot from '../../components/QTMascot';
+
+export async function getStaticPaths() {
+  const posts = [
+    {
+      slug: 'why-rote-learning-kills-curiosity',
+      title: 'Why Rote Learning Kills Curiosity (And How to Fix It)',
+      category: 'Pedagogy',
+      readTime: '5 min read',
+      date: 'Aug 1, 2026',
+      summary: 'Standard GK worksheets ask children to memorize facts without asking why. We explore socratic dialogue methods that unlock original thinking.',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          For decades, classrooms across the world have operated on a simple transaction: the teacher dictates the answer, and the student memorizes it for the exam. While this rote-learning methodology is efficient for scoring marks, it actively kills a child's natural superpower—curiosity.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Danger of the "Correct Answer"</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          When we tell a child that the only thing that matters is getting the exact correct answer written down on a sheet of paper, we teach them to stop exploring the margins. Curiosity isn't about knowing the answer; it's about the journey of asking the question.
+        </p>
+        <blockquote class="border-l-4 border-[#30B2E7] pl-4 italic text-slate-800 font-semibold my-8 py-2 bg-slate-50 rounded-r-2xl pr-4">
+          "If you teach a child facts, you prepare them for a trivia game. If you teach them how to ask questions, you prepare them for the real world."
+        </blockquote>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Entering the Socratic Circle</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          At QShala, our Weekly Curiosity Clubs utilize socratic questioning. Instead of telling children that an octopus has three hearts, we ask: <em>"Why would a creature that swims in the deep ocean need three separate hearts?"</em> This forces the mind to work through systemic biology, pressure, and energy distribution.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Three Ways Parents Can Spark Socratic Dialogue:</h3>
+        <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
+          <li><strong>Never answer "I don't know" alone:</strong> Follow it up with, "Let's figure out how we can test that."</li>
+          <li><strong>Ask "How do you know that?":</strong> Get children to explain the source of their facts.</li>
+          <li><strong>Compare and contrast:</strong> Ask questions like, "How is a computer keyboard similar to a piano?"</li>
+        </ul>
+      `
+    },
+    {
+      slug: 'curious-dinner-table',
+      title: "How to Build a 'Curious Dinner Table' for Your Kids",
+      category: 'Parenting',
+      readTime: '4 min read',
+      date: 'July 28, 2026',
+      summary: 'Three simple question prompts and game mechanics that swap screen time for active discussion during family dinners.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          The dinner table is the most underutilized educational space in modern households. With screens resting beside plates, families eat in parallel silence. By introducing gamified curiosity, you can turn dinners into hubs of discovery.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Swapping "How was your day?" for "What did you ask?"</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Standard questions yield standard answers ("Good", "Fine", "Nothing"). Instead, Nobel laureate Isidor Rabi's mother used to ask him: <em>"Did you ask a good question today, Izzy?"</em> Shifting the focus to inquiry changes what kids look out for during the day.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Dinner Table Quiz Game</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          You don't need a buzzer system to play. Use QShala's simple "Curiosity Deck" rule: pick one card, read the mystery, and let everyone guess. The goal isn't to get it right; it's to come up with the most creative theory.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Quick Prompts to Try Tonight:</h3>
+        <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
+          <li>"Why do you think windows are made of glass and not transparent plastic?"</li>
+          <li>"If you had to live in space for a year, what is the one household object you would miss the most?"</li>
+          <li>"How do you think birds know where to fly when winter comes?"</li>
+        </ul>
+      `
+    },
+    {
+      slug: 'gamification-modern-corporate-learning',
+      title: 'Gamification: The Secret Weapon of Modern Corporate L&D',
+      category: 'Workplace Culture',
+      readTime: '6 min read',
+      date: 'July 15, 2026',
+      summary: 'How leading startups use live interactive buzzers and case-study tournaments to boost cross-team engagement by over 90%.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Traditional corporate slide decks are where employee engagement goes to die. To truly align teams and build shared culture, leading HR managers are turning to high-stakes, interactive gamification.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Why Buzzers Work Better Than Slides</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          In a live gamified setup (like QShala's Corporate Trivia Nights), employees aren't passively receiving information. They are competing, collaborating, and retrieving facts in real-time. This triggers dopamine release, making learning stick.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Decreasing Employee Attrition</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Our data across 80+ clients shows that shared play builds psychological safety and cohesion. Teams that laugh and solve riddles together build stronger cross-functional relationships, contributing directly to a 10% average decrease in workplace attrition.
+        </p>
+      `
+    }
+  ];
+
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout title={`${post.title} | QShala Magazine`}>
+  <Navbar />
+  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+    <div class="max-w-4xl mx-auto space-y-10">
+      
+      <!-- Back Button -->
+      <a href="/blog" class="inline-flex items-center gap-2 text-xs font-black uppercase font-heading text-[#30B2E7] hover:underline">
+        ← Back to Magazine
+      </a>
+
+      <!-- Article Header -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3.5 py-1.5 rounded-full border-2 border-black font-black text-xs uppercase font-heading" style={`background-color: ${post.color}`}>
+            {post.category}
+          </span>
+          <span class="text-xs font-bold text-slate-500">{post.date} • {post.readTime}</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight font-heading">
+          {post.title}
+        </h1>
+      </div>
+
+      <!-- Mascot Spotlight -->
+      <div class="p-6 rounded-3xl border-2 border-black bg-white flex items-center gap-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <QTMascot client:visible variant="reading" size="sm" />
+        <div>
+          <h4 class="font-black font-heading text-sm text-slate-900">QShala Editorial Crew</h4>
+          <p class="text-xs font-semibold text-slate-500">Sparking curiosity, one question at a time.</p>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div class="prose max-w-none text-slate-700 font-medium" set:html={post.content}></div>
+
+      <!-- Bottom newsletter promo -->
+      <div class="pt-10 border-t border-black/10">
+        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
+          <h3 class="text-2xl font-black font-heading text-slate-900">Enjoyed this article?</h3>
+          <p class="text-slate-600 text-sm font-semibold max-w-md mx-auto">
+            Get more pedagogical tips, trivia, and weekly challenges directly in your inbox.
+          </p>
+          <a href="/blog" class="inline-block px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black font-black text-xs font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            Subscribe to Curiosity Digest
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

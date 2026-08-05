@@ -1,5 +1,5 @@
 ---
-import '@/styles/global.css';
+import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
 
 interface Props {
@@ -34,7 +34,7 @@ const {
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
 
-    <!-- Original 5-scene Curiosity Loader (client:only prevents SSR, no hydration block) -->
+    <!-- 5-scene Curiosity Loader -->
     <LoadingScreen client:only="react" />
 
     <slot />

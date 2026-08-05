@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import TypewriterHeadline from '../components/TypewriterHeadline';
 import InteractiveQuizCard from '../components/InteractiveQuizCard';
 import QTMascot from '../components/QTMascot';
+import ClientMarquee from '../components/ClientMarquee.astro';
 import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
 ---
 
@@ -105,26 +106,26 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Schools Card */}
-          <div class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10">
+          <div class="group md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
               <QTMascot client:visible variant="reading" size="sm" />
             </div>
             <span class="text-xs font-black uppercase text-[#30B2E7]">K-12 Educational Institutions</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala for Schools</h3>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading group-hover:text-[#30B2E7] transition-colors">QShala for Schools</h3>
             <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
               Replace passive memorization with active weekly curiosity clubs, current affairs storytelling, teacher empowerment workshops, and inter-school competitions.
             </p>
             <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
               <span class="text-xs font-black">250+ Schools Active Across India</span>
-              <a href="/schools" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+              <a href="/schools" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-[#30B2E7] hover:text-black transition-colors">
                 Explore School Programs →
               </a>
             </div>
           </div>
 
           {/* Corporates Card */}
-          <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10">
+          <div class="group bg-[#FDB913] rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
               <QTMascot client:visible variant="professional" size="sm" />
             </div>
             <span class="text-xs font-black uppercase text-black">Corporate L&D & HR</span>
@@ -133,15 +134,15 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
               High-octane team bonding, trivia nights, leadership offsites, and brand knowledge gamification.
             </p>
             <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <a href="/companies" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+              <a href="/companies" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-white hover:text-black transition-colors">
                 Corporate Offsites →
               </a>
             </div>
           </div>
 
           {/* Colleges Card */}
-          <div class="bg-[#75B543] text-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10">
+          <div class="group bg-[#75B543] text-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
               <QTMascot client:visible variant="jumping" size="sm" />
             </div>
             <span class="text-xs font-black uppercase text-black">Higher Education & Fests</span>
@@ -150,25 +151,25 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
               Campus fest quiz championships, employability challenges, and real-world case study simulations.
             </p>
             <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
-              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-[#FDB913] hover:text-black transition-colors">
                 Host Campus Fest →
               </a>
             </div>
           </div>
 
           {/* Communities Card */}
-          <div class="md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div class="absolute top-4 right-4 z-10">
+          <div class="group md:col-span-2 bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative overflow-hidden">
+            <div class="absolute top-4 right-4 z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
               <QTMascot client:visible variant="happy" size="sm" />
             </div>
             <span class="text-xs font-black uppercase text-purple-600">Neighborhoods & Families</span>
-            <h3 class="text-3xl font-black mt-1 mb-3 font-heading">QShala Communities & Pub Quizzes</h3>
+            <h3 class="text-3xl font-black mt-1 mb-3 font-heading group-hover:text-purple-600 transition-colors">QShala Communities & Pub Quizzes</h3>
             <p class="text-sm font-semibold opacity-90 leading-relaxed max-w-xl">
               Bringing parents, kids, and friends together with weekend family game nights, pub quizzes, wedding trivia, and apartment complex leagues.
             </p>
             <div class="mt-8 pt-6 border-t border-black/20 flex items-center justify-between">
               <span class="text-xs font-black">Screen-free weekend fun</span>
-              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading">
+              <a href="/services" class="px-5 py-2.5 rounded-full bg-black text-white font-black text-sm border border-white font-heading hover:bg-purple-600 hover:text-white transition-colors">
                 Explore Community Events →
               </a>
             </div>
@@ -176,6 +177,8 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
         </div>
       </div>
     </section>
+
+    <ClientMarquee />
 
     {/* Case Studies Section */}
     <section class="py-20 bg-white border-b-4 border-black relative">

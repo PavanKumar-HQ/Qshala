@@ -2,15 +2,112 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
 ---
 
-<BaseLayout title="QShala for Schools & K-12">
+<BaseLayout title="QShala for Schools & K-12 | India's Curiosity Company">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6">
-    <div class="max-w-7xl mx-auto text-center">
-      <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading">K-12 Education</span>
-      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Nurturing Curiosity in Classrooms</h1>
-      <p class="text-slate-700 text-lg mt-4 font-semibold max-w-2xl mx-auto">Active weekly curiosity clubs, current affairs storytelling, and inter-school competitions across 250+ schools in India.</p>
+  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+    <div class="max-w-7xl mx-auto space-y-20">
+      
+      <!-- Hero Section -->
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading">
+          K-12 Educational Institutions
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading leading-tight">
+          Nurturing Curiosity in Classrooms.
+        </h1>
+        <p class="text-slate-700 text-lg font-semibold max-w-2xl mx-auto leading-relaxed">
+          Active weekly curiosity clubs, current affairs storytelling, and inter-school competitions across 250+ schools in India. We help schools move beyond rote memorization.
+        </p>
+      </div>
+
+      <!-- Mascot Spotlight -->
+      <div class="flex justify-center my-6">
+        <QTMascot client:visible variant="reading" size="lg" badgeText="Study Buddies!" />
+      </div>
+
+      <!-- Why Choose QShala Grid -->
+      <div class="space-y-8">
+        <h2 class="text-3xl font-black text-center font-heading">How QShala Transforms Learning</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Weekly Curiosity Clubs",
+              desc: "Structured, gamified club sessions built into the timetable. Students discuss real-world questions, trivia, and debate global topics.",
+              accent: "#30B2E7"
+            },
+            {
+              title: "Current Affairs Storytelling",
+              desc: "We decode global developments, science innovations, and civic history into kid-friendly stories that build critical thinking.",
+              accent: "#75B543"
+            },
+            {
+              title: "Socratic Method",
+              desc: "No boring slides. Guided by expert facilitators who stimulate dialogue and help kids trace their own paths to answers.",
+              accent: "#FDB913"
+            }
+          ].map(item => (
+            <div class="bg-white rounded-3xl p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-2xl border-2 border-black mb-4 flex items-center justify-center font-black text-white text-lg" style={`background-color: ${item.accent}`}>
+                  ?
+                </div>
+                <h3 class="text-xl font-black font-heading mb-2">{item.title}</h3>
+                <p class="text-slate-600 text-sm font-semibold leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Program Divisions -->
+      <div class="space-y-8">
+        <h2 class="text-3xl font-black text-center font-heading">Age-Appropriate Programs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              division: "Primary School (Grades 1-4)",
+              programName: "Curiosity Builders",
+              focus: "Fostering general wonder, scientific inquiry, logic puzzles, and communication basics.",
+              bg: "bg-[#E8F6FD]"
+            },
+            {
+              division: "Middle School (Grades 5-8)",
+              programName: "Curiosity Explorers",
+              focus: "Global history, introductory economics, media literacy, and structured public speaking.",
+              bg: "bg-[#EDF7E5]"
+            },
+            {
+              division: "High School (Grades 9-12)",
+              programName: "Curiosity Thinkers",
+              focus: "Employability skills, real-world case simulations, and deep debate on global issues.",
+              bg: "bg-[#FFF8E1]"
+            }
+          ].map(item => (
+            <div class={`rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${item.bg} space-y-4`}>
+              <span class="text-xs font-black uppercase text-slate-500">{item.division}</span>
+              <h3 class="text-2xl font-black font-heading">{item.programName}</h3>
+              <p class="text-slate-800 text-sm font-semibold leading-relaxed">{item.focus}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick CTA -->
+      <div class="bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center max-w-4xl mx-auto space-y-6">
+        <h2 class="text-3xl font-black font-heading">Bring QShala to Your School</h2>
+        <p class="text-slate-700 font-semibold max-w-xl mx-auto text-sm">
+          Join 250+ forward-thinking schools across India. Schedule a free demo quiz session for your academic team.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contact" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all font-black text-sm font-heading">
+            Schedule a Demo Quiz
+          </a>
+        </div>
+      </div>
+
     </div>
   </main>
   <Footer />

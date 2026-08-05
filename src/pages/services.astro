@@ -19,15 +19,15 @@ import QTMascot from '../components/QTMascot';
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
-          <div class="absolute top-4 right-4"><QTMascot client:visible variant="reading" size="sm" /></div>
+        <div class="group bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative">
+          <div class="absolute top-4 right-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"><QTMascot client:visible variant="reading" size="sm" /></div>
           <span class="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs">For Schools</span>
-          <h2 class="text-2xl font-black text-slate-900 mt-4 mb-2 font-heading">Weekly Curiosity Clubs & Storytelling</h2>
+          <h2 class="text-2xl font-black text-slate-900 mt-4 mb-2 font-heading group-hover:text-[#30B2E7] transition-colors">Weekly Curiosity Clubs & Storytelling</h2>
           <p class="text-slate-700 text-sm font-semibold">Transforming K-12 classrooms into hubs of active questioning and design thinking.</p>
         </div>
 
-        <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
-          <div class="absolute top-4 right-4"><QTMascot client:visible variant="professional" size="sm" /></div>
+        <div class="group bg-[#FDB913] rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow relative">
+          <div class="absolute top-4 right-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><QTMascot client:visible variant="professional" size="sm" /></div>
           <span class="px-3 py-1 rounded-full bg-black text-white font-black text-xs">For Corporates</span>
           <h2 class="text-2xl font-black text-slate-900 mt-4 mb-2 font-heading">Corporate Trivia & Leadership Offsites</h2>
           <p class="text-slate-900 text-sm font-semibold">Engaging hybrid teams across cities with high-octane trivia championships.</p>

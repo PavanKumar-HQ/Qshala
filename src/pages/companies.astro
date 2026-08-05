@@ -2,15 +2,90 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
 ---
 
 <BaseLayout title="QShala for Corporates | Offsites & Engagement">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6">
-    <div class="max-w-7xl mx-auto text-center">
-      <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase border border-black font-heading">Corporate L&D</span>
-      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Corporate Trivia & Townhalls</h1>
-      <p class="text-slate-700 text-lg mt-4 font-semibold max-w-2xl mx-auto">Connecting hybrid teams across offices with customized live trivia championships and offsites.</p>
+  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+    <div class="max-w-7xl mx-auto space-y-20">
+      
+      <!-- Hero Section -->
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading">
+          Corporate L&D & HR
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading leading-tight">
+          Corporate Trivia & Townhalls.
+        </h1>
+        <p class="text-slate-700 text-lg font-semibold max-w-2xl mx-auto leading-relaxed">
+          Connecting hybrid teams across offices with customized live trivia championships, onboarding games, and leadership offsites.
+        </p>
+      </div>
+
+      <!-- Mascot Spotlight -->
+      <div class="flex justify-center my-6">
+        <QTMascot client:visible variant="professional" size="lg" badgeText="Ready to Play?" />
+      </div>
+
+      <!-- Engagement Formats -->
+      <div class="space-y-8">
+        <h2 class="text-3xl font-black text-center font-heading">Popular Corporate Formats</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "High-Octane Trivia Nights",
+              desc: "Fast-paced, team-based trivia designed for Friday evening unwinds, cross-functional mixers, or annual days.",
+              bg: "bg-[#FFF8E1]"
+            },
+            {
+              title: "Gamified Onboarding",
+              desc: "Turn boring slide decks into interactive quest cards. Help new hires absorb company history, culture, and compliance rules playfully.",
+              bg: "bg-[#E8F6FD]"
+            },
+            {
+              title: "Custom Brand Championships",
+              desc: "Product launches, customer engagement programs, or employee training gamified using our proprietary buzzers.",
+              bg: "bg-[#EDF7E5]"
+            }
+          ].map(item => (
+            <div class={`rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${item.bg} space-y-4`}>
+              <h3 class="text-2xl font-black font-heading">{item.title}</h3>
+              <p class="text-slate-800 text-sm font-semibold leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { value: "80+", label: "Corporate Clients" },
+            { value: "50,000+", label: "Employees Engaged" },
+            { value: "92/100", label: "Average NPS Score" }
+          ].map(stat => (
+            <div class="flex flex-col items-center justify-center py-6 px-4 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center">
+              <span class="text-3xl font-black text-[#FDB913] font-heading">{stat.value}</span>
+              <span class="text-xs font-black uppercase tracking-wider text-slate-600 mt-1">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick CTA -->
+      <div class="bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center max-w-4xl mx-auto space-y-6">
+        <h2 class="text-3xl font-black font-heading">Plan Your Next Team Event</h2>
+        <p class="text-slate-700 font-semibold max-w-xl mx-auto text-sm">
+          Whether you have a team of 30 or 3,000, we customize our trivia engine and buzzers to create a memorable experience.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contact" class="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-black text-sm font-heading">
+            Book a Corporate Quiz
+          </a>
+        </div>
+      </div>
+
     </div>
   </main>
   <Footer />

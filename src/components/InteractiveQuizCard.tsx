@@ -37,22 +37,26 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.35 }}
-      className="bg-white rounded-3xl p-5 md:p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full min-h-[460px]"
+      whileHover={{
+        y: -8,
+        scale: 1.015,
+        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+      }}
+      transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+      className="group bg-white rounded-3xl p-5 md:p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full min-h-[460px] relative overflow-hidden transition-colors"
     >
       {/* Top Badges */}
       <div className="flex items-center justify-between mb-4 gap-2">
-        <span className="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider border border-black shrink-0">
+        <span className="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider border border-black shrink-0 group-hover:scale-105 transition-transform">
           {quiz.category}
         </span>
-        <span className="px-2.5 py-1 rounded-full bg-[#FDB913] text-black text-[11px] font-black border border-black shrink-0">
+        <span className="px-2.5 py-1 rounded-full bg-[#FDB913] text-black text-[11px] font-black border border-black shrink-0 group-hover:rotate-3 transition-transform">
           ⚡ {quiz.difficulty}
         </span>
       </div>
 
       {/* Question */}
-      <h3 className="text-lg font-black text-black leading-snug mb-4 flex-none" style={{ fontFamily: 'Causten Round Black, sans-serif' }}>
+      <h3 className="text-lg font-black text-black leading-snug mb-4 flex-none group-hover:text-[#30B2E7] transition-colors" style={{ fontFamily: 'Causten Round Black, sans-serif' }}>
         {quiz.question}
       </h3>
 
@@ -62,7 +66,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
           const isCorrect = idx === quiz.correctAnswer;
           const isSelected = selected === idx;
 
-          let bg = 'bg-[#FFFDF5] hover:bg-[#FDB913]/20 border-black text-black';
+          let bg = 'bg-[#FFFDF5] hover:bg-[#FDB913]/30 hover:border-black hover:translate-x-1 border-black text-black';
           if (selected !== null) {
             if (isCorrect) bg = 'bg-[#75B543] border-black text-white';
             else if (isSelected) bg = 'bg-rose-500 border-black text-white';
@@ -100,7 +104,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         )}
       </AnimatePresence>
 
-      {/* Footer: status + mascot image (plain img, no island) */}
+      {/* Footer: status + mascot image with hover animation */}
       <div className="mt-4 pt-3 flex items-center justify-between border-t border-slate-100">
         <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider">
           {selected === null ? 'Click an option to test your curiosity!' : 'Nice one!'}
@@ -110,7 +114,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
           alt="QT Mascot"
           width="48"
           height="48"
-          className="object-contain -mb-2 -mr-1 drop-shadow-sm"
+          className="object-contain -mb-2 -mr-1 drop-shadow-sm group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300"
           loading="eager"
         />
       </div>

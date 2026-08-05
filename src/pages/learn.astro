@@ -3,23 +3,76 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import InteractiveQuizCard from '../components/InteractiveQuizCard';
+import QTMascot from '../components/QTMascot';
 import { FEATURED_QUIZZES } from '../lib/data';
 ---
 
 <BaseLayout title="Kids Corner & Daily Trivia | QShala">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6">
-    <div class="max-w-7xl mx-auto space-y-12">
-      <div class="text-center max-w-3xl mx-auto">
-        <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading">Kids Corner</span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Daily Curiosity Playground</h1>
+  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <!-- Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading">
+          Kids Corner
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading leading-tight">
+          Daily Curiosity Playground.
+        </h1>
+        <p class="text-slate-700 text-lg font-semibold max-w-2xl mx-auto leading-relaxed">
+          Solve puzzles, challenge your friends, and discover answers to questions you never thought to ask.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {FEATURED_QUIZZES.map((quiz) => (
-          <InteractiveQuizCard client:visible quiz={quiz} />
-        ))}
+      <!-- Mascot Buddy -->
+      <div class="flex justify-center">
+        <QTMascot client:visible variant="jumping" size="lg" badgeText="Jump in!" />
       </div>
+
+      <!-- Quiz Grid Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-black text-center font-heading">Interactive Quizzes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {FEATURED_QUIZZES.map((quiz) => (
+            <InteractiveQuizCard client:visible quiz={quiz} />
+          ))}
+        </div>
+      </div>
+
+      <!-- How to Get More Curious Card -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-6">
+          <div>
+            <span class="text-xs font-black uppercase text-[#30B2E7]">Live Sessions</span>
+            <h3 class="text-2xl font-black font-heading mt-2">Join a Sunday Curiosity Club</h3>
+            <p class="text-slate-600 text-sm font-semibold leading-relaxed mt-2">
+              Every Sunday, kids from 15+ cities join our live storytelling-quizzes. Led by QShala grandmasters, we talk about space, code, history, and life skills in an interactive game environment.
+            </p>
+          </div>
+          <div>
+            <a href="/schools" class="inline-block px-5 py-2.5 rounded-full bg-black text-white font-black text-xs border border-white font-heading hover:bg-[#30B2E7] hover:text-black transition-colors">
+              Try a Live Class
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-6">
+          <div>
+            <span class="text-xs font-black uppercase text-black">Curiosity at Home</span>
+            <h3 class="text-2xl font-black font-heading mt-2">Bring Learning Games Home</h3>
+            <p class="text-slate-900 text-sm font-semibold leading-relaxed mt-2">
+              Explore card games, daily challenge books, and our signature QT Plushie in the Curiosity Shop. Perfect for family road trips or screen-free weekend dinners.
+            </p>
+          </div>
+          <div>
+            <a href="/shop" class="inline-block px-5 py-2.5 rounded-full bg-black text-white font-black text-xs border border-white font-heading hover:bg-white hover:text-black transition-colors">
+              Explore the Shop
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
   <Footer />

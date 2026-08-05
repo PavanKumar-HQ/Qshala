@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 export type QTMascotVariant =
   | 'normal'
@@ -50,50 +49,12 @@ export default function QTMascot({
   className = '',
   badgeText,
 }: QTMascotProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const imageSrc = VARIANT_MAP[variant] || VARIANT_MAP.normal;
   const dimension = SIZE_MAP[size];
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [pupilShift, setPupilShift] = useState({ x: 0, y: 0, rotate: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const mascotCenterX = rect.left + rect.width / 2;
-      const mascotCenterY = rect.top + rect.height / 2;
-
-      const deltaX = e.clientX - mascotCenterX;
-      const deltaY = e.clientY - mascotCenterY;
-      const distance = Math.hypot(deltaX, deltaY);
-
-      const maxShift = 12;
-      const factor = Math.min(distance / 300, 1);
-      const angle = Math.atan2(deltaY, deltaX);
-
-      const shiftX = Math.cos(angle) * maxShift * factor;
-      const shiftY = Math.sin(angle) * maxShift * factor;
-      const tiltAngle = (deltaX / window.innerWidth) * 15;
-
-      setPupilShift({ x: shiftX, y: shiftY, rotate: tiltAngle });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 600);
-  };
-
   return (
     <div
-      ref={containerRef}
-      onClick={handleClick}
-      className={`relative inline-flex flex-col items-center justify-center cursor-pointer select-none ${className}`}
+      className={`relative inline-flex flex-col items-center justify-center select-none ${className}`}
     >
       {badgeText && (
         <span className="absolute -top-6 px-3 py-1 bg-[#FDB913] text-black text-xs font-black rounded-full shadow-md z-10 border-2 border-black whitespace-nowrap font-heading">
@@ -101,28 +62,7 @@ export default function QTMascot({
         </span>
       )}
 
-      {/* Mascot Container with Dynamic Mouse Position Shift & Click Bounce Animation */}
-      <motion.div
-        className="relative flex items-center justify-center"
-        animate={
-          isClicked
-            ? {
-                y: [0, -35, 0],
-                rotate: [0, -25, 25, 0],
-                scale: [1, 1.35, 1],
-              }
-            : {
-                x: pupilShift.x,
-                y: pupilShift.y,
-                rotate: pupilShift.rotate,
-              }
-        }
-        transition={
-          isClicked
-            ? { duration: 0.5, ease: 'easeOut' }
-            : { type: 'spring', stiffness: 300, damping: 15 }
-        }
-      >
+      <div className="relative flex items-center justify-center">
         <img
           src={imageSrc}
           alt={`QT Mascot ${variant}`}
@@ -131,22 +71,7 @@ export default function QTMascot({
           className="object-contain pointer-events-none drop-shadow-lg"
           loading="eager"
         />
-
-        {/* Floating Question Mark Pop-up on Click */}
-        <AnimatePresence>
-          {isClicked && (
-            <motion.span
-              initial={{ opacity: 0, y: 0, scale: 0.5 }}
-              animate={{ opacity: [0, 1, 0], y: -50, scale: 1.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="absolute -top-10 text-3xl font-black text-[#FDB913] font-mono pointer-events-none drop-shadow-lg z-20"
-            >
-              ?
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   );
 }
