@@ -16,8 +16,10 @@ const {
 
 const siteUrl = 'https://qshala.vercel.app';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
-const ogImageUrl = `${siteUrl}/mascot-preview.jpg?v=6`;
-const ogGifUrl = `${siteUrl}/mascot-preview.gif?v=6`;
+
+// Cache-buster v=7 for instant social share preview cache invalidation
+const ogImageUrl = `${siteUrl}/mascot-preview.jpg?v=7`;
+const ogGifUrl = `${siteUrl}/mascot-preview.gif?v=7`;
 ---
 
 <!DOCTYPE html>
@@ -45,9 +47,9 @@ const ogGifUrl = `${siteUrl}/mascot-preview.gif?v=6`;
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
-    <meta property="og:image:alt" content="Official QShala Animated QT Mascot Artboards" />
+    <meta property="og:image:alt" content="QShala Official QT Mascot" />
 
-    <!-- Animated GIF Link Preview for Apps Supporting Animated OpenGraph -->
+    <!-- Animated GIF Link Preview for Supporting Messaging Platforms -->
     <meta property="og:image" content={ogGifUrl} />
     <meta property="og:image:type" content="image/gif" />
 
