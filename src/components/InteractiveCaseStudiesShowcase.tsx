@@ -32,10 +32,10 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
   return (
     <div className="space-y-8">
       
-      {/* Top Filter & View Controls Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/80 p-4 rounded-2xl border border-black/10 shadow-sm">
+      {/* Sleek, Open Integrated Header (No Bounding Box Container) */}
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
         
-        {/* Category Pills */}
+        {/* Category Filter Pills */}
         <div className="flex flex-wrap items-center gap-2.5">
           {categories.map((cat) => {
             const count = cat === 'All' ? caseStudies.length : caseStudies.filter(c => c.clientType === cat).length;
@@ -48,10 +48,10 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                   setActiveCategory(cat);
                   setCurrentIndex(0);
                 }}
-                className={`px-4.5 py-2 rounded-full font-black text-xs font-heading transition-all border-2 border-black ${
+                className={`px-4.5 py-2 rounded-full font-black text-xs font-heading transition-all border-2 ${
                   isActive
-                    ? 'bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5'
-                    : 'bg-white text-slate-800 hover:bg-slate-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                    ? 'bg-[#30B2E7] text-white border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5'
+                    : 'bg-white text-slate-800 border-slate-200 hover:border-black shadow-sm'
                 }`}
               >
                 {label}
@@ -60,26 +60,30 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
           })}
         </div>
 
-        {/* Carousel / Grid View Switcher */}
-        <div className="flex items-center gap-2 self-end sm:self-auto">
-          <span className="text-[11px] font-black uppercase text-slate-500 font-heading">Display:</span>
+        {/* View Mode Switcher Buttons */}
+        <div className="flex items-center gap-2 self-start md:self-auto">
           <button
             onClick={() => setViewMode('carousel')}
-            className={`p-2.5 rounded-xl border-2 border-black transition-all ${
-              viewMode === 'carousel' ? 'bg-[#FDB913] text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-slate-600'
+            className={`px-3.5 py-2 rounded-xl text-xs font-black font-heading flex items-center gap-1.5 border-2 transition-all ${
+              viewMode === 'carousel'
+                ? 'bg-[#FDB913] text-black border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                : 'bg-white text-slate-700 border-slate-200 hover:border-black'
             }`}
-            title="Carousel Slider View"
           >
             <LayoutList className="w-4 h-4" />
+            <span>Featured View</span>
           </button>
+
           <button
             onClick={() => setViewMode('grid')}
-            className={`p-2.5 rounded-xl border-2 border-black transition-all ${
-              viewMode === 'grid' ? 'bg-[#FDB913] text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-slate-600'
+            className={`px-3.5 py-2 rounded-xl text-xs font-black font-heading flex items-center gap-1.5 border-2 transition-all ${
+              viewMode === 'grid'
+                ? 'bg-[#FDB913] text-black border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                : 'bg-white text-slate-700 border-slate-200 hover:border-black'
             }`}
-            title="Grid View"
           >
             <Grid className="w-4 h-4" />
+            <span>Grid View</span>
           </button>
         </div>
 
@@ -102,15 +106,15 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden space-y-8"
+                    className="bg-white rounded-3xl p-8 md:p-12 border border-slate-200/90 shadow-md relative overflow-hidden space-y-8"
                   >
                     {/* Header Row */}
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-3">
                         <span className="px-3.5 py-1.5 rounded-full bg-slate-900 text-white font-black text-xs uppercase font-heading">
                           {cs.clientType} • {cs.clientName}
                         </span>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                           {cs.tags.map((t, idx) => (
                             <span key={idx} className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-bold text-[10px]">
                               #{t}
@@ -132,8 +136,8 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                       </p>
                     </div>
 
-                    {/* Metric Pills */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 rounded-2xl bg-[#30B2E7]/10 border-2 border-black">
+                    {/* Metric Pills (Clean Soft Box) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 rounded-2xl bg-[#E8F6FD]/60 border border-[#30B2E7]/20">
                       {cs.impactMetrics.map((m, idx) => (
                         <div key={idx} className="text-center space-y-1">
                           <div className="text-3xl sm:text-4xl font-black text-[#30B2E7] font-heading">{m.value}</div>
@@ -143,7 +147,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                     </div>
 
                     {/* Testimonial Quote */}
-                    <blockquote className="border-l-4 border-[#FDB913] pl-6 py-2 bg-[#FFFDF5] rounded-r-2xl border-y border-r border-black/10 flex items-start gap-4">
+                    <blockquote className="border-l-4 border-[#FDB913] pl-6 py-3 bg-[#FFFDF5] rounded-r-2xl border-y border-r border-slate-200/60 flex items-start gap-4">
                       <Quote className="w-8 h-8 text-[#FDB913] shrink-0 mt-1" />
                       <div>
                         <p className="text-slate-800 text-sm font-semibold italic">
@@ -156,10 +160,10 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                     </blockquote>
 
                     {/* Action Bar */}
-                    <div className="flex items-center justify-between pt-4 border-t border-black/10">
+                    <div className="flex items-center justify-between pt-4 border-t border-slate-200/80">
                       <button
                         onClick={() => setSelectedModalCase(cs)}
-                        className="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading"
+                        className="px-7 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading transition-all"
                       >
                         Read Full Story →
                       </button>
@@ -181,8 +185,8 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2.5 rounded-full transition-all border border-black ${
-                    currentIndex === idx ? 'w-8 bg-[#30B2E7]' : 'w-2.5 bg-slate-200'
+                  className={`h-2.5 rounded-full transition-all ${
+                    currentIndex === idx ? 'w-8 bg-[#30B2E7]' : 'w-2.5 bg-slate-300'
                   }`}
                 />
               ))}
@@ -212,7 +216,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
           {filteredData.map((cs, idx) => (
             <div
               key={cs.id}
-              className="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-6 relative overflow-hidden group"
+              className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden group hover:border-black transition-all"
             >
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -229,7 +233,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                   {cs.summary}
                 </p>
 
-                <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[#30B2E7]/10 border border-black text-center">
+                <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[#30B2E7]/10 border border-[#30B2E7]/20 text-center">
                   {cs.impactMetrics.map((m, mIdx) => (
                     <div key={mIdx}>
                       <div className="text-lg font-black text-[#30B2E7] font-heading">{m.value}</div>
