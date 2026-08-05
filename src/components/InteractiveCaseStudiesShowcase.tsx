@@ -36,10 +36,11 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/80 p-4 rounded-2xl border border-black/10 shadow-sm">
         
         {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2.5">
           {categories.map((cat) => {
             const count = cat === 'All' ? caseStudies.length : caseStudies.filter(c => c.clientType === cat).length;
             const isActive = activeCategory === cat;
+            const label = cat === 'All' ? `All (${count})` : cat === 'Community' ? `Communities (${count})` : `${cat}s (${count})`;
             return (
               <button
                 key={cat}
@@ -47,13 +48,13 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                   setActiveCategory(cat);
                   setCurrentIndex(0);
                 }}
-                className={`px-4 py-2 rounded-full font-black text-xs font-heading transition-all border-2 border-black ${
+                className={`px-4.5 py-2 rounded-full font-black text-xs font-heading transition-all border-2 border-black ${
                   isActive
                     ? 'bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5'
-                    : 'bg-[#FFFDF5] text-slate-700 hover:bg-slate-50'
+                    : 'bg-white text-slate-800 hover:bg-slate-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
                 }`}
               >
-                {cat}s ({count})
+                {label}
               </button>
             );
           })}
