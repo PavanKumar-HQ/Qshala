@@ -6,6 +6,9 @@ import TypewriterHeadline from '../components/TypewriterHeadline';
 import InteractiveQuizCard from '../components/InteractiveQuizCard';
 import QTMascot from '../components/QTMascot';
 import ClientMarquee from '../components/ClientMarquee.astro';
+import QShalaEffectTabs from '../components/QShalaEffectTabs';
+import CuriosityRecommendationWidget from '../components/CuriosityRecommendationWidget';
+import FAQSection from '../components/FAQSection';
 import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
 ---
 
@@ -180,6 +183,28 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
 
     <ClientMarquee />
 
+    <!-- QShala Effect Showcase Tabs Section -->
+    <section class="py-20 bg-[#FFFDF5] relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">
+            The QShala Effect
+          </span>
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
+            Transforming Organizations &amp; Classrooms.
+          </h2>
+        </div>
+        <QShalaEffectTabs client:visible />
+      </div>
+    </section>
+
+    <!-- Interactive Curiosity Program Finder -->
+    <section class="py-20 bg-white border-y-2 border-black relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <CuriosityRecommendationWidget client:visible />
+      </div>
+    </section>
+
     {/* Case Studies Section */}
     <section class="py-20 bg-white border-b-4 border-black relative">
       <div class="max-w-7xl mx-auto px-6">
@@ -266,6 +291,20 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
             );
           })}
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white border-t-2 border-black relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider border border-black font-heading">
+            Got Questions?
+          </span>
+          <h2 class="text-4xl font-black text-slate-900 mt-3 font-heading">Frequently Asked Questions</h2>
+          <p class="text-slate-600 text-sm mt-2 font-semibold">Everything you need to know about QShala sessions and methodology.</p>
+        </div>
+        <FAQSection client:visible />
       </div>
     </section>
   </main>
