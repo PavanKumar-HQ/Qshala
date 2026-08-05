@@ -56,11 +56,11 @@ export default function TypewriterHeadline() {
   }, [displayedText, isDeleting, isPaused, currentWordIndex]);
 
   return (
-    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] font-heading min-h-[160px] sm:min-h-[180px] md:min-h-[220px]">
-      Replacing Rote Learning With{' '}
-      <span className="relative inline-block text-[#30B2E7] font-mikado min-w-[2ch]">
+    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.15] font-heading">
+      Replacing Rote Learning With
+      <span className="block text-[#30B2E7] font-mikado mt-2 sm:mt-3 min-h-[1.2em]">
         {displayedText}
-        <span className="inline-block w-[3px] sm:w-[4px] h-8 sm:h-12 md:h-14 bg-[#30B2E7] ml-1 align-middle animate-pulse" />
+        <span className="inline-block w-[3px] sm:w-[4px] h-[0.75em] bg-[#30B2E7] ml-1.5 align-baseline animate-pulse" />
       </span>
     </h1>
   );
