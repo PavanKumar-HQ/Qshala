@@ -21,16 +21,30 @@ const ORBIT_ICONS = [
 ];
 
 export default function LoadingScreen() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [promptIdx, setPromptIdx] = useState(0);
   const [scene, setScene] = useState<1 | 2 | 3 | 4>(1);
 
   useEffect(() => {
-    // Stage orchestration
+    // Check if site has already loaded in this session
+    if (typeof window !== 'undefined') {
+      const hasLoaded = sessionStorage.getItem('qshala_loaded');
+      if (hasLoaded) {
+        setLoading(false);
+        return;
+      }
+    }
+
+    // First load in session: show loader & start timeline
+    setLoading(true);
+
     const t1 = setTimeout(() => setScene(2), 500);  // Question mark animation
     const t2 = setTimeout(() => setScene(3), 1200); // QT Mascot appears
     const t3 = setTimeout(() => setScene(4), 1900); // Orbiting icons & reveal
-    const tEnd = setTimeout(() => setLoading(false), 2600); // Fade out
+    const tEnd = setTimeout(() => {
+      setLoading(false);
+      sessionStorage.setItem('qshala_loaded', 'true');
+    }, 2600); // Fade out
 
     const promptInterval = setInterval(() => {
       setPromptIdx((prev) => (prev + 1) % CURIOSITY_PROMPTS.length);
