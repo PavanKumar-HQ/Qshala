@@ -8,6 +8,7 @@ import QTMascot from '../components/QTMascot';
 import ClientMarquee from '../components/ClientMarquee.astro';
 import QShalaEffectTabs from '../components/QShalaEffectTabs';
 import CuriosityRecommendationWidget from '../components/CuriosityRecommendationWidget';
+import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudiesShowcase';
 import FAQSection from '../components/FAQSection';
 import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
 ---
@@ -246,50 +247,25 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
     </section>
 
     <!-- ==================================================================== -->
-    <!-- SECTION 06 // REAL-WORLD CASE STUDIES                                -->
+    <!-- SECTION 06 // REAL-WORLD CASE STUDIES (10 INTERACTIVE CASES)         -->
     <!-- ==================================================================== -->
     <section id="case-studies" class="py-24 bg-[#FFFDF5] border-b border-black/10 relative">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+      <div class="max-w-7xl mx-auto px-6 space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between">
           <div>
             <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
               SECTION 06 // REAL IMPACT STORIES
             </span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 font-heading">
-              Storytelling Case Studies.
+              10+ Storytelling Case Studies.
             </h2>
           </div>
           <a href="/case-studies" class="mt-4 md:mt-0 text-sm font-black text-[#30B2E7] hover:underline font-heading">
-            View All Case Studies →
+            Explore All 10 Case Studies →
           </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {CASE_STUDIES_DATA.map((cs, idx) => (
-            <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden group hover:border-black transition-all">
-              <div class="absolute top-6 right-6 z-10">
-                <QTMascot client:visible variant={idx === 0 ? "sherlock" : "quizzing"} size="sm" />
-              </div>
-              <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading">{cs.clientType} • {cs.clientName}</span>
-              <h3 class="text-2xl font-black text-slate-900 mt-4 mb-3 leading-snug font-heading pr-12">{cs.title}</h3>
-              <p class="text-slate-700 text-sm leading-relaxed mb-6 font-semibold">{cs.summary}</p>
-              
-              <div class="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-[#30B2E7]/10 border border-[#30B2E7]/20 mb-6">
-                {cs.impactMetrics.map((m) => (
-                  <div class="text-center">
-                    <div class="text-xl font-black text-[#30B2E7] font-heading">{m.value}</div>
-                    <div class="text-[10px] font-black uppercase text-slate-700">{m.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <blockquote class="border-l-4 border-[#FDB913] pl-4 text-xs italic text-slate-800 font-semibold py-1">
-                &ldquo;{cs.quote.text}&rdquo;
-                <footer class="text-slate-600 font-black not-italic mt-1">— {cs.quote.author}, {cs.quote.role}</footer>
-              </blockquote>
-            </div>
-          ))}
-        </div>
+        <InteractiveCaseStudiesShowcase caseStudies={CASE_STUDIES_DATA} client:visible />
       </div>
     </section>
 

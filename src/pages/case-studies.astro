@@ -2,27 +2,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudiesShowcase';
 import { CASE_STUDIES_DATA } from '../lib/data';
 ---
 
 <BaseLayout title="Impact & Case Studies | QShala">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6">
+  <main class="flex-grow pt-36 pb-24 px-6 bg-[#FFFDF5]">
     <div class="max-w-7xl mx-auto space-y-12">
-      <div class="text-center max-w-3xl mx-auto">
-        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading">Case Studies</span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading">Real Curiosity Impact</h1>
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading shadow-sm">
+          Measurable Results &amp; Impact
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 font-heading">QShala Case Studies</h1>
+        <p class="text-slate-600 text-base font-semibold max-w-xl mx-auto">
+          Explore how 10+ leading schools, corporates, universities, and communities use QShala to spark curiosity and engagement.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {CASE_STUDIES_DATA.map((cs) => (
-          <div class="group bg-white rounded-3xl p-8 border-2 border-black card-hover-lift hover-card-glow">
-            <span class="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-xs group-hover:bg-[#30B2E7] transition-colors">{cs.clientType} • {cs.clientName}</span>
-            <h2 class="text-2xl font-black text-slate-900 mt-4 mb-3 font-heading group-hover:text-[#30B2E7] transition-colors">{cs.title}</h2>
-            <p class="text-slate-700 text-sm font-semibold">{cs.summary}</p>
-          </div>
-        ))}
-      </div>
+      <InteractiveCaseStudiesShowcase caseStudies={CASE_STUDIES_DATA} client:load />
     </div>
   </main>
   <Footer />

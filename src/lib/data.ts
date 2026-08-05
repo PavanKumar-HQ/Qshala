@@ -108,7 +108,7 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
       author: 'Sunita Sharma',
       role: 'Principal, DPS Bangalore East'
     },
-    tags: ['K-12', 'Curriculum', 'Interactive Learning']
+    tags: ['K-12', 'Curriculum', 'Socratic Pedagogy']
   },
   {
     id: 'cs2',
@@ -128,6 +128,158 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
       role: 'Head of Employee Experience, Flipkart'
     },
     tags: ['Corporate', 'Teambuilding', 'Hybrid Work']
+  },
+  {
+    id: 'cs3',
+    slug: 'wipro-onboarding-gamification',
+    clientName: 'Wipro',
+    clientType: 'Corporate',
+    title: 'Gamifying Onboarding & Corporate Culture for 5,000+ Global New Hires',
+    summary: 'Replaced traditional slide presentations with interactive brand quests and company history trivia tournaments.',
+    impactMetrics: [
+      { label: 'New Hires Onboarded', value: '5,000+' },
+      { label: 'Completion Rate', value: '96%' },
+      { label: 'Early Attrition Drop', value: '-12%' }
+    ],
+    quote: {
+      text: 'We\'ve been working with QShala for over two months now and we can\'t get enough of them! It makes culture stick.',
+      author: 'Manish Jain',
+      role: 'Global L&D Director, Wipro'
+    },
+    tags: ['Onboarding', 'Gamification', 'L&D']
+  },
+  {
+    id: 'cs4',
+    slug: 'nps-socratic-science-storytelling',
+    clientName: 'National Public School',
+    clientType: 'School',
+    title: 'Pioneering Socratic Science & Civics Storytelling for Middle Schoolers',
+    summary: 'Integrated weekly real-world discovery modules to connect textbook science with current affairs and everyday phenomena.',
+    impactMetrics: [
+      { label: 'Students Active', value: '2,100+' },
+      { label: 'Science Interest', value: '+92%' },
+      { label: 'Teacher Endorsement', value: '99%' }
+    ],
+    quote: {
+      text: 'Our middle schoolers are engaged like never before. They don\'t just memorize science—they question it.',
+      author: 'Dr. Revathi Srinivasan',
+      role: 'Academic Director, NPS'
+    },
+    tags: ['K-12', 'Science', 'Critical Thinking']
+  },
+  {
+    id: 'cs5',
+    slug: 'inventure-academy-critical-thinking',
+    clientName: 'Inventure Academy',
+    clientType: 'School',
+    title: 'Building 21st-Century Critical Thinking & Public Debate Leagues',
+    summary: 'A multi-tier curiosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.',
+    impactMetrics: [
+      { label: 'Learners Joined', value: '1,500+' },
+      { label: 'Participation Boost', value: '3.4x' },
+      { label: 'Student Rating', value: '4.9/5' }
+    ],
+    quote: {
+      text: 'QShala fits perfectly into our learner-centric philosophy. It builds confident, curious global citizens.',
+      author: 'Nooraine Fazal',
+      role: 'Co-Founder & Managing Trustee, Inventure Academy'
+    },
+    tags: ['Debate', '21st Century Skills', 'Media Literacy']
+  },
+  {
+    id: 'cs6',
+    slug: 'tcs-cross-hub-workplace-engagement',
+    clientName: 'TCS',
+    clientType: 'Corporate',
+    title: 'Cross-Functional Workplace Engagement Across 8 Regional Tech Hubs',
+    summary: 'Quarterly inter-hub quiz championships with live digital buzzers and real-time leaderboards.',
+    impactMetrics: [
+      { label: 'Participants Joined', value: '3,500+' },
+      { label: 'Engagement Rate', value: '91%' },
+      { label: 'NPS Rating', value: '94/100' }
+    ],
+    quote: {
+      text: 'QShala for more than two months now and we can’t get enough of them! The excitement in our hubs is palpable.',
+      author: 'Rahul Singh',
+      role: 'VP Employee Engagement, TCS'
+    },
+    tags: ['Corporate', 'Multi-Hub', 'Employee Retention']
+  },
+  {
+    id: 'cs7',
+    slug: 'iit-bombay-techfest-championship',
+    clientName: 'IIT Bombay',
+    clientType: 'College',
+    title: 'Hosting India\'s Largest Inter-Collegiate Curiosity Quiz Championship',
+    summary: 'Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.',
+    impactMetrics: [
+      { label: 'College Delegates', value: '6,000+' },
+      { label: 'Colleges Represented', value: '50+' },
+      { label: 'Fest Rating', value: '98%' }
+    ],
+    quote: {
+      text: 'The QShala quiz masters held an audience of 6,000 students spellbound for 3 straight hours.',
+      author: 'Aakash Verma',
+      role: 'Overall Coordinator, IIT Bombay Techfest'
+    },
+    tags: ['College', 'Fest Championship', 'Tech Quiz']
+  },
+  {
+    id: 'cs8',
+    slug: 'iim-bangalore-business-simulations',
+    clientName: 'IIM Bangalore',
+    clientType: 'College',
+    title: 'Real-World Business Case Study Simulations & Strategy Quests for MBAs',
+    summary: 'Interactive business trivia and market analysis strategy quests designed for future corporate leaders.',
+    impactMetrics: [
+      { label: 'MBA Candidates', value: '1,200+' },
+      { label: 'Industry Relevance', value: '100%' },
+      { label: 'Satisfaction Score', value: '4.9/5' }
+    ],
+    quote: {
+      text: 'QShala brings an incredible blend of sharp business acumen and high-octane gamification.',
+      author: 'Prof. Sourav Mukherji',
+      role: 'Dean of Programs, IIM Bangalore'
+    },
+    tags: ['Higher Ed', 'MBA', 'Business Strategy']
+  },
+  {
+    id: 'cs9',
+    slug: 'sobha-city-family-game-nights',
+    clientName: 'Sobha City Community',
+    clientType: 'Community',
+    title: 'Screen-Free Weekend Family Game Nights & Neighborhood Pub Quizzes',
+    summary: 'Bringing parents, kids, and neighbors together for weekend offline trivia tournaments in residential complexes.',
+    impactMetrics: [
+      { label: 'Families Joined', value: '450+' },
+      { label: 'Screen-Free Fun', value: '100%' },
+      { label: 'Community Rating', value: '4.9/5' }
+    ],
+    quote: {
+      text: 'It brought our entire apartment complex together! Kids and grandparents were on the same team laughing and learning.',
+      author: 'Priya Sundaram',
+      role: 'President, Sobha Resident Association'
+    },
+    tags: ['Community', 'Family', 'Screen-Free']
+  },
+  {
+    id: 'cs10',
+    slug: 'wework-community-networking-nights',
+    clientName: 'WeWork India',
+    clientType: 'Corporate',
+    title: 'Monthly Community Pub Quizzes & Startup Founder Networking Nights',
+    summary: 'Gamified pub quizzes hosted across WeWork spaces to spark casual networking among founders and freelancers.',
+    impactMetrics: [
+      { label: 'Members Engaged', value: '2,400+' },
+      { label: 'Networking Boost', value: '+91%' },
+      { label: 'Satisfaction', value: '96/100' }
+    ],
+    quote: {
+      text: 'We\'ve been working with QShala for more than two months now and we can’t get enough of them! Essential member experience.',
+      author: 'Bhavya Tripathi',
+      role: 'Community Lead, WeWork'
+    },
+    tags: ['Coworking', 'Networking', 'Pub Quiz']
   }
 ];
 
