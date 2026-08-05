@@ -17,6 +17,7 @@ const {
 const siteUrl = Astro.site ? Astro.site.href : 'https://qshala.vercel.app';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const ogImageUrl = new URL(image, siteUrl).href;
+const ogGifUrl = new URL('/og-image.gif', siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ const ogImageUrl = new URL(image, siteUrl).href;
     <meta name="theme-color" content="#30B2E7" />
     <link rel="canonical" href={canonicalURL.href} />
 
-    <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage -->
+    <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Standalone Mascot Preview -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:site_name" content="QShala — India's Curiosity Company" />
@@ -44,7 +45,11 @@ const ogImageUrl = new URL(image, siteUrl).href;
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="QShala — India's Curiosity Company" />
+    <meta property="og:image:alt" content="QShala Animated QT Mascot" />
+
+    <!-- Animated GIF Link Preview for Apps Supporting Animated OpenGraph -->
+    <meta property="og:image" content={ogGifUrl} />
+    <meta property="og:image:type" content="image/gif" />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
