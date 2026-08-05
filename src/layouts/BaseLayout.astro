@@ -11,7 +11,7 @@ interface Props {
 const {
   title = "QShala | Questions • Quriosity • Quests — India's Curiosity Company",
   description = "Replacing Rote Learning with Curiosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India.",
-  image = "/og-image.png"
+  image = "/og-image.gif"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://qshala.com');
@@ -31,23 +31,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://qshala.c
     <meta name="theme-color" content="#30B2E7" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <!-- Open Graph / Animated Mascot Link Preview for WhatsApp, Slack, Discord, Telegram, iMessage & LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="QShala — India's Curiosity Company" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, canonicalURL)} />
+    
+    <!-- Animated GIF & WebP Preview for Messaging Apps -->
+    <meta property="og:image" content={new URL('/og-image.gif', canonicalURL)} />
+    <meta property="og:image:type" content="image/gif" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="QShala — Fostering Wonder, One Question at a Time" />
+    <meta property="og:image:alt" content="Animated QT Mascot — QShala Curiosity Platform" />
 
-    <!-- Twitter / X -->
+    <!-- Static Fallback Image for Platforms strictly requiring PNG -->
+    <meta property="og:image" content={new URL('/og-image.png', canonicalURL)} />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter / X Animated Social Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+    <meta name="twitter:image" content={new URL('/og-image.gif', canonicalURL)} />
 
     <!-- JSON-LD Structured Data for Rich Search Results -->
     <script type="application/ld+json" set:html={JSON.stringify({
