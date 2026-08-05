@@ -1,70 +1,103 @@
 # QShala — India's Curiosity Company Web Platform
 
-> **Mission**: Replacing Rote Learning with Curiosity, Questions, Discovery, and Wonder.
+<div align="center">
+  <img src="public/og-image.png" alt="QShala — India's Curiosity Company Social Banner" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
+  
+  <br /><br />
 
-A production-ready, highly interactive web platform built for **QShala** (Curiosita Educational Services / Walnuts). Built using **Astro v5**, **React 19**, **TypeScript**, **TailwindCSS v4**, **Framer Motion**, and **Canvas Confetti**, adhering strictly to QShala's official brand guidelines.
+  <img src="public/assets/qt/QT sherlock.svg" alt="QT Sherlock Mascot" width="140" />
+  
+  # 🐾 Meet QT & The QShala Curiosity Platform
 
----
+  > **Mission**: Replacing Rote Learning with Curiosity, Socratic Storytelling, Questions, and Wonder.
 
-## 🌟 Key Features & Highlights
+  [![Astro Version](https://img.shields.io/badge/Astro-v5.2.0-ff5e00?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+  [![React Version](https://img.shields.io/badge/React-v19.0.0-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-v5.7.3-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+  [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4.0.5-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-- **Dynamic Typewriter Hero Section**: Seamlessly cycles through brand queries (*"make learning fun for students?"*, *"build team spirit at your place of work?"*, *"develop problem solving skills in your child?"*) with a blinking cursor and bold brand typography.
-- **QT Mascot Component (`QTMascot.tsx`)**:
-  - Vector SVG mascot with multiple role variants (`normal`, `curious`, `idea`, `quizzing`, `reading`, `sherlock`, `sleeping`, `happy`, `trophy`, `jumping`, `holding_money`, `professional`).
-  - Styled with badge callouts and embedded across cards and sections.
-- **5-Stage Curiosity Loading Screen (`LoadingScreen.tsx`)**:
-  - Sequential animated loader featuring popping dots, SVG question mark strokes, waking QT mascot, and orbiting Lucide vector icons.
-- **12 Verified Corporate & Institutional Partner Marquee (`ClientMarquee.astro`)**:
-  - Dual-row smooth infinite marquee with locally hosted SVG logos for Google, HDFC Bank, Wipro, Microsoft, Tata Group, Amazon, Infosys, Netflix, Apple, BYJU'S, Facebook, and Intel.
-- **Interactive Daily Quiz Playground**:
-  - Neobrutalist quiz cards (`InteractiveQuizCard.tsx`) with instant feedback, explanations, and confetti celebrations (`canvas-confetti`).
-- **Dynamic Tab Title Switcher**:
-  - When users switch tabs, the browser title changes dynamically to funny prompt messages (*"QT misses you! Come back!"*, *"Still curious? Click back!"*).
-- **Interactive 4-Step Booking Wizard (`MultiStepBooking.tsx`)**:
-  - Multi-step booking form for scheduling quiz experiences for Schools, Corporates, Colleges, and Communities.
-- **SEO Blog Engine (`/blog/[slug]`)**:
-  - Dynamic file-based blog routing with full-length articles on socratic pedagogy, parenting, and workplace gamification.
+</div>
 
 ---
 
-## 🎨 QShala Brand Identity & Guidelines
+## 🌟 Key Features & Architecture
 
-- **Primary Brand Colors**:
-  - Qurious Sky (`#30B2E7`)
-  - Joy of Quest (`#FDB913`)
-  - Always Questioning (`#75B543`)
-  - Warm Off-White Canvas (`#FFFDF5`)
-- **Typography**:
-  - `Mikado` (`--font-mikado` for Schools & playful headlines)
-  - `Causten Round Black` (`--font-causten-black` for headers)
-  - `Causten Round` (`--font-causten-round` for body copy)
-- **Mascot**: QT the Black Cat with a round body, Q-curved tail, curious eyes, white nose/whiskers, and yellow tie accent.
+### 1. 🐱 QT Mascot Stage (`AnimatedHeroMascotStage.tsx`)
+- Interactive spring-animated mascot guide featuring **QT the Black Cat**.
+- Reactive speech bubbles that dynamically change according to QT's curiosity mood (*Curious QT*, *Sherlock QT*, *Eureka QT*, *Scholar QT*, *Winner QT*).
+- Integrated across pages with custom SVGs from QShala's official brand asset library (`public/assets/qt/`).
+
+### 2. 🎲 Rolling Stat Counter Cards (`RollingStatCounters.tsx`)
+- Animated 2-second slot-machine count-up physics with ease-out cubic slowdown.
+- High-contrast neobrutalist metric cards:
+  - **`250+`** `SCHOOLS PARTNERED` (Sky Blue `#30B2E7`)
+  - **`80+`** `CORPORATE CLIENTS` (Gold `#FDB913`)
+  - **`4.9★`** `AVERAGE RATING` (Leaf Green `#75B543`)
+  - **`18+`** `CITIES COVERED` (Sky Blue `#30B2E7`)
+
+### 3. 📚 10+ Storytelling Case Studies Showcase (`InteractiveCaseStudiesShowcase.tsx`)
+- Interactive category filter pills (*`All (10)`*, *`Schools (3)`*, *`Corporates (4)`*, *`Colleges (2)`*, *`Communities (1)`*).
+- Switchable view modes: **`Featured View`** vs **`Grid View`**.
+- Encapsulated carousel controls with dot indicators and next/prev arrow buttons contained inside the case study card box.
+
+### 4. 🎯 Compact Tailored Curiosity Finder (`CuriosityRecommendationWidget.tsx`)
+- Neobrutalist role selector pills (*School Educator*, *HR / Corporate*, *Parent / Family*, *Fest Organizer*).
+- Instant recommendation output with direct program booking links.
+
+### 5. ⚡ 5-Scene Curiosity Loading Screen (`LoadingScreen.tsx`)
+- Navigation timing inspector (`performance.getEntriesByType('navigation')`).
+- Plays the 5-stage curiosity animation on direct visits and page reloads while bypassing it on internal page link clicks for lightning-fast page transitions.
+
+### 6. 🔐 QShala Mission Control Admin Dashboard (`/admin`)
+- Passcode-protected administrative portal (`1234` / `admin` or Quick Demo Access).
+- Lead Management Table with status triggers, Question Bank Editor, Curiosity Store Inventory Control, and Magazine Post Manager.
+
+### 7. 📲 Animated Mascot Social Share Previews (`BaseLayout.astro`)
+- Full OpenGraph, Twitter Cards, and WhatsApp metadata resolution.
+- Optimized 129KB social preview card (`og-image.jpg`) paired with animated GIF/WebP previews (`og-image.gif`, `og-image.webp`).
 
 ---
 
-## 🗺️ Page Structure & Routes
+## 🎨 Brand Identity & Guidelines
 
-1. `/` — Home (Hero with Typewriter, Bento Grid, Quiz Cards, Client Marquee, Impact Stats)
-2. `/about` — Our Story, Philosophy & QT Mascot Spotlight
+| Brand Token | Hex Code | Purpose |
+| :--- | :--- | :--- |
+| **Qurious Sky** | `#30B2E7` | Primary Action Buttons & Accents |
+| **Joy of Quest** | `#FDB913` | Highlight Badges & Hero Buttons |
+| **Always Questioning** | `#75B543` | Impact Metrics & Success States |
+| **Warm Cream Canvas** | `#FFFDF5` | Editorial Background Canvas |
+
+### Typography Stack
+- **Mikado** (`--font-mikado` for Schools & playful headlines)
+- **Causten Round Black** (`--font-causten-black` for headers)
+- **Causten Round** (`--font-causten-round` for body copy)
+
+---
+
+## 🗺️ Site Navigation & Routes
+
+1. `/` — Home (Hero Stage, Rolling Counters, Bento Grid, Quiz Cards, Client Marquee)
+2. `/about` — Our Story, Socratic Philosophy & QT Mascot Spotlight
 3. `/services` — Program Formats for Schools, Corporates, Colleges & Communities
-4. `/schools` — QShala K-12 Curiosity Curriculum & Clubs
+4. `/schools` — QShala K-12 Curiosity Curriculum & Weekly Clubs
 5. `/companies` — Corporate Offsites, Trivia Nights & Workplace Culture
 6. `/book-a-quiz` — 4-Step Interactive Quiz Booking Wizard
-7. `/learn` — Kids Corner & Daily Trivia
-8. `/case-studies` — Real Impact Stories (DPS Bangalore, Wipro, Flipkart)
-9. `/shop` — Curiosity Store (Games & Learning Kits)
+7. `/learn` — Kids Corner & Daily Socratic Trivia
+8. `/case-studies` — 10+ Storytelling Impact Studies (DPS Bangalore, Wipro, Flipkart, etc.)
+9. `/shop` — Curiosity Store (Handcrafted Decks & Learning Kits)
 10. `/blog` — QShala Magazine Index & Dynamic Article Views (`/blog/[slug]`)
 11. `/team` — Meet the Founders & QT Curiosity Crew
-12. `/contact` — Contact Form & Real Campus Address Details
+12. `/contact` — Contact Form & Campus Address Details
+13. `/admin` — QShala Admin Control Panel
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Astro 5 (Static Site Architecture & Islands with React)
+- **Framework**: Astro 5 (Static Architecture + React Islands)
 - **UI Components**: React 19
 - **Language**: TypeScript
-- **Styling**: TailwindCSS v4 & Custom Brand Tokens
+- **Styling**: Vanilla CSS & TailwindCSS v4
 - **Animations**: Framer Motion
 - **Interactive FX**: Canvas Confetti
 - **Icons**: Lucide React & Official QShala Brand SVGs
@@ -97,10 +130,15 @@ npm run build
 
 ---
 
-## 📄 Contact & Location
+## 📄 Official Contact Details
 
 - **Phone**: +91 89716 76100
 - **Email**: qshala@walnuts.co.in
 - **Address**: 1st Floor, Fortuna 1, 8th Main Road, 14th Cross Road, JP Nagar 3rd Phase, Bengaluru, Karnataka - 560078
 
-Designed & Developed for **QShala (Curiosita Educational Services / Walnuts)**. All rights reserved.
+---
+
+<div align="center">
+  <img src="public/assets/qt/QT happy.svg" alt="QT Happy Mascot" width="80" />
+  <p><b>Designed & Developed for QShala (Curiosita Educational Services / Walnuts). All rights reserved.</b></p>
+</div>
