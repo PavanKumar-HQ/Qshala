@@ -159,8 +159,8 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                       </div>
                     </blockquote>
 
-                    {/* Action Bar */}
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                    {/* Action & Carousel Controls Bar (Inside Card) */}
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
                       <button
                         onClick={() => setSelectedModalCase(cs)}
                         className="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading transition-all"
@@ -168,44 +168,44 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                         Read Full Story →
                       </button>
 
-                      <div className="text-xs font-black text-slate-500 font-heading">
-                        Story {currentIndex + 1} of {filteredData.length}
+                      {/* Dots Pagination */}
+                      <div className="flex items-center gap-1.5">
+                        {filteredData.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`h-2 rounded-full transition-all ${
+                              currentIndex === idx ? 'w-6 bg-[#30B2E7]' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                            }`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Prev / Next Arrows */}
+                      <div className="flex items-center gap-3">
+                        <span className="text-[11px] font-black text-slate-400 font-heading">
+                          {currentIndex + 1}/{filteredData.length}
+                        </span>
+                        <button
+                          onClick={handlePrev}
+                          className="p-2 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
+                          title="Previous Story"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={handleNext}
+                          className="p-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
+                          title="Next Story"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
                   </motion.div>
                 );
               })()}
             </AnimatePresence>
-          </div>
-
-          {/* Carousel Controls */}
-          <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center gap-2">
-              {filteredData.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    currentIndex === idx ? 'w-8 bg-[#30B2E7]' : 'w-2.5 bg-slate-300'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handlePrev}
-                className="p-3 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="p-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
           </div>
         </div>
       )}
