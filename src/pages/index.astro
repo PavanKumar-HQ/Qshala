@@ -12,6 +12,7 @@ import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudies
 import AnimatedHeroMascotStage from '../components/AnimatedHeroMascotStage';
 import RollingStatCounters from '../components/RollingStatCounters';
 import FAQSection from '../components/FAQSection';
+import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data';
 ---
 
@@ -253,6 +254,9 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA, PRODUCTS_DATA } from '../lib/data'
         <InteractiveCaseStudiesShowcase caseStudies={CASE_STUDIES_DATA} client:visible />
       </div>
     </section>
+
+    <!-- TESTIMONIALS MARQUEE: Smooth Infinite Auto-Scrolling Wall of Love -->
+    <TestimonialsMarquee />
 
     <!-- 7. CURIOSITY STORE SHOWCASE -->
     <section id="store" class="py-12 md:py-16 bg-white relative">

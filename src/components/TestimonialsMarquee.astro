@@ -1,0 +1,294 @@
+---
+// TestimonialsMarquee.astro — Infinite auto-scrolling testimonial cards marquee
+const TESTIMONIALS_ROW1 = [
+  {
+    author: "Sunita Sharma",
+    role: "Principal",
+    org: "DPS Bangalore East",
+    type: "School",
+    quote: "QShala turned standard GK into the most anticipated hour of the school week. Children ask 'Why?' with real passion now!",
+    stars: 5,
+    accent: "#30B2E7",
+    bg: "#E8F6FD",
+    initials: "SS"
+  },
+  {
+    author: "Rajesh Nair",
+    role: "Head of Employee Experience",
+    org: "Flipkart",
+    type: "Corporate",
+    quote: "The energy QT and the QShala team brought to our townhalls was phenomenal. It bonded engineering and marketing seamlessly.",
+    stars: 5,
+    accent: "#FDB913",
+    bg: "#FFF8E1",
+    initials: "RN"
+  },
+  {
+    author: "Manish Jain",
+    role: "Global L&D Director",
+    org: "Wipro",
+    type: "Corporate",
+    quote: "We've been working with QShala for over two months now and we can't get enough of them! It makes culture stick effortlessly.",
+    stars: 5,
+    accent: "#75B543",
+    bg: "#EDF7E5",
+    initials: "MJ"
+  },
+  {
+    author: "Dr. Revathi Srinivasan",
+    role: "Academic Director",
+    org: "National Public School",
+    type: "School",
+    quote: "Our middle schoolers are engaged like never before. They don't just memorize science—they question it daily!",
+    stars: 5,
+    accent: "#30B2E7",
+    bg: "#E8F6FD",
+    initials: "RS"
+  },
+  {
+    author: "Priya & Anand V.",
+    role: "Parents of Grade 6 Learner",
+    org: "Curiosity Club",
+    type: "Parent",
+    quote: "The Sunday Curiosity Club is the highlight of our child's week. Instead of screen scrolling, she discusses space at dinner!",
+    stars: 5,
+    accent: "#A855F7",
+    bg: "#F3E8FF",
+    initials: "PA"
+  }
+];
+
+const TESTIMONIALS_ROW2 = [
+  {
+    author: "Nooraine Fazal",
+    role: "Co-Founder & Trustee",
+    org: "Inventure Academy",
+    type: "School",
+    quote: "QShala fits perfectly into our learner-centric philosophy. It builds confident, curious global citizens with critical thinking.",
+    stars: 5,
+    accent: "#75B543",
+    bg: "#EDF7E5",
+    initials: "NF"
+  },
+  {
+    author: "Vikram Kulkarni",
+    role: "VP People & Culture",
+    org: "TCS",
+    type: "Corporate",
+    quote: "Our inter-hub trivia championship with live buzzers had a 94% live participation rate across 8 cities. Outstanding work!",
+    stars: 5,
+    accent: "#FDB913",
+    bg: "#FFF8E1",
+    initials: "VK"
+  },
+  {
+    author: "Ananya S.",
+    role: "Grade 8 Student",
+    org: "Inventure Academy",
+    type: "Student",
+    quote: "I used to find social studies boring until QShala showed us real stories behind current events. QT mascot is my favorite!",
+    stars: 5,
+    accent: "#30B2E7",
+    bg: "#E8F6FD",
+    initials: "AS"
+  },
+  {
+    author: "Kavitha Rao",
+    role: "Head of Middle School",
+    org: "Greenwood High",
+    type: "School",
+    quote: "The socratic debate modules encouraged even our shyest students to speak up. The pedagogical structure is top-notch.",
+    stars: 5,
+    accent: "#75B543",
+    bg: "#EDF7E5",
+    initials: "KR"
+  },
+  {
+    author: "Siddharth Mehta",
+    role: "Chief Learning Officer",
+    org: "Infosys",
+    type: "Corporate",
+    quote: "Gamifying our corporate values through custom QShala quests led to record-high completion rates among new graduates.",
+    stars: 5,
+    accent: "#FDB913",
+    bg: "#FFF8E1",
+    initials: "SM"
+  }
+];
+
+// Duplicate arrays for seamless infinite marquee loop
+const row1 = [...TESTIMONIALS_ROW1, ...TESTIMONIALS_ROW1, ...TESTIMONIALS_ROW1];
+const row2 = [...TESTIMONIALS_ROW2, ...TESTIMONIALS_ROW2, ...TESTIMONIALS_ROW2];
+---
+
+<section id="testimonials" class="py-14 bg-[#FFFDF5] border-t-2 border-b-2 border-slate-200/80 relative overflow-hidden">
+  
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto px-6 mb-10 text-center space-y-2">
+    <span class="inline-block px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading">
+      Wall of Love
+    </span>
+    <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
+      What Educators, Leaders &amp; Parents Say
+    </h2>
+    <p class="text-slate-600 font-semibold text-base max-w-xl mx-auto leading-relaxed">
+      Hear how QShala is replacing rote learning with curiosity across classrooms, offices &amp; homes.
+    </p>
+  </div>
+
+  <!-- Row 1: Left Scroll -->
+  <div class="testimonial-marquee-container mb-6">
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-36 z-10 bg-gradient-to-r from-[#FFFDF5] to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-36 z-10 bg-gradient-to-l from-[#FFFDF5] to-transparent"></div>
+    
+    <div class="testimonial-track scroll-left flex gap-6 w-max">
+      {row1.map((item) => (
+        <div 
+          class="testimonial-card"
+          style={`--accent: ${item.accent}; --bg: ${item.bg};`}
+        >
+          <!-- Stars & Type Badge -->
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-1 text-amber-400">
+              {Array.from({ length: item.stars }).map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white border border-slate-300 text-slate-800 font-heading">
+              {item.type}
+            </span>
+          </div>
+
+          <!-- Quote -->
+          <p class="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed mb-4 flex-grow font-sans italic">
+            &ldquo;{item.quote}&rdquo;
+          </p>
+
+          <!-- Author Info -->
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-900/10">
+            <div 
+              class="w-9 h-9 rounded-full flex items-center justify-center font-black text-xs text-white border-2 border-black flex-shrink-0 font-heading"
+              style={`background-color: ${item.accent};`}
+            >
+              {item.initials}
+            </div>
+            <div class="min-w-0">
+              <div class="font-black text-xs text-slate-900 truncate font-heading">{item.author}</div>
+              <div class="text-[10px] text-slate-600 font-medium truncate">{item.role}, <span class="font-semibold text-slate-800">{item.org}</span></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Row 2: Right Scroll -->
+  <div class="testimonial-marquee-container">
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-36 z-10 bg-gradient-to-r from-[#FFFDF5] to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-36 z-10 bg-gradient-to-l from-[#FFFDF5] to-transparent"></div>
+    
+    <div class="testimonial-track scroll-right flex gap-6 w-max">
+      {row2.map((item) => (
+        <div 
+          class="testimonial-card"
+          style={`--accent: ${item.accent}; --bg: ${item.bg};`}
+        >
+          <!-- Stars & Type Badge -->
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-1 text-amber-400">
+              {Array.from({ length: item.stars }).map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white border border-slate-300 text-slate-800 font-heading">
+              {item.type}
+            </span>
+          </div>
+
+          <!-- Quote -->
+          <p class="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed mb-4 flex-grow font-sans italic">
+            &ldquo;{item.quote}&rdquo;
+          </p>
+
+          <!-- Author Info -->
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-900/10">
+            <div 
+              class="w-9 h-9 rounded-full flex items-center justify-center font-black text-xs text-white border-2 border-black flex-shrink-0 font-heading"
+              style={`background-color: ${item.accent};`}
+            >
+              {item.initials}
+            </div>
+            <div class="min-w-0">
+              <div class="font-black text-xs text-slate-900 truncate font-heading">{item.author}</div>
+              <div class="text-[10px] text-slate-600 font-medium truncate">{item.role}, <span class="font-semibold text-slate-800">{item.org}</span></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  @keyframes testimonial-scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% / 3)); }
+  }
+
+  @keyframes testimonial-scroll-right {
+    0%   { transform: translateX(calc(-100% / 3)); }
+    100% { transform: translateX(0); }
+  }
+
+  .testimonial-marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 6px 0;
+  }
+
+  .testimonial-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .scroll-left {
+    animation: testimonial-scroll-left 36s linear infinite;
+  }
+
+  .scroll-right {
+    animation: testimonial-scroll-right 32s linear infinite;
+  }
+
+  /* Pause marquee animation on hover */
+  .testimonial-marquee-container:hover .scroll-left,
+  .testimonial-marquee-container:hover .scroll-right {
+    animation-play-state: paused;
+  }
+
+  .testimonial-card {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: 20px;
+    border-radius: 24px;
+    border: 2px solid #0f172a;
+    background: var(--bg, #white);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  }
+</style>
