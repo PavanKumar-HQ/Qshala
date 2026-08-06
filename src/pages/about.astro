@@ -3,39 +3,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
-import OurTeamShowcase from '../components/OurTeamShowcase';
+import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
 
 const INVESTORS_ADVISORS = [
   {
     name: "Rainmatter Foundation",
-    category: "Impact & Climate Education Partner",
-    description: "Supporting QShala's mission to bring socratic learning & environmental curiosity to 100,000+ school students.",
+    category: "Impact & Climate Partner",
+    description: "Supporting socratic environmental learning for 100,000+ students.",
     color: "#75B543",
-    bg: "#EDF7E5",
     badge: "Impact Partner"
   },
   {
     name: "Axilor Ventures",
-    category: "Early Stage Accelerator",
-    description: "Backing QShala's scalable EdTech methodology and school community engagement platforms.",
+    category: "Accelerator",
+    description: "Backing QShala's scalable EdTech curiosity methodology.",
     color: "#30B2E7",
-    bg: "#E8F6FD",
     badge: "Accelerator"
   },
   {
-    name: "Mindhouse & Industry Angels",
-    category: "Angel Investors & EdTech Leaders",
-    description: "Guided by founders and executives from India's leading consumer tech, media, and education ecosystems.",
+    name: "Mindhouse & Angels",
+    category: "Angel Investors",
+    description: "Guided by leaders from India's top consumer tech ecosystems.",
     color: "#FDB913",
-    bg: "#FFF8E1",
     badge: "Angel Backing"
   },
   {
     name: "K-12 Advisory Council",
-    category: "Academic & Pedagogical Council",
-    description: "Composed of former principals and curriculum directors from top ICSE, CBSE, and IB schools across India.",
-    color: "#A855F7",
-    bg: "#F3E8FF",
+    category: "Academic Council",
+    description: "Former principals and curriculum directors from CBSE, ICSE & IB schools.",
+    color: "#9333EA",
     badge: "Academic Board"
   }
 ];
@@ -46,7 +42,7 @@ const INVESTORS_ADVISORS = [
 
   <main class="flex-grow pt-28 pb-20 overflow-x-hidden bg-[#FFFDF5]">
 
-    <!-- 1. HERO: OPEN EDITORIAL MISSION (No Bounding Boxes) -->
+    <!-- 1. HERO: OPEN EDITORIAL MISSION -->
     <section class="py-12 md:py-20 relative">
       <!-- Ambient Glowing Orbs -->
       <div class="absolute top-10 left-1/4 w-96 h-96 bg-[#30B2E7]/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
@@ -71,7 +67,7 @@ const INVESTORS_ADVISORS = [
 
           <!-- 3 Open Editorial Pillars -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 text-left">
-            <div class="space-y-3">
+            <div class="space-y-3 border-l-4 border-[#30B2E7] pl-4">
               <div class="inline-block px-3 py-1 rounded-full bg-[#30B2E7]/15 text-[#30B2E7] font-black text-xs uppercase font-heading">
                 01 &bull; Qurious Sky
               </div>
@@ -81,7 +77,7 @@ const INVESTORS_ADVISORS = [
               </p>
             </div>
 
-            <div class="space-y-3">
+            <div class="space-y-3 border-l-4 border-[#FDB913] pl-4">
               <div class="inline-block px-3 py-1 rounded-full bg-[#FDB913]/20 text-amber-600 font-black text-xs uppercase font-heading">
                 02 &bull; Joy of Quest
               </div>
@@ -91,7 +87,7 @@ const INVESTORS_ADVISORS = [
               </p>
             </div>
 
-            <div class="space-y-3">
+            <div class="space-y-3 border-l-4 border-[#75B543] pl-4">
               <div class="inline-block px-3 py-1 rounded-full bg-[#75B543]/20 text-[#75B543] font-black text-xs uppercase font-heading">
                 03 &bull; Always Questioning
               </div>
@@ -126,6 +122,7 @@ const INVESTORS_ADVISORS = [
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
+          <!-- Story Narrative Text -->
           <div class="lg:col-span-7 space-y-6">
             <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading leading-snug">
               &ldquo;Why does learning stop being fun when kids enter the classroom?&rdquo;
@@ -143,7 +140,7 @@ const INVESTORS_ADVISORS = [
               Over the past decade, QShala has grown into an ecosystem partnering with <strong>250+ premier K-12 schools</strong> and <strong>80+ global corporates</strong>, impacting over 150,000+ learners across 18+ cities.
             </p>
 
-            <div class="pt-4 flex items-center gap-6">
+            <div class="pt-4 flex items-center gap-8">
               <div class="space-y-1">
                 <div class="text-3xl font-black text-slate-900 font-heading">150,000+</div>
                 <div class="text-xs font-bold text-slate-600">Active Learners</div>
@@ -156,8 +153,9 @@ const INVESTORS_ADVISORS = [
             </div>
           </div>
 
+          <!-- Open Founders Stage -->
           <div class="lg:col-span-5 space-y-6">
-            <div class="flex items-center gap-5 p-4 rounded-2xl bg-white/70 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-5 p-5 rounded-2xl bg-white/80 border border-slate-200 shadow-sm">
               <QTMascot client:visible variant="sherlock" size="md" />
               <div>
                 <span class="px-2 py-0.5 rounded-full bg-[#30B2E7]/20 text-[#30B2E7] font-black text-[10px] uppercase font-heading">Co-Founder</span>
@@ -166,7 +164,7 @@ const INVESTORS_ADVISORS = [
               </div>
             </div>
 
-            <div class="flex items-center gap-5 p-4 rounded-2xl bg-white/70 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-5 p-5 rounded-2xl bg-white/80 border border-slate-200 shadow-sm">
               <QTMascot client:visible variant="quizzing" size="md" />
               <div>
                 <span class="px-2 py-0.5 rounded-full bg-[#75B543]/20 text-[#75B543] font-black text-[10px] uppercase font-heading">Co-Founder</span>
@@ -185,12 +183,14 @@ const INVESTORS_ADVISORS = [
       </div>
     </section>
 
-    <!-- 3. MEET QT MASCOT SECTION (MATCHING BRAND GUIDELINES) -->
+    <!-- 3. MEET QT MASCOT SECTION (MATCHING BRAND GUIDELINE SCREENSHOT) -->
     <section id="meet-qt" class="py-16 md:py-20 bg-[#FFFDF5] relative">
       <div class="max-w-6xl mx-auto px-6">
         
+        <!-- Soft rounded cream background matching client brand guidelines -->
         <div class="bg-[#FFF5D6] rounded-3xl p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
+          <!-- Left: Mascot Story -->
           <div class="lg:col-span-7 space-y-6">
             <div class="space-y-2">
               <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase font-heading">
@@ -213,6 +213,7 @@ const INVESTORS_ADVISORS = [
             </div>
           </div>
 
+          <!-- Right: QT Downloads -->
           <div class="lg:col-span-5 space-y-4">
             <div class="text-left space-y-1">
               <h3 class="text-2xl font-black text-slate-900 font-heading">
@@ -256,45 +257,37 @@ const INVESTORS_ADVISORS = [
       </div>
     </section>
 
-    <!-- 4. SUPPORT (INVESTORS & PARTNERS): OPEN GRID -->
-    <section id="investors" class="py-16 md:py-20 bg-[#E8F6FD] relative">
-      <div class="max-w-6xl mx-auto px-6 space-y-12">
+    <!-- 4. SUPPORT (INVESTORS & PARTNERS): OPEN HORIZONTAL STRIP (No Rigid Box Outlines) -->
+    <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-200/60 relative">
+      <div class="max-w-6xl mx-auto px-6 space-y-8">
         
-        <div class="text-center max-w-3xl mx-auto space-y-3">
-          <span class="px-3.5 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading">
-            Supported By
-          </span>
-          <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            Backed &amp; Supported by Industry Pioneers.
-          </h2>
-          <p class="text-slate-700 text-base font-semibold max-w-xl mx-auto">
-            Prominent accelerators, impact foundations, and education leaders supporting QShala&apos;s vision.
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading">
+              Supported By
+            </span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mt-2 font-heading">
+              Backed &amp; Supported by Industry Pioneers.
+            </h2>
+          </div>
+          <p class="text-xs font-semibold text-slate-600 max-w-md">
+            Prominent accelerators, impact foundations, and education leaders empowering QShala&apos;s vision.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {INVESTORS_ADVISORS.map((inv) => (
-            <div 
-              class="p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-200/80 shadow-sm flex flex-col justify-between transition-all hover:bg-white hover:shadow-md"
-            >
-              <div class="space-y-3">
-                <span 
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading inline-block"
-                  style={`background-color: ${inv.color};`}
-                >
-                  {inv.badge}
-                </span>
-                <h3 class="text-xl font-black text-slate-900 font-heading leading-tight">{inv.name}</h3>
-                <div class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">{inv.category}</div>
-                <p class="text-slate-700 text-xs font-semibold leading-relaxed pt-1">
-                  {inv.description}
-                </p>
-              </div>
-
-              <div class="mt-6 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] font-black text-slate-800 font-heading">
-                <span>Partner</span>
-                <span style={`color: ${inv.color}`}>&check;</span>
-              </div>
+            <div class="p-5 rounded-2xl bg-white/80 border border-sky-100 shadow-sm space-y-2">
+              <span 
+                class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading inline-block"
+                style={`background-color: ${inv.color};`}
+              >
+                {inv.badge}
+              </span>
+              <h3 class="text-lg font-black text-slate-900 font-heading leading-tight">{inv.name}</h3>
+              <p class="text-slate-600 text-xs font-medium leading-relaxed">
+                {inv.description}
+              </p>
             </div>
           ))}
         </div>
@@ -302,24 +295,10 @@ const INVESTORS_ADVISORS = [
       </div>
     </section>
 
-    <!-- 5. OUR TEAM: INTERACTIVE BRAND COLOR SHOWCASE -->
+    <!-- 5. OUR TEAM: INTERACTIVE TEAM SHOWCASE (Leadership Spotlight + Category Filters + Varied Pastel Color Cards) -->
     <section id="our-team" class="py-16 md:py-20 bg-[#FFFDF5] relative">
       <div class="max-w-6xl mx-auto px-6 space-y-12">
-        
-        <div class="text-center max-w-3xl mx-auto space-y-3">
-          <span class="px-3.5 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading">
-            Our Team
-          </span>
-          <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            Meet the Curiosity Crew.
-          </h2>
-          <p class="text-slate-700 text-base font-semibold max-w-xl mx-auto">
-            The storytellers, educators, quizmasters, and engineers bringing curiosity to life every single day.
-          </p>
-        </div>
-
-        <OurTeamShowcase client:visible />
-
+        <InteractiveTeamShowcase client:visible />
       </div>
     </section>
 
