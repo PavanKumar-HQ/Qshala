@@ -1,0 +1,13 @@
+# QShala - India's Curiosity Company
+
+> Replacing Rote Learning With Curiosity. QShala replaces rote memorization with socratic storytelling, interactive trivia, and weekly curiosity clubs that empower minds to ask "Why?".
+
+## Primary Sections
+- Home: https://qshala.vercel.app
+- About Us: https://qshala.vercel.app/about
+- Schools: https://qshala.vercel.app/schools
+- Companies: https://qshala.vercel.app/companies
+- Case Studies: https://qshala.vercel.app/case-studies
+
+## Mission
+QShala is an essential learning platform that encourages creativity, curiosity and compassion. The brand's primary focus domain is school going children, parents, and corporate teams. We aid hobby exploration, career exploration, and foster 21st-century skills.

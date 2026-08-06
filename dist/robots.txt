@@ -1,0 +1,5 @@
+# The asterisk (*) means it applies to ALL search engines (Google, Bing, Yahoo, DuckDuckGo, etc.)
+User-agent: *
+Allow: /
+
+Sitemap: https://qshala.vercel.app/sitemap-index.xml
