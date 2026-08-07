@@ -15,7 +15,9 @@ const SERVICE_MODULES = [
     mascotVariant: "reading" as const,
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     imageAlt: "School students learning curiously in classroom",
-    salesTeam: "School Academic & Sales Team"
+    salesTeam: "School Academic & Sales Team",
+    bgAccent: "#FFF8E1",
+    badgeColor: "#FDB913"
   },
   {
     id: "colleges",
@@ -27,7 +29,9 @@ const SERVICE_MODULES = [
     mascotVariant: "idea" as const,
     imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
     imageAlt: "College students celebrating graduation and campus fest",
-    salesTeam: "Higher Ed & Campus Sales Team"
+    salesTeam: "Higher Ed & Campus Sales Team",
+    bgAccent: "#E8F6FD",
+    badgeColor: "#30B2E7"
   },
   {
     id: "companies",
@@ -40,7 +44,9 @@ const SERVICE_MODULES = [
     mascotVariant: "professional" as const,
     imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Corporate team collaborating during live event",
-    salesTeam: "Corporate L&D & HR Sales Team"
+    salesTeam: "Corporate L&D & HR Sales Team",
+    bgAccent: "#EDF7E5",
+    badgeColor: "#75B543"
   },
   {
     id: "communities",
@@ -52,7 +58,9 @@ const SERVICE_MODULES = [
     mascotVariant: "curious" as const,
     imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Friends gathering happily at a community event",
-    salesTeam: "Community & Special Events Team"
+    salesTeam: "Community & Special Events Team",
+    bgAccent: "#F3E8FF",
+    badgeColor: "#9333EA"
   },
   {
     id: "custom",
@@ -60,11 +68,13 @@ const SERVICE_MODULES = [
     title: "HAVE SOMETHING ELSE IN MIND?",
     badge: "Custom Curiosity Experiences",
     description: "TELL US! QShala is founded on a pure, unbridled love for Quriosity. Whether it's a niche museum quest, a custom podcast quiz, a global virtual league, or a brand-new concept—we're happy to bring our love for learning anywhere!",
-    highlights: ["Custom Concept Development", "Niche Topic Quizzes", "Virtual Global Leagues", "Museum & Museum Quests"],
+    highlights: ["Custom Concept Development", "Niche Topic Quizzes", "Virtual Global Leagues", "Museum Quests"],
     mascotVariant: "trophy" as const,
     imageSrc: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Team designing custom learning experience",
-    salesTeam: "Special Experience & Custom Quiz Team"
+    salesTeam: "Special Experience & Custom Quiz Team",
+    bgAccent: "#FFF5D6",
+    badgeColor: "#FDB913"
   }
 ];
 ---
@@ -74,9 +84,9 @@ const SERVICE_MODULES = [
 
   <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5]">
 
-    <!-- Page Header -->
+    <!-- Page Header (Open & Ambient) -->
     <section class="py-12 relative">
-      <div class="max-w-6xl mx-auto px-6 text-center space-y-4">
+      <div class="max-w-5xl mx-auto px-6 text-center space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
           <span class="w-2.5 h-2.5 rounded-full bg-[#FDB913] animate-ping"></span>
           <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
@@ -94,86 +104,90 @@ const SERVICE_MODULES = [
       </div>
     </section>
 
-    <!-- Services Modules Stack (Matching exact client brief & wireframe layout!) -->
-    <section class="py-6 max-w-6xl mx-auto px-6 space-y-8">
-      {SERVICE_MODULES.map((module) => (
-        <div 
-          id={module.id}
-          class="bg-[#FFF8E1] rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-slate-900 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center transition-all hover:shadow-[7px_7px_0px_0px_rgba(0,0,0,1)]"
-        >
-          <!-- Left Thumbnail Image (2-column layout matching brief) -->
-          <div class="lg:col-span-4 relative group">
-            <div class="overflow-hidden rounded-2xl border-2 border-slate-900 aspect-[4/3] bg-white shadow-sm">
-              <img 
-                src={module.imageSrc} 
-                alt={module.imageAlt} 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
+    <!-- Services Open Editorial Rows (Zero Rigid Bounding Boxes!) -->
+    <section class="py-8 max-w-6xl mx-auto px-6 space-y-20">
+      {SERVICE_MODULES.map((module, idx) => {
+        const isReversed = idx % 2 !== 0;
+        return (
+          <div 
+            id={module.id}
+            class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-6 border-b border-slate-200/60 last:border-0"
+          >
+            <!-- Thumbnail Image Column -->
+            <div class={`lg:col-span-5 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
+              <div class="relative">
+                <div class="overflow-hidden rounded-3xl aspect-[4/3] bg-slate-100 shadow-sm border border-slate-200/80">
+                  <img 
+                    src={module.imageSrc} 
+                    alt={module.imageAlt} 
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- Mascot Badge Floating Over Image -->
+                <div class="absolute -top-3 -right-3 scale-90 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
+                  <QTMascot client:visible variant={module.mascotVariant} size="sm" />
+                </div>
+              </div>
             </div>
 
-            <!-- Floating Mascot Tag -->
-            <div class="absolute -top-3 -right-3 scale-90 bg-white p-2 rounded-2xl border-2 border-slate-900 shadow-sm">
-              <QTMascot client:visible variant={module.mascotVariant} size="sm" />
-            </div>
-          </div>
+            <!-- Open Content Column (No box container!) -->
+            <div class={`lg:col-span-7 space-y-6 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
+              <div class="space-y-3">
+                <div class="flex flex-wrap items-center gap-3">
+                  <span 
+                    class="px-3 py-1 rounded-full text-white font-black text-xs uppercase font-heading"
+                    style={`background-color: ${module.badgeColor};`}
+                  >
+                    {module.badge}
+                  </span>
+                  <span class="text-[11px] font-black uppercase text-slate-500 font-heading">
+                    &bull; Sales Pipeline: {module.salesTeam}
+                  </span>
+                </div>
 
-          <!-- Right Content Area -->
-          <div class="lg:col-span-8 flex flex-col justify-between h-full space-y-6">
-            <div class="space-y-3">
-              <!-- Category Badge & Handling Sales Team note -->
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="px-3 py-1 rounded-full bg-white text-slate-900 font-black text-xs uppercase border border-slate-900 font-heading">
-                  {module.badge}
-                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading tracking-tight">
+                  {module.title}
+                </h2>
 
-                <span class="text-[11px] font-black uppercase text-slate-600 font-heading bg-amber-200/60 px-2.5 py-0.5 rounded-full border border-amber-300">
-                  Routed to: {module.salesTeam}
-                </span>
+                <p class="text-slate-700 text-base font-semibold leading-relaxed">
+                  {module.description}
+                </p>
               </div>
 
-              <!-- Module Title -->
-              <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading tracking-tight">
-                {module.title}
-              </h2>
-
-              <!-- Description Copy from Brief -->
-              <p class="text-slate-800 text-sm sm:text-base font-semibold leading-relaxed">
-                {module.description}
-              </p>
-
-              <!-- Highlights / Name Drops / Unconventional venue pills -->
-              <div class="pt-2 flex flex-wrap gap-2">
+              <!-- Highlights / Pills -->
+              <div class="flex flex-wrap gap-2">
                 {module.highlights.map((item) => (
-                  <span class={`px-3 py-1 rounded-xl text-xs font-black border border-slate-900 ${
+                  <span class={`px-3 py-1 rounded-xl text-xs font-bold ${
                     module.isNameDrop 
-                      ? 'bg-[#30B2E7] text-white shadow-sm' 
-                      : 'bg-white text-slate-900 shadow-sm'
+                      ? 'bg-[#30B2E7]/15 text-[#30B2E7]' 
+                      : 'bg-slate-100 text-slate-800'
                   }`}>
                     {item}
                   </span>
                 ))}
               </div>
-            </div>
 
-            <!-- Bottom CTA Button (Matching client's yellow "BOOK NOW!" button, linked to form with type parameter) -->
-            <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-900/10">
-              <div class="text-xs font-bold text-slate-600">
-                Direct booking line for <strong class="text-slate-900">{module.title}</strong> inquiries
+              <!-- Action CTA Row -->
+              <div class="pt-2 flex items-center justify-between gap-4">
+                <a
+                  href={`/book-a-quiz?type=${module.typeParam}`}
+                  class="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider font-heading shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 group"
+                >
+                  <span>BOOK NOW!</span>
+                  <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </a>
+
+                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">
+                  Direct route to {module.salesTeam}
+                </span>
               </div>
 
-              <a
-                href={`/book-a-quiz?type=${module.typeParam}`}
-                class="px-8 py-3.5 rounded-xl bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading transition-all inline-flex items-center justify-center gap-2 group shrink-0"
-              >
-                <span>BOOK NOW!</span>
-                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
-              </a>
             </div>
-
           </div>
-        </div>
-      ))}
+        );
+      })}
     </section>
 
   </main>
