@@ -2,60 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import QTMascot from '../components/QTMascot';
-import { PRODUCTS_DATA } from '../lib/data';
+import ShopStorefront from '../components/ShopStorefront';
 ---
 
-<BaseLayout title="Curiosity Store | QShala">
+<BaseLayout title="Curiosity Store | Books, Games & Merch | QShala">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
-    <div class="max-w-7xl mx-auto space-y-16">
-      
-      <!-- Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading">
-          QShala Store
-        </span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading leading-tight">
-          Interactive Games & Books.
-        </h1>
-        <p class="text-slate-700 text-lg font-semibold max-w-2xl mx-auto leading-relaxed">
-          Bring screen-free curiosity home with our custom-designed decks, books, and plushies.
-        </p>
-      </div>
 
-      <!-- Products Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {PRODUCTS_DATA.map((product, pIdx) => {
-          const productMascots = ["idea", "reading", "holding_money", "trophy"] as const;
-          return (
-            <div class="bg-white rounded-3xl p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between group relative overflow-hidden hover:-translate-y-1 transition-transform">
-              <div class="absolute top-2 right-2 z-10 scale-75 origin-top-right">
-                <QTMascot client:visible variant={productMascots[pIdx % productMascots.length]} size="sm" />
-              </div>
-              <div>
-                <div class={`h-40 rounded-2xl ${product.imageColor} flex items-center justify-center text-white font-black text-xl p-4 shadow-inner mb-4 relative`}>
-                  {product.isPopular && (
-                    <span class="absolute top-2 left-2 px-2.5 py-1 bg-black text-white font-black text-[10px] rounded-full border border-white">BESTSELLER</span>
-                  )}
-                  <span class="font-heading font-black">{product.title.split(' ')[0]}</span>
-                </div>
-                <span class="text-[10px] font-black uppercase text-[#30B2E7]">{product.category}</span>
-                <h3 class="text-lg font-black text-slate-900 mt-1 font-heading line-clamp-1">{product.title}</h3>
-                <p class="text-slate-600 text-xs mt-1 font-semibold leading-relaxed line-clamp-3">{product.description}</p>
-              </div>
-              <div class="mt-6 pt-4 border-t border-black/20 flex items-center justify-between">
-                <span class="text-lg font-black text-slate-900 font-heading">{product.price}</span>
-                <button class="px-4 py-2 rounded-full bg-[#30B2E7] hover:bg-[#34a2d0] text-white font-black text-xs border border-black font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                  Buy Now
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-    </div>
+  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+    <section class="w-full px-4 sm:px-8 md:px-12 py-6">
+      <ShopStorefront client:load />
+    </section>
   </main>
+
   <Footer />
 </BaseLayout>
