@@ -92,9 +92,9 @@ const SERVICE_MODULES = [
 
   <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5]">
 
-    <!-- Page Header -->
-    <section class="py-12 relative">
-      <div class="max-w-5xl mx-auto px-6 text-center space-y-4">
+    <!-- Page Header (Expanded Width max-w-7xl) -->
+    <section class="py-10 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
           <span class="w-2.5 h-2.5 rounded-full bg-[#FDB913] animate-ping"></span>
           <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
@@ -106,20 +106,20 @@ const SERVICE_MODULES = [
           Book a Quiz now!
         </h1>
 
-        <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto">
+        <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
           Tailored curiosity experiences for schools, colleges, companies, communities, and custom celebrations. Click <span class="text-slate-900 font-black">&ldquo;BOOK NOW!&rdquo;</span> on any segment to connect directly with that dedicated sales team.
         </p>
       </div>
     </section>
 
-    <!-- Services Modules Stack (Colorful Brand Highlight Pills in Every Card!) -->
-    <section class="py-6 max-w-6xl mx-auto px-6 space-y-16">
+    <!-- Services Modules Stack (Full Screen Width max-w-7xl) -->
+    <section class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       {SERVICE_MODULES.map((module, idx) => {
         const isReversed = idx % 2 !== 0;
         return (
           <div 
             id={module.id}
-            class="group p-8 sm:p-10 rounded-3xl transition-all duration-300 border-2 border-slate-900/10 hover:border-slate-900 shadow-sm hover:shadow-xl hover:-translate-y-1 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+            class="group p-8 sm:p-10 md:p-12 rounded-3xl transition-all duration-300 border-2 border-slate-900/10 hover:border-slate-900 shadow-sm hover:shadow-xl hover:-translate-y-1 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
             style={`background-color: ${module.bgTint};`}
           >
             <!-- Image Thumbnail -->
@@ -156,7 +156,7 @@ const SERVICE_MODULES = [
                   </span>
                 </div>
 
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading tracking-tight">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
                   {module.title}
                 </h2>
 
@@ -165,7 +165,7 @@ const SERVICE_MODULES = [
                 </p>
               </div>
 
-              <!-- Colorful Pill Tags for Every Card! -->
+              <!-- Colorful Pill Tags -->
               <div class="flex flex-wrap gap-2.5">
                 {module.highlights.map((item, itemIdx) => {
                   const palette = BRAND_PALETTE[itemIdx % BRAND_PALETTE.length];
