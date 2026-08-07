@@ -31,7 +31,7 @@ import QTMascot from './QTMascot';
       </div>
     </div>
 
-    <!-- Footer Navigation & Contact Columns (Matching Brief Layout) -->
+    <!-- Footer Navigation & Contact Columns -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
       
       <!-- Walnut Knowledge Solutions Legal Entity & Address -->
@@ -54,55 +54,125 @@ import QTMascot from './QTMascot';
           </p>
         </div>
 
-        <!-- Call & Location Brief Data -->
-        <div class="space-y-3 text-xs text-slate-300 pt-2 font-medium">
-          <div>
-            <span class="block text-slate-400 text-[11px] font-bold uppercase tracking-wider">Call Us</span>
-            <a href="tel:+918971676100" class="text-white font-black hover:text-[#FDB913] text-sm">+91 89716 76100</a>
+        <!-- Call & Location with Phone Icon & Building Icon -->
+        <div class="space-y-4 text-xs text-slate-300 pt-2 font-medium">
+          
+          <!-- Call Us with Phone Icon -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-[#FDB913] shrink-0 font-bold text-sm shadow-sm">
+              📞
+            </div>
+            <div>
+              <span class="block text-slate-400 text-[11px] font-bold uppercase tracking-wider font-heading">Call Us</span>
+              <a href="tel:+918971676100" class="text-white font-black hover:text-[#FDB913] text-sm font-heading">+91 89716 76100</a>
+            </div>
           </div>
 
-          <div>
-            <span class="block text-slate-400 text-[11px] font-bold uppercase tracking-wider">Visit Us</span>
-            <p class="text-slate-300 leading-relaxed font-semibold">
-              1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078
-            </p>
+          <!-- Visit Us with Building / Location Pin Icon -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-[#30B2E7] shrink-0 font-bold text-sm shadow-sm">
+              🏢
+            </div>
+            <div>
+              <span class="block text-slate-400 text-[11px] font-bold uppercase tracking-wider font-heading">Visit Us</span>
+              <p class="text-slate-300 leading-relaxed font-semibold">
+                1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078
+              </p>
+              <a 
+                href="https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 mt-1.5 text-[#30B2E7] hover:underline font-black text-xs uppercase tracking-wider font-heading"
+              >
+                <span>VIEW ON MAP</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Connect Column (With Official Social Logos/Badges instead of plain text names!) -->
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4 font-heading">Connect</h3>
+        
+        <div class="space-y-3">
+          <!-- WhatsApp Community Badge -->
+          <a 
+            href="https://chat.whatsapp.com/QShalaCuriosityCommunity" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-4 py-2.5 rounded-2xl bg-[#75B543]/10 hover:bg-[#75B543]/20 border border-[#75B543]/40 text-[#75B543] font-black text-xs flex items-center gap-2.5 transition-all font-heading"
+          >
+            <span class="text-base">💬</span>
+            <span>Join WhatsApp Community</span>
+          </a>
+
+          <!-- Social Media Logos Row/List -->
+          <div class="space-y-2 pt-1">
             <a 
-              href="https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru" 
+              href="https://www.instagram.com/qshala/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="inline-block mt-1 text-[#30B2E7] hover:underline font-black text-xs uppercase tracking-wider font-heading"
+              class="flex items-center gap-3 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all text-xs font-black font-heading group"
             >
-              VIEW ON MAP &rarr;
+              <span class="w-6 h-6 rounded-lg bg-[#EC4899] text-white flex items-center justify-center font-bold text-xs shadow-sm">IG</span>
+              <span>Instagram</span>
+            </a>
+
+            <a 
+              href="https://www.facebook.com/qshala/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all text-xs font-black font-heading group"
+            >
+              <span class="w-6 h-6 rounded-lg bg-[#30B2E7] text-white flex items-center justify-center font-bold text-xs shadow-sm">FB</span>
+              <span>Facebook</span>
+            </a>
+
+            <a 
+              href="https://twitter.com/qshala" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all text-xs font-black font-heading group"
+            >
+              <span class="w-6 h-6 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs shadow-sm">𝕏</span>
+              <span>Twitter / X</span>
+            </a>
+
+            <a 
+              href="https://www.linkedin.com/company/walnut-knowledge-solutions/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all text-xs font-black font-heading group"
+            >
+              <span class="w-6 h-6 rounded-lg bg-[#0077B5] text-white flex items-center justify-center font-bold text-xs shadow-sm">in</span>
+              <span>LinkedIn</span>
+            </a>
+
+            <a 
+              href="https://www.youtube.com/@qshala" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all text-xs font-black font-heading group"
+            >
+              <span class="w-6 h-6 rounded-lg bg-[#FF0000] text-white flex items-center justify-center font-bold text-xs shadow-sm">▶</span>
+              <span>YouTube</span>
+            </a>
+
+            <a 
+              href="mailto:qshala@walnuts.co.in" 
+              class="flex items-center gap-3 p-2 rounded-xl bg-[#FDB913]/10 hover:bg-[#FDB913]/20 border border-[#FDB913]/30 text-[#FDB913] transition-all text-xs font-black font-heading"
+            >
+              <span class="w-6 h-6 rounded-lg bg-[#FDB913] text-slate-950 flex items-center justify-center font-bold text-xs shadow-sm">✉</span>
+              <span>Write to us!</span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Connect Column (Socials & WhatsApp Community from Brief) -->
-      <div>
-        <h3 class="text-lg font-bold text-white mb-4 font-heading">Connect</h3>
-        <ul class="space-y-2.5 text-sm text-slate-400 font-medium">
-          <li>
-            <a 
-              href="https://chat.whatsapp.com/QShalaCuriosityCommunity" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="hover:text-[#75B543] flex items-center gap-1.5 font-bold text-[#75B543]"
-            >
-              <span>💬</span>
-              <span>Join our WhatsApp Community</span>
-            </a>
-          </li>
-          <li><a href="https://www.instagram.com/qshala/" target="_blank" rel="noopener noreferrer" class="hover:text-[#EC4899]">Instagram</a></li>
-          <li><a href="https://www.facebook.com/qshala/" target="_blank" rel="noopener noreferrer" class="hover:text-[#30B2E7]">Facebook</a></li>
-          <li><a href="https://twitter.com/qshala" target="_blank" rel="noopener noreferrer" class="hover:text-[#30B2E7]">Twitter / X</a></li>
-          <li><a href="https://www.linkedin.com/company/walnut-knowledge-solutions/" target="_blank" rel="noopener noreferrer" class="hover:text-[#30B2E7]">LinkedIn</a></li>
-          <li><a href="https://www.youtube.com/@qshala" target="_blank" rel="noopener noreferrer" class="hover:text-[#EC4899]">YouTube</a></li>
-          <li><a href="mailto:qshala@walnuts.co.in" class="hover:text-[#FDB913] font-bold text-white">Write to us!</a></li>
-        </ul>
-      </div>
-
-      <!-- Work With Us! Careers Column from Brief -->
+      <!-- Work With Us! Careers Column -->
       <div>
         <h3 class="text-lg font-bold text-white mb-4 font-heading">Work With Us!</h3>
         <div class="space-y-3">
@@ -111,9 +181,10 @@ import QTMascot from './QTMascot';
           </p>
           <a 
             href="mailto:work@walnuts.co.in" 
-            class="inline-block px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-[#FDB913] font-black text-xs border border-slate-700 font-heading hover:border-[#FDB913] transition-all"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-[#FDB913] font-black text-xs border border-slate-700 font-heading hover:border-[#FDB913] transition-all shadow-sm"
           >
-            work@walnuts.co.in
+            <span>💼</span>
+            <span>work@walnuts.co.in</span>
           </a>
         </div>
 
@@ -123,6 +194,7 @@ import QTMascot from './QTMascot';
             <li><a href="/schools" class="hover:text-white">For Schools</a></li>
             <li><a href="/companies" class="hover:text-white">For Corporates</a></li>
             <li><a href="/learn" class="hover:text-white">Learn &amp; Resources</a></li>
+            <li><a href="/archive" class="hover:text-white">Archive / Past Events</a></li>
             <li><a href="/shop" class="hover:text-white">Curiosity Store</a></li>
           </ul>
         </div>
@@ -134,6 +206,7 @@ import QTMascot from './QTMascot';
         <ul class="space-y-2.5 text-sm text-slate-400 font-medium">
           <li><a href="/about" class="hover:text-white">About Our Mission</a></li>
           <li><a href="/team" class="hover:text-[#30B2E7]">Meet the Team</a></li>
+          <li><a href="/archive" class="hover:text-[#FDB913]">Archive / Past Events</a></li>
           <li><a href="/case-studies" class="hover:text-[#30B2E7]">Impact &amp; Case Studies</a></li>
           <li><a href="/blog" class="hover:text-white">Magazine &amp; Articles</a></li>
           <li><a href="/contact" class="hover:text-[#FDB913]">Contact Us</a></li>
