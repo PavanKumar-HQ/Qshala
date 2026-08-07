@@ -145,24 +145,27 @@ const BLOG_CARDS = [
 
   <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
-    <!-- Top Hero Banner (Full-Width Bleed) -->
-    <section class="w-full px-4 sm:px-8 md:px-12 py-4">
-      <div class="relative overflow-hidden rounded-3xl bg-slate-900 shadow-sm border border-slate-200/80 w-full">
-        <div class="aspect-[21/9] sm:aspect-[24/9] relative w-full">
+    <!-- Top Hero Banner (Compact & Sleek with Relevant Curiosity Learning Image) -->
+    <section class="w-full px-4 sm:px-8 md:px-12 py-2">
+      <div class="relative overflow-hidden rounded-3xl bg-slate-950 shadow-sm border border-slate-200/80 w-full">
+        <div class="h-44 sm:h-52 relative w-full flex items-center">
           <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" 
-            alt="Enthusiastic students collaborating around laptop" 
-            class="w-full h-full object-cover opacity-80"
+            src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop" 
+            alt="Students raising hands excitedly during interactive quiz session" 
+            class="w-full h-full object-cover opacity-50"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex items-end p-6 sm:p-10">
-            <div class="text-white space-y-2 max-w-4xl">
-              <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading inline-block">
-                Curiosity Knowledge Hub
-              </span>
-              <h1 class="text-3xl sm:text-5xl font-black font-heading tracking-tight drop-shadow-md">
-                Learn &amp; Resources Hub.
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-transparent flex items-center p-6 sm:p-10">
+            <div class="text-white space-y-2 max-w-3xl">
+              <div class="flex items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading inline-block">
+                  Curiosity Knowledge Hub
+                </span>
+                <QTMascot client:visible variant="reading" size="sm" />
+              </div>
+              <h1 class="text-2xl sm:text-4xl font-black font-heading tracking-tight drop-shadow-md">
+                Learn &amp; Resources Hub
               </h1>
-              <p class="text-slate-200 text-sm sm:text-base font-semibold drop-shadow">
+              <p class="text-slate-200 text-xs sm:text-sm font-semibold drop-shadow leading-relaxed">
                 Curated learning tools, quizzing bibles, current affairs sources, and story archives for parents, students, and educators.
               </p>
             </div>
