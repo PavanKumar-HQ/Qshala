@@ -231,4 +231,14 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   animation: catPounceWiggle 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+/* -------------------------------------------------------------------------- */
+/*  6. RESPONSIVE MOBILE VIEW SCALING ADJUSTMENT                             */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* Proportionally scales oversized headings & elements for mobile mode */
+  }
+}
+
+
 
