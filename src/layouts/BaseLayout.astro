@@ -86,18 +86,25 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <link rel="preload" href="/fonts/Trustha - Causten Round Regular.otf" as="font" type="font/otf" crossorigin />
     <ViewTransitions />
 
-    <!-- Inline script to prevent FOUC -->
+    <!-- Inline script to prevent FOUC & stuck loader on mobile -->
     <script is:inline data-astro-rerun>
       (function() {
         try {
           // Astro ViewTransitions preserves the window object between pages.
-          // This ensures the loader only runs on a fresh load or hard reload (F5).
           if (window.hasLoaderShown) {
             document.documentElement.classList.add('skip-loader');
           } else {
             document.documentElement.classList.add('loading-active');
             window.hasLoaderShown = true;
           }
+
+          // Universal Mobile Fail-Safe: Forcefully dismiss loader in 350ms max
+          setTimeout(function() {
+            var loader = document.getElementById('loader-root');
+            if (loader) loader.style.display = 'none';
+            document.documentElement.classList.remove('loading-active');
+            document.body.style.overflow = '';
+          }, 350);
         } catch(e) {}
       })();
     </script>
