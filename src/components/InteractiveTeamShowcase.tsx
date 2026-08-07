@@ -113,7 +113,7 @@ export default function InteractiveTeamShowcase() {
 
       {/* Main Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
           Meet Our Team
         </span>
         <h2 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
@@ -126,10 +126,7 @@ export default function InteractiveTeamShowcase() {
 
       {/* Founders Section */}
       <div className="space-y-6 w-full">
-        <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/10">
-          <span className="px-4 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-sm">
-            Co-Founders
-          </span>
+        <div className="pb-2 border-b border-slate-200">
           <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
             Founding Leadership
           </h3>
@@ -139,11 +136,11 @@ export default function InteractiveTeamShowcase() {
           {FOUNDERS.map((founder) => (
             <div 
               key={founder.id}
-              className="p-8 rounded-3xl bg-white border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 space-y-5 group cursor-pointer"
+              className="p-8 rounded-3xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-5 group cursor-pointer"
             >
               <div className="flex items-center justify-between">
                 <span 
-                  className="px-3.5 py-1 rounded-full text-xs font-black uppercase text-slate-950 font-heading border border-slate-900 shadow-sm"
+                  className="px-3.5 py-1 rounded-full text-xs font-black uppercase text-white font-heading shadow-sm"
                   style={{ backgroundColor: founder.color }}
                 >
                   {founder.tag}
@@ -158,25 +155,22 @@ export default function InteractiveTeamShowcase() {
                 <div className="text-xs font-bold text-slate-500 mt-0.5 font-heading">{founder.role}</div>
               </div>
 
-              <p className="text-slate-700 text-sm font-semibold leading-relaxed">
+              <p className="text-slate-700 text-sm font-medium leading-relaxed">
                 {founder.bio}
               </p>
 
-              <div className="pt-4 border-t-2 border-slate-900/10 flex items-center justify-between text-xs font-bold text-slate-500 font-heading">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 font-heading">
                 <span>QShala Co-Founder</span>
-                <span className="w-3 h-3 rounded-full border border-slate-900 shadow-sm" style={{ backgroundColor: founder.color }}></span>
+                <span className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: founder.color }}></span>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Crew Section */}
+      {/* Crew Section (No Boxes, Clean Borderless Pastel Cards) */}
       <div className="space-y-6 w-full">
-        <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/10">
-          <span className="px-4 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-sm">
-            Curiosity Crew
-          </span>
+        <div className="pb-2 border-b border-slate-200">
           <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
             Core Crew &amp; Department Leads
           </h3>
@@ -186,13 +180,13 @@ export default function InteractiveTeamShowcase() {
           {CREW.map((member) => (
             <div 
               key={member.id}
-              className="p-6 rounded-3xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 space-y-4 flex flex-col justify-between group cursor-pointer"
+              className="p-7 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-4 flex flex-col justify-between group cursor-pointer"
               style={{ backgroundColor: member.bg }}
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span 
-                    className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase text-slate-950 font-heading border border-slate-900 shadow-sm"
+                    className="px-3 py-1 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-sm"
                     style={{ backgroundColor: member.color }}
                   >
                     {member.tag}
@@ -207,14 +201,14 @@ export default function InteractiveTeamShowcase() {
                   <div className="text-xs font-bold text-slate-600 mt-0.5 font-heading">{member.role}</div>
                 </div>
 
-                <p className="text-slate-800 text-xs font-semibold leading-relaxed">
+                <p className="text-slate-700 text-xs font-medium leading-relaxed">
                   {member.bio}
                 </p>
               </div>
 
-              <div className="pt-3 border-t-2 border-slate-900/10 flex items-center justify-between text-[11px] font-bold text-slate-600 font-heading">
+              <div className="pt-3 border-t border-slate-900/5 flex items-center justify-between text-[11px] font-bold text-slate-500 font-heading">
                 <span>QShala Team</span>
-                <span className="w-2.5 h-2.5 rounded-full border border-slate-900 shadow-sm" style={{ backgroundColor: member.color }}></span>
+                <span className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: member.color }}></span>
               </div>
             </div>
           ))}
