@@ -2,78 +2,347 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import InteractiveQuizCard from '../components/InteractiveQuizCard';
 import QTMascot from '../components/QTMascot';
-import { FEATURED_QUIZZES } from '../lib/data';
+
+const KIDS_CORNER_CARDS = [
+  {
+    title: "Games",
+    description: "Interactive trivia minigames, socratic memory puzzles, and daily brain teasers.",
+    imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Children playing educational games together",
+    link: "/shop",
+    badge: "Interactive"
+  },
+  {
+    title: "How to become a Quiz Master",
+    description: "Step-by-step masterclass on stage presence, question crafting, and hosting live trivia.",
+    imageSrc: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Quizmaster presenting on stage with microphone",
+    link: "/blog/curious-dinner-table",
+    badge: "Masterclass"
+  },
+  {
+    title: "Inspiration. Stories of Quriosity",
+    description: "Inspiring journeys of young quizzers and curiosity champions breaking records across India.",
+    imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Students celebrating learning success",
+    link: "/case-studies",
+    badge: "Stories"
+  },
+  {
+    title: "QUIZ NOW!",
+    description: "Jump straight into daily live trivia tournaments and real-time leaderboards!",
+    imageSrc: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Person holding curiosity winner cards",
+    link: "/shop",
+    isPlayCTA: true,
+    badge: "Play Zone"
+  }
+];
+
+const QUIZZING_101_CARDS = [
+  {
+    title: "News Sources to follow",
+    description: "Hand-picked, age-appropriate current affairs portals and science magazines for young curious minds.",
+    imageSrc: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Newspaper and digital journalism sources",
+    link: "/blog/why-rote-learning-kills-curiosity",
+    badge: "Curated Sources"
+  },
+  {
+    title: "Quiz Masters of History and what we can learn from them",
+    description: "Lessons from legends—from Alex Trebek to Mastermind and Derek O'Brien to Sachin Ravi.",
+    imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Quiz masters hosting historical trivia competitions",
+    link: "/about",
+    badge: "Hall of Fame"
+  },
+  {
+    title: "How to stay in the know. Tips on Quriosity",
+    description: "Daily observation frameworks, note-taking techniques, and curiosity habit trackers.",
+    imageSrc: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Student writing in curiosity notebook",
+    link: "/blog/gamification-modern-corporate-learning",
+    badge: "Habit Guide"
+  },
+  {
+    title: "QShots. Quriosity at your digital front gate.",
+    description: "Our annual Forbes-30-under-30 style mega Qualifier of news, facts, and authentic knowledge with the QShala stamp.",
+    imageSrc: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Digital news feed QShots publication",
+    link: "/blog",
+    isQShots: true,
+    badge: "Annual Source List"
+  }
+];
+
+const BLOG_CARDS = [
+  {
+    title: "Ms. Anagha on the teaching children for the last 8 years.",
+    description: "Reflections on socratic questioning, classroom breakthroughs, and nurturing lifelong learners.",
+    imageSrc: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Teacher engaging with children in classroom",
+    link: "/blog/why-rote-learning-kills-curiosity",
+    author: "Ms. Anagha",
+    date: "Aug 2026"
+  },
+  {
+    title: "Travels of a Quiz Master: Ms. Archana and her latest trip to Guwahati",
+    description: "Behind the scenes hosting regional school championships across North-East India.",
+    imageSrc: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Travel and hosting quiz championship",
+    link: "/blog/curious-dinner-table",
+    author: "Ms. Archana",
+    date: "Jul 2026"
+  },
+  {
+    title: "Ops or Oops! Mr. Ahil talks about the behind scene drama, intrigue and chaos of running a quiz",
+    description: "Buzzer failures, unexpected tie-breakers, and the magic of live event operations.",
+    imageSrc: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Live event operations technical control desk",
+    link: "/blog/gamification-modern-corporate-learning",
+    author: "Mr. Ahil",
+    date: "Jun 2026"
+  },
+  {
+    title: "Why learning needs to be fun: Co-founder talks about that day 20 years ago that changed everything.",
+    description: "The origin story of QShala and how a childhood love for trivia sparked a nation-wide curiosity movement.",
+    imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Co-founders founding story discussion",
+    link: "/about",
+    author: "Sachin & Raghavan",
+    date: "May 2026"
+  }
+];
 ---
 
-<BaseLayout title="Kids Corner & Daily Trivia | QShala">
+<BaseLayout title="Learn & Resources | Kids Corner & Quizzing 101 | QShala">
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
-    <div class="max-w-7xl mx-auto space-y-16">
-      
-      <!-- Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading">
-          Kids Corner
-        </span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mt-4 font-heading leading-tight">
-          Daily Curiosity Playground.
-        </h1>
-        <p class="text-slate-700 text-lg font-semibold max-w-2xl mx-auto leading-relaxed">
-          Solve puzzles, challenge your friends, and discover answers to questions you never thought to ask.
-        </p>
-      </div>
 
-      <!-- Mascot Buddy -->
-      <div class="flex justify-center">
-        <QTMascot client:visible variant="jumping" size="lg" badgeText="Jump in!" />
-      </div>
+  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5]">
 
-      <!-- Quiz Grid Section -->
-      <div class="space-y-6">
-        <h2 class="text-2xl font-black text-center font-heading">Interactive Quizzes</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {FEATURED_QUIZZES.map((quiz) => (
-            <InteractiveQuizCard client:visible quiz={quiz} />
+    <!-- Top Banner Hero (High Quality Learning Image & Headline) -->
+    <section class="max-w-6xl mx-auto px-6 py-6">
+      <div class="relative overflow-hidden rounded-3xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
+        <div class="aspect-[21/9] sm:aspect-[24/9] relative">
+          <img 
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" 
+            alt="Enthusiastic students collaborating around laptop" 
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent flex items-end p-6 sm:p-10">
+            <div class="text-white space-y-2 max-w-2xl">
+              <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading inline-block border border-slate-900">
+                Curiosity Knowledge Hub
+              </span>
+              <h1 class="text-3xl sm:text-5xl font-black font-heading tracking-tight drop-shadow-md">
+                Learn, Discover &amp; Master Quizzing.
+              </h1>
+              <p class="text-slate-200 text-sm sm:text-base font-semibold drop-shadow">
+                Curated guides, kids activities, quizzing bibles, and story archives for parents, students, and educators.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: KIDS CORNER (Light Sky Blue Tint #E8F6FD) -->
+    <section class="max-w-6xl mx-auto px-6 py-8">
+      <div class="bg-[#E8F6FD] rounded-3xl p-6 sm:p-10 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] space-y-6">
+        
+        <!-- Header Note -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900/15 pb-6">
+          <div class="space-y-1">
+            <div class="flex items-center gap-3">
+              <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading border border-slate-900 shadow-sm">
+                KIDS CORNER
+              </span>
+              <QTMascot client:visible variant="jumping" size="sm" />
+            </div>
+            <p class="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed pt-1">
+              <strong>Note to parents &amp; students:</strong> Kids Corner offers interactive minigames, masterclass guides, curiosity stories, and instant daily trivia access.
+            </p>
+          </div>
+
+          <a 
+            href="/shop" 
+            class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading border border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0 self-start sm:self-center"
+          >
+            Play Daily Quiz &rarr;
+          </a>
+        </div>
+
+        <!-- 4 Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {KIDS_CORNER_CARDS.map((card) => (
+            <a 
+              href={card.link}
+              class="group bg-white rounded-2xl p-4 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4"
+            >
+              <div class="space-y-3">
+                <div class="relative overflow-hidden rounded-xl border border-slate-900 aspect-[4/3] bg-slate-100">
+                  <img 
+                    src={card.imageSrc} 
+                    alt={card.imageAlt} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#30B2E7] text-white font-black text-[10px] uppercase font-heading border border-slate-900 shadow-sm">
+                    {card.badge}
+                  </span>
+                </div>
+
+                <h3 class="text-base font-black text-slate-900 font-heading group-hover:text-[#30B2E7] transition-colors leading-snug">
+                  {card.title}
+                </h3>
+
+                <p class="text-slate-600 text-xs font-semibold leading-relaxed">
+                  {card.description}
+                </p>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between text-xs font-black text-slate-900 font-heading border-t border-slate-100">
+                <span>{card.isPlayCTA ? "QUIZ NOW!" : "Explore"}</span>
+                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </div>
+            </a>
           ))}
         </div>
-      </div>
 
-      <!-- How to Get More Curious Card -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
-        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-6">
-          <div>
-            <span class="text-xs font-black uppercase text-[#30B2E7]">Live Sessions</span>
-            <h3 class="text-2xl font-black font-heading mt-2">Join a Sunday Curiosity Club</h3>
-            <p class="text-slate-600 text-sm font-semibold leading-relaxed mt-2">
-              Every Sunday, kids from 15+ cities join our live storytelling-quizzes. Led by QShala grandmasters, we talk about space, code, history, and life skills in an interactive game environment.
+      </div>
+    </section>
+
+    <!-- SECTION 2: QUIZZING 101 (Soft Always Questioning Green Tint #EDF7E5) -->
+    <section class="max-w-6xl mx-auto px-6 py-6">
+      <div class="bg-[#EDF7E5] rounded-3xl p-6 sm:p-10 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] space-y-6">
+        
+        <!-- Header Note -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900/15 pb-6">
+          <div class="space-y-1">
+            <div class="flex items-center gap-3">
+              <span class="px-3.5 py-1 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading border border-slate-900 shadow-sm">
+                Quizzing 101
+              </span>
+              <QTMascot client:visible variant="reading" size="sm" />
+            </div>
+            <p class="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed pt-1">
+              A place where resources are curated and compiled for ace Quizzers. <strong>The bible of Quizzing.</strong>
             </p>
           </div>
-          <div>
-            <a href="/schools" class="inline-block px-5 py-2.5 rounded-full bg-black text-white font-black text-xs border border-white font-heading hover:bg-[#30B2E7] hover:text-black transition-colors">
-              Try a Live Class
-            </a>
-          </div>
+
+          <span class="px-4 py-1.5 rounded-full bg-white text-slate-900 font-black text-xs font-heading border border-slate-900 shadow-sm shrink-0 self-start sm:self-center">
+            QShala Qualifier Stamp &check;
+          </span>
         </div>
 
-        <div class="bg-[#FDB913] rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-6">
-          <div>
-            <span class="text-xs font-black uppercase text-black">Curiosity at Home</span>
-            <h3 class="text-2xl font-black font-heading mt-2">Bring Learning Games Home</h3>
-            <p class="text-slate-900 text-sm font-semibold leading-relaxed mt-2">
-              Explore card games, daily challenge books, and our signature QT Plushie in the Curiosity Shop. Perfect for family road trips or screen-free weekend dinners.
+        <!-- 4 Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {QUIZZING_101_CARDS.map((card) => (
+            <a 
+              href={card.link}
+              class="group bg-white rounded-2xl p-4 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4"
+            >
+              <div class="space-y-3">
+                <div class="relative overflow-hidden rounded-xl border border-slate-900 aspect-[4/3] bg-slate-100">
+                  <img 
+                    src={card.imageSrc} 
+                    alt={card.imageAlt} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#75B543] text-white font-black text-[10px] uppercase font-heading border border-slate-900 shadow-sm">
+                    {card.badge}
+                  </span>
+                </div>
+
+                <h3 class="text-base font-black text-slate-900 font-heading group-hover:text-[#75B543] transition-colors leading-snug">
+                  {card.title}
+                </h3>
+
+                <p class="text-slate-600 text-xs font-semibold leading-relaxed">
+                  {card.description}
+                </p>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between text-xs font-black text-slate-900 font-heading border-t border-slate-100">
+                <span>{card.isQShots ? "QShots List" : "Read Resource"}</span>
+                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: BLOG (Soft Joy of Quest Yellow Tint #FFF8E1) -->
+    <section class="max-w-6xl mx-auto px-6 py-6">
+      <div class="bg-[#FFF8E1] rounded-3xl p-6 sm:p-10 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] space-y-6">
+        
+        <!-- Header Note -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900/15 pb-6">
+          <div class="space-y-1">
+            <div class="flex items-center gap-3">
+              <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading border border-slate-900 shadow-sm">
+                Blog
+              </span>
+              <QTMascot client:visible variant="idea" size="sm" />
+            </div>
+            <p class="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed pt-1">
+              Here we tell stories. Whatever stories we want. The list below shows latest publications chronologically.
             </p>
           </div>
-          <div>
-            <a href="/shop" class="inline-block px-5 py-2.5 rounded-full bg-black text-white font-black text-xs border border-white font-heading hover:bg-white hover:text-black transition-colors">
-              Explore the Shop
-            </a>
-          </div>
-        </div>
-      </div>
 
-    </div>
+          <a 
+            href="/blog" 
+            class="px-5 py-2.5 rounded-full bg-white hover:bg-slate-50 text-slate-950 font-black text-xs uppercase tracking-wider font-heading border border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0 self-start sm:self-center"
+          >
+            All Publications &rarr;
+          </a>
+        </div>
+
+        <!-- 4 Blog Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {BLOG_CARDS.map((card) => (
+            <a 
+              href={card.link}
+              class="group bg-white rounded-2xl p-4 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4"
+            >
+              <div class="space-y-3">
+                <div class="relative overflow-hidden rounded-xl border border-slate-900 aspect-[4/3] bg-slate-100">
+                  <img 
+                    src={card.imageSrc} 
+                    alt={card.imageAlt} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-[10px] uppercase font-heading border border-slate-900 shadow-sm">
+                    {card.date}
+                  </span>
+                </div>
+
+                <h3 class="text-base font-black text-slate-900 font-heading group-hover:text-[#FDB913] transition-colors leading-snug">
+                  {card.title}
+                </h3>
+
+                <p class="text-slate-600 text-xs font-semibold leading-relaxed">
+                  {card.description}
+                </p>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between text-xs font-black text-slate-900 font-heading border-t border-slate-100">
+                <span class="text-slate-500 text-[11px]">By {card.author}</span>
+                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
   </main>
+
   <Footer />
 </BaseLayout>
