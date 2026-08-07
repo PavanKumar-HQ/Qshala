@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ];
 
 const isLinkActive = (href: string) => {
-  if (href === '/') return pathname === '/';
+  if (href === '/') return pathname === '/' || pathname === '';
   return pathname.startsWith(href);
 };
 ---
@@ -42,6 +42,7 @@ const isLinkActive = (href: string) => {
         return (
           <a 
             href={link.href} 
+            data-nav-href={link.href}
             data-astro-prefetch="hover" 
             class={`relative py-1 transition-colors ${
               active 
@@ -89,18 +90,17 @@ const isLinkActive = (href: string) => {
         return (
           <a
             href={link.href}
+            data-nav-href={link.href}
             class={`px-4 py-2.5 rounded-2xl flex items-center justify-between transition-all ${
               active
-                ? 'bg-[#30B2E7] text-white shadow-md border-2 border-slate-900'
-                : 'text-slate-800 hover:bg-slate-100'
+                ? 'bg-[#30B2E7] text-white shadow-md border-2 border-slate-900 font-black'
+                : 'text-slate-800 hover:bg-slate-100 font-bold'
             }`}
           >
             <span>{link.name}</span>
-            {active && (
-              <span class="px-2.5 py-0.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-[10px] uppercase tracking-wider font-heading border border-slate-900 shadow-sm">
-                Active Page
-              </span>
-            )}
+            <span class={`mobile-active-badge px-2.5 py-0.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-[10px] uppercase tracking-wider font-heading border border-slate-900 shadow-sm ${active ? '' : 'hidden'}`}>
+              Active Page
+            </span>
           </a>
         );
       })}
@@ -116,7 +116,49 @@ const isLinkActive = (href: string) => {
 </header>
 
 <script>
+  function highlightActiveRoute() {
+    const rawPath = window.location.pathname;
+    const currentPath = rawPath.endsWith('/') && rawPath.length > 1 ? rawPath.slice(0, -1) : rawPath;
+
+    // 1. Mobile Menu Highlighting
+    const mobileLinks = document.querySelectorAll('#mobileMenu a[data-nav-href]');
+    mobileLinks.forEach((link) => {
+      const href = link.getAttribute('data-nav-href');
+      const badge = link.querySelector('.mobile-active-badge');
+      const isCurrent = href === '/' 
+        ? (currentPath === '/' || currentPath === '') 
+        : currentPath.startsWith(href || '');
+
+      if (isCurrent) {
+        link.className = "px-4 py-2.5 rounded-2xl flex items-center justify-between transition-all bg-[#30B2E7] text-white shadow-md border-2 border-slate-900 font-black";
+        badge?.classList.remove('hidden');
+      } else {
+        link.className = "px-4 py-2.5 rounded-2xl flex items-center justify-between transition-all text-slate-800 hover:bg-slate-100 font-bold";
+        badge?.classList.add('hidden');
+      }
+    });
+
+    // 2. Desktop Nav Highlighting
+    const desktopLinks = document.querySelectorAll('header nav a[data-nav-href]');
+    desktopLinks.forEach((link) => {
+      const href = link.getAttribute('data-nav-href');
+      const isCurrent = href === '/' 
+        ? (currentPath === '/' || currentPath === '') 
+        : currentPath.startsWith(href || '');
+
+      if (isCurrent) {
+        link.className = "relative py-1 transition-colors text-[#30B2E7] font-black after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#30B2E7] after:transition-all after:duration-300";
+      } else {
+        link.className = "relative py-1 transition-colors text-slate-900 font-black hover:text-[#30B2E7] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-[#30B2E7] after:transition-all after:duration-300";
+      }
+    });
+  }
+
+  // Run on initial load and Astro ViewTransitions page swaps
+  document.addEventListener('DOMContentLoaded', highlightActiveRoute);
   document.addEventListener('astro:page-load', () => {
+    highlightActiveRoute();
+
     const toggleBtn = document.getElementById('menuToggleBtn');
     const menu = document.getElementById('mobileMenu');
 
@@ -129,7 +171,6 @@ const isLinkActive = (href: string) => {
       }
     });
 
-    // Ensure scroll unlocks when clicking a link
     const mobileLinks = menu?.querySelectorAll('a');
     mobileLinks?.forEach(link => {
       link.addEventListener('click', () => {
