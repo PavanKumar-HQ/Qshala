@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Star, HelpCircle, Search, Lightbulb, BookOpen, ShieldCheck } from 'lucide-react';
+import { Trophy, HelpCircle, Search, Lightbulb, BookOpen, ShieldCheck } from 'lucide-react';
 import QTMascot, { type QTMascotVariant } from './QTMascot';
 
 interface MascotMood {

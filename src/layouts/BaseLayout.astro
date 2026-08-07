@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -62,7 +62,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     </noscript>
 
     <!-- JSON-LD Structured Data for Rich Search Results -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "QShala - Curiosita Educational Services",
@@ -84,7 +84,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <!-- Self-hosted font preloads for performance -->
     <link rel="preload" href="/fonts/Trustha - Causten Round Black.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/Trustha - Causten Round Regular.otf" as="font" type="font/otf" crossorigin />
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- Inline script to prevent FOUC & stuck loader on mobile -->
     <script is:inline data-astro-rerun>

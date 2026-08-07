@@ -6,17 +6,12 @@ import {
   HelpCircle, 
   ShoppingBag, 
   FileText, 
-  CheckCircle2, 
-  Clock, 
   Search, 
   Plus, 
   Filter, 
   TrendingUp, 
-  Sparkles,
   Lock,
   LogOut,
-  Mail,
-  Phone,
   Calendar
 } from 'lucide-react';
 
