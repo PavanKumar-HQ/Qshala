@@ -109,98 +109,112 @@ const CREW: TeamMember[] = [
 
 export default function InteractiveTeamShowcase() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 w-full">
 
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543]/15 text-[#75B543] font-black text-xs uppercase tracking-wider font-heading">
-          Our Team
+      {/* Main Section Header */}
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+          Meet Our Team
         </span>
-        <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-          Meet the Curiosity Crew.
+        <h2 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+          The Curiosity Crew.
         </h2>
-        <p className="text-slate-600 font-semibold text-base max-w-xl mx-auto leading-relaxed">
+        <p className="text-slate-700 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
           The storytellers, educators, quizmasters &amp; designers bringing curiosity to life every single day.
         </p>
       </div>
 
-      {/* Founders Section (2 Large Sleek Cards with Soft Shadows) */}
-      <div className="space-y-6">
-        <div className="text-xs font-black text-slate-400 uppercase tracking-widest font-heading">
-          Founding Leadership
+      {/* Founders Section */}
+      <div className="space-y-6 w-full">
+        <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/10">
+          <span className="px-4 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-sm">
+            Co-Founders
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+            Founding Leadership
+          </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {FOUNDERS.map((founder) => (
             <div 
               key={founder.id}
-              className="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 space-y-5"
+              className="p-8 rounded-3xl bg-white border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 space-y-5 group cursor-pointer"
             >
               <div className="flex items-center justify-between">
                 <span 
-                  className="px-3 py-1 rounded-full text-[11px] font-black uppercase text-white font-heading"
+                  className="px-3.5 py-1 rounded-full text-xs font-black uppercase text-slate-950 font-heading border border-slate-900 shadow-sm"
                   style={{ backgroundColor: founder.color }}
                 >
                   {founder.tag}
                 </span>
-                <QTMascot variant={founder.variant} size="md" />
+                <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+                  <QTMascot variant={founder.variant} size="md" />
+                </div>
               </div>
 
               <div>
-                <h3 className="text-2xl font-black text-slate-900 font-heading">{founder.name}</h3>
-                <div className="text-xs font-bold text-slate-500 mt-0.5">{founder.role}</div>
+                <h4 className="text-2xl font-black text-slate-900 font-heading group-hover:text-[#30B2E7] transition-colors">{founder.name}</h4>
+                <div className="text-xs font-bold text-slate-500 mt-0.5 font-heading">{founder.role}</div>
               </div>
 
-              <p className="text-slate-600 text-sm font-medium leading-relaxed">
+              <p className="text-slate-700 text-sm font-semibold leading-relaxed">
                 {founder.bio}
               </p>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 font-heading">
+              <div className="pt-4 border-t-2 border-slate-900/10 flex items-center justify-between text-xs font-bold text-slate-500 font-heading">
                 <span>QShala Co-Founder</span>
-                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: founder.color }}></span>
+                <span className="w-3 h-3 rounded-full border border-slate-900 shadow-sm" style={{ backgroundColor: founder.color }}></span>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Crew Section (6 Compact Sleek Cards with Light Pastel Tints & Soft Shadows) */}
-      <div className="space-y-6">
-        <div className="text-xs font-black text-slate-400 uppercase tracking-widest font-heading">
-          Core Crew &amp; Department Leads
+      {/* Crew Section */}
+      <div className="space-y-6 w-full">
+        <div className="flex items-center gap-3 pb-2 border-b-2 border-slate-900/10">
+          <span className="px-4 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-sm">
+            Curiosity Crew
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+            Core Crew &amp; Department Leads
+          </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {CREW.map((member) => (
             <div 
               key={member.id}
-              className="p-6 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300 space-y-4 flex flex-col justify-between"
+              className="p-6 rounded-3xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 space-y-4 flex flex-col justify-between group cursor-pointer"
               style={{ backgroundColor: member.bg }}
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span 
-                    className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading"
+                    className="px-3 py-0.5 rounded-full text-[10px] font-black uppercase text-slate-950 font-heading border border-slate-900 shadow-sm"
                     style={{ backgroundColor: member.color }}
                   >
                     {member.tag}
                   </span>
-                  <QTMascot variant={member.variant} size="sm" />
+                  <div className="group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300">
+                    <QTMascot variant={member.variant} size="sm" />
+                  </div>
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-black text-slate-900 font-heading leading-tight">{member.name}</h4>
-                  <div className="text-xs font-semibold text-slate-500 mt-0.5">{member.role}</div>
+                  <h4 className="text-xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors">{member.name}</h4>
+                  <div className="text-xs font-bold text-slate-600 mt-0.5 font-heading">{member.role}</div>
                 </div>
 
-                <p className="text-slate-600 text-xs font-medium leading-relaxed">
+                <p className="text-slate-800 text-xs font-semibold leading-relaxed">
                   {member.bio}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-900/5 flex items-center justify-between text-[11px] font-bold text-slate-400 font-heading">
+              <div className="pt-3 border-t-2 border-slate-900/10 flex items-center justify-between text-[11px] font-bold text-slate-600 font-heading">
                 <span>QShala Team</span>
-                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: member.color }}></span>
+                <span className="w-2.5 h-2.5 rounded-full border border-slate-900 shadow-sm" style={{ backgroundColor: member.color }}></span>
               </div>
             </div>
           ))}
