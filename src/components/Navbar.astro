@@ -1,12 +1,21 @@
 ---
-import AnimatedNavbarLogo from './AnimatedNavbarLogo';
+// Pure static HTML Header component for maximum performance
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 md:px-8 md:py-4 transition-all">
-  <div class="max-w-7xl mx-auto bg-white/95 rounded-full px-6 py-2 flex items-center justify-between shadow-md border-2 border-black">
+  <div class="max-w-7xl mx-auto bg-white/95 rounded-full px-6 py-2.5 flex items-center justify-between shadow-md border-2 border-black">
     
-    <!-- Animated QShala Logo where QT Cat walks around the name like a GIF -->
-    <AnimatedNavbarLogo client:load />
+    <!-- Official QShala SVG Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <img
+        src="/assets/logos/QShala Logo 1.svg"
+        alt="QShala Logo"
+        width="140"
+        height="40"
+        class="h-10 w-auto object-contain hover:scale-105 transition-transform duration-300"
+        loading="eager"
+      />
+    </a>
 
     <!-- Desktop Nav Links -->
     <nav class="hidden lg:flex items-center gap-5 font-black text-slate-900 text-xs sm:text-sm font-heading">
