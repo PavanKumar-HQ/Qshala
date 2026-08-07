@@ -89,6 +89,63 @@ export async function getStaticPaths() {
           Our data across 80+ clients shows that shared play builds psychological safety and cohesion. Teams that laugh and solve riddles together build stronger cross-functional relationships, contributing directly to a 10% average decrease in workplace attrition.
         </p>
       `
+    },
+    {
+      slug: 'socratic-mindset-future-ready-kids',
+      title: 'How Socratic Questioning Builds Future-Ready Mindsets in Children',
+      category: 'Cognitive Growth',
+      readTime: '5 min read',
+      date: 'Aug 5, 2026',
+      summary: 'In an era of instant answers, the skill of the 21st century is framing the right question. Learn how socratic loops build resilient problem solvers.',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          When information is abundant, memory ceases to be a competitive advantage. The real superpower for the next generation is critical inquiry—the ability to look at complex systems, test assumptions, and ask socratic questions.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Socratic Questioning Loop</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Socratic questioning breaks down big concepts into small, self-discovered logical leaps. Instead of teaching environmental conservation as a lecture, we guide students to deduce why tree cover regulates city temperature through guided questioning.
+        </p>
+      `
+    },
+    {
+      slug: 'ai-and-curiosity-asking-right-questions',
+      title: 'AI & Curiosity: Teaching Children How to Ask the Right Questions',
+      category: 'AI & Tech',
+      readTime: '6 min read',
+      date: 'Aug 3, 2026',
+      summary: 'Large Language Models give immediate answers. Here is why prompt drafting and critical curiosity are the essential skills for young minds today.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Artificial Intelligence can summarize textbooks in seconds, but it only responds to human intent. Teaching kids how to formulate precise, creative questions is now the highest form of digital literacy.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">From Prompting to Insight</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          When students learn prompt framing with QShala, they discover that vague questions get generic answers, while deep, nuanced questions reveal fascinating insights.
+        </p>
+      `
+    },
+    {
+      slug: 'daily-news-quizzing-critical-thinking',
+      title: 'The Power of Daily News Quizzing for School Students',
+      category: 'Current Affairs',
+      readTime: '4 min read',
+      date: 'Aug 2, 2026',
+      summary: 'How reading current events through interactive quiz questions turns passive headlines into active global awareness.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Children often find traditional newspapers boring. But when global events are converted into intriguing riddles and photo puzzles, news reading becomes an addictive daily habit.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Connecting News to Daily Life</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          QShala Daily Quiz modules connect space missions, international trade, and scientific discoveries directly to topics taught in school textbooks.
+        </p>
+      `
     }
   ];
 
@@ -108,45 +165,36 @@ const { post } = Astro.props;
       
       <!-- Back Button -->
       <a href="/blog" class="inline-flex items-center gap-2 text-xs font-black uppercase font-heading text-[#30B2E7] hover:underline">
-        ← Back to Magazine
+        &larr; Back to Magazine &amp; Blog
       </a>
 
       <!-- Article Header -->
-      <div class="space-y-4">
+      <div class="space-y-4 border-b-2 border-slate-900 pb-8">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1.5 rounded-full border-2 border-black font-black text-xs uppercase font-heading" style={`background-color: ${post.color}`}>
+          <span class="px-3.5 py-1 rounded-full text-slate-950 font-black text-xs font-heading uppercase" style={`background-color: ${post.color};`}>
             {post.category}
           </span>
-          <span class="text-xs font-bold text-slate-500">{post.date} • {post.readTime}</span>
+          <span class="text-xs font-bold text-slate-500 font-heading">{post.date}</span>
+          <span class="text-xs font-bold text-slate-500 font-heading">&bull; {post.readTime}</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight font-heading">
+
+        <h1 class="text-3xl sm:text-5xl font-black font-heading text-slate-900 leading-tight">
           {post.title}
         </h1>
       </div>
 
-      <!-- Mascot Spotlight -->
-      <div class="p-6 rounded-3xl border-2 border-black bg-white flex items-center gap-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <QTMascot client:visible variant="reading" size="sm" />
-        <div>
-          <h4 class="font-black font-heading text-sm text-slate-900">QShala Editorial Crew</h4>
-          <p class="text-xs font-semibold text-slate-500">Sparking curiosity, one question at a time.</p>
-        </div>
-      </div>
+      <!-- Article Body -->
+      <div class="prose prose-lg max-w-none text-slate-800 font-sans" set:html={post.content} />
 
-      <!-- Article Content -->
-      <div class="prose max-w-none text-slate-700 font-medium" set:html={post.content}></div>
-
-      <!-- Bottom newsletter promo -->
-      <div class="pt-10 border-t border-black/10">
-        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
-          <h3 class="text-2xl font-black font-heading text-slate-900">Enjoyed this article?</h3>
-          <p class="text-slate-600 text-sm font-semibold max-w-md mx-auto">
-            Get more pedagogical tips, trivia, and weekly challenges directly in your inbox.
-          </p>
-          <a href="/blog" class="inline-block px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black font-black text-xs font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-            Subscribe to Curiosity Digest
-          </a>
+      <!-- Footer CTA Box -->
+      <div class="bg-[#FFF8E1] rounded-3xl p-8 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="space-y-1 text-center sm:text-left">
+          <h3 class="text-xl font-black font-heading text-slate-900">Enjoyed this perspective?</h3>
+          <p class="text-slate-700 text-xs font-semibold">Book a live socratic quiz session for your school or organization.</p>
         </div>
+        <a href="/book-a-quiz" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md whitespace-nowrap">
+          Book a Quiz Experience &rarr;
+        </a>
       </div>
 
     </div>

@@ -35,20 +35,20 @@ export default function LoadingScreen() {
       }
     }
 
-    // Play loader for initial load or page refresh
+    // Play loader for fast initial load
     setLoading(true);
 
-    const t1 = setTimeout(() => setScene(2), 500);  // Question mark animation
-    const t2 = setTimeout(() => setScene(3), 1200); // QT Mascot appears
-    const t3 = setTimeout(() => setScene(4), 1900); // Orbiting icons & reveal
+    const t1 = setTimeout(() => setScene(2), 100); 
+    const t2 = setTimeout(() => setScene(3), 200); 
+    const t3 = setTimeout(() => setScene(4), 300); 
     const tEnd = setTimeout(() => {
       setLoading(false);
       document.documentElement.classList.remove('loading-active');
-    }, 2600); // Fade out
+    }, 450); // Fast 450ms total animation time
 
     const promptInterval = setInterval(() => {
       setPromptIdx((prev) => (prev + 1) % CURIOSITY_PROMPTS.length);
-    }, 450);
+    }, 150);
 
     return () => {
       clearTimeout(t1);
