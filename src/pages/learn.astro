@@ -13,7 +13,8 @@ const RESOURCES_CARDS = [
     link: "/shop",
     badge: "Interactive",
     buttonText: "Play Minigames",
-    color: "#30B2E7"
+    color: "#30B2E7",
+    mascotVariant: "jumping" as const
   },
   {
     title: "How to become a Quiz Master",
@@ -23,7 +24,8 @@ const RESOURCES_CARDS = [
     link: "/blog/curious-dinner-table",
     badge: "Masterclass",
     buttonText: "Read Masterclass",
-    color: "#FDB913"
+    color: "#FDB913",
+    mascotVariant: "idea" as const
   },
   {
     title: "Inspiration. Stories of Quriosity",
@@ -33,7 +35,8 @@ const RESOURCES_CARDS = [
     link: "/case-studies",
     badge: "Stories",
     buttonText: "Read Stories",
-    color: "#75B543"
+    color: "#75B543",
+    mascotVariant: "trophy" as const
   },
   {
     title: "QUIZ NOW!",
@@ -44,7 +47,8 @@ const RESOURCES_CARDS = [
     isPlayCTA: true,
     badge: "Play Zone",
     buttonText: "QUIZ NOW!",
-    color: "#EC4899"
+    color: "#EC4899",
+    mascotVariant: "curious" as const
   }
 ];
 
@@ -57,7 +61,8 @@ const QUIZZING_101_CARDS = [
     link: "/blog/why-rote-learning-kills-curiosity",
     badge: "Curated Sources",
     buttonText: "View News Sources",
-    color: "#75B543"
+    color: "#75B543",
+    mascotVariant: "reading" as const
   },
   {
     title: "Quiz Masters of History",
@@ -67,7 +72,8 @@ const QUIZZING_101_CARDS = [
     link: "/about",
     badge: "Hall of Fame",
     buttonText: "Read Hall of Fame",
-    color: "#30B2E7"
+    color: "#30B2E7",
+    mascotVariant: "holding_money" as const
   },
   {
     title: "Tips on Quriosity",
@@ -77,7 +83,8 @@ const QUIZZING_101_CARDS = [
     link: "/blog/gamification-modern-corporate-learning",
     badge: "Habit Guide",
     buttonText: "Read Habit Guide",
-    color: "#FDB913"
+    color: "#FDB913",
+    mascotVariant: "idea" as const
   },
   {
     title: "QShots. Quriosity Front Gate",
@@ -88,7 +95,8 @@ const QUIZZING_101_CARDS = [
     isQShots: true,
     badge: "Annual Source List",
     buttonText: "Explore QShots",
-    color: "#9333EA"
+    color: "#9333EA",
+    mascotVariant: "trophy" as const
   }
 ];
 
@@ -102,7 +110,8 @@ const BLOG_CARDS = [
     author: "Ms. Anagha",
     date: "Aug 2026",
     buttonText: "Read Story",
-    color: "#FDB913"
+    color: "#FDB913",
+    mascotVariant: "reading" as const
   },
   {
     title: "Travels of a Quiz Master: Trip to Guwahati",
@@ -113,7 +122,8 @@ const BLOG_CARDS = [
     author: "Ms. Archana",
     date: "Jul 2026",
     buttonText: "Read Story",
-    color: "#30B2E7"
+    color: "#30B2E7",
+    mascotVariant: "jumping" as const
   },
   {
     title: "Ops or Oops! Chaos of running a live quiz",
@@ -124,7 +134,8 @@ const BLOG_CARDS = [
     author: "Mr. Ahil",
     date: "Jun 2026",
     buttonText: "Read Story",
-    color: "#75B543"
+    color: "#75B543",
+    mascotVariant: "idea" as const
   },
   {
     title: "Why learning needs to be fun",
@@ -135,7 +146,8 @@ const BLOG_CARDS = [
     author: "Sachin & Raghavan",
     date: "May 2026",
     buttonText: "Read Story",
-    color: "#EC4899"
+    color: "#EC4899",
+    mascotVariant: "curious" as const
   }
 ];
 ---
@@ -174,7 +186,7 @@ const BLOG_CARDS = [
       </div>
     </section>
 
-    <!-- SECTION 1: LEARN & RESOURCES (Edge-to-Edge Full Width Container) -->
+    <!-- SECTION 1: LEARN & RESOURCES -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-4">
       <div class="p-6 sm:p-10 rounded-3xl bg-[#E8F6FD] border border-sky-100/80 shadow-sm space-y-6 w-full">
         
@@ -200,10 +212,16 @@ const BLOG_CARDS = [
           </a>
         </div>
 
-        <!-- 4 Structured Cards Grid Spanning Entire Page Width -->
+        <!-- 4 Structured Cards Grid with Mascot on Every Card -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           {RESOURCES_CARDS.map((card) => (
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full relative">
+              
+              <!-- Mascot Badge on Card -->
+              <div class="absolute top-3 right-3 z-10 scale-90 origin-top-right">
+                <QTMascot client:visible variant={card.mascotVariant} size="sm" />
+              </div>
+
               <div class="space-y-3">
                 <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100">
                   <img 
@@ -220,7 +238,7 @@ const BLOG_CARDS = [
                   </span>
                 </div>
 
-                <h3 class="text-base font-black text-slate-900 font-heading leading-snug">
+                <h3 class="text-base font-black text-slate-900 font-heading leading-snug pr-8">
                   {card.title}
                 </h3>
 
@@ -246,7 +264,7 @@ const BLOG_CARDS = [
       </div>
     </section>
 
-    <!-- SECTION 2: QUIZZING 101 (Edge-to-Edge Full Width Container) -->
+    <!-- SECTION 2: QUIZZING 101 -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-4">
       <div class="p-6 sm:p-10 rounded-3xl bg-[#EDF7E5] border border-emerald-100/80 shadow-sm space-y-6 w-full">
         
@@ -269,10 +287,16 @@ const BLOG_CARDS = [
           </span>
         </div>
 
-        <!-- 4 Structured Cards Grid Spanning Entire Page Width -->
+        <!-- 4 Structured Cards Grid with Mascot on Every Card -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           {QUIZZING_101_CARDS.map((card) => (
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full relative">
+              
+              <!-- Mascot Badge on Card -->
+              <div class="absolute top-3 right-3 z-10 scale-90 origin-top-right">
+                <QTMascot client:visible variant={card.mascotVariant} size="sm" />
+              </div>
+
               <div class="space-y-3">
                 <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100">
                   <img 
@@ -289,7 +313,7 @@ const BLOG_CARDS = [
                   </span>
                 </div>
 
-                <h3 class="text-base font-black text-slate-900 font-heading leading-snug">
+                <h3 class="text-base font-black text-slate-900 font-heading leading-snug pr-8">
                   {card.title}
                 </h3>
 
@@ -315,7 +339,7 @@ const BLOG_CARDS = [
       </div>
     </section>
 
-    <!-- SECTION 3: BLOG (Edge-to-Edge Full Width Container) -->
+    <!-- SECTION 3: BLOG -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-4">
       <div class="p-6 sm:p-10 rounded-3xl bg-[#FFF8E1] border border-amber-100/80 shadow-sm space-y-6 w-full">
         
@@ -341,10 +365,16 @@ const BLOG_CARDS = [
           </a>
         </div>
 
-        <!-- 4 Structured Cards Grid Spanning Entire Page Width -->
+        <!-- 4 Structured Cards Grid with Mascot on Every Card -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           {BLOG_CARDS.map((card) => (
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 w-full relative">
+              
+              <!-- Mascot Badge on Card -->
+              <div class="absolute top-3 right-3 z-10 scale-90 origin-top-right">
+                <QTMascot client:visible variant={card.mascotVariant} size="sm" />
+              </div>
+
               <div class="space-y-3">
                 <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-100">
                   <img 
@@ -361,7 +391,7 @@ const BLOG_CARDS = [
                   </span>
                 </div>
 
-                <h3 class="text-base font-black text-slate-900 font-heading leading-snug">
+                <h3 class="text-base font-black text-slate-900 font-heading leading-snug pr-8">
                   {card.title}
                 </h3>
 
