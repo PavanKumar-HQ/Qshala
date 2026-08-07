@@ -4,6 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 
+const BRAND_PALETTE = [
+  { bg: '#30B2E7', text: '#FFFFFF' }, // Qurious Sky
+  { bg: '#FDB913', text: '#0F172A' }, // Joy of Quest
+  { bg: '#75B543', text: '#FFFFFF' }, // Always Questioning
+  { bg: '#9333EA', text: '#FFFFFF' }, // Purple
+  { bg: '#EC4899', text: '#FFFFFF' }  // Pink
+];
+
 const SERVICE_MODULES = [
   {
     id: "schools",
@@ -84,7 +92,7 @@ const SERVICE_MODULES = [
 
   <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5]">
 
-    <!-- Page Header (Strict Brand Colors) -->
+    <!-- Page Header -->
     <section class="py-12 relative">
       <div class="max-w-5xl mx-auto px-6 text-center space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
@@ -104,7 +112,7 @@ const SERVICE_MODULES = [
       </div>
     </section>
 
-    <!-- Services Modules Stack (Strict Brand Colors: Qurious Sky #30B2E7, Joy of Quest #FDB913, Always Questioning #75B543) -->
+    <!-- Services Modules Stack (Colorful Brand Highlight Pills in Every Card!) -->
     <section class="py-6 max-w-6xl mx-auto px-6 space-y-16">
       {SERVICE_MODULES.map((module, idx) => {
         const isReversed = idx % 2 !== 0;
@@ -114,7 +122,7 @@ const SERVICE_MODULES = [
             class="group p-8 sm:p-10 rounded-3xl transition-all duration-300 border-2 border-slate-900/10 hover:border-slate-900 shadow-sm hover:shadow-xl hover:-translate-y-1 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
             style={`background-color: ${module.bgTint};`}
           >
-            <!-- Image Thumbnail with Zoom effect & Mascot Micro-animation -->
+            <!-- Image Thumbnail -->
             <div class={`lg:col-span-5 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
               <div class="relative overflow-visible">
                 <div class="overflow-hidden rounded-2xl border-2 border-slate-900 aspect-[4/3] bg-white shadow-sm">
@@ -126,14 +134,13 @@ const SERVICE_MODULES = [
                   />
                 </div>
 
-                <!-- Mascot Badge Floating Over Image -->
                 <div class="absolute -top-4 -right-4 scale-95 bg-white p-2 rounded-2xl border-2 border-slate-900 shadow-sm group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
                   <QTMascot client:visible variant={module.mascotVariant} size="sm" />
                 </div>
               </div>
             </div>
 
-            <!-- Content Area -->
+            <!-- Content Column -->
             <div class={`lg:col-span-7 space-y-6 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
               <div class="space-y-3">
                 <div class="flex flex-wrap items-center justify-between gap-2">
@@ -158,20 +165,22 @@ const SERVICE_MODULES = [
                 </p>
               </div>
 
-              <!-- Clean Highlights Pills (No Raw Emojis, Pure Brand Styling) -->
-              <div class="flex flex-wrap gap-2">
-                {module.highlights.map((item) => (
-                  <span class={`px-3 py-1.5 rounded-xl text-xs font-black border transition-all ${
-                    module.isNameDrop 
-                      ? 'bg-white text-slate-900 border-slate-900 shadow-sm group-hover:bg-[#30B2E7] group-hover:text-white' 
-                      : 'bg-white/90 text-slate-900 border-slate-900/20 shadow-sm group-hover:border-slate-900'
-                  }`}>
-                    {item}
-                  </span>
-                ))}
+              <!-- Colorful Pill Tags for Every Card! -->
+              <div class="flex flex-wrap gap-2.5">
+                {module.highlights.map((item, itemIdx) => {
+                  const palette = BRAND_PALETTE[itemIdx % BRAND_PALETTE.length];
+                  return (
+                    <span 
+                      class="px-3.5 py-1.5 rounded-full text-xs font-black border border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:scale-105 transition-transform font-heading cursor-default"
+                      style={`background-color: ${palette.bg}; color: ${palette.text};`}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
               </div>
 
-              <!-- Action CTA Row (Hover Elevate & Scale) -->
+              <!-- Action CTA Row -->
               <div class="pt-4 flex items-center justify-between gap-4 border-t border-slate-900/10">
                 <a
                   href={`/book-a-quiz?type=${module.typeParam}`}
