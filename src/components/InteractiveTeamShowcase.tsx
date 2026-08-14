@@ -7,6 +7,7 @@ interface TeamMember {
   role: string;
   category: string;
   bio: string;
+  image: string;
   variant: 'sherlock' | 'quizzing' | 'reading' | 'idea' | 'curious' | 'professional' | 'holding_money' | 'trophy';
   color: string;
   bg: string;
@@ -19,7 +20,8 @@ const FOUNDERS: TeamMember[] = [
     name: "Sachin Ravi",
     role: "Co-Founder & Chief Storyteller",
     category: "Leadership",
-    bio: "Celebrated quizmaster, TEDx speaker, and co-creator of QShala. Dedicated to replacing rote learning with socratic wonder across Indian schools.",
+    bio: "Replacing rote learning with socratic wonder.",
+    image: "https://ui-avatars.com/api/?name=Sachin+Ravi&background=FDB913&color=fff&size=200",
     variant: "sherlock",
     color: "#FDB913",
     bg: "#FFFDF5",
@@ -27,10 +29,11 @@ const FOUNDERS: TeamMember[] = [
   },
   {
     id: "raghavan",
-    name: "Raghavan A.",
+    name: "Raghav Chakravarthy",
     role: "Co-Founder & Chief Executive",
     category: "Leadership",
-    bio: "National level quizzer and education strategist building India's largest curiosity ecosystem for 250+ premier educational institutions.",
+    bio: "Building India's largest curiosity ecosystem.",
+    image: "https://ui-avatars.com/api/?name=Raghavan+A&background=30B2E7&color=fff&size=200",
     variant: "quizzing",
     color: "#30B2E7",
     bg: "#FFFDF5",
@@ -42,9 +45,10 @@ const CREW: TeamMember[] = [
   {
     id: "preeti",
     name: "Preeti K.",
-    role: "Head of Curriculum & Socratic Learning",
+    role: "Head of Curriculum",
     category: "Curriculum",
-    bio: "Former educator with 12+ years designing socratic questioning frameworks, current affairs storytelling, and 21st-century skill modules.",
+    bio: "Designing socratic questioning frameworks.",
+    image: "https://ui-avatars.com/api/?name=Preeti+K&background=75B543&color=fff&size=200",
     variant: "reading",
     color: "#75B543",
     bg: "#EDF7E5",
@@ -53,9 +57,10 @@ const CREW: TeamMember[] = [
   {
     id: "rohan",
     name: "Rohan M.",
-    role: "Chief Quizmaster & Content Lead",
+    role: "Chief Quizmaster",
     category: "Content",
-    bio: "Hosted 500+ live trivia tournaments and written thousands of brain-teasing questions for K-12 students & corporate leadership offsites.",
+    bio: "Hosting live trivia tournaments.",
+    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=200",
     variant: "idea",
     color: "#9333EA",
     bg: "#F3E8FF",
@@ -66,7 +71,8 @@ const CREW: TeamMember[] = [
     name: "Divya S.",
     role: "Lead, School Partnerships",
     category: "Partnerships",
-    bio: "Empowering 250+ principal partners and 10,000+ teachers to integrate weekly curiosity clubs seamlessly into school timetables.",
+    bio: "Empowering 250+ principal partners.",
+    image: "https://ui-avatars.com/api/?name=Divya+S&background=EC4899&color=fff&size=200",
     variant: "curious",
     color: "#EC4899",
     bg: "#FCE7F3",
@@ -75,9 +81,10 @@ const CREW: TeamMember[] = [
   {
     id: "karthik",
     name: "Karthik R.",
-    role: "Head of Gamified Tech & Platform",
+    role: "Head of Gamified Tech",
     category: "Technology",
-    bio: "Architecting interactive buzzers, daily quiz engines, and real-time leaderboards that delight thousands of daily learners.",
+    bio: "Architecting interactive daily quiz engines.",
+    image: "https://ui-avatars.com/api/?name=Karthik+R&background=30B2E7&color=fff&size=200",
     variant: "professional",
     color: "#30B2E7",
     bg: "#E8F6FD",
@@ -86,9 +93,10 @@ const CREW: TeamMember[] = [
   {
     id: "ananya",
     name: "Ananya M.",
-    role: "Senior Instructional Designer & QT Artist",
+    role: "Senior Instructional Designer",
     category: "Design",
-    bio: "Bringing QT mascot to life across activity decks, storybooks, and visual learning journals.",
+    bio: "Bringing QT mascot to life.",
+    image: "https://ui-avatars.com/api/?name=Ananya+M&background=FDB913&color=fff&size=200",
     variant: "holding_money",
     color: "#FDB913",
     bg: "#FFF8E1",
@@ -99,7 +107,8 @@ const CREW: TeamMember[] = [
     name: "Vikram P.",
     role: "Corporate Engagement Lead",
     category: "Corporate",
-    bio: "Designing high-octane team offsites, brand trivia leagues, and hybrid culture circles for Fortune 500 companies.",
+    bio: "Designing high-octane team offsites.",
+    image: "https://ui-avatars.com/api/?name=Vikram+P&background=75B543&color=fff&size=200",
     variant: "trophy",
     color: "#75B543",
     bg: "#EDF7E5",
@@ -136,43 +145,33 @@ export default function InteractiveTeamShowcase() {
           {FOUNDERS.map((founder) => (
             <div 
               key={founder.id}
-              className="p-8 rounded-3xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-5 group cursor-pointer"
+              className="p-6 rounded-3xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-3 group cursor-pointer flex flex-col"
             >
-              <div className="flex items-center justify-between">
-                <span 
-                  className="px-3.5 py-1 rounded-full text-xs font-black uppercase text-white font-heading shadow-sm"
-                  style={{ backgroundColor: founder.color }}
-                >
-                  {founder.tag}
-                </span>
+              <div className="flex items-center justify-end">
                 <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
                   <QTMascot variant={founder.variant} size="md" />
                 </div>
               </div>
 
-              <div>
-                <h4 className="text-2xl font-black text-slate-900 font-heading group-hover:text-[#30B2E7] transition-colors">{founder.name}</h4>
-                <div className="text-xs font-bold text-slate-500 mt-0.5 font-heading">{founder.role}</div>
+              <div className="flex flex-col items-center justify-center py-2">
+                <img src={founder.image} alt={founder.name} className="w-32 h-32 rounded-full object-cover shadow-md mb-2 border-4 border-white" />
+                <h4 className="text-2xl font-black text-slate-900 font-heading group-hover:text-[#30B2E7] transition-colors text-center">{founder.name}</h4>
+                <div className="text-xs font-bold text-slate-500 mt-1 font-heading text-center">{founder.role}</div>
               </div>
 
-              <p className="text-slate-700 text-sm font-medium leading-relaxed">
+              <p className="text-slate-700 text-sm font-medium leading-relaxed text-center flex-grow">
                 {founder.bio}
               </p>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 font-heading">
-                <span>QShala Co-Founder</span>
-                <span className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: founder.color }}></span>
-              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Crew Section (No Boxes, Clean Borderless Pastel Cards) */}
+      {/* Crew Section */}
       <div className="space-y-6 w-full">
         <div className="pb-2 border-b border-slate-200">
           <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
-            Core Crew &amp; Department Leads
+            Quriosity Catalysts
           </h3>
         </div>
 
@@ -180,35 +179,25 @@ export default function InteractiveTeamShowcase() {
           {CREW.map((member) => (
             <div 
               key={member.id}
-              className="p-7 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-4 flex flex-col justify-between group cursor-pointer"
+              className="p-5 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-2 flex flex-col justify-between group cursor-pointer"
               style={{ backgroundColor: member.bg }}
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span 
-                    className="px-3 py-1 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-sm"
-                    style={{ backgroundColor: member.color }}
-                  >
-                    {member.tag}
-                  </span>
+              <div className="space-y-2 flex-grow flex flex-col">
+                <div className="flex items-center justify-end">
                   <div className="group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300">
                     <QTMascot variant={member.variant} size="sm" />
                   </div>
                 </div>
 
-                <div>
-                  <h4 className="text-xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors">{member.name}</h4>
-                  <div className="text-xs font-bold text-slate-600 mt-0.5 font-heading">{member.role}</div>
+                <div className="flex flex-col items-center justify-center pt-1 pb-1 flex-grow">
+                  <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full object-cover shadow-sm mb-2 border-2 border-white" />
+                  <h4 className="text-xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors text-center">{member.name}</h4>
+                  <div className="text-xs font-bold text-slate-600 mt-1 font-heading text-center">{member.role}</div>
                 </div>
 
-                <p className="text-slate-700 text-xs font-medium leading-relaxed">
+                <p className="text-slate-700 text-xs font-medium leading-relaxed text-center">
                   {member.bio}
                 </p>
-              </div>
-
-              <div className="pt-3 border-t border-slate-900/5 flex items-center justify-between text-[11px] font-bold text-slate-500 font-heading">
-                <span>QShala Team</span>
-                <span className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: member.color }}></span>
               </div>
             </div>
           ))}
@@ -218,3 +207,4 @@ export default function InteractiveTeamShowcase() {
     </div>
   );
 }
+

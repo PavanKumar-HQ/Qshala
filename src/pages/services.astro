@@ -16,10 +16,10 @@ const SERVICE_MODULES = [
   {
     id: "schools",
     typeParam: "school",
-    title: "Schools",
-    badge: "Academic Year & Custom Quizzes",
-    description: "Empowering K-12 educational institutions with year-round weekly curiosity clubs, current affairs storytelling, and socratic learning integrated directly into school timetables. Beyond our full-year academic programs, we host high-energy inter-school quiz championships, science bees, and sports trivia leagues throughout the academic calendar.",
-    highlights: ["Year-Round Curiosity Clubs", "Socratic Science & Civics", "Inter-School Quiz Tournaments", "Current Affairs Storytelling"],
+    title: "Academic Year and Custom Quizzes",
+    badge: "Schools",
+    description: "Empowering K-12 educational institutions with year-round weekly quriosity clubs, current affairs storytelling, and socratic learning integrated directly into school timetables. Beyond our full-year academic programs, we host high-energy inter-school quiz championships, science bees, and sports trivia leagues throughout the academic calendar.",
+    highlights: ["Year-Round Quriosity Clubs", "Socratic Science & Civics", "Inter-School Quiz Tournaments", "Current Affairs Storytelling"],
     mascotVariant: "reading" as const,
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     imageAlt: "School students learning curiously in classroom",
@@ -30,9 +30,9 @@ const SERVICE_MODULES = [
   {
     id: "colleges",
     typeParam: "college",
-    title: "Colleges",
-    badge: "Multi-Disciplinary Campus Quizzes",
-    description: "Bringing high-octane quiz championships to top college campuses across India. We double down on application-based curiosity across diverse academic domains—from Law moot court trivia, Finance & Business case leagues, Literature & Arts fests, to STEM & Public Policy hackathons.",
+    title: "Multi-Disciplinary Campus Quizzes",
+    badge: "Colleges",
+    description: "Bringing high-octane quiz championships to top college campuses across India. We double down on application-based quriosity across diverse academic domains—from Law moot court trivia, Finance & Business case leagues, Literature & Arts fests, to STEM & Public Policy hackathons.",
     highlights: ["Law & Legal Trivia", "Finance & Economics Leagues", "Business & Strategy Fests", "Literature & Cultural Quizzes", "STEM & Policy Hackathons"],
     mascotVariant: "idea" as const,
     imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
@@ -44,8 +44,8 @@ const SERVICE_MODULES = [
   {
     id: "companies",
     typeParam: "company",
-    title: "Companies",
-    badge: "Fortune 500 Corporate Engagement",
+    title: "Corporate Engagement",
+    badge: "Companies",
     description: "High-impact employee engagement and hybrid team bonding for global enterprises. We gamify brand history, company values, product onboarding, and leadership offsites for industry leaders including Flipkart, Wipro, TCS, Infosys, Google, HDFC Bank, Amazon, Microsoft, Byju's, Netflix, and Apple.",
     highlights: ["Flipkart", "Wipro", "TCS", "Infosys", "Google", "HDFC Bank", "Amazon", "Microsoft", "Netflix", "Byju's"],
     isNameDrop: true,
@@ -59,9 +59,9 @@ const SERVICE_MODULES = [
   {
     id: "communities",
     typeParam: "community",
-    title: "Communities",
-    badge: "Unconventional Venue Quizzes",
-    description: "Curiosity doesn't just belong in classrooms or offices! We bring customized interactive quizzes to every community setting under the sun—from intimate wedding icebreakers, landmark birthday parties, and neighborhood housing societies, to large-scale public policy conventions and national finance summits.",
+    title: "Community Engagement",
+    badge: "Communities",
+    description: "Quriosity doesn't just belong in classrooms or offices! We bring customized interactive quizzes to every community setting under the sun—from intimate wedding icebreakers, landmark birthday parties, and neighborhood housing societies, to large-scale public policy conventions and national finance summits.",
     highlights: ["Weddings", "Birthday Parties", "Public Policy Conventions", "Finance Summits", "Housing Societies", "Alumni Reunions"],
     mascotVariant: "curious" as const,
     imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
@@ -73,8 +73,8 @@ const SERVICE_MODULES = [
   {
     id: "custom",
     typeParam: "custom",
-    title: "HAVE SOMETHING ELSE IN MIND?",
-    badge: "Custom Curiosity Experiences",
+    title: "Custom Experiences",
+    badge: "Custom",
     description: "TELL US! QShala is founded on a pure, unbridled love for Quriosity. Whether it's a niche museum quest, a custom podcast quiz, a global virtual league, or a brand-new concept—we're happy to bring our love for learning anywhere!",
     highlights: ["Custom Concept Development", "Niche Topic Quizzes", "Virtual Global Leagues", "Museum Quests"],
     mascotVariant: "trophy" as const,
@@ -98,7 +98,7 @@ const SERVICE_MODULES = [
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
           <span class="w-2.5 h-2.5 rounded-full bg-[#FDB913] animate-ping"></span>
           <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
-            QShala Curiosity Services
+            QShala Quriosity Services
           </span>
         </div>
 
@@ -107,7 +107,7 @@ const SERVICE_MODULES = [
         </h1>
 
         <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-4xl mx-auto leading-relaxed">
-          Tailored curiosity experiences for schools, colleges, companies, communities, and custom celebrations. Click <span class="text-slate-900 font-black">&ldquo;BOOK NOW!&rdquo;</span> on any segment to connect directly with that dedicated sales team.
+          Tailored quriosity experiences for schools, colleges, companies, communities, and custom celebrations. Click <span class="text-slate-900 font-black">&ldquo;BOOK NOW!&rdquo;</span> on any segment to connect directly with that dedicated sales team.
         </p>
       </div>
     </section>
@@ -150,10 +150,6 @@ const SERVICE_MODULES = [
                   >
                     {module.badge}
                   </span>
-
-                  <span class="text-[11px] font-black uppercase text-slate-700 font-heading bg-white/90 px-3 py-1 rounded-full border border-slate-900/20">
-                    Routed to: {module.salesTeam}
-                  </span>
                 </div>
 
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
@@ -165,21 +161,6 @@ const SERVICE_MODULES = [
                 </p>
               </div>
 
-              <!-- Colorful Pill Tags -->
-              <div class="flex flex-wrap gap-2.5">
-                {module.highlights.map((item, itemIdx) => {
-                  const palette = BRAND_PALETTE[itemIdx % BRAND_PALETTE.length];
-                  return (
-                    <span 
-                      class="px-3.5 py-1.5 rounded-full text-xs font-black border border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:scale-105 transition-transform font-heading cursor-default"
-                      style={`background-color: ${palette.bg}; color: ${palette.text};`}
-                    >
-                      {item}
-                    </span>
-                  );
-                })}
-              </div>
-
               <!-- Action CTA Row -->
               <div class="pt-4 flex items-center justify-between gap-4 border-t border-slate-900/10">
                 <a
@@ -189,10 +170,6 @@ const SERVICE_MODULES = [
                   <span>BOOK NOW!</span>
                   <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
                 </a>
-
-                <span class="text-xs font-bold text-slate-600 hidden sm:inline font-heading">
-                  Routes to: {module.salesTeam}
-                </span>
               </div>
 
             </div>

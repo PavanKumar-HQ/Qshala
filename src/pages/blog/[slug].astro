@@ -2,12 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import QTMascot from '../../components/QTMascot';
 
 export async function getStaticPaths() {
   const posts = [
     {
-      slug: 'why-rote-learning-kills-curiosity',
-      title: 'Why Rote Learning Kills Curiosity (And How to Fix It)',
+      slug: 'why-rote-learning-kills-quriosity',
+      title: 'Why Rote Learning Kills Quriosity (And How to Fix It)',
       category: 'Pedagogy',
       readTime: '5 min read',
       date: 'Aug 1, 2026',
@@ -16,18 +17,18 @@ export async function getStaticPaths() {
       bg: 'bg-[#E8F6FD]',
       content: `
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
-          For decades, classrooms across the world have operated on a simple transaction: the teacher dictates the answer, and the student memorizes it for the exam. While this rote-learning methodology is efficient for scoring marks, it actively kills a child's natural superpower—curiosity.
+          For decades, classrooms across the world have operated on a simple transaction: the teacher dictates the answer, and the student memorizes it for the exam. While this rote-learning methodology is efficient for scoring marks, it actively kills a child's natural superpower—quriosity.
         </p>
         <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Danger of the "Correct Answer"</h2>
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          When we tell a child that the only thing that matters is getting the exact correct answer written down on a sheet of paper, we teach them to stop exploring the margins. Curiosity isn't about knowing the answer; it's about the journey of asking the question.
+          When we tell a child that the only thing that matters is getting the exact correct answer written down on a sheet of paper, we teach them to stop exploring the margins. Quriosity isn't about knowing the answer; it's about the journey of asking the question.
         </p>
         <blockquote class="border-l-4 border-[#30B2E7] pl-4 italic text-slate-800 font-semibold my-8 py-2 bg-slate-50 rounded-r-2xl pr-4">
           "If you teach a child facts, you prepare them for a trivia game. If you teach them how to ask questions, you prepare them for the real world."
         </blockquote>
         <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Entering the Socratic Circle</h2>
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          At QShala, our Weekly Curiosity Clubs utilize socratic questioning. Instead of telling children that an octopus has three hearts, we ask: <em>"Why would a creature that swims in the deep ocean need three separate hearts?"</em> This forces the mind to work through systemic biology, pressure, and energy distribution.
+          At QShala, our Weekly Quriosity Clubs utilize socratic questioning. Instead of telling children that an octopus has three hearts, we ask: <em>"Why would a creature that swims in the deep ocean need three separate hearts?"</em> This forces the mind to work through systemic biology, pressure, and energy distribution.
         </p>
         <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Three Ways Parents Can Spark Socratic Dialogue:</h3>
         <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
@@ -48,7 +49,7 @@ export async function getStaticPaths() {
       bg: 'bg-[#EDF7E5]',
       content: `
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
-          The dinner table is the most underutilized educational space in modern households. With screens resting beside plates, families eat in parallel silence. By introducing gamified curiosity, you can turn dinners into hubs of discovery.
+          The dinner table is the most underutilized educational space in modern households. With screens resting beside plates, families eat in parallel silence. By introducing gamified quriosity, you can turn dinners into hubs of discovery.
         </p>
         <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Swapping "How was your day?" for "What did you ask?"</h2>
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
@@ -56,7 +57,7 @@ export async function getStaticPaths() {
         </p>
         <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Dinner Table Quiz Game</h2>
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          You don't need a buzzer system to play. Use QShala's simple "Curiosity Deck" rule: pick one card, read the mystery, and let everyone guess. The goal isn't to get it right; it's to come up with the most creative theory.
+          You don't need a buzzer system to play. Use QShala's simple "Quriosity Deck" rule: pick one card, read the mystery, and let everyone guess. The goal isn't to get it right; it's to come up with the most creative theory.
         </p>
         <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Quick Prompts to Try Tonight:</h3>
         <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
@@ -109,12 +110,12 @@ export async function getStaticPaths() {
       `
     },
     {
-      slug: 'ai-and-curiosity-asking-right-questions',
-      title: 'AI & Curiosity: Teaching Children How to Ask the Right Questions',
+      slug: 'ai-and-quriosity-asking-right-questions',
+      title: 'AI & Quriosity: Teaching Children How to Ask the Right Questions',
       category: 'AI & Tech',
       readTime: '6 min read',
       date: 'Aug 3, 2026',
-      summary: 'Large Language Models give immediate answers. Here is why prompt drafting and critical curiosity are the essential skills for young minds today.',
+      summary: 'Large Language Models give immediate answers. Here is why prompt drafting and critical quriosity are the essential skills for young minds today.',
       color: '#75B543',
       bg: 'bg-[#EDF7E5]',
       content: `
@@ -160,40 +161,64 @@ const { post } = Astro.props;
 <BaseLayout title={`${post.title} | QShala Magazine`}>
   <Navbar />
   <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
-    <div class="max-w-4xl mx-auto space-y-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
-      <!-- Back Button -->
-      <a href="/blog" class="inline-flex items-center gap-2 text-xs font-black uppercase font-heading text-[#30B2E7] hover:underline">
-        &larr; Back to Magazine &amp; Blog
-      </a>
-
-      <!-- Article Header -->
-      <div class="space-y-4 border-b-2 border-slate-900 pb-8">
-        <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1 rounded-full text-slate-950 font-black text-xs font-heading uppercase" style={`background-color: ${post.color};`}>
-            {post.category}
-          </span>
-          <span class="text-xs font-bold text-slate-500 font-heading">{post.date}</span>
-          <span class="text-xs font-bold text-slate-500 font-heading">&bull; {post.readTime}</span>
+      <!-- Left Content Column -->
+      <div class="lg:col-span-8 space-y-10">
+        <!-- Back Button -->
+        <div>
+          <a href="/blog" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-900 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all font-black uppercase text-xs font-heading">
+            &larr; Back to Magazine &amp; Blog
+          </a>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-black font-heading text-slate-900 leading-tight">
-          {post.title}
-        </h1>
+        <!-- Article Header -->
+        <div class="space-y-4 border-b-2 border-slate-900 pb-8">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="px-3.5 py-1 rounded-full text-slate-950 font-black text-[10px] font-heading uppercase" style={`background-color: ${post.color};`}>
+              {post.category}
+            </span>
+            <span class="text-xs font-bold text-slate-500 font-heading">{post.date}</span>
+            <span class="text-xs font-bold text-slate-500 font-heading">&bull; {post.readTime}</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black font-heading text-slate-900 leading-tight">
+            {post.title}
+          </h1>
+        </div>
+
+        <!-- Article Body -->
+        <div class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" set:html={post.content} />
+
+        <!-- Footer CTA Box -->
+        <div class="bg-[#FFF8E1] rounded-3xl p-8 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col sm:flex-row items-center justify-between gap-6 mt-12">
+          <div class="space-y-1 text-center sm:text-left">
+            <h3 class="text-xl font-black font-heading text-slate-900">Enjoyed this perspective?</h3>
+            <p class="text-slate-700 text-xs font-semibold">Book a live socratic quiz session for your school or organization.</p>
+          </div>
+          <a href="/book-a-quiz" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all whitespace-nowrap">
+            Book a Quiz &rarr;
+          </a>
+        </div>
       </div>
 
-      <!-- Article Body -->
-      <div class="prose prose-lg max-w-none text-slate-800 font-sans" set:html={post.content} />
-
-      <!-- Footer CTA Box -->
-      <div class="bg-[#FFF8E1] rounded-3xl p-8 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div class="space-y-1 text-center sm:text-left">
-          <h3 class="text-xl font-black font-heading text-slate-900">Enjoyed this perspective?</h3>
-          <p class="text-slate-700 text-xs font-semibold">Book a live socratic quiz session for your school or organization.</p>
+      <!-- Right Sidebar (Mascot & Widget) -->
+      <div class="hidden lg:flex lg:col-span-4 flex-col items-center justify-start pt-4 sticky top-32 space-y-10">
+        <div class="transform hover:scale-105 transition-transform duration-300">
+          <QTMascot client:visible variant="reading" size="xl" badgeText="Quiet Time!" />
         </div>
-        <a href="/book-a-quiz" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md whitespace-nowrap">
-          Book a Quiz Experience &rarr;
-        </a>
+        
+        <!-- Mini Newsletter Widget -->
+        <div class="bg-white p-8 rounded-3xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center w-full max-w-sm">
+          <h4 class="font-black text-slate-900 font-heading text-lg mb-2">Quriosity Newsletter</h4>
+          <p class="text-xs text-slate-600 font-semibold mb-6">Get 1 puzzle and fun facts every Sunday.</p>
+          <form action="mailto:qshala@walnuts.co.in" method="post" class="space-y-3">
+            <input type="email" placeholder="Your Email Address" required class="w-full px-4 py-3 rounded-full border-2 border-slate-200 bg-[#FFFDF5] focus:border-black focus:outline-none text-sm font-semibold transition-colors" />
+            <button type="submit" class="w-full py-3 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#68A53B] transition-colors">
+              Subscribe
+            </button>
+          </form>
+        </div>
       </div>
 
     </div>
