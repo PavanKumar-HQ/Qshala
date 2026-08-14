@@ -98,7 +98,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
             transition={{ duration: 0.3 }}
             className="mt-4 rounded-2xl bg-[#FDB913] border-2 border-black p-3 text-black text-xs font-bold leading-relaxed"
           >
-            <div className="font-black uppercase tracking-wider text-[10px] mb-1">QT's Curiosity Flash:</div>
+            <div className="font-black uppercase tracking-wider text-[10px] mb-1">QT's Quriosity Flash:</div>
             {quiz.explanation}
           </motion.div>
         )}
@@ -107,7 +107,7 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
       {/* Footer: status + mascot image with hover animation */}
       <div className="mt-4 pt-3 flex items-center justify-between border-t border-slate-100">
         <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider">
-          {selected === null ? 'Click an option to test your curiosity!' : 'Nice one!'}
+          {selected === null ? 'Click an option to test your quriosity!' : 'Nice one!'}
         </span>
         <img
           src={mascotSrc}

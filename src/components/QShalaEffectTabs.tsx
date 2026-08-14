@@ -68,7 +68,7 @@ const TABS: TabData[] = [
     badgeBg: 'bg-[#75B543]',
     badgeText: 'text-white',
     points: [
-      { title: 'Relatable Curriculum', desc: 'Discover Curriculum Programs that connect textbook topics to real-world curiosity.' },
+      { title: 'Relatable Curriculum', desc: 'Discover Curriculum Programs that connect textbook topics to real-world quriosity.' },
       { title: '21st-Century Skill Building', desc: 'Instilling critical thinking, media literacy, logic, and public speaking.' },
       { title: 'Inter-School Quizzes', desc: 'State and national level quiz championships that celebrate learning.' }
     ],
@@ -85,42 +85,53 @@ export default function QShalaEffectTabs() {
   const current = TABS.find((t) => t.id === activeTab)!;
 
   return (
-    <div className="w-full space-y-8">
-      {/* Navigation Buttons */}
-      <div className="flex flex-wrap justify-center gap-3">
-        {TABS.map((tab) => {
-          const isActive = tab.id === activeTab;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-full font-black text-sm transition-all border-2 border-black font-heading ${
-                isActive
-                  ? `${tab.badgeBg} ${tab.badgeText} shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-1`
-                  : 'bg-white text-slate-800 hover:bg-slate-50 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-              }`}
-            >
-              {tab.title}
-            </button>
-          );
-        })}
-      </div>
+    <div className={`w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] py-16 md:py-24 px-6 transition-colors duration-500 ${current.bgColor}`}>
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading">
+            Measured Impact
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
+            Explore the QShala Effect.
+          </h2>
+        </div>
 
-      {/* Tab Panel Card */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.3 }}
-          className={`rounded-3xl p-8 md:p-12 border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${current.bgColor} relative overflow-hidden`}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        {/* Navigation Buttons */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {TABS.map((tab) => {
+            const isActive = tab.id === activeTab;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-3 rounded-full font-black text-sm transition-all font-heading ${
+                  isActive
+                    ? `${tab.badgeBg} ${tab.badgeText} shadow-md -translate-y-1`
+                    : 'bg-white text-slate-600 hover:bg-slate-50 shadow-sm border border-slate-100'
+                }`}
+              >
+                {tab.title}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Tab Panel Card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <span className={`px-3.5 py-1.5 rounded-full font-black text-xs uppercase border border-black font-heading ${current.badgeBg} ${current.badgeText}`}>
+                <span className={`px-3.5 py-1.5 rounded-full font-black text-xs uppercase font-heading ${current.badgeBg} ${current.badgeText}`}>
                   {current.subtitle}
                 </span>
                 <h3 className="text-3xl md:text-4xl font-black text-slate-900 mt-3 font-heading leading-tight">
@@ -130,9 +141,9 @@ export default function QShalaEffectTabs() {
 
               <div className="space-y-4">
                 {current.points.map((pt, idx) => (
-                  <div key={idx} className="flex gap-4 items-start bg-white/80 p-4 rounded-2xl border border-black/30">
+                  <div key={idx} className="flex gap-4 items-start bg-white/60 p-4 rounded-2xl shadow-sm">
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center font-black text-white text-sm shrink-0 border border-black font-heading"
+                      className="w-8 h-8 rounded-full flex items-center justify-center font-black text-white text-sm shrink-0 font-heading"
                       style={{ backgroundColor: current.accentColor }}
                     >
                       {idx + 1}
@@ -148,7 +159,7 @@ export default function QShalaEffectTabs() {
               <div className="pt-2">
                 <a
                   href={current.ctaLink}
-                  className="inline-block px-8 py-3.5 rounded-full bg-black text-white font-black text-sm border-2 border-white hover:bg-slate-800 transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading"
+                  className="inline-block px-8 py-3.5 rounded-full bg-black text-white font-black text-sm hover:bg-slate-800 transition-all shadow-md hover:shadow-lg font-heading"
                 >
                   {current.ctaText}
                 </a>
@@ -156,8 +167,8 @@ export default function QShalaEffectTabs() {
             </div>
 
             {/* Right Metric Spotlight Card */}
-            <div className="bg-white rounded-2xl p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between text-center space-y-4 h-full">
-              <div className="p-3 bg-slate-50 rounded-xl border border-black/10">
+            <div className="bg-white rounded-3xl p-8 shadow-sm flex flex-col justify-between text-center space-y-4 h-full">
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
                 <span className="text-xs font-black uppercase text-slate-500 font-heading">Measured Impact</span>
               </div>
               <div className="py-6">
@@ -172,9 +183,10 @@ export default function QShalaEffectTabs() {
                 Data verified across 100+ partner implementations
               </div>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

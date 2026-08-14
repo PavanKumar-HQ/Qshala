@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
-import { ClientRouter } from 'astro:transitions';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = "QShala | Questions • Quriosity • Quests — India's Curiosity Company",
-  description = "Replacing Rote Learning with Curiosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India."
+  title = "QShala | Questions • Quriosity • Quests — India's Quriosity Company",
+  description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India."
 } = Astro.props;
 
 const siteUrl = 'https://qshala.vercel.app';
@@ -35,7 +35,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Link Preview -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="QShala — India's Curiosity Company" />
+    <meta property="og:site_name" content="QShala — India's Quriosity Company" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
@@ -43,7 +43,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
-    <meta property="og:image:alt" content="QShala — India's Curiosity Company" />
+    <meta property="og:image:alt" content="QShala — India's Quriosity Company" />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -62,7 +62,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     </noscript>
 
     <!-- JSON-LD Structured Data for Rich Search Results -->
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "QShala - Curiosita Educational Services",
@@ -84,27 +84,27 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <!-- Self-hosted font preloads for performance -->
     <link rel="preload" href="/fonts/Trustha - Causten Round Black.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/Trustha - Causten Round Regular.otf" as="font" type="font/otf" crossorigin />
-    <ClientRouter />
+    <ViewTransitions />
 
-    <!-- Inline script to prevent FOUC & stuck loader on mobile -->
-    <script is:inline data-astro-rerun>
+    <!-- Inline script to handle loader logic correctly with View Transitions -->
+    <script is:inline>
       (function() {
         try {
-          // Astro ViewTransitions preserves the window object between pages.
-          if (window.hasLoaderShown) {
-            document.documentElement.classList.add('skip-loader');
-          } else {
+          // On initial full page load (or hard refresh)
+          if (!window.hasLoaderShown) {
             document.documentElement.classList.add('loading-active');
             window.hasLoaderShown = true;
+          } else {
+            document.documentElement.classList.add('skip-loader');
           }
 
-          // Universal Mobile Fail-Safe: Forcefully dismiss loader in 350ms max
-          setTimeout(function() {
-            var loader = document.getElementById('loader-root');
-            if (loader) loader.style.display = 'none';
-            document.documentElement.classList.remove('loading-active');
-            document.body.style.overflow = '';
-          }, 350);
+          // Before Astro swaps the new document in, ensure the skip-loader class is carried over
+          document.addEventListener('astro:before-swap', function(ev) {
+            if (window.hasLoaderShown) {
+              ev.newDocument.documentElement.classList.add('skip-loader');
+              ev.newDocument.documentElement.classList.remove('loading-active');
+            }
+          });
         } catch(e) {}
       })();
     </script>
@@ -134,7 +134,7 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
 
-    <!-- 5-scene Curiosity Loader -->
+    <!-- 5-scene Quriosity Loader -->
     <div id="loader-root">
       <LoadingScreen client:load />
     </div>

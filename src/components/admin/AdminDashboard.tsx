@@ -6,12 +6,17 @@ import {
   HelpCircle, 
   ShoppingBag, 
   FileText, 
+  CheckCircle2, 
+  Clock, 
   Search, 
   Plus, 
   Filter, 
   TrendingUp, 
+  Sparkles,
   Lock,
   LogOut,
+  Mail,
+  Phone,
   Calendar
 } from 'lucide-react';
 
@@ -172,7 +177,7 @@ export default function AdminDashboard() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-slate-900 font-heading">QShala Mission Control</h1>
-            <p className="text-xs font-semibold text-slate-500">Managing curiosity leads, quiz questions, and school partners.</p>
+            <p className="text-xs font-semibold text-slate-500">Managing quriosity leads, quiz questions, and school partners.</p>
           </div>
         </div>
 
@@ -197,7 +202,7 @@ export default function AdminDashboard() {
           { id: 'overview', label: 'Overview', icon: TrendingUp },
           { id: 'bookings', label: 'Quiz Bookings', icon: Calendar, badge: bookings.filter(b => b.status === 'New').length },
           { id: 'quizzes', label: 'Quiz Bank', icon: HelpCircle },
-          { id: 'store', label: 'Curiosity Store', icon: ShoppingBag },
+          { id: 'store', label: 'Quriosity Store', icon: ShoppingBag },
           { id: 'blogs', label: 'Magazine & Content', icon: FileText }
         ].map((tab) => {
           const IconComp = tab.icon;
@@ -388,8 +393,8 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-3xl p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-6">
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="text-2xl font-black text-slate-900 font-heading">Curiosity Question Bank</h3>
-              <p className="text-xs font-semibold text-slate-500">Manage daily featured curiosity questions for the homepage playground.</p>
+              <h3 className="text-2xl font-black text-slate-900 font-heading">Quriosity Question Bank</h3>
+              <p className="text-xs font-semibold text-slate-500">Manage daily featured quriosity questions for the homepage playground.</p>
             </div>
             <button className="px-4 py-2.5 rounded-full bg-[#75B543] text-white font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5 font-heading">
               <Plus className="w-4 h-4" /> Add New Question
@@ -424,7 +429,7 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-3xl p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-6">
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="text-2xl font-black text-slate-900 font-heading">Curiosity Store Inventory</h3>
+              <h3 className="text-2xl font-black text-slate-900 font-heading">Quriosity Store Inventory</h3>
               <p className="text-xs font-semibold text-slate-500">Manage physical products, flashcards, and books.</p>
             </div>
             <button className="px-4 py-2.5 rounded-full bg-[#FDB913] text-black font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-1.5 font-heading">
@@ -434,7 +439,7 @@ export default function AdminDashboard() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { name: 'The Curiosity Deck: 100 Mind-Benders', price: '₹499', stock: '142 units', status: 'Bestseller' },
+              { name: 'The Quriosity Deck: 100 Mind-Benders', price: '₹499', stock: '142 units', status: 'Bestseller' },
               { name: 'QShala Quest Journal for Kids', price: '₹349', stock: '89 units', status: 'In Stock' },
               { name: 'Socratic Dinner Table Flash Cards', price: '₹299', stock: '210 units', status: 'In Stock' },
               { name: 'QT Mascot Plushie & Sticker Pack', price: '₹599', stock: '35 units', status: 'Low Stock' }
@@ -469,7 +474,7 @@ export default function AdminDashboard() {
 
           <div className="space-y-3">
             {[
-              { title: 'Why Rote Learning Kills Curiosity (And How to Fix It)', cat: 'Pedagogy', date: 'Aug 1, 2026', views: '2.4k views' },
+              { title: 'Why Rote Learning Kills Quriosity (And How to Fix It)', cat: 'Pedagogy', date: 'Aug 1, 2026', views: '2.4k views' },
               { title: 'How to Build a "Curious Dinner Table" for Your Kids', cat: 'Parenting', date: 'July 28, 2026', views: '1.8k views' },
               { title: 'Gamification: The Secret Weapon of Modern Corporate L&D', cat: 'Workplace Culture', date: 'July 15, 2026', views: '3.1k views' }
             ].map((art, idx) => (

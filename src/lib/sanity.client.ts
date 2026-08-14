@@ -107,13 +107,13 @@ export const SERVICES_DATA: ServiceItem[] = [
     id: 's1',
     slug: 'schools',
     title: 'QShala for Schools',
-    subtitle: 'Nurturing 21st-Century Skills & Curiosity in Classrooms',
+    subtitle: 'Nurturing 21st-Century Skills & Quriosity in Classrooms',
     targetAudience: 'K-12 Students & Educators',
     iconName: 'GraduationCap',
     accentColor: '#30B2E7',
-    description: 'Custom curiosity curriculum, weekend quizzes, teacher empowerment workshops, and inter-school national competitions designed to complement core academics.',
+    description: 'Custom quriosity curriculum, weekend quizzes, teacher empowerment workshops, and inter-school national competitions designed to complement core academics.',
     benefits: ['Enhanced Critical Thinking', 'Current Affairs Mastery', 'Confidence in Public Speaking', 'Holistic Personality Growth'],
-    keyModules: ['Weekly Curiosity Club', 'Inter-School Quiz Battles', 'Financial Literacy for Kids', 'Design Thinking Workshops']
+    keyModules: ['Weekly Quriosity Club', 'Inter-School Quiz Battles', 'Financial Literacy for Kids', 'Design Thinking Workshops']
   },
   {
     id: 's2',
@@ -147,7 +147,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     targetAudience: 'Families, Apartments & Local Groups',
     iconName: 'Users',
     accentColor: '#30B2E7',
-    description: 'Bringing neighbors and families together with inter-generational trivia, pub quizzes, and weekend curiosity pop-ups.',
+    description: 'Bringing neighbors and families together with inter-generational trivia, pub quizzes, and weekend quriosity pop-ups.',
     benefits: ['Intergenerational Bonding', 'Screen-Free Family Fun', 'Community Cohesion', 'Unforgettable Memories'],
     keyModules: ['Weekend Family Quiz Night', 'Apartment Complex Leagues', 'Festive Theme Quizzes']
   }
@@ -156,11 +156,11 @@ export const SERVICES_DATA: ServiceItem[] = [
 export const CASE_STUDIES_DATA: CaseStudyItem[] = [
   {
     id: 'cs1',
-    slug: 'dps-bangalore-curiosity-league',
+    slug: 'dps-bangalore-quriosity-league',
     clientName: 'Delhi Public School',
     clientType: 'School',
     title: 'How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students',
-    summary: 'Replacing static encyclopedic learning with QShala interactive storytelling and weekly curiosity modules increased student participation by 340%.',
+    summary: 'Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.',
     impactMetrics: [
       { label: 'Students Engaged', value: '4,200+' },
       { label: 'Retention Score', value: '+88%' },
@@ -197,8 +197,8 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
 export const PRODUCTS_DATA: ProductItem[] = [
   {
     id: 'p1',
-    slug: 'curiosity-deck-vol-1',
-    title: 'The Great Curiosity Deck (100 Mind-Bending Cards)',
+    slug: 'quriosity-deck-vol-1',
+    title: 'The Great Quriosity Deck (100 Mind-Bending Cards)',
     category: 'Game',
     price: '₹799',
     rating: 4.9,
@@ -235,7 +235,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     category: 'Merchandise',
     price: '₹899',
     rating: 4.9,
-    description: 'Super-soft huggable QT plushie toy with interchangeable enamel curiosity badges.',
+    description: 'Super-soft huggable QT plushie toy with interchangeable enamel quriosity badges.',
     imageColor: 'bg-gradient-to-br from-yellow-300 to-amber-500',
     isPopular: false
   }
@@ -245,7 +245,7 @@ export const BLOG_POSTS: BlogItem[] = [
   {
     id: 'b1',
     slug: 'why-rote-learning-is-failing',
-    title: 'Why Rote Learning Kills Creativity (And How Curiosity Replaces It)',
+    title: 'Why Rote Learning Kills Creativity (And How Quriosity Replaces It)',
     excerpt: 'Examining why memorizing answers without asking "Why?" hinders critical thinking in modern children, and practical exercises for parents.',
     category: 'Pedagogy & Parenting',
     author: { name: 'Raghavan A.', role: 'Co-Founder & Chief Curious Officer', avatar: 'RA' },
@@ -256,7 +256,7 @@ export const BLOG_POSTS: BlogItem[] = [
     id: 'b2',
     slug: '5-micro-habits-for-curious-teams',
     title: '5 Micro-Habits That Make Corporate Teams 10x More Creative',
-    excerpt: 'How leading tech companies use weekly curiosity sessions and trivia challenges to unlock innovative problem solving.',
+    excerpt: 'How leading tech companies use weekly quriosity sessions and trivia challenges to unlock innovative problem solving.',
     category: 'Corporate Culture',
     author: { name: 'Priya Sundaram', role: 'Head of Content & Design', avatar: 'PS' },
     publishedAt: 'July 12, 2026',

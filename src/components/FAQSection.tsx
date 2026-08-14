@@ -21,13 +21,13 @@ const FAQS: FAQItem[] = [
   },
   {
     category: 'Schools',
-    question: 'How do QShala Curiosity Clubs fit into a school timetable?',
-    answer: 'QShala Curiosity Clubs are designed as 40 to 60-minute weekly modules that easily replace or complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.'
+    question: 'How do QShala Quriosity Clubs fit into a school timetable?',
+    answer: 'QShala Quriosity Clubs are designed as 40 to 60-minute weekly modules that easily replace or complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.'
   },
   {
     category: 'Schools',
     question: 'What age groups are QShala programs designed for?',
-    answer: 'We have age-tailored programs for Primary (Grades 1-4: Curiosity Builders), Middle School (Grades 5-8: Curiosity Explorers), and High School (Grades 9-12: Curiosity Thinkers).'
+    answer: 'We have age-tailored programs for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers).'
   },
   {
     category: 'Corporates',
@@ -49,7 +49,7 @@ export default function FAQSection() {
   };
 
   return (
-    <div className="space-y-4 max-w-3xl mx-auto">
+    <div className="space-y-4 w-full">
       {FAQS.map((faq, idx) => {
         const isOpen = openIdx === idx;
         return (

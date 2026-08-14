@@ -37,7 +37,7 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {loading && (
         <motion.div
-          key="curiosity-loader"
+          key="quriosity-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}

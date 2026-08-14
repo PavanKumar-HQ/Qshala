@@ -45,7 +45,7 @@ const ARCHIVE_EVENTS: ArchiveEvent[] = [
     description: '120+ participating schools across South India competing in Socratic reasoning, environmental science, and current affairs storytelling.',
     highlights: [
       'Interactive live buzzer technology',
-      'Curiosity project exhibition round',
+      'Quriosity project exhibition round',
       'Guest Quizmaster Sachin Ravi on stage'
     ],
     winners: ['The National Hill View Public School', 'Inventure Academy', 'St. Joseph Boys High School'],
@@ -73,16 +73,16 @@ const ARCHIVE_EVENTS: ArchiveEvent[] = [
   },
   {
     id: 'arch-4',
-    title: 'State-Wide Family Curiosity Fest 2024',
+    title: 'State-Wide Family Quriosity Fest 2024',
     year: 2024,
     month: 'Sep',
     dateString: 'September 14, 2024',
     category: 'Community',
-    description: 'Live arena event with 500+ parent-child teams competing in dinner table trivia, socratic puzzles, and real-time curiosity leaderboards.',
+    description: 'Live arena event with 500+ parent-child teams competing in dinner table trivia, socratic puzzles, and real-time quriosity leaderboards.',
     highlights: [
       'Parent-child team format',
       '500+ live family participants',
-      'Curiosity Store book & game rewards'
+      'Quriosity Store book & game rewards'
     ],
     winners: ['Team Curious Explorers', 'Team Socratic Brains', 'Team Mind Sparks'],
     imageSrc: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop',
@@ -227,9 +227,6 @@ export default function ArchiveEventsList() {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading border border-white">
-                    {event.badge}
-                  </span>
                 </div>
               </div>
 

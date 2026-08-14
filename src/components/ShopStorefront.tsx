@@ -57,12 +57,12 @@ const PRODUCTS: ProductItem[] = [
   },
   {
     id: 'prod-4',
-    title: 'Curiosity Habit Journal',
+    title: 'Quriosity Habit Journal',
     price: 349,
     originalPrice: 449,
     category: 'Stationery',
     subtitle: 'Daily observation log & question tracker',
-    description: 'Hardcover guided journal with 90 daily prompts to encourage observation, curiosity notes, mind mapping, and creative problem solving.',
+    description: 'Hardcover guided journal with 90 daily prompts to encourage observation, quriosity notes, mind mapping, and creative problem solving.',
     imageSrc: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop',
     badge: 'New Release',
     cardColor: '#FFF8E1',
@@ -75,7 +75,7 @@ const PRODUCTS: ProductItem[] = [
     originalPrice: 749,
     category: 'QShala Merch',
     subtitle: 'Official plush mascot for young quizzers',
-    description: 'Ultra-soft, organic plush mascot QT cat holding his signature curiosity notebook. The perfect study buddy for bedtime reading and quizzes.',
+    description: 'Ultra-soft, organic plush mascot QT cat holding his signature quriosity notebook. The perfect study buddy for bedtime reading and quizzes.',
     imageSrc: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?q=80&w=800&auto=format&fit=crop',
     badge: 'Official Merch',
     cardColor: '#E8F6FD',
@@ -199,7 +199,7 @@ export default function ShopStorefront() {
             <QTMascot variant="holding_money" size="sm" />
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 font-heading tracking-tight mt-2">
-            Curiosity Store
+            Quriosity Store
           </h1>
           <p className="text-slate-600 text-sm font-semibold pt-1">
             Hands-on books, socratic games, experiment kits, and official QShala merch.

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const WORDS_TO_ROTATE = [
-  "Curiosity.",
+  "Quriosity.",
   "Questions.",
   "Discovery.",
   "Wonder."

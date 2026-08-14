@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 type Role = 'school' | 'corporate' | 'parent' | 'fest';
 
-export default function CuriosityRecommendationWidget() {
+export default function QuriosityRecommendationWidget() {
   const [role, setRole] = useState<Role>('school');
 
   const RECOMMENDATIONS: Record<Role, { title: string; desc: string; link: string; tag: string; bg: string }> = {
     school: {
-      title: 'Weekly Curiosity Clubs',
+      title: 'Weekly Quriosity Clubs',
       desc: 'Socratic story sessions and current affairs modules integrated directly into your school timetable.',
       link: '/schools',
       tag: 'K-12 Education',
@@ -21,7 +21,7 @@ export default function CuriosityRecommendationWidget() {
       bg: 'bg-[#FFF8E1]'
     },
     parent: {
-      title: 'Kids Curiosity Decks & Story Kits',
+      title: 'Kids Quriosity Decks & Story Kits',
       desc: 'Screen-free weekend trivia decks and socratic dinner table prompts for active families.',
       link: '/learn',
       tag: 'Active Parenting',
@@ -42,7 +42,7 @@ export default function CuriosityRecommendationWidget() {
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="text-center space-y-1.5">
         <span className="px-3.5 py-1 rounded-full bg-[#FDB913] text-black font-black text-[11px] uppercase tracking-wider font-heading border border-black/20">
-          Curiosity Finder
+          Quriosity Finder
         </span>
         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Find Your Tailored Program</h3>
       </div>

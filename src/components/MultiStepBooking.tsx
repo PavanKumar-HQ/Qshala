@@ -12,7 +12,7 @@ const AUDIENCE_MAPPING: Record<string, string> = {
 };
 
 const TEAM_CONTACT_NOTE: Record<string, string> = {
-  'School & Students (K-12)': 'School Academic & Curiosity Club Sales Team',
+  'School & Students (K-12)': 'School Academic & Quriosity Club Sales Team',
   'College Campus Fest': 'Higher Education & Inter-College Quizmasters',
   'Corporate Offsite / Team': 'Corporate L&D & Employee Engagement Team',
   'Neighborhood Community': 'Community, Weddings & Convention Specialists',
@@ -29,7 +29,7 @@ export default function MultiStepBooking() {
     organization: '',
     eventDate: '',
     expectedAudience: '50-100 Participants',
-    preferredTopic: 'General Curiosity & Science',
+    preferredTopic: 'General Quriosity & Science',
     additionalNotes: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -59,7 +59,7 @@ export default function MultiStepBooking() {
     setIsSubmitted(true);
   };
 
-  const salesTeamName = TEAM_CONTACT_NOTE[formData.audienceType] || 'QShala Curiosity Team';
+  const salesTeamName = TEAM_CONTACT_NOTE[formData.audienceType] || 'QShala Quriosity Team';
 
   if (isSubmitted) {
     return (
@@ -67,7 +67,7 @@ export default function MultiStepBooking() {
         <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading">
           Request Routed to {salesTeamName}
         </span>
-        <h2 className="text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Curiosity!</h2>
+        <h2 className="text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Quriosity!</h2>
         <p className="text-slate-700 text-sm font-semibold max-w-md mx-auto leading-relaxed">
           Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black">{formData.email}</span> within 24 hours.
         </p>

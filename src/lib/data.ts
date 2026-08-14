@@ -93,11 +93,11 @@ export const FEATURED_QUIZZES: QuizCardData[] = [
 export const CASE_STUDIES_DATA: CaseStudyItem[] = [
   {
     id: 'cs1',
-    slug: 'dps-bangalore-curiosity-league',
+    slug: 'dps-bangalore-quriosity-league',
     clientName: 'Delhi Public School',
     clientType: 'School',
     title: 'How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students',
-    summary: 'Replacing static encyclopedic learning with QShala interactive storytelling and weekly curiosity modules increased student participation by 340%.',
+    summary: 'Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.',
     impactMetrics: [
       { label: 'Students Engaged', value: '4,200+' },
       { label: 'Retention Score', value: '+88%' },
@@ -173,7 +173,7 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
     clientName: 'Inventure Academy',
     clientType: 'School',
     title: 'Building 21st-Century Critical Thinking & Public Debate Leagues',
-    summary: 'A multi-tier curiosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.',
+    summary: 'A multi-tier quriosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.',
     impactMetrics: [
       { label: 'Learners Joined', value: '1,500+' },
       { label: 'Participation Boost', value: '3.4x' },
@@ -210,7 +210,7 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
     slug: 'iit-bombay-techfest-championship',
     clientName: 'IIT Bombay',
     clientType: 'College',
-    title: 'Hosting India\'s Largest Inter-Collegiate Curiosity Quiz Championship',
+    title: 'Hosting India\'s Largest Inter-Collegiate Quriosity Quiz Championship',
     summary: 'Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.',
     impactMetrics: [
       { label: 'College Delegates', value: '6,000+' },
@@ -286,8 +286,8 @@ export const CASE_STUDIES_DATA: CaseStudyItem[] = [
 export const PRODUCTS_DATA: ProductItem[] = [
   {
     id: 'p1',
-    slug: 'curiosity-deck-100',
-    title: 'The Great Curiosity Deck (100 Cards)',
+    slug: 'quriosity-deck-100',
+    title: 'The Great Quriosity Deck (100 Cards)',
     category: 'Game',
     price: '₹799',
     rating: 4.9,
@@ -323,7 +323,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     category: 'Merchandise',
     price: '₹899',
     rating: 4.9,
-    description: 'Super-soft huggable QT plushie toy with interchangeable enamel curiosity badges.',
+    description: 'Super-soft huggable QT plushie toy with interchangeable enamel quriosity badges.',
     imageColor: 'bg-[#FDB913]'
   }
 ];
