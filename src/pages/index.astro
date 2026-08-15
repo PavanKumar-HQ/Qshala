@@ -23,7 +23,9 @@ const UPCOMING_EVENTS = [
     title: "Bengaluru Grand Quiz Fest",
     desc: "A massive city-wide trivia showdown for all age groups. Bring your family!",
     ctaText: "Register Now",
-    hoverColor: "hover:bg-[#30B2E7]",
+    btnBg: "bg-[#30B2E7]",
+    btnText: "text-white",
+    hoverColor: "hover:bg-[#209dd1]",
     hoverTextColor: "group-hover:text-[#30B2E7]",
     mascot: "happy"
   },
@@ -35,7 +37,9 @@ const UPCOMING_EVENTS = [
     title: "The Tech History Showdown",
     desc: "Test your knowledge on the evolution of technology, from the abacus to AI.",
     ctaText: "Join Waitlist",
-    hoverColor: "hover:bg-[#FDB913] hover:text-black",
+    btnBg: "bg-[#FDB913]",
+    btnText: "text-slate-900",
+    hoverColor: "hover:bg-amber-400",
     hoverTextColor: "group-hover:text-[#FDB913]",
     mascot: "sherlock"
   },
@@ -47,7 +51,9 @@ const UPCOMING_EVENTS = [
     title: "QShala Corporate Clash",
     desc: "Compete against other top companies in this team-building trivia tournament.",
     ctaText: "Register Team",
-    hoverColor: "hover:bg-[#75B543]",
+    btnBg: "bg-[#75B543]",
+    btnText: "text-white",
+    hoverColor: "hover:bg-[#5f9c31]",
     hoverTextColor: "group-hover:text-[#75B543]",
     mascot: "quizzing"
   },
@@ -59,8 +65,10 @@ const UPCOMING_EVENTS = [
     title: "National Curiosity Cup",
     desc: "The grand finale of our nation-wide inter-school quiz competition.",
     ctaText: "Learn More",
-    hoverColor: "hover:bg-green-600",
-    hoverTextColor: "group-hover:text-green-600",
+    btnBg: "bg-[#9333EA]",
+    btnText: "text-white",
+    hoverColor: "hover:bg-purple-700",
+    hoverTextColor: "group-hover:text-[#9333EA]",
     mascot: "thinking"
   }
 ];
@@ -153,7 +161,7 @@ const UPCOMING_EVENTS = [
                   <h3 class={`text-xl md:text-2xl font-black text-slate-900 font-heading mb-2 ${ev.hoverTextColor} transition-colors`}>{ev.title}</h3>
                   <p class="text-slate-600 text-sm font-medium mb-6 pr-4">{ev.desc}</p>
                 </div>
-                <button class={`w-full py-3.5 rounded-full bg-slate-900 text-white font-black text-xs uppercase font-heading ${ev.hoverColor} transition-colors relative z-10`}>
+                <button class={`w-full py-3.5 rounded-full ${ev.btnBg} ${ev.btnText} font-black text-xs uppercase font-heading ${ev.hoverColor} transition-colors relative z-10 shadow-sm`}>
                   {ev.ctaText} &rarr;
                 </button>
               </div>
@@ -271,7 +279,7 @@ const UPCOMING_EVENTS = [
           <h2 class="text-4xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
           <p class="text-slate-600 text-sm font-semibold">Everything you need to know about QShala sessions and methodology.</p>
         </div>
-        <FAQSection client:visible />
+        <FAQSection client:load />
       </div>
     </section>
 

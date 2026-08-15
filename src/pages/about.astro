@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import QTAnimatedPlayer from '../components/QTAnimatedPlayer';
 import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
 
 const INVESTORS_ADVISORS = [
@@ -149,7 +150,7 @@ const INVESTORS_ADVISORS = [
             </p>
 
             <div class="pt-2 flex items-center gap-4">
-              <QTMascot client:visible variant="curious" size="md" />
+              <QTAnimatedPlayer client:visible mode="playing" size="md" fps={8} />
               <div class="text-xs font-bold text-slate-700 font-heading">
                 Official QShala Mascot &bull; Ever-Curious Being
               </div>
