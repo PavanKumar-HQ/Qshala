@@ -25,17 +25,8 @@ const STATS: StatItem[] = [
     target: 80,
     suffix: '+',
     label: 'CORPORATE CLIENTS',
-    bgColor: 'bg-[#FFF8E1]',
-    textColor: 'text-[#FDB913]'
-  },
-  {
-    id: 'rating',
-    target: 4.9,
-    suffix: '★',
-    isDecimal: true,
-    label: 'AVERAGE RATING',
-    bgColor: 'bg-[#EDF7E5]',
-    textColor: 'text-[#75B543]'
+    bgColor: 'bg-[#E8F6FD]',
+    textColor: 'text-[#30B2E7]'
   },
   {
     id: 'cities',
@@ -98,8 +89,8 @@ export default function RollingStatCounters() {
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
 
   return (
-    <div ref={containerRef} className="w-full max-w-7xl mx-auto px-6 py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div ref={containerRef} className="w-full max-w-5xl mx-auto px-6 py-12">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {STATS.map((item) => (
           <RollingCounter key={item.id} item={item} inView={isInView} />
         ))}

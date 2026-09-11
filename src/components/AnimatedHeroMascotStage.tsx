@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, Sparkles, ShieldCheck } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import QTMascot, { type QTMascotVariant } from './QTMascot';
 
 const TRIVIA_FACTS = [
@@ -35,14 +35,9 @@ export default function AnimatedHeroMascotStage() {
 
       {/* Live Interactive Mascot Stage Container */}
       <div className="relative w-full flex flex-col items-center text-center space-y-6">
-        
-        {/* Decorative Top Accent Tag */}
-        <div className="px-3.5 py-1 rounded-full bg-[#FFFDF5] border border-black/20 text-[11px] font-black uppercase text-slate-700 font-heading flex items-center gap-1.5">
-          <span>QT&apos;s Trivia Generator</span>
-        </div>
 
-        {/* Live Dynamic Speech Bubble Container */}
-        <div className="min-h-[96px] w-full flex items-end justify-center">
+        {/* Live Dynamic Speech Bubble Container - Enlarged */}
+        <div className="min-h-[110px] w-full flex items-end justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={factIdx}
@@ -50,55 +45,45 @@ export default function AnimatedHeroMascotStage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.25 }}
-              className="relative px-5 py-4 rounded-2xl bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] max-w-xs flex items-center gap-3"
+              className="relative px-6 py-5 rounded-3xl bg-[#FFFDF5] border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-sm sm:max-w-md w-full flex items-center gap-3.5"
             >
-              <div className="p-1.5 rounded-xl bg-[#FDB913] text-black shrink-0 border-2 border-black">
-                <HelpCircle className="w-4 h-4" />
+              <div className="p-2 rounded-2xl bg-[#FDB913] text-black shrink-0 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <HelpCircle className="w-5 h-5" />
               </div>
-              <p className="text-xs font-black text-slate-800 leading-snug font-heading text-left">
+              <p className="text-sm sm:text-base font-black text-slate-900 leading-snug font-heading text-left flex-1">
                 &ldquo;{currentFact}&rdquo;
               </p>
               {/* Speech Bubble Arrow */}
-              <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#FFFDF5] border-r-2 border-b-2 border-black rotate-45" />
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-5 h-5 bg-[#FFFDF5] border-r-2 border-b-2 border-black rotate-45" />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Center Mascot Render */}
-        <div className="h-[224px] w-full flex items-center justify-center">
+        {/* Center Mascot Render - Enlarged QT */}
+        <div className="h-[270px] w-full flex items-center justify-center">
           <motion.div
             key={variantIdx}
-            initial={{ scale: 0.8, rotate: -5 }}
+            initial={{ scale: 0.85, rotate: -5 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-            className="cursor-pointer"
+            className="cursor-pointer hover:scale-105 transition-transform"
             onClick={handleGenerate}
           >
-            <QTMascot variant={currentVariant} size="xl" />
+            <QTMascot variant={currentVariant} size="2xl" />
           </motion.div>
         </div>
 
         {/* Button */}
-        <div className="w-full pt-2 flex justify-center">
+        <div className="w-full pt-1 flex justify-center">
           <button
             onClick={handleGenerate}
-            className="px-6 py-3 rounded-full font-black text-sm font-heading transition-all border-2 border-black bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2"
+            className="px-7 py-3.5 rounded-full font-black text-sm font-heading transition-all border-2 border-black bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2"
           >
             Generate Trivia
           </button>
         </div>
 
       </div>
-
-      {/* Bottom Floating Stat Badge */}
-      <motion.div
-        animate={{ y: [-4, 4, -4] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="mt-4 px-4 py-2 rounded-2xl bg-[#75B543] text-black border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 text-xs font-black font-heading"
-      >
-        <ShieldCheck className="w-4 h-4 text-black" />
-        <span>98.4% Parent &amp; Teacher Satisfaction</span>
-      </motion.div>
 
     </div>
   );
