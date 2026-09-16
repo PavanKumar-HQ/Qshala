@@ -68,9 +68,9 @@ export default function FAQSection() {
 
             {/* Answer Panel — only in DOM when open */}
             {isOpen && (
-              <div className="border-t border-slate-100 px-5 pb-5 pt-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <p className="flex-1 text-slate-700 text-sm font-semibold leading-relaxed">
+              <div className="border-t border-slate-100 px-6 pb-6 pt-5">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                  <p className="flex-1 text-slate-800 text-base md:text-lg font-semibold leading-relaxed">
                     {faq.answer}
                   </p>
                   <div className="shrink-0 self-center bg-[#FFFDF5] p-2.5 rounded-2xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">

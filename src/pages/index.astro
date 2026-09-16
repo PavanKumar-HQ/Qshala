@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import TypewriterHeadline from '../components/TypewriterHeadline';
-import InteractiveQuizCard from '../components/InteractiveQuizCard';
+import DailyQuizSection from '../components/DailyQuizSection';
 import QTMascot from '../components/QTMascot';
 import ClientMarquee from '../components/ClientMarquee.astro';
 import QShalaEffectTabs from '../components/QShalaEffectTabs';
@@ -12,7 +12,7 @@ import AnimatedHeroMascotStage from '../components/AnimatedHeroMascotStage';
 import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
-import { FEATURED_QUIZZES, CASE_STUDIES_DATA } from '../lib/data';
+import { CASE_STUDIES_DATA } from '../lib/data';
 ---
 
 <BaseLayout title="QShala | Questions • Quriosity • Quests — India's Quriosity Company">
@@ -91,7 +91,7 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA } from '../lib/data';
       <QShalaEffectTabs client:visible />
     </section>
 
-    <!-- 5. GAME (Daily Quiz Playground) -->
+    <!-- 5. GAME (Daily Quiz Playground with Dynamic Rotation) -->
     <section id="game" class="py-16 md:py-24 bg-[#FFFDF5]">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center max-w-xl mx-auto mb-12">
@@ -102,28 +102,21 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA } from '../lib/data';
           <p class="text-sm font-semibold text-slate-600 mt-2">Pick an answer below to trigger a celebration!</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {FEATURED_QUIZZES.map((quiz) => (
-            <InteractiveQuizCard client:load quiz={quiz} />
-          ))}
-        </div>
+        <DailyQuizSection client:load />
       </div>
     </section>
 
     <!-- 6. NEWSLETTER / QSHOTS -->
-    <section id="newsletter" class="py-16 md:py-20 bg-[#F2FCE8] relative overflow-hidden border-t border-[#75B543]/20">
+    <section id="newsletter" class="pt-16 pb-12 md:pt-20 md:pb-16 bg-[#F2FCE8] relative overflow-hidden border-t border-[#75B543]/20">
       <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
         
-        <!-- Left Content -->
-        <div class="text-center lg:text-left space-y-4 max-w-xl">
-          <span class="px-3.5 py-1 rounded-full bg-[#75B543] text-white font-black text-[10px] uppercase tracking-wider font-heading inline-block">
-            Newsletter
-          </span>
+        <!-- Left Content (Newsletter badge removed, weekly changed to Daily) -->
+        <div class="text-center lg:text-left space-y-3 max-w-xl">
           <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
             Subscribe to QShots.
           </h2>
           <p class="text-slate-700 text-base md:text-lg font-semibold">
-            Get weekly trivia bites straight to your inbox. No spam, just pure curiosity.
+            Get Daily trivia bites straight to your inbox. No spam, just pure curiosity.
           </p>
         </div>
         
@@ -150,6 +143,14 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA } from '../lib/data';
           </div>
         </div>
 
+      </div>
+
+      <!-- Downward Continuation Flow Cue (Clarifying content continues below) -->
+      <div class="mt-8 flex justify-center items-center gap-2 text-slate-500 text-xs font-black uppercase tracking-wider font-heading">
+        <span>Scroll to explore real stories &amp; impact</span>
+        <svg class="w-4 h-4 animate-bounce text-[#75B543]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
     </section>
 
@@ -180,14 +181,13 @@ import { FEATURED_QUIZZES, CASE_STUDIES_DATA } from '../lib/data';
     </div>
 
     <!-- 9. FREQUENTLY ASKED QUESTIONS -->
-    <section id="faq" class="py-12 md:py-16 bg-[#FFFDF5] relative">
+    <section id="faq" class="pt-12 pb-8 md:pt-16 md:pb-12 bg-[#FFFDF5] relative">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
-            Need Clarification?
+            How can we help?
           </span>
-          <h2 class="text-4xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
-          <p class="text-slate-600 text-sm font-semibold">Everything you need to know about QShala sessions and methodology.</p>
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
         </div>
         <FAQSection client:load />
       </div>

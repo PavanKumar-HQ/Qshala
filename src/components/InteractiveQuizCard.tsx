@@ -50,8 +50,8 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         <span className="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider border border-black shrink-0 group-hover:scale-105 transition-transform">
           {quiz.category}
         </span>
-        <span className="px-2.5 py-1 rounded-full bg-[#FDB913] text-black text-[11px] font-black border border-black shrink-0 group-hover:rotate-3 transition-transform">
-          ⚡ {quiz.difficulty}
+        <span className="px-3 py-1 rounded-full bg-[#FDB913] text-black text-[11px] font-black border border-black shrink-0 group-hover:rotate-2 transition-transform">
+          {quiz.difficulty}
         </span>
       </div>
 
@@ -60,17 +60,17 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         {quiz.question}
       </h3>
 
-      {/* Options */}
+      {/* Options (Clean borderless answer bubbles) */}
       <div className="flex flex-col gap-2.5 flex-1">
         {quiz.options.map((option, idx) => {
           const isCorrect = idx === quiz.correctAnswer;
           const isSelected = selected === idx;
 
-          let bg = 'bg-[#FFFDF5] hover:bg-[#FDB913]/30 hover:border-black hover:translate-x-1 border-black text-black';
+          let bg = 'bg-slate-100 hover:bg-[#FDB913]/30 hover:text-slate-950 text-slate-850 hover:translate-x-1';
           if (selected !== null) {
-            if (isCorrect) bg = 'bg-[#75B543] border-black text-white';
-            else if (isSelected) bg = 'bg-rose-500 border-black text-white';
-            else bg = 'bg-slate-100 border-slate-200 text-slate-400 opacity-50';
+            if (isCorrect) bg = 'bg-[#75B543] text-white font-black shadow-sm';
+            else if (isSelected) bg = 'bg-rose-500 text-white font-black shadow-sm';
+            else bg = 'bg-slate-100 text-slate-400 opacity-40';
           }
 
           return (
@@ -79,11 +79,11 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
               type="button"
               onClick={() => handleSelect(idx)}
               disabled={selected !== null}
-              className={`w-full text-left px-4 py-3 rounded-2xl border-2 font-bold text-xs md:text-sm flex items-center justify-between min-h-[48px] leading-snug transition-all cursor-pointer ${bg}`}
+              className={`w-full text-left px-4 py-3.5 rounded-2xl font-bold text-xs md:text-sm flex items-center justify-between min-h-[48px] leading-snug transition-all cursor-pointer ${bg}`}
             >
               <span>{option}</span>
-              {selected !== null && isCorrect && <span className="ml-2 shrink-0 font-black">✓</span>}
-              {selected !== null && isSelected && !isCorrect && <span className="ml-2 shrink-0 font-black">✕</span>}
+              {selected !== null && isCorrect && <span className="ml-2 shrink-0 font-black text-sm">✓</span>}
+              {selected !== null && isSelected && !isCorrect && <span className="ml-2 shrink-0 font-black text-sm">✕</span>}
             </button>
           );
         })}
@@ -104,17 +104,14 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         )}
       </AnimatePresence>
 
-      {/* Footer: status + mascot image with hover animation */}
-      <div className="mt-4 pt-3 flex items-center justify-between border-t border-slate-100">
-        <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider">
-          {selected === null ? 'Click an option to test your quriosity!' : 'Nice one!'}
-        </span>
+      {/* Footer: Mascot without redundant instruction text */}
+      <div className="mt-4 pt-2 flex items-center justify-end border-t border-slate-100">
         <img
           src={mascotSrc}
           alt="QT Mascot"
-          width="48"
-          height="48"
-          className="object-contain -mb-2 -mr-1 drop-shadow-sm group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300"
+          width="46"
+          height="46"
+          className="object-contain -mb-1 drop-shadow-sm group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300"
           loading="eager"
         />
       </div>

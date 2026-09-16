@@ -16,7 +16,7 @@ export type QTMascotVariant =
 
 interface QTMascotProps {
   variant?: QTMascotVariant;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
   className?: string;
   badgeText?: string;
 }
@@ -43,6 +43,7 @@ const SIZE_MAP = {
   xl: 192,
   '2xl': 256,
   '3xl': 320,
+  '4xl': 380,
 };
 
 export default function QTMascot({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Grid, LayoutList, X, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Quote } from 'lucide-react';
 import QTMascot from './QTMascot';
 import type { CaseStudyItem } from '../lib/data';
 
@@ -9,259 +9,114 @@ interface Props {
 }
 
 export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [viewMode, setViewMode] = useState<'carousel' | 'grid'>('carousel');
+  // Limit to 5 curated case studies
+  const displayStudies = caseStudies.slice(0, 5);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedModalCase, setSelectedModalCase] = useState<CaseStudyItem | null>(null);
 
-  const categories = ['All', 'School', 'Corporate', 'College', 'Community'];
-
-  const filteredData = caseStudies.filter((cs) => {
-    if (activeCategory === 'All') return true;
-    return cs.clientType === activeCategory;
-  });
-
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % filteredData.length);
+    setCurrentIndex((prev) => (prev + 1) % displayStudies.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + filteredData.length) % filteredData.length);
+    setCurrentIndex((prev) => (prev - 1 + displayStudies.length) % displayStudies.length);
   };
 
+  const cs = displayStudies[currentIndex % displayStudies.length];
+  const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional'] as const;
+  const mascot = mascotVariants[currentIndex % mascotVariants.length];
+
   return (
-    <div className="space-y-8">
-      
-      {/* Sleek, Open Integrated Header (No Bounding Box Container) */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
-        
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          {categories.map((cat) => {
-            const count = cat === 'All' ? caseStudies.length : caseStudies.filter(c => c.clientType === cat).length;
-            const isActive = activeCategory === cat;
-            const label = cat === 'All' ? `All (${count})` : cat === 'Community' ? `Communities (${count})` : `${cat}s (${count})`;
-            return (
-              <button
-                key={cat}
-                onClick={() => {
-                  setActiveCategory(cat);
-                  setCurrentIndex(0);
-                }}
-                className={`px-4.5 py-2 rounded-full font-black text-xs font-heading transition-all border-2 ${
-                  isActive
-                    ? 'bg-[#30B2E7] text-white border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-0.5'
-                    : 'bg-white text-slate-800 border-slate-200 hover:border-black shadow-sm'
-                }`}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* View Mode Switcher Buttons */}
-        <div className="flex items-center gap-2 self-start md:self-auto">
-          <button
-            onClick={() => setViewMode('carousel')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-black font-heading flex items-center gap-1.5 border-2 transition-all ${
-              viewMode === 'carousel'
-                ? 'bg-[#FDB913] text-black border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-                : 'bg-white text-slate-700 border-slate-200 hover:border-black'
-            }`}
+    <div className="space-y-6">
+      {/* Featured Single Card Showcase */}
+      <div className="relative min-h-[440px] sm:min-h-[420px]">
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={cs.id}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col justify-between h-full w-full space-y-6"
           >
-            <LayoutList className="w-4 h-4" />
-            <span>Featured View</span>
-          </button>
+            <div className="space-y-6">
+              {/* Header Row: Institution Name Label + Mascot */}
+              <div className="flex items-center justify-between gap-4">
+                <span className="px-4 py-1.5 rounded-full bg-slate-900 text-white font-black text-xs uppercase font-heading border border-black shadow-sm">
+                  {cs.clientType} • {cs.clientName}
+                </span>
 
-          <button
-            onClick={() => setViewMode('grid')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-black font-heading flex items-center gap-1.5 border-2 transition-all ${
-              viewMode === 'grid'
-                ? 'bg-[#FDB913] text-black border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-                : 'bg-white text-slate-700 border-slate-200 hover:border-black'
-            }`}
-          >
-            <Grid className="w-4 h-4" />
-            <span>Grid View</span>
-          </button>
-        </div>
-
-      </div>
-
-      {/* VIEW MODE 1: CAROUSEL SLIDER VIEW */}
-      {viewMode === 'carousel' && filteredData.length > 0 && (
-        <div className="space-y-6">
-          <div className="relative h-[680px] sm:h-[580px] md:h-[540px] lg:h-[500px]">
-            <AnimatePresence mode="popLayout">
-              {(() => {
-                const cs = filteredData[currentIndex % filteredData.length];
-                const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional', 'trophy'] as const;
-                const mascot = mascotVariants[currentIndex % mascotVariants.length];
-
-                return (
-                  <motion.div
-                    key={cs.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full"
-                  >
-                    <div className="space-y-6">
-                      {/* Header Row */}
-                      <div className="flex items-center justify-between gap-4">
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[11px] uppercase font-heading">
-                          {cs.clientType} • {cs.clientName}
-                        </span>
-                        <div className="hidden sm:flex flex-wrap gap-1.5">
-                          {cs.tags.map((t, idx) => (
-                            <span key={idx} className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-bold text-[10px]">
-                              #{t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <QTMascot variant={mascot} size="sm" />
-                    </div>
-
-                    {/* Title & Summary */}
-                    <div className="space-y-2">
-                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-heading leading-snug max-w-3xl">
-                        {cs.title}
-                      </h3>
-                      <p className="text-slate-600 text-sm font-semibold leading-relaxed max-w-2xl">
-                        {cs.summary}
-                      </p>
-                    </div>
-
-                    {/* Metric Pills (Clean Soft Box) */}
-                    <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-[#E8F6FD]/60 border border-[#30B2E7]/20">
-                      {cs.impactMetrics.map((m, idx) => (
-                        <div key={idx} className="text-center space-y-0.5">
-                          <div className="text-2xl sm:text-3xl font-black text-[#30B2E7] font-heading">{m.value}</div>
-                          <div className="text-[10px] sm:text-xs font-black uppercase text-slate-800 font-heading">{m.label}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Testimonial Quote */}
-                    <blockquote className="border-l-3 border-[#FDB913] pl-4 py-2 bg-[#FFFDF5] rounded-r-xl border-y border-r border-slate-200/50 flex items-start gap-3">
-                      <Quote className="w-5 h-5 text-[#FDB913] shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-slate-800 text-xs sm:text-sm font-semibold italic">
-                          &ldquo;{cs.quote.text}&rdquo;
-                        </p>
-                        <footer className="text-slate-900 font-black text-[11px] not-italic mt-1 font-heading">
-                          — {cs.quote.author}, <span className="text-slate-600 font-semibold">{cs.quote.role}</span>
-                        </footer>
-                      </div>
-                    </blockquote>
-                    </div>
-
-                    {/* Action & Carousel Controls Bar (Inside Card) */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100">
-                      <button
-                        onClick={() => setSelectedModalCase(cs)}
-                        className="px-6 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading transition-all"
-                      >
-                        Read Full Story →
-                      </button>
-
-                      {/* Dots Pagination */}
-                      <div className="flex items-center gap-1.5">
-                        {filteredData.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentIndex(idx)}
-                            className={`h-2 rounded-full transition-all ${
-                              currentIndex === idx ? 'w-6 bg-[#30B2E7]' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                            }`}
-                          />
-                        ))}
-                      </div>
-
-                      {/* Prev / Next Arrows */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-[11px] font-black text-slate-400 font-heading">
-                          {currentIndex + 1}/{filteredData.length}
-                        </span>
-                        <button
-                          onClick={handlePrev}
-                          className="p-2 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
-                          title="Previous Story"
-                        >
-                          <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={handleNext}
-                          className="p-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all"
-                          title="Next Story"
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })()}
-            </AnimatePresence>
-          </div>
-        </div>
-      )}
-
-      {/* VIEW MODE 2: RESPONSIVE GRID VIEW */}
-      {viewMode === 'grid' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredData.map((cs, idx) => (
-            <div
-              key={cs.id}
-              className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden group hover:border-black transition-all"
-            >
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading">
-                    {cs.clientType} • {cs.clientName}
-                  </span>
-                  <QTMascot variant={idx % 2 === 0 ? 'sherlock' : 'quizzing'} size="sm" />
-                </div>
-
-                <h3 className="text-2xl font-black text-slate-900 font-heading leading-snug">
-                  {cs.title}
-                </h3>
-                <p className="text-slate-700 text-sm font-semibold leading-relaxed">
-                  {cs.summary}
-                </p>
-
-                <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[#30B2E7]/10 border border-[#30B2E7]/20 text-center">
-                  {cs.impactMetrics.map((m, mIdx) => (
-                    <div key={mIdx}>
-                      <div className="text-lg font-black text-[#30B2E7] font-heading">{m.value}</div>
-                      <div className="text-[9px] font-black uppercase text-slate-700">{m.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <blockquote className="border-l-4 border-[#FDB913] pl-3 text-xs italic text-slate-800 font-semibold py-1 bg-[#FFFDF5] rounded-r-xl">
-                  &ldquo;{cs.quote.text}&rdquo;
-                  <footer className="text-slate-900 font-black not-italic mt-1 text-[10px]">— {cs.quote.author}, {cs.quote.role}</footer>
-                </blockquote>
+                <QTMascot variant={mascot} size="sm" />
               </div>
 
-              <div className="pt-4 border-t border-slate-200">
+              {/* Title */}
+              <div>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-heading leading-tight max-w-4xl">
+                  {cs.title}
+                </h3>
+              </div>
+
+              {/* Space for Testimonial (Enlarged & Prominent) */}
+              <blockquote className="border-l-4 border-[#FDB913] pl-5 py-4 bg-[#FFFDF5] rounded-r-2xl border-y border-r border-slate-200/60 flex items-start gap-3.5 shadow-sm">
+                <Quote className="w-6 h-6 text-[#FDB913] shrink-0 mt-0.5" />
+                <div className="space-y-1.5">
+                  <p className="text-slate-900 text-base sm:text-lg font-bold leading-relaxed italic">
+                    &ldquo;{cs.quote.text}&rdquo;
+                  </p>
+                  <footer className="text-slate-900 font-black text-xs not-italic pt-1 font-heading">
+                    — {cs.quote.author}, <span className="text-slate-600 font-semibold">{cs.quote.role}</span>
+                  </footer>
+                </div>
+              </blockquote>
+            </div>
+
+            {/* Action Bar & Pagination Controls */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100">
+              <button
+                onClick={() => setSelectedModalCase(cs)}
+                className="px-7 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] font-heading transition-all"
+              >
+                Read Full Story →
+              </button>
+
+              {/* 5 Dots Pagination */}
+              <div className="flex items-center gap-2">
+                {displayStudies.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    aria-label={`Go to case study ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all ${
+                      currentIndex === idx ? 'w-8 bg-[#30B2E7]' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Prev / Next Arrows & Counter */}
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-black text-slate-400 font-heading">
+                  {currentIndex + 1}/{displayStudies.length}
+                </span>
                 <button
-                  onClick={() => setSelectedModalCase(cs)}
-                  className="w-full py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black font-heading shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
+                  onClick={handlePrev}
+                  className="p-2.5 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all active:translate-y-0.5"
+                  title="Previous Story"
                 >
-                  Read Full Details →
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="p-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-bold transition-all active:translate-y-0.5"
+                  title="Next Story"
+                >
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* DETAILED CASE STUDY MODAL */}
       <AnimatePresence>
@@ -289,18 +144,9 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 <span className="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading">
                   {selectedModalCase.clientType} • {selectedModalCase.clientName}
                 </span>
-                <h3 className="text-3xl font-black text-slate-900 font-heading leading-tight pt-2">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading leading-tight pt-2">
                   {selectedModalCase.title}
                 </h3>
-              </div>
-
-              <div className="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-white border-2 border-black text-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                {selectedModalCase.impactMetrics.map((m, idx) => (
-                  <div key={idx}>
-                    <div className="text-2xl font-black text-[#30B2E7] font-heading">{m.value}</div>
-                    <div className="text-[10px] font-black uppercase text-slate-700">{m.label}</div>
-                  </div>
-                ))}
               </div>
 
               <div className="space-y-4 text-slate-700 text-sm font-semibold leading-relaxed">
@@ -314,7 +160,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </div>
               </div>
 
-              <blockquote className="border-l-4 border-[#FDB913] pl-4 py-2 bg-white rounded-r-2xl border border-black/10">
+              <blockquote className="border-l-4 border-[#FDB913] pl-4 py-3 bg-white rounded-r-2xl border border-black/10">
                 <p className="text-slate-800 text-sm font-semibold italic">&ldquo;{selectedModalCase.quote.text}&rdquo;</p>
                 <footer className="text-slate-900 font-black text-xs not-italic mt-1 font-heading">
                   — {selectedModalCase.quote.author}, {selectedModalCase.quote.role}
@@ -333,7 +179,6 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
           </motion.div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }

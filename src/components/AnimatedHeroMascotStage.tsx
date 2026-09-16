@@ -60,7 +60,7 @@ export default function AnimatedHeroMascotStage() {
         </div>
 
         {/* Center Mascot Render - Enlarged QT */}
-        <div className="h-[270px] w-full flex items-center justify-center">
+        <div className="min-h-[320px] sm:min-h-[350px] w-full flex items-center justify-center">
           <motion.div
             key={variantIdx}
             initial={{ scale: 0.85, rotate: -5 }}
@@ -69,12 +69,12 @@ export default function AnimatedHeroMascotStage() {
             className="cursor-pointer hover:scale-105 transition-transform"
             onClick={handleGenerate}
           >
-            <QTMascot variant={currentVariant} size="2xl" />
+            <QTMascot variant={currentVariant} size="3xl" />
           </motion.div>
         </div>
 
         {/* Button */}
-        <div className="w-full pt-1 flex justify-center">
+        <div className="w-full pt-2 flex justify-center">
           <button
             onClick={handleGenerate}
             className="px-7 py-3.5 rounded-full font-black text-sm font-heading transition-all border-2 border-black bg-[#30B2E7] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2"

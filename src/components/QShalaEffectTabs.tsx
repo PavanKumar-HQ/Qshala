@@ -22,7 +22,7 @@ interface TabData {
 const TABS: TabData[] = [
   {
     id: 'culture',
-    title: 'Workplace Culture',
+    title: 'With Corporates',
     subtitle: 'Build bonds that last',
     tagline: 'Fostering Community & Psychological Safety in Remote & Hybrid Teams',
     bgColor: 'bg-[#FFF8E1]',
@@ -41,7 +41,7 @@ const TABS: TabData[] = [
   },
   {
     id: 'marketing',
-    title: 'Marketers & Brands',
+    title: 'With Colleges',
     subtitle: 'Drive discovery & engagement',
     tagline: 'Turn Passive Audiences into Active Brand Champions with Gamification',
     bgColor: 'bg-[#E8F6FD]',
@@ -60,7 +60,7 @@ const TABS: TabData[] = [
   },
   {
     id: 'schools',
-    title: 'K-12 Schools',
+    title: 'With Schools',
     subtitle: 'Inspire learning through wonder',
     tagline: 'Moving Beyond Rote Memorization with Socratic Storytelling',
     bgColor: 'bg-[#EDF7E5]',
@@ -131,10 +131,7 @@ export default function QShalaEffectTabs() {
             {/* Left Content Column */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <span className={`px-3.5 py-1.5 rounded-full font-black text-xs uppercase font-heading ${current.badgeBg} ${current.badgeText}`}>
-                  {current.subtitle}
-                </span>
-                <h3 className="text-3xl md:text-4xl font-black text-slate-900 mt-3 font-heading leading-tight">
+                <h3 className="text-3xl md:text-4xl font-black text-slate-900 font-heading leading-tight">
                   {current.tagline}
                 </h3>
               </div>

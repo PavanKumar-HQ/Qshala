@@ -6,9 +6,8 @@ const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Services', href: '/services' },
-  { name: 'Archive', href: '/archive' },
-  { name: 'Learn', href: '/learn' },
   { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Archive', href: '/archive' },
   { name: 'Store', href: '/shop' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
@@ -36,7 +35,7 @@ const isLinkActive = (href: string) => {
 
     <!-- Desktop Nav Links with Active Route Highlighting & Left-to-Right Animated Underline -->
     <nav class="hidden lg:flex items-center gap-5 font-black text-slate-900 text-xs sm:text-sm font-heading">
-      {NAV_LINKS.slice(0, 8).map((link) => {
+      {NAV_LINKS.slice(0, 7).map((link) => {
         const active = isLinkActive(link.href);
         return (
           <a 
