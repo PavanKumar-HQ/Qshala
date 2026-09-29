@@ -256,10 +256,9 @@ html {
   text-size-adjust: 100%;
 }
 
-/* Ensure images, videos and SVGs never exceed viewport bounds */
-img, video, canvas, svg {
+/* Ensure media never overflows viewport bounds while preserving explicit heights */
+img, video, canvas {
   max-width: 100%;
-  height: auto;
 }
 
 /* Prevent iOS Safari from auto-zooming on focus by guaranteeing 16px minimum */
