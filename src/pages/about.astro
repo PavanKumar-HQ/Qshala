@@ -8,33 +8,81 @@ import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
 
 const INVESTORS_ADVISORS = [
   {
+    name: "Nithin Kamath",
+    role: "Co-Founder & CEO, Zerodha",
+    company: "Zerodha",
+    color: "#387ED1",
+    badge: "Angel Backer",
+    logo: "/assets/logos/zerodha.svg"
+  },
+  {
+    name: "Kalyan Banerjee",
+    role: "Co-Founder, Mindtree",
+    company: "Mindtree",
+    color: "#FDB913",
+    badge: "Advisor & Angel",
+    logo: "/assets/logos/mindtree.svg"
+  },
+  {
+    name: "Preeti Sawhney",
+    role: "Former Director, Lowe Lintas",
+    company: "Lowe Lintas",
+    color: "#75B543",
+    badge: "Strategic Advisor",
+    logo: "/assets/logos/lowelintas.png"
+  },
+  {
+    name: "Sanjay Tambwekar",
+    role: "CTO, Qwikcilver",
+    company: "Qwikcilver",
+    color: "#9333EA",
+    badge: "Angel Backer",
+    logo: "/assets/logos/qwikcilver.svg"
+  },
+  {
+    name: "Suresh Kumar Pinglay",
+    role: "Former VP, Oracle India",
+    company: "Oracle India",
+    color: "#F80000",
+    badge: "Strategic Advisor",
+    logo: "/assets/logos/oracle.svg"
+  },
+  {
+    name: "Chetan Vinchhi",
+    role: "India Head, Uptycs",
+    company: "Uptycs",
+    color: "#30B2E7",
+    badge: "Angel Backer",
+    logo: "/assets/logos/uptycs.png"
+  },
+  {
     name: "Rainmatter Foundation",
-    category: "Impact & Climate Partner",
-    description: "Supporting socratic environmental learning for 100,000+ students.",
+    role: "Climate & Environmental Learning",
+    company: "Rainmatter",
     color: "#75B543",
     badge: "Impact Partner",
     logo: "https://www.google.com/s2/favicons?domain=rainmatter.org&sz=128"
   },
   {
     name: "Axilor Ventures",
-    category: "Accelerator",
-    description: "Backing QShala's scalable EdTech curiosity methodology.",
+    role: "Scalable EdTech Methodology",
+    company: "Axilor",
     color: "#30B2E7",
     badge: "Accelerator",
     logo: "https://www.google.com/s2/favicons?domain=axilor.com&sz=128"
   },
   {
     name: "Mindhouse & Angels",
-    category: "Angel Investors",
-    description: "Guided by leaders from India's top consumer tech ecosystems.",
+    role: "Consumer Tech Ecosystem Leaders",
+    company: "Mindhouse",
     color: "#FDB913",
     badge: "Angel Backing",
     logo: "https://www.google.com/s2/favicons?domain=shyft.co&sz=128"
   },
   {
     name: "K-12 Advisory Council",
-    category: "Academic Council",
-    description: "Former principals and curriculum directors from CBSE, ICSE & IB schools.",
+    role: "Curriculum Directors & Principals",
+    company: "K-12 Council",
     color: "#9333EA",
     badge: "Academic Board",
     logo: "https://ui-avatars.com/api/?name=K-12&background=9333EA&color=fff&size=100"
@@ -118,11 +166,11 @@ const INVESTORS_ADVISORS = [
       </div>
     </section>
 
-    <!-- 3. SUPPORT (INVESTORS & PARTNERS): STATIC CARDS -->
-    <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-200/60 relative w-full">
-      <div class="w-full space-y-8 px-4 sm:px-8 md:px-12">
+    <!-- 3. SUPPORT (INVESTORS & PARTNERS): MARQUEE STRIP -->
+    <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-200/60 relative w-full overflow-hidden">
+      <div class="w-full space-y-8">
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 px-4 sm:px-8 md:px-12">
           <div>
             <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading">
               Supported By
@@ -133,30 +181,50 @@ const INVESTORS_ADVISORS = [
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {INVESTORS_ADVISORS.map((inv) => (
-            <div class="p-6 rounded-2xl bg-white/90 border border-sky-100 shadow-sm space-y-3 flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div class="space-y-3">
-                <div class="flex items-start justify-between gap-2">
-                  <span 
-                    class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading inline-block"
-                    style={`background-color: ${inv.color};`}
-                  >
-                    {inv.badge}
-                  </span>
-                  <img src={inv.logo} alt={inv.name} class="w-8 h-8 object-contain rounded bg-white shadow-sm" onerror="this.style.display='none'" />
+        <div class="marquee-container relative w-full overflow-hidden">
+          <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-[#E8F6FD] to-transparent"></div>
+          <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-[#E8F6FD] to-transparent"></div>
+          
+          <div class="marquee-track flex gap-5 w-max px-4">
+            {[...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS].map((inv) => (
+              <div class="p-5 rounded-2xl bg-white/90 border border-sky-100 shadow-sm space-y-3 w-72 sm:w-80 shrink-0 hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                  <div class="flex items-start justify-between gap-3">
+                    <span 
+                      class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading inline-block"
+                      style={`background-color: ${inv.color};`}
+                    >
+                      {inv.badge}
+                    </span>
+                    <div class="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 shadow-sm shrink-0">
+                      <img src={inv.logo} alt={inv.name} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                    </div>
+                  </div>
+                  <h3 class="text-base font-black text-slate-900 font-heading leading-tight pt-2">{inv.name}</h3>
+                  <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
+                    {inv.role}
+                  </p>
                 </div>
-                <h3 class="text-lg font-black text-slate-900 font-heading leading-tight pt-1">{inv.name}</h3>
-                <p class="text-slate-600 text-xs font-medium leading-relaxed">
-                  {inv.description}
-                </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
     </section>
+
+    <style>
+      .marquee-track {
+        animation: scroll-left-investors 32s linear infinite;
+      }
+      .marquee-container:hover .marquee-track {
+        animation-play-state: paused;
+      }
+      @keyframes scroll-left-investors {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+    </style>
 
     <!-- 4. MEET QT MASCOT SECTION -->
     <section id="meet-qt" class="py-12 md:py-16 bg-[#FFFDF5] relative w-full px-4 sm:px-8 md:px-12">
