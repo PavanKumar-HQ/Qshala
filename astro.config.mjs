@@ -8,7 +8,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://qshala.vercel.app',
   prefetch: true,
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/admin')
+    })
+  ],
   output: 'static',
   build: {
     inlineStylesheets: 'auto',

@@ -5,10 +5,18 @@ import Footer from '../components/Footer.astro';
 import ArchiveEventsList from '../components/ArchiveEventsList';
 ---
 
-<BaseLayout title="Archive & Past Events | QShala">
+<BaseLayout 
+  title="Past Events & Quiz Archive | QShala India"
+  description="Browse the archive of past quizzes, tournaments, festivals, and live competitions conducted by QShala across schools, colleges, and corporate partners."
+  pageType="CollectionPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Archive", item: "/archive" }
+  ]}
+>
   <Navbar />
 
-  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+  <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
     <!-- Archive Filter & Events List Section -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-6">

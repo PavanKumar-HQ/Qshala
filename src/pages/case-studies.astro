@@ -6,9 +6,17 @@ import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudies
 import { CASE_STUDIES_DATA } from '../lib/data';
 ---
 
-<BaseLayout title="Impact & Case Studies | QShala">
+<BaseLayout 
+  title="Case Studies & Learning Impact | QShala India"
+  description="Real-world case studies detailing how 10+ schools, corporates, and universities partnered with QShala to foster curiosity and critical thinking."
+  pageType="CollectionPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Case Studies", item: "/case-studies" }
+  ]}
+>
   <Navbar />
-  <main class="flex-grow pt-36 pb-24 px-6 bg-[#FFFDF5]">
+  <main id="main-content" class="flex-grow pt-36 pb-24 px-6 bg-[#FFFDF5]">
     <div class="max-w-7xl mx-auto space-y-12">
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading shadow-sm">

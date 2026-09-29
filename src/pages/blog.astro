@@ -68,10 +68,18 @@ const POSTS = [
 ];
 ---
 
-<BaseLayout title="Quriosity Blog & Articles | QShala">
+<BaseLayout 
+  title="Quriosity Magazine & Blog | Socratic Learning & Quizzing"
+  description="Perspectives on socratic inquiry, parenting, AI and education, workplace gamification, and current affairs quizzing from QShala."
+  pageType="CollectionPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Magazine & Blog", item: "/blog" }
+  ]}
+>
   <Navbar />
 
-  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+  <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
     <div class="w-full px-4 sm:px-8 md:px-12 space-y-16">
       
       <!-- Header -->

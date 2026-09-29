@@ -5,9 +5,16 @@ import Footer from '../components/Footer.astro';
 import MultiStepBooking from '../components/MultiStepBooking';
 ---
 
-<BaseLayout title="Book a Quiz Experience | QShala">
+<BaseLayout 
+  title="Book a Quiz Experience | Custom Quizzes for Schools & Corporates"
+  description="Customize and book a high-energy quiz experience for your school, corporate offsite, campus fest, or community gathering with QShala."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Book a Quiz", item: "/book-a-quiz" }
+  ]}
+>
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6">
+  <main id="main-content" class="flex-grow pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto space-y-12">
       <div class="text-center max-w-3xl mx-auto">
         <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border border-black font-heading">

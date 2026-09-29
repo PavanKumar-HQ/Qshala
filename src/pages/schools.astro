@@ -3,11 +3,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+const schoolServiceSchema = {
+  "@type": "Service",
+  "@id": "https://qshala.vercel.app/schools#service",
+  "name": "QShala for Schools & K-12",
+  "serviceType": "K-12 Educational Curriculum & Quriosity Clubs",
+  "description": "Weekly timetabled quriosity clubs, socratic science, current affairs storytelling, and inter-school quiz tournaments for Grades 1 through 12.",
+  "provider": {
+    "@id": "https://qshala.vercel.app/#organization"
+  },
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student",
+    "audienceType": "K-12 Schools and Educators"
+  }
+};
 ---
 
-<BaseLayout title="QShala for Schools & K-12 | India's Quriosity Company">
+<BaseLayout 
+  title="QShala for Schools & K-12 | Quriosity Clubs & Curriculum"
+  description="Empowering 250+ K-12 schools with timetabled weekly quriosity clubs, socratic storytelling, and inter-school quiz championships across India."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "For Schools", item: "/schools" }
+  ]}
+  schema={schoolServiceSchema}
+>
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+  <main id="main-content" class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
     <div class="max-w-7xl mx-auto space-y-20">
       
       <!-- Hero Section -->

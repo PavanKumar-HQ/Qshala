@@ -156,11 +156,48 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+
+const articleSchema = {
+  "@type": "BlogPosting",
+  "@id": `https://qshala.vercel.app/blog/${post.slug}#article`,
+  "headline": post.title,
+  "description": post.summary,
+  "articleSection": post.category,
+  "inLanguage": "en-IN",
+  "url": `https://qshala.vercel.app/blog/${post.slug}`,
+  "author": {
+    "@type": "Organization",
+    "name": "QShala Editorial Team",
+    "url": "https://qshala.vercel.app"
+  },
+  "publisher": {
+    "@id": "https://qshala.vercel.app/#organization"
+  },
+  "isPartOf": {
+    "@id": "https://qshala.vercel.app/#website"
+  },
+  "image": "https://qshala.vercel.app/og-image.jpg"
+};
 ---
 
-<BaseLayout title={`${post.title} | QShala Magazine`}>
+<BaseLayout 
+  title={`${post.title} | QShala Magazine`}
+  description={post.summary}
+  ogType="article"
+  articleMeta={{
+    author: "QShala Editorial Team",
+    section: post.category,
+    tags: [post.category, "Quriosity", "Education", "QShala"]
+  }}
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Magazine & Blog", item: "/blog" },
+    { name: post.title, item: `/blog/${post.slug}` }
+  ]}
+  schema={articleSchema}
+>
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+  <main id="main-content" class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
       <!-- Left Content Column -->
@@ -213,7 +250,15 @@ const { post } = Astro.props;
           <h4 class="font-black text-slate-900 font-heading text-lg mb-2">Quriosity Newsletter</h4>
           <p class="text-xs text-slate-600 font-semibold mb-6">Get 1 puzzle and fun facts every Sunday.</p>
           <form action="mailto:qshala@walnuts.co.in" method="post" class="space-y-3">
-            <input type="email" placeholder="Your Email Address" required class="w-full px-4 py-3 rounded-full border-2 border-slate-200 bg-[#FFFDF5] focus:border-black focus:outline-none text-sm font-semibold transition-colors" />
+            <input 
+              type="email" 
+              id="article-newsletter-email"
+              name="email"
+              aria-label="Email address for weekly Sunday puzzle newsletter"
+              placeholder="Your Email Address" 
+              required 
+              class="w-full px-4 py-3 rounded-full border-2 border-slate-200 bg-[#FFFDF5] focus:border-black focus:outline-none text-sm font-semibold transition-colors" 
+            />
             <button type="submit" class="w-full py-3 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#68A53B] transition-colors">
               Subscribe
             </button>

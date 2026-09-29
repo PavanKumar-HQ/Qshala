@@ -58,10 +58,18 @@ const INVESTORS_ADVISORS = [
 ];
 ---
 
-<BaseLayout title="About Us | QShala - India's Curiosity Company">
+<BaseLayout 
+  title="About Us — Our Story & Mission | QShala India"
+  description="Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by top leaders."
+  pageType="AboutPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "About Us", item: "/about" }
+  ]}
+>
   <Navbar />
 
-  <main class="flex-grow pt-20 md:pt-24 pb-16 overflow-x-hidden bg-[#FFFDF5]">
+  <main id="main-content" class="flex-grow pt-20 md:pt-24 pb-16 overflow-x-hidden bg-[#FFFDF5]">
 
     <!-- 1. HERO: OPEN EDITORIAL MISSION -->
     <section class="pt-4 pb-8 md:pt-6 md:pb-10 relative w-full px-4 sm:px-8 md:px-12">

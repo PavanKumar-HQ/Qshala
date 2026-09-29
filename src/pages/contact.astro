@@ -31,12 +31,47 @@ const CAREERS_ROLES = [
     color: "#EDF7E5"
   }
 ];
+
+const localBusinessSchema = {
+  "@type": "LocalBusiness",
+  "@id": "https://qshala.vercel.app/contact#localbusiness",
+  "name": "QShala Headquarters",
+  "image": "https://qshala.vercel.app/og-image.jpg",
+  "telephone": "+91-89716-76100",
+  "email": "qshala@walnuts.co.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "560078",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 12.9063,
+    "longitude": 77.5857
+  },
+  "url": "https://qshala.vercel.app/contact",
+  "parentOrganization": {
+    "@id": "https://qshala.vercel.app/#organization"
+  }
+};
 ---
 
-<BaseLayout title="Contact Us | Careers & Locations | QShala">
+<BaseLayout 
+  title="Contact QShala | Office Location, Phone & Careers"
+  description="Get in touch with QShala. Visit our Bengaluru headquarters in JP Nagar, call +91-89716-76100, or explore career opportunities in education and quizzing."
+  pageType="ContactPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Contact", item: "/contact" }
+  ]}
+  schema={localBusinessSchema}
+>
   <Navbar />
 
-  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+  <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
     <!-- Top Header -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-6 text-center space-y-4">

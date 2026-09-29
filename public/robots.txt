@@ -1,5 +1,48 @@
-# The asterisk (*) means it applies to ALL search engines (Google, Bing, Yahoo, DuckDuckGo, etc.)
+# robots.txt for QShala (https://qshala.vercel.app)
+# Comprehensive crawling directives for search engines and AI answer engines
+
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
 
+# OpenAI / ChatGPT Search
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+# Google Search & Gemini Extended
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+# Apple Search & Siri
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+
+# Sitemap location
 Sitemap: https://qshala.vercel.app/sitemap-index.xml

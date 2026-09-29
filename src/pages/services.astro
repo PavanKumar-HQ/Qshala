@@ -85,12 +85,43 @@ const SERVICE_MODULES = [
     bgTint: "#FFF8E1"
   }
 ];
+
+const servicesSchema = {
+  "@type": "ItemList",
+  "@id": "https://qshala.vercel.app/services#list",
+  "name": "QShala Services & Learning Modules",
+  "itemListElement": SERVICE_MODULES.map((service, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "Service",
+      "name": service.title,
+      "description": service.description,
+      "serviceType": service.badge,
+      "provider": {
+        "@id": "https://qshala.vercel.app/#organization"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": service.badge
+      }
+    }
+  }))
+};
 ---
 
-<BaseLayout title="Book a Quiz Now | QShala Offerings & Services">
+<BaseLayout 
+  title="Quriosity Services & Custom Quizzes | QShala India"
+  description="Explore QShala's quiz and learning experiences for K-12 schools, campus fests, corporate team engagement, community events, and custom celebrations."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Services", item: "/services" }
+  ]}
+  schema={servicesSchema}
+>
   <Navbar />
 
-  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+  <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
     <!-- Page Header (Full Width Fit) -->
     <section class="py-8 w-full px-4 sm:px-8 md:px-12">

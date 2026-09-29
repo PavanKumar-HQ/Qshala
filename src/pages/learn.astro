@@ -152,10 +152,17 @@ const BLOG_CARDS = [
 ];
 ---
 
-<BaseLayout title="Learn & Resources | Quizzing 101 | QShala">
+<BaseLayout 
+  title="Learn & Resources Hub | Quizzing 101 & Masterclasses | QShala"
+  description="Explore QShala's learning resources: Quizzing 101, socratic masterclasses, curated news sources for students, and behind-the-scenes stories."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Learn", item: "/learn" }
+  ]}
+>
   <Navbar />
 
-  <main class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
+  <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
     <!-- Top Hero Banner (Compact & Sleek with Relevant Quriosity Learning Image) -->
     <section class="w-full px-4 sm:px-8 md:px-12 py-2">

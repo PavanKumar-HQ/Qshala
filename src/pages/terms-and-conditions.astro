@@ -4,9 +4,16 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Terms and Conditions | QShala">
+<BaseLayout 
+  title="Terms and Conditions | QShala - Curiosita Educational Services"
+  description="Read the terms and conditions governing the use of QShala's website, educational clubs, corporate programs, and intellectual property."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Terms & Conditions", item: "/terms-and-conditions" }
+  ]}
+>
   <Navbar />
-  <main class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
+  <main id="main-content" class="flex-grow pt-32 pb-24 px-6 bg-[#FFFDF5]">
     <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-12 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
       <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading mb-8">Terms and Conditions</h1>
       <div class="prose prose-slate max-w-none text-slate-700 space-y-6 font-medium">

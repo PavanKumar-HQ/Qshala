@@ -3,19 +3,156 @@ import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { ViewTransitions } from 'astro:transitions';
 
-interface Props {
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface ArticleMetadata {
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+}
+
+export interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'ItemPage' | 'CollectionPage';
+  breadcrumbs?: BreadcrumbItem[];
+  articleMeta?: ArticleMetadata;
+  schema?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
   title = "QShala | Questions • Quriosity • Quests — India's Quriosity Company",
-  description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India."
+  description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India.",
+  canonical,
+  ogImage,
+  ogType = 'website',
+  noindex = false,
+  pageType = 'WebPage',
+  breadcrumbs,
+  articleMeta,
+  schema
 } = Astro.props;
 
 const siteUrl = 'https://qshala.vercel.app';
-const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
-const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
+const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonicalURL = canonical || (cleanPath === '/' ? siteUrl : `${siteUrl}${cleanPath}`);
+const ogImageUrl = ogImage || `${siteUrl}/og-image.jpg?v=10`;
+
+// Organization Entity
+const orgEntity: Record<string, any> = {
+  "@type": "EducationalOrganization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "QShala - Curiosita Educational Services",
+  "alternateName": ["QShala", "Walnut Knowledge Solutions", "Curiosita Educational Services"],
+  "url": siteUrl,
+  "logo": `${siteUrl}/assets/logos/QShala%20Logo%201.svg`,
+  "image": `${siteUrl}/og-image.jpg`,
+  "description": "India's premier curiosity platform fostering socratic questioning, critical thinking, school curiosity clubs, and corporate trivia engagement.",
+  "telephone": "+91-89716-76100",
+  "email": "qshala@walnuts.co.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "560078",
+    "addressCountry": "IN"
+  },
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Sachin Ravi",
+      "jobTitle": "Co-Founder",
+      "sameAs": "https://www.linkedin.com/in/sachin-ravi-60b6432b/"
+    },
+    {
+      "@type": "Person",
+      "name": "Raghav Chakravarthy",
+      "jobTitle": "Co-Founder",
+      "sameAs": "https://www.linkedin.com/in/raghav-chakravarthy-75051a37/"
+    }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-89716-76100",
+    "contactType": "customer service",
+    "email": "qshala@walnuts.co.in",
+    "areaServed": "IN",
+    "availableLanguage": ["English", "Hindi", "Kannada"]
+  },
+  "sameAs": [
+    "https://twitter.com/qshala",
+    "https://www.linkedin.com/company/walnut-knowledge-solutions/",
+    "https://www.instagram.com/qshala/",
+    "https://www.facebook.com/qshala/",
+    "https://www.youtube.com/@qshala"
+  ]
+};
+
+// WebSite Entity
+const websiteEntity: Record<string, any> = {
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
+  "name": "QShala — India's Quriosity Company",
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "en-IN"
+};
+
+// WebPage Entity
+const webPageEntity: Record<string, any> = {
+  "@type": pageType,
+  "@id": `${canonicalURL}#webpage`,
+  "url": canonicalURL,
+  "name": title,
+  "description": description,
+  "isPartOf": {
+    "@id": `${siteUrl}/#website`
+  },
+  "about": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "en-IN"
+};
+
+const graph: Record<string, any>[] = [orgEntity, websiteEntity, webPageEntity];
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graph.push({
+    "@type": "BreadcrumbList",
+    "@id": `${canonicalURL}#breadcrumb`,
+    "itemListElement": breadcrumbs.map((b, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": b.name,
+      "item": b.item.startsWith('http') ? b.item : `${siteUrl}${b.item}`
+    }))
+  });
+}
+
+if (schema) {
+  if (Array.isArray(schema)) {
+    graph.push(...schema);
+  } else {
+    graph.push(schema);
+  }
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": graph
+};
 ---
 
 <!DOCTYPE html>
@@ -32,10 +169,22 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <meta name="theme-color" content="#30B2E7" />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Robots Directives -->
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+
+    <!-- Author & Attribution -->
+    <meta name="author" content="QShala - Curiosita Educational Services" />
+    <meta name="publisher" content="QShala" />
+    <meta name="copyright" content="Walnut Knowledge Solutions" />
+
     <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Link Preview -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="QShala — India's Quriosity Company" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
@@ -43,14 +192,31 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
-    <meta property="og:image:alt" content="QShala — India's Quriosity Company" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    {ogType === 'article' && articleMeta && (
+      <>
+        {articleMeta.publishedTime && <meta property="article:published_time" content={articleMeta.publishedTime} />}
+        {articleMeta.modifiedTime && <meta property="article:modified_time" content={articleMeta.modifiedTime} />}
+        {articleMeta.author && <meta property="article:author" content={articleMeta.author} />}
+        {articleMeta.section && <meta property="article:section" content={articleMeta.section} />}
+        {articleMeta.tags?.map((tag) => (
+          <meta property="article:tag" content={tag} />
+        ))}
+      </>
+    )}
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@qshala" />
+    <meta name="twitter:creator" content="@qshala" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={title} />
 
     <!-- No-JS Fallback for Loader -->
     <noscript>
@@ -61,25 +227,8 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
       </style>
     </noscript>
 
-    <!-- JSON-LD Structured Data for Rich Search Results -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "QShala - Curiosita Educational Services",
-      "url": siteUrl,
-      "logo": "https://qshala.vercel.app/assets/logos/QShala%20Logo%201.svg",
-      "description": description,
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-89716-76100",
-        "contactType": "customer service",
-        "email": "qshala@walnuts.co.in"
-      },
-      "sameAs": [
-        "https://twitter.com/qshala",
-        "https://linkedin.com/company/qshala"
-      ]
-    })} />
+    <!-- Schema.org JSON-LD Graph for Rich Search Results, AEO & AI Engines -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     
     <!-- Self-hosted font preloads for performance -->
     <link rel="preload" href="/fonts/Trustha - Causten Round Black.otf" as="font" type="font/otf" crossorigin />
@@ -90,7 +239,6 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <script is:inline>
       (function() {
         try {
-          // On initial full page load (or hard refresh)
           if (!window.hasLoaderShown) {
             document.documentElement.classList.add('loading-active');
             window.hasLoaderShown = true;
@@ -98,7 +246,6 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
             document.documentElement.classList.add('skip-loader');
           }
 
-          // Before Astro swaps the new document in, ensure the skip-loader class is carried over
           document.addEventListener('astro:before-swap', function(ev) {
             if (window.hasLoaderShown) {
               ev.newDocument.documentElement.classList.add('skip-loader');
@@ -134,6 +281,14 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
   </head>
   <body class="antialiased bg-[#FFFDF5] text-black min-h-screen flex flex-col font-sans">
 
+    <!-- Accessible Skip to Main Content Link -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-[#FDB913] focus:text-slate-950 focus:font-black focus:border-2 focus:border-black focus:rounded-full focus:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading text-xs uppercase tracking-wider transition-all"
+    >
+      Skip to main content
+    </a>
+
     <!-- 5-scene Quriosity Loader -->
     <div id="loader-root">
       <LoadingScreen client:load />
@@ -148,7 +303,6 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
     <script is:inline>
       let isScrollAttached = false;
       document.addEventListener('astro:page-load', () => {
-        
         // 1. Progress Bar Logic
         const bar = document.getElementById('reading-progress');
         const updateProgress = () => {
@@ -191,7 +345,6 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
         ];
         var titleInterval;
 
-        // Ensure we always have the correct title for the current page
         document.addEventListener('astro:page-load', function() {
           if (!document.hidden) {
             originalTitle = document.title;
@@ -202,8 +355,6 @@ const ogImageUrl = `${siteUrl}/og-image.jpg?v=9`;
           if (document.hidden) {
             var msg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
             document.title = msg;
-            
-            // Force the title to stay even if React or other scripts try to revert it in the background
             titleInterval = setInterval(function() {
               if (document.title !== msg) document.title = msg;
             }, 1000);

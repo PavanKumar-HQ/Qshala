@@ -13,12 +13,71 @@ import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
 import { CASE_STUDIES_DATA } from '../lib/data';
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": "https://qshala.vercel.app/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes QShala different from traditional quiz competitions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional quizzes test memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and 'Why?' questions. We turn learning into an active discovery quest rather than a memory test."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are QShala sessions conducted online or in-person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both! We host live in-person workshops, auditoriums, and stage championships, as well as hybrid and fully remote sessions with digital buzzers and real-time leaderboards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do QShala Quriosity Clubs fit into a school timetable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QShala Quriosity Clubs are designed as 40 to 60-minute weekly modules that easily replace or complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What age groups are QShala programs designed for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We have age-tailored programs for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do QShala corporate trivia sessions help reduce attrition?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shared play builds psychological safety and cross-team camaraderie. Our corporate sessions create low-pressure, high-fun environments where colleagues connect beyond daily work tasks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can QShala customize trivia around our company history and products?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture."
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title="QShala | Questions • Quriosity • Quests — India's Quriosity Company">
+<BaseLayout 
+  title="QShala | Questions • Quriosity • Quests — India's Quriosity Company"
+  description="Replacing rote learning with quriosity, socratic storytelling, and inquiry-led thinking. Partnering with 250+ K-12 schools and 80+ top corporates across India."
+  schema={faqSchema}
+>
   <Navbar />
 
-  <main class="flex-grow overflow-x-hidden">
+  <main id="main-content" class="flex-grow overflow-x-hidden">
     
     <!-- 1. HERO (Banner) -->
     <section id="hero" class="relative pt-28 pb-16 md:pt-32 md:pb-20 bg-[#FFFDF5]">
@@ -125,6 +184,9 @@ import { CASE_STUDIES_DATA } from '../lib/data';
           <form class="flex w-full max-w-md flex-col sm:flex-row gap-2 relative z-10" onsubmit="event.preventDefault();">
             <input 
               type="email" 
+              id="qshots-email"
+              name="email"
+              aria-label="Email address for QShots daily trivia"
               placeholder="Enter your email address" 
               class="flex-grow px-6 py-4 rounded-full bg-white border border-slate-200 text-sm font-medium focus:outline-none focus:border-[#75B543] focus:ring-4 focus:ring-[#75B543]/10 shadow-sm transition-all"
               required
