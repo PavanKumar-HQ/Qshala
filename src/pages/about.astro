@@ -54,38 +54,6 @@ const INVESTORS_ADVISORS = [
     color: "#30B2E7",
     badge: "Angel Backer",
     logo: "/assets/logos/uptycs.png"
-  },
-  {
-    name: "Rainmatter Foundation",
-    role: "Climate & Environmental Learning",
-    company: "Rainmatter",
-    color: "#75B543",
-    badge: "Impact Partner",
-    logo: "https://www.google.com/s2/favicons?domain=rainmatter.org&sz=128"
-  },
-  {
-    name: "Axilor Ventures",
-    role: "Scalable EdTech Methodology",
-    company: "Axilor",
-    color: "#30B2E7",
-    badge: "Accelerator",
-    logo: "https://www.google.com/s2/favicons?domain=axilor.com&sz=128"
-  },
-  {
-    name: "Mindhouse & Angels",
-    role: "Consumer Tech Ecosystem Leaders",
-    company: "Mindhouse",
-    color: "#FDB913",
-    badge: "Angel Backing",
-    logo: "https://www.google.com/s2/favicons?domain=shyft.co&sz=128"
-  },
-  {
-    name: "K-12 Advisory Council",
-    role: "Curriculum Directors & Principals",
-    company: "K-12 Council",
-    color: "#9333EA",
-    badge: "Academic Board",
-    logo: "https://ui-avatars.com/api/?name=K-12&background=9333EA&color=fff&size=100"
   }
 ];
 ---
@@ -186,7 +154,7 @@ const INVESTORS_ADVISORS = [
           <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-[#E8F6FD] to-transparent"></div>
           
           <div class="marquee-track flex gap-5 w-max px-4">
-            {[...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS].map((inv) => (
+            {[...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS].map((inv) => (
               <div class="p-5 rounded-2xl bg-white/90 border border-sky-100 shadow-sm space-y-3 w-72 sm:w-80 shrink-0 hover:shadow-md transition-shadow flex flex-col justify-between">
                 <div>
                   <div class="flex items-start justify-between gap-3">
@@ -215,14 +183,14 @@ const INVESTORS_ADVISORS = [
 
     <style>
       .marquee-track {
-        animation: scroll-left-investors 32s linear infinite;
+        animation: scroll-left-investors 60s linear infinite;
       }
       .marquee-container:hover .marquee-track {
         animation-play-state: paused;
       }
       @keyframes scroll-left-investors {
         0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        100% { transform: translateX(calc(-100% / 3)); }
       }
     </style>
 
@@ -249,7 +217,7 @@ const INVESTORS_ADVISORS = [
             </p>
 
             <div class="pt-2">
-              <QTAnimatedPlayer client:visible mode="playing" size="md" fps={100 / 60} />
+              <QTAnimatedPlayer client:visible size="lg" />
             </div>
           </div>
 

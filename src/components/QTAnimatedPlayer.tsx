@@ -1,70 +1,52 @@
-import React, { useEffect, useState } from 'react';
-
-// Cycle through these playing frames to create a flipbook animation
-const PLAY_FRAMES = [
-  '/assets/qt/QT playing.svg',
-  '/assets/qt/QT playing 2.svg',
-  '/assets/qt/QT playing 3.svg',
-  '/assets/qt/Qt playing 4.svg',
-];
-
-// Walk cycle uses legs + jumping variants
-const WALK_FRAMES = [
-  '/assets/qt/Qt with legs.svg',
-  '/assets/qt/QT jumping.svg',
-  '/assets/qt/Qt jumping 2.svg',
-  '/assets/qt/Qt with legs.svg',
-  '/assets/qt/QT normal.svg',
-];
+import React, { useState } from 'react';
 
 const SIZE_MAP = {
-  sm: 64,
-  md: 96,
-  lg: 144,
-  xl: 192,
+  sm: 72,
+  md: 110,
+  lg: 160,
+  xl: 200,
 };
 
 interface QTAnimatedPlayerProps {
-  mode?: 'playing' | 'walking';
+  mode?: 'playing' | 'walking' | 'curious';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   fps?: number;
   className?: string;
 }
 
 export default function QTAnimatedPlayer({
-  mode = 'playing',
   size = 'md',
-  fps = 6,
   className = '',
 }: QTAnimatedPlayerProps) {
-  const frames = mode === 'walking' ? WALK_FRAMES : PLAY_FRAMES;
-  const [frame, setFrame] = useState(0);
   const dimension = SIZE_MAP[size];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFrame((prev) => (prev + 1) % frames.length);
-    }, 1000 / fps);
-    return () => clearInterval(interval);
-  }, [fps, frames.length]);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`relative inline-flex items-center justify-center select-none ${className}`}
+      className={`relative inline-flex items-center justify-center select-none group cursor-pointer ${className}`}
       style={{ width: dimension, height: dimension }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      title="QT - The Qurious Cat"
     >
-      {frames.map((src, i) => (
+      {/* Soft playful ambient glow */}
+      <div className="absolute inset-0 bg-[#FDB913]/20 rounded-full blur-xl scale-110 group-hover:scale-135 transition-transform duration-500 pointer-events-none" />
+
+      {/* QT Animated Mascot from Brand Assets */}
+      <picture className="relative z-10 w-full h-full flex items-center justify-center">
+        <source srcSet="/assets/qt/animation/qt_curious_animated.webp" type="image/webp" />
         <img
-          key={src}
-          src={src}
-          alt={`QT ${mode} frame ${i}`}
+          src="/assets/qt/animation/qt_curious_animated.gif"
+          alt="QT Qurious Cat Animation"
           width={dimension}
           height={dimension}
-          className="object-contain pointer-events-none drop-shadow-lg absolute inset-0 transition-opacity duration-75"
-          style={{ opacity: i === frame ? 1 : 0 }}
+          className={`object-contain pointer-events-none drop-shadow-md transition-all duration-300 ${
+            isHovered ? 'scale-110 -rotate-3' : 'scale-100 hover:scale-105'
+          }`}
           loading="eager"
         />
-      ))}
+      </picture>
     </div>
   );
 }
+
