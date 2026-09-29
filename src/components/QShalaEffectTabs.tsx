@@ -85,7 +85,7 @@ export default function QShalaEffectTabs() {
   const current = TABS.find((t) => t.id === activeTab)!;
 
   return (
-    <div className={`w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] py-16 md:py-24 px-6 transition-colors duration-500 ${current.bgColor}`}>
+    <div className={`w-full py-16 md:py-24 px-4 sm:px-6 transition-colors duration-500 ${current.bgColor}`}>
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-2">

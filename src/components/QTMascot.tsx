@@ -71,7 +71,7 @@ export default function QTMascot({
           alt={`QT Mascot ${variant}`}
           width={dimension}
           height={dimension}
-          className="object-contain pointer-events-none drop-shadow-lg"
+          className="max-w-full h-auto object-contain pointer-events-none drop-shadow-lg"
           loading="eager"
         />
       </div>

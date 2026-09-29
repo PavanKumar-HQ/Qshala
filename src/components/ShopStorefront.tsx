@@ -251,7 +251,11 @@ export default function ShopStorefront() {
       <button
         onClick={() => setIsCartOpen(true)}
         aria-label="View Cart"
-        className="fixed bottom-6 right-6 z-40 md:hidden w-14 h-14 rounded-full bg-[#30B2E7] text-white flex items-center justify-center border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"
+        className="fixed z-40 md:hidden w-14 h-14 rounded-full bg-[#30B2E7] text-white flex items-center justify-center border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"
+        style={{
+          bottom: 'max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))',
+          right: 'max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)))'
+        }}
       >
         <svg className="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
           <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -362,7 +366,15 @@ export default function ShopStorefront() {
       {/* Shopping Cart Drawer Overlay */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-[#FFFDF5] h-full shadow-2xl border-l-4 border-slate-900 p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
+          <div 
+            className="w-full max-w-md bg-[#FFFDF5] h-[100dvh] shadow-2xl border-l-4 border-slate-900 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300"
+            style={{
+              paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
+              paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
+              paddingRight: 'max(1.5rem, env(safe-area-inset-right, 0px))',
+              paddingLeft: 'max(1.25rem, env(safe-area-inset-left, 0px))'
+            }}
+          >
             <div>
               <div className="flex items-center justify-between pb-4 border-b-2 border-slate-900">
                 <div className="flex items-center gap-2">
@@ -375,9 +387,9 @@ export default function ShopStorefront() {
                 <button
                   onClick={() => setIsCartOpen(false)}
                   aria-label="Close cart"
-                  className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-900 flex items-center justify-center cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-900 flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
                 >
-                  <svg className="w-4 h-4 fill-current text-slate-900" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                   </svg>
                 </button>
@@ -415,17 +427,19 @@ export default function ShopStorefront() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-full border border-slate-900">
+                      <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-900">
                         <button
                           onClick={() => handleUpdateQuantity(product.id, -1)}
-                          className="w-6 h-6 rounded-full bg-white text-slate-900 font-black text-xs flex items-center justify-center border border-slate-900"
+                          aria-label={`Decrease quantity of ${product.title}`}
+                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-900 active:scale-95"
                         >
                           -
                         </button>
-                        <span className="font-black text-xs px-1">{quantity}</span>
+                        <span className="font-black text-xs px-1.5">{quantity}</span>
                         <button
                           onClick={() => handleUpdateQuantity(product.id, 1)}
-                          className="w-6 h-6 rounded-full bg-white text-slate-900 font-black text-xs flex items-center justify-center border border-slate-900"
+                          aria-label={`Increase quantity of ${product.title}`}
+                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-900 active:scale-95"
                         >
                           +
                         </button>

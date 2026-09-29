@@ -79,14 +79,14 @@ export default function MultiStepBooking() {
     <div className="bg-white rounded-3xl p-6 md:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-3xl mx-auto">
       
       {/* Route Badge */}
-      <div className="mb-6 flex items-center justify-between bg-[#FFFDF5] p-3.5 rounded-2xl border border-slate-200">
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#FFFDF5] p-3.5 rounded-2xl border border-slate-200">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping shrink-0"></span>
           <span className="text-xs font-black uppercase text-slate-700 font-heading">
             Sales Pipeline: <span className="text-[#30B2E7]">{salesTeamName}</span>
           </span>
         </div>
-        <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 font-heading">
+        <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 font-heading self-start sm:self-auto">
           {formData.audienceType}
         </span>
       </div>
@@ -251,12 +251,12 @@ export default function MultiStepBooking() {
           </div>
         )}
 
-        <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between">
+        <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between gap-3 flex-wrap">
           {step > 1 ? (
             <button
               type="button"
               onClick={handlePrev}
-              className="px-6 py-3 rounded-full bg-white text-slate-800 font-black text-xs border-2 border-black font-heading hover:bg-slate-100"
+              className="px-6 py-3 rounded-full bg-white text-slate-800 font-black text-xs border-2 border-black font-heading hover:bg-slate-100 cursor-pointer active:scale-95 transition-transform"
             >
               &larr; Back
             </button>
@@ -266,14 +266,14 @@ export default function MultiStepBooking() {
             <button
               type="button"
               onClick={handleNext}
-              className="px-8 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading"
+              className="px-8 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform"
             >
               Continue &rarr;
             </button>
           ) : (
             <button
               type="submit"
-              className="px-8 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading"
+              className="px-8 py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform"
             >
               Submit to {salesTeamName} &rarr;
             </button>
