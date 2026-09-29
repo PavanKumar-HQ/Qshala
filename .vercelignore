@@ -1,0 +1,3 @@
+# Exclude heavy design assets from Vercel deployment bundle
+Assets Qshala/
+.DS_Store

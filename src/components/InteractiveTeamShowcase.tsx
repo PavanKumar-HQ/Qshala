@@ -14,32 +14,6 @@ interface TeamMember {
   tag: string;
 }
 
-const FOUNDERS: TeamMember[] = [
-  {
-    id: "sachin",
-    name: "Sachin Ravi",
-    role: "Co-Founder & Chief Storyteller",
-    category: "Leadership",
-    bio: "Replacing rote learning with socratic wonder.",
-    image: "https://ui-avatars.com/api/?name=Sachin+Ravi&background=FDB913&color=fff&size=200",
-    variant: "sherlock",
-    color: "#FDB913",
-    bg: "#FFFDF5",
-    tag: "Co-Founder"
-  },
-  {
-    id: "raghavan",
-    name: "Raghav Chakravarthy",
-    role: "Co-Founder & Chief Executive",
-    category: "Leadership",
-    bio: "Building India's largest curiosity ecosystem.",
-    image: "https://ui-avatars.com/api/?name=Raghavan+A&background=30B2E7&color=fff&size=200",
-    variant: "quizzing",
-    color: "#30B2E7",
-    bg: "#FFFDF5",
-    tag: "Co-Founder"
-  }
-];
 
 const CREW: TeamMember[] = [
   {
@@ -133,39 +107,7 @@ export default function InteractiveTeamShowcase() {
         </p>
       </div>
 
-      {/* Founders Section */}
-      <div className="space-y-6 w-full">
-        <div className="pb-2 border-b border-slate-200">
-          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
-            Founding Leadership
-          </h3>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-          {FOUNDERS.map((founder) => (
-            <div 
-              key={founder.id}
-              className="p-6 rounded-3xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-3 group cursor-pointer flex flex-col"
-            >
-              <div className="flex items-center justify-end">
-                <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
-                  <QTMascot variant={founder.variant} size="md" />
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center justify-center py-2">
-                <img src={founder.image} alt={founder.name} className="w-32 h-32 rounded-full object-cover shadow-md mb-2 border-4 border-white" />
-                <h4 className="text-2xl font-black text-slate-900 font-heading group-hover:text-[#30B2E7] transition-colors text-center">{founder.name}</h4>
-                <div className="text-xs font-bold text-slate-500 mt-1 font-heading text-center">{founder.role}</div>
-              </div>
-
-              <p className="text-slate-700 text-sm font-medium leading-relaxed text-center flex-grow">
-                {founder.bio}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Crew Section */}
       <div className="space-y-6 w-full">
