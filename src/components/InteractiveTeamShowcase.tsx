@@ -14,15 +14,14 @@ interface TeamMember {
   tag: string;
 }
 
-
 const CREW: TeamMember[] = [
   {
     id: "preeti",
     name: "Preeti K.",
     role: "Head of Curriculum",
     category: "Curriculum",
-    bio: "Designing socratic questioning frameworks.",
-    image: "https://ui-avatars.com/api/?name=Preeti+K&background=75B543&color=fff&size=200",
+    bio: "Designing inquiry frameworks and socratic questioning modules for 250+ partner schools.",
+    image: "https://ui-avatars.com/api/?name=Preeti+K&background=75B543&color=fff&size=300",
     variant: "reading",
     color: "#75B543",
     bg: "#EDF7E5",
@@ -33,8 +32,8 @@ const CREW: TeamMember[] = [
     name: "Rohan M.",
     role: "Chief Quizmaster",
     category: "Content",
-    bio: "Hosting live trivia tournaments.",
-    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=200",
+    bio: "Hosting high-stakes live quiz championships and inter-school tournaments across India.",
+    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=300",
     variant: "idea",
     color: "#9333EA",
     bg: "#F3E8FF",
@@ -45,8 +44,8 @@ const CREW: TeamMember[] = [
     name: "Divya S.",
     role: "Lead, School Partnerships",
     category: "Partnerships",
-    bio: "Empowering 250+ principal partners.",
-    image: "https://ui-avatars.com/api/?name=Divya+S&background=EC4899&color=fff&size=200",
+    bio: "Guiding principals and academic coordinators to integrate weekly Quriosity Clubs.",
+    image: "https://ui-avatars.com/api/?name=Divya+S&background=EC4899&color=fff&size=300",
     variant: "curious",
     color: "#EC4899",
     bg: "#FCE7F3",
@@ -57,8 +56,8 @@ const CREW: TeamMember[] = [
     name: "Karthik R.",
     role: "Head of Gamified Tech",
     category: "Technology",
-    bio: "Architecting interactive daily quiz engines.",
-    image: "https://ui-avatars.com/api/?name=Karthik+R&background=30B2E7&color=fff&size=200",
+    bio: "Architecting interactive daily quiz engines, digital buzzers, and real-time leaderboards.",
+    image: "https://ui-avatars.com/api/?name=Karthik+R&background=30B2E7&color=fff&size=300",
     variant: "professional",
     color: "#30B2E7",
     bg: "#E8F6FD",
@@ -69,8 +68,8 @@ const CREW: TeamMember[] = [
     name: "Ananya M.",
     role: "Senior Instructional Designer",
     category: "Design",
-    bio: "Bringing QT mascot to life.",
-    image: "https://ui-avatars.com/api/?name=Ananya+M&background=FDB913&color=fff&size=200",
+    bio: "Crafting storyboards, visual discovery prompts, and bringing the QT mascot to life.",
+    image: "https://ui-avatars.com/api/?name=Ananya+M&background=FDB913&color=fff&size=300",
     variant: "holding_money",
     color: "#FDB913",
     bg: "#FFF8E1",
@@ -81,8 +80,8 @@ const CREW: TeamMember[] = [
     name: "Vikram P.",
     role: "Corporate Engagement Lead",
     category: "Corporate",
-    bio: "Designing high-octane team offsites.",
-    image: "https://ui-avatars.com/api/?name=Vikram+P&background=75B543&color=fff&size=200",
+    bio: "Designing high-octane team trivia nights and culture offsites for corporate partners.",
+    image: "https://ui-avatars.com/api/?name=Vikram+P&background=75B543&color=fff&size=300",
     variant: "trophy",
     color: "#75B543",
     bg: "#EDF7E5",
@@ -92,61 +91,69 @@ const CREW: TeamMember[] = [
 
 export default function InteractiveTeamShowcase() {
   return (
-    <div className="space-y-16 w-full">
+    <div className="space-y-12 w-full">
 
       {/* Main Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
           Meet Our Team
         </span>
-        <h2 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+        <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
           The Curiosity Crew.
         </h2>
-        <p className="text-slate-700 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-          The storytellers, educators, quizmasters &amp; designers bringing curiosity to life every single day.
+        <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          The educators, quizmasters, researchers &amp; experience designers making curiosity an active sport every single day.
         </p>
       </div>
 
-
-
-      {/* Crew Section */}
-      <div className="space-y-6 w-full">
-        <div className="pb-2 border-b border-slate-200">
-          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
-            Quriosity Catalysts
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {CREW.map((member) => (
-            <div 
-              key={member.id}
-              className="p-5 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 space-y-2 flex flex-col justify-between group cursor-pointer"
-              style={{ backgroundColor: member.bg }}
-            >
-              <div className="space-y-2 flex-grow flex flex-col">
-                <div className="flex items-center justify-end">
-                  <div className="group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300">
-                    <QTMascot variant={member.variant} size="sm" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center justify-center pt-1 pb-1 flex-grow">
-                  <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full object-cover shadow-sm mb-2 border-2 border-white" />
-                  <h4 className="text-xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors text-center">{member.name}</h4>
-                  <div className="text-xs font-bold text-slate-600 mt-1 font-heading text-center">{member.role}</div>
-                </div>
-
-                <p className="text-slate-700 text-xs font-medium leading-relaxed text-center">
-                  {member.bio}
-                </p>
+      {/* Taller, Narrower Flashcard-Style Team Cards with Bigger Images */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 w-full">
+        {CREW.map((member) => (
+          <div 
+            key={member.id}
+            className="rounded-3xl p-5 shadow-xs hover:shadow-lg hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group border border-slate-200/80 bg-white relative overflow-hidden min-h-[440px]"
+          >
+            {/* Top Tag & Mascot */}
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span 
+                className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-xs"
+                style={{ backgroundColor: member.color }}
+              >
+                {member.tag}
+              </span>
+              <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+                <QTMascot variant={member.variant} size="sm" />
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Flashcard Large Image & Content */}
+            <div className="flex flex-col items-center text-center space-y-3 flex-grow">
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-sm border-2 border-white shrink-0 group-hover:scale-105 transition-transform duration-300 bg-slate-100">
+                <img 
+                  src={member.image} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover" 
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="space-y-1 pt-1">
+                <h3 className="text-lg font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors">
+                  {member.name}
+                </h3>
+                <p className="text-xs font-bold text-slate-500 font-heading uppercase tracking-wider">
+                  {member.role}
+                </p>
+              </div>
+
+              <p className="text-slate-700 text-xs font-semibold leading-relaxed pt-2 border-t border-slate-100">
+                {member.bio}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
 
     </div>
   );
 }
-

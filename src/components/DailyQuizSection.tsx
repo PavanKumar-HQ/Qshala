@@ -47,10 +47,10 @@ export default function DailyQuizSection({ initialQuizzes }: { initialQuizzes?: 
         <button
           onClick={pickRandomQuizzes}
           type="button"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all font-heading"
+          className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-black text-xs sm:text-sm border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all font-heading cursor-pointer"
         >
-          <RefreshCw className="w-3.5 h-3.5 text-[#30B2E7]" />
-          <span>Shuffle Daily Questions (50+ in bank)</span>
+          <RefreshCw className="w-4 h-4 text-[#30B2E7]" />
+          <span>Shuffle the questions</span>
         </button>
       </div>
     </div>

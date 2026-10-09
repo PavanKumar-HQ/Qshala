@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 
 const FAQS = [
   {
     question: 'What makes QShala different from traditional quiz competitions?',
-    answer: 'Traditional quizzes test memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and "Why?" questions. We turn learning into an active discovery quest rather than a memory test.',
+    answer: 'Traditional quizzes test rote memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and "Why?" questions to turn learning into an active discovery quest.',
     mascot: '/assets/qt/QT Idea.svg',
   },
   {
@@ -14,80 +14,84 @@ const FAQS = [
   },
   {
     question: 'How do QShala Quriosity Clubs fit into a school timetable?',
-    answer: 'QShala Quriosity Clubs are designed as 40 to 60-minute weekly modules that easily replace or complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.',
+    answer: 'QShala Quriosity Clubs are 40 to 60-minute weekly modules that easily complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.',
     mascot: '/assets/qt/QT reading.svg',
   },
   {
-    question: 'What age groups are QShala programs designed for?',
-    answer: 'We have age-tailored programs for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers).',
-    mascot: '/assets/qt/QT happy.svg',
-  },
-  {
-    question: 'How do QShala corporate trivia sessions help reduce attrition?',
-    answer: 'Shared play builds psychological safety and cross-team camaraderie. Our corporate sessions create low-pressure, high-fun environments where colleagues connect beyond daily work tasks.',
+    question: 'How do corporate trivia sessions improve team bonding?',
+    answer: 'Shared play creates psychological safety. Our low-pressure, high-fun trivia tournaments bond cross-functional teams and boost workplace connection across hybrid offices.',
     mascot: '/assets/qt/QT professional.svg',
-  },
-  {
-    question: 'Can QShala customize trivia around our company history and products?',
-    answer: 'Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture.',
-    mascot: '/assets/qt/QT sherlock.svg',
   },
 ];
 
 export default function FAQSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <div className="space-y-4 w-full">
-      {FAQS.map((faq, idx) => {
-        const isOpen = openIdx === idx;
+    <div className="space-y-10 w-full max-w-6xl mx-auto">
+      {/* 2-Column Compact Grid (No harsh lines) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+        {FAQS.map((faq, idx) => {
+          const isOpen = openIdx === idx;
 
-        return (
-          <div
-            key={idx}
-            className="bg-white rounded-2xl border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
-          >
-            {/* Question Row */}
-            <button
-              type="button"
-              onClick={() => setOpenIdx(isOpen ? null : idx)}
-              className="w-full p-5 text-left flex items-center justify-between gap-4 font-black font-heading text-slate-900 hover:bg-slate-50 rounded-t-2xl transition-colors"
+          return (
+            <div
+              key={idx}
+              className={`bg-white rounded-3xl transition-all duration-200 overflow-hidden ${
+                isOpen 
+                  ? 'bg-white shadow-md ring-1 ring-[#30B2E7]/30' 
+                  : 'bg-white/90 shadow-xs hover:shadow-sm'
+              }`}
             >
-              <span className="text-base sm:text-lg leading-snug">{faq.question}</span>
-              <div
-                style={{
-                  transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.25s ease',
-                  backgroundColor: isOpen ? '#fef3c7' : '#FFFDF5',
-                }}
-                className="w-8 h-8 rounded-full border border-black flex items-center justify-center shrink-0"
+              {/* Question Trigger */}
+              <button
+                type="button"
+                onClick={() => setOpenIdx(isOpen ? null : idx)}
+                aria-expanded={isOpen}
+                className="w-full p-6 text-left flex items-center justify-between gap-4 font-black font-heading text-slate-900 transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] focus-visible:ring-offset-2"
               >
-                <ChevronDown className="w-5 h-5 text-slate-800" />
-              </div>
-            </button>
-
-            {/* Answer Panel — only in DOM when open */}
-            {isOpen && (
-              <div className="border-t border-slate-100 px-6 pb-6 pt-5">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                  <p className="flex-1 text-slate-800 text-base md:text-lg font-semibold leading-relaxed">
-                    {faq.answer}
-                  </p>
-                  <div className="shrink-0 self-center bg-[#FFFDF5] p-2.5 rounded-2xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                    <img
-                      src={faq.mascot}
-                      alt="QT Mascot"
-                      width={64}
-                      height={64}
-                      className="object-contain pointer-events-none"
-                    />
-                  </div>
+                <span className="text-base sm:text-lg leading-snug">{faq.question}</span>
+                <div
+                  style={{
+                    transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.25s ease',
+                  }}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                    isOpen ? 'bg-[#30B2E7] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  <ChevronDown className="w-4 h-4" />
                 </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
+              </button>
+
+              {/* Answer Panel */}
+              {isOpen && (
+                <div className="px-6 pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-4">
+                  <p className="flex-1">{faq.answer}</p>
+                  <img
+                    src={faq.mascot}
+                    alt="QT Mascot"
+                    width={48}
+                    height={48}
+                    className="shrink-0 object-contain hidden sm:block pointer-events-none self-end"
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Styled Link to Full FAQ Page */}
+      <div className="flex justify-center pt-2">
+        <a
+          href="/faq"
+          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] focus-visible:ring-offset-2"
+        >
+          <span>View All FAQs &amp; Help Center</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
     </div>
   );
 }

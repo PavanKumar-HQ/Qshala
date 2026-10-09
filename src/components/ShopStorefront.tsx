@@ -214,7 +214,7 @@ export default function ShopStorefront() {
               id="categoryFilter"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="appearance-none px-5 py-2.5 pr-10 rounded-full bg-white text-slate-900 font-black text-xs font-heading border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#30B2E7]"
+              className="appearance-none px-5 py-2.5 pr-10 rounded-full bg-white text-slate-900 font-black text-xs font-heading border border-slate-200 shadow-xs hover:shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] focus-visible:ring-offset-2"
             >
               {CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>
@@ -233,13 +233,13 @@ export default function ShopStorefront() {
             onClick={() => setIsCartOpen(true)}
             aria-label="View Cart"
             title="View Cart"
-            className="w-11 h-11 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center justify-center relative shrink-0 cursor-pointer"
+            className="w-11 h-11 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center relative shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7]"
           >
             <svg className="w-5 h-5 fill-current text-white shrink-0" viewBox="0 0 24 24">
               <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
             </svg>
             {totalCartCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#FDB913] text-slate-950 font-black text-[11px] flex items-center justify-center border border-slate-900 shadow-sm animate-pulse">
+              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#FDB913] text-slate-950 font-black text-[11px] flex items-center justify-center border border-white shadow-xs">
                 {totalCartCount}
               </span>
             )}
@@ -251,7 +251,7 @@ export default function ShopStorefront() {
       <button
         onClick={() => setIsCartOpen(true)}
         aria-label="View Cart"
-        className="fixed z-40 md:hidden w-14 h-14 rounded-full bg-[#30B2E7] text-white flex items-center justify-center border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"
+        className="fixed z-40 md:hidden w-14 h-14 rounded-full bg-[#30B2E7] text-white flex items-center justify-center shadow-lg active:scale-95 transition-all"
         style={{
           bottom: 'max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))',
           right: 'max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)))'
@@ -261,7 +261,7 @@ export default function ShopStorefront() {
           <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
         </svg>
         {totalCartCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs flex items-center justify-center border-2 border-slate-900 shadow-md animate-bounce">
+          <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs flex items-center justify-center border border-white shadow-sm animate-bounce">
             {totalCartCount}
           </span>
         )}
@@ -275,10 +275,10 @@ export default function ShopStorefront() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap border-2 ${
+              className={`px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer ${
                 isActive
-                  ? 'bg-slate-900 text-white border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-900'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-400'
               }`}
             >
               {cat}
@@ -287,13 +287,12 @@ export default function ShopStorefront() {
         })}
       </div>
 
-      {/* 3-Column Products Grid (Matching Wireframe Brief Layout) */}
+      {/* 3-Column Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full pt-2">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-3xl p-6 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-5 group relative"
-            style={{ backgroundColor: product.cardColor }}
+            className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-5 group relative"
           >
             {/* Mascot Badge */}
             <div className="absolute top-4 right-4 z-10 scale-90 origin-top-right">
@@ -301,8 +300,8 @@ export default function ShopStorefront() {
             </div>
 
             <div className="space-y-4">
-              {/* Product Image */}
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-white border-2 border-slate-900 shadow-sm">
+              {/* Product Image - Aspect Square for Shopify uploads */}
+              <div className="relative overflow-hidden rounded-2xl aspect-square bg-slate-50 border border-slate-100 shadow-sm flex items-center justify-center">
                 <img
                   src={product.imageSrc}
                   alt={product.title}
@@ -310,7 +309,7 @@ export default function ShopStorefront() {
                   loading="lazy"
                 />
                 {product.badge && (
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading border border-white shadow-sm">
+                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading shadow-sm">
                     {product.badge}
                   </span>
                 )}
@@ -318,7 +317,7 @@ export default function ShopStorefront() {
 
               {/* Product Info */}
               <div className="space-y-1.5 pt-1">
-                <span className="text-[10px] font-black uppercase text-slate-700 tracking-wider font-heading bg-white/80 px-2.5 py-0.5 rounded-full border border-slate-900/20 inline-block">
+                <span className="text-[10px] font-black uppercase text-slate-700 tracking-wider font-heading bg-slate-100 px-2.5 py-0.5 rounded-full inline-block">
                   {product.category}
                 </span>
 
@@ -337,7 +336,7 @@ export default function ShopStorefront() {
             </div>
 
             {/* Pricing & Add to Cart Action */}
-            <div className="pt-4 border-t-2 border-slate-900/10 flex items-center justify-between gap-4">
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
               <div>
                 <span className="text-2xl font-black text-slate-900 font-heading">
                   ₹{product.price}/-
@@ -351,12 +350,10 @@ export default function ShopStorefront() {
 
               <button
                 onClick={() => handleAddToCart(product)}
-                className="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center gap-1.5"
+                className="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5 cursor-pointer"
               >
-                <span>Add to Cart</span>
-                <svg className="w-3.5 h-3.5 fill-current text-slate-950" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <span>Add</span>
+                <span>+</span>
               </button>
             </div>
           </div>
@@ -367,7 +364,7 @@ export default function ShopStorefront() {
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/60 backdrop-blur-sm">
           <div 
-            className="w-full max-w-md bg-[#FFFDF5] h-[100dvh] shadow-2xl border-l-4 border-slate-900 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300"
+            className="w-full max-w-md bg-[#FFFDF5] h-[100dvh] shadow-2xl border-l border-slate-200 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300"
             style={{
               paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
               paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
@@ -376,7 +373,7 @@ export default function ShopStorefront() {
             }}
           >
             <div>
-              <div className="flex items-center justify-between pb-4 border-b-2 border-slate-900">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-200">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl font-black font-heading text-slate-900">Your Cart</span>
                   <span className="px-2.5 py-0.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs">
@@ -387,7 +384,7 @@ export default function ShopStorefront() {
                 <button
                   onClick={() => setIsCartOpen(false)}
                   aria-label="Close cart"
-                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-900 flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
+                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-200 flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
                 >
                   <svg className="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -401,7 +398,7 @@ export default function ShopStorefront() {
                   <p className="text-slate-600 font-bold text-sm">Your cart is currently empty!</p>
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="px-6 py-2.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md"
+                    className="px-6 py-2.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md"
                   >
                     Start Shopping
                   </button>
@@ -411,12 +408,12 @@ export default function ShopStorefront() {
                   {cart.map(({ product, quantity }) => (
                     <div
                       key={product.id}
-                      className="p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-sm flex items-center justify-between gap-3"
+                      className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between gap-3"
                     >
                       <img
                         src={product.imageSrc}
                         alt={product.title}
-                        className="w-14 h-14 object-cover rounded-xl border border-slate-900 shrink-0"
+                        className="w-14 h-14 object-cover rounded-xl border border-slate-100 shrink-0"
                       />
                       <div className="flex-1 min-w-0">
                         <h4 className="font-black text-slate-900 text-sm font-heading truncate">
@@ -427,11 +424,11 @@ export default function ShopStorefront() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-900">
+                      <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-200">
                         <button
                           onClick={() => handleUpdateQuantity(product.id, -1)}
                           aria-label={`Decrease quantity of ${product.title}`}
-                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-900 active:scale-95"
+                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
                         >
                           -
                         </button>
@@ -439,7 +436,7 @@ export default function ShopStorefront() {
                         <button
                           onClick={() => handleUpdateQuantity(product.id, 1)}
                           aria-label={`Increase quantity of ${product.title}`}
-                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-900 active:scale-95"
+                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
                         >
                           +
                         </button>
@@ -451,15 +448,15 @@ export default function ShopStorefront() {
             </div>
 
             {cart.length > 0 && (
-              <div className="pt-4 border-t-2 border-slate-900 space-y-4 bg-[#FFFDF5]">
+              <div className="pt-4 border-t border-slate-200 space-y-4 bg-[#FFFDF5]">
                 <div className="flex items-center justify-between text-lg font-black text-slate-900 font-heading">
                   <span>Subtotal:</span>
                   <span>₹{subtotalPrice}/-</span>
                 </div>
 
                 <a
-                  href="/book-a-quiz"
-                  className="w-full py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider font-heading border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-center block"
+                  href="/contact"
+                  className="w-full py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md text-center block transition-all"
                 >
                   Proceed to Checkout &rarr;
                 </a>

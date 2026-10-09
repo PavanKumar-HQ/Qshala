@@ -6,7 +6,7 @@ import TypewriterHeadline from '../components/TypewriterHeadline';
 import DailyQuizSection from '../components/DailyQuizSection';
 import QTMascot from '../components/QTMascot';
 import ClientMarquee from '../components/ClientMarquee.astro';
-import QShalaEffectTabs from '../components/QShalaEffectTabs';
+import TheQshalaEffect from '../components/TheQshalaEffect';
 import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudiesShowcase';
 import AnimatedHeroMascotStage from '../components/AnimatedHeroMascotStage';
 import FAQSection from '../components/FAQSection';
@@ -145,9 +145,9 @@ const faqSchema = {
       <ClientMarquee />
     </section>
 
-    <!-- 4. EXPLORE THE QSHALA EFFECT -->
+    <!-- 4. THE QSHALA EFFECT (Photo gallery only) -->
     <section id="effect" class="relative overflow-hidden">
-      <QShalaEffectTabs client:visible />
+      <TheQshalaEffect client:visible />
     </section>
 
     <!-- 5. GAME (Daily Quiz Playground with Dynamic Rotation) -->
@@ -165,11 +165,135 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- 6. NEWSLETTER / QSHOTS -->
+    <!-- 6. CURATED STORE & PRODUCTS PREVIEW -->
+    <section id="store-preview" class="py-16 md:py-20 bg-white border-t border-b border-slate-100 relative">
+      <div class="max-w-7xl mx-auto px-6 space-y-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div class="space-y-2">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading shadow-xs">
+              Quriosity Store
+            </span>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
+              Books, Games &amp; Thinking Kits.
+            </h2>
+            <p class="text-slate-600 font-semibold text-sm sm:text-base max-w-xl">
+              Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.
+            </p>
+          </div>
+          
+          <a 
+            href="/shop" 
+            class="px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all self-start md:self-auto shrink-0 inline-flex items-center gap-2"
+          >
+            <span>Explore Store</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- 3 Curated Products Grid (1:1 Aspect Ratio) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-2">
+          
+          <!-- Product 1 -->
+          <div class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4 group">
+            <div class="space-y-3">
+              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
+                <img 
+                  src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" 
+                  alt="Finance Quest" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  loading="lazy"
+                />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading shadow-xs">
+                  Bestseller
+                </span>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-amber-600 tracking-wider font-heading">Books</span>
+                <h3 class="text-xl font-black text-slate-900 font-heading leading-snug">Finance Quest</h3>
+                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
+                  Interactive storybook teaching kids saving, budgeting, and smart money mindsets.
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xl font-black text-slate-900 font-heading">₹299/-</span>
+              <a href="/shop" class="px-4 py-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs hover:shadow-sm transition-all">
+                View &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4 group">
+            <div class="space-y-3">
+              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
+                <img 
+                  src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?q=80&w=800&auto=format&fit=crop" 
+                  alt="Socratic Dinner Deck" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  loading="lazy"
+                />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[10px] uppercase font-heading shadow-xs">
+                  Family Favorite
+                </span>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-sky-600 tracking-wider font-heading">Games</span>
+                <h3 class="text-xl font-black text-slate-900 font-heading leading-snug">Socratic Dinner Deck</h3>
+                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
+                  100 thought-provoking conversation prompt cards that turn dinner into discovery.
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xl font-black text-slate-900 font-heading">₹499/-</span>
+              <a href="/shop" class="px-4 py-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs hover:shadow-sm transition-all">
+                View &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4 group">
+            <div class="space-y-3">
+              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
+                <img 
+                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" 
+                  alt="Science Quest Lab Kit" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  loading="lazy"
+                />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#75B543] text-white font-black text-[10px] uppercase font-heading shadow-xs">
+                  STEM Kit
+                </span>
+              </div>
+              <div>
+                <span class="text-[10px] font-black uppercase text-emerald-600 tracking-wider font-heading">Learning Kits</span>
+                <h3 class="text-xl font-black text-slate-900 font-heading leading-snug">Science Quest Lab Kit</h3>
+                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
+                  Safe, reusable physics &amp; chemistry lab kit with 25 hands-on experiments.
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xl font-black text-slate-900 font-heading">₹799/-</span>
+              <a href="/shop" class="px-4 py-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs hover:shadow-sm transition-all">
+                View &rarr;
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. NEWSLETTER / QSHOTS -->
     <section id="newsletter" class="pt-16 pb-12 md:pt-20 md:pb-16 bg-[#F2FCE8] relative overflow-hidden border-t border-[#75B543]/20">
       <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
         
-        <!-- Left Content (Newsletter badge removed, weekly changed to Daily) -->
+        <!-- Left Content -->
         <div class="text-center lg:text-left space-y-3 max-w-xl">
           <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
             Subscribe to QShots.
@@ -207,7 +331,7 @@ const faqSchema = {
 
       </div>
 
-      <!-- Downward Continuation Flow Cue (Clarifying content continues below) -->
+      <!-- Downward Continuation Flow Cue -->
       <div class="mt-8 flex justify-center items-center gap-2 text-slate-500 text-xs font-black uppercase tracking-wider font-heading">
         <span>Scroll to explore real stories &amp; impact</span>
         <svg class="w-4 h-4 animate-bounce text-[#75B543]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -216,19 +340,19 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- 7. CASE STUDIES -->
+    <!-- 7. CASE STUDIES (Simplified: Photo, school name & single text box) -->
     <section id="case-studies" class="py-16 md:py-24 bg-white">
       <div class="max-w-7xl mx-auto px-6 space-y-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between">
           <div>
-            <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading">
+            <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
               Real Impact Stories
             </span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-4 font-heading">
               10+ Storytelling Case Studies.
             </h2>
           </div>
-          <a href="/case-studies" class="mt-4 md:mt-0 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading transition-all inline-block">
+          <a href="/case-studies" class="mt-4 md:mt-0 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-block">
             Explore All 10 Case Studies →
           </a>
         </div>

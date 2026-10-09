@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const ALL_FAQS = [
+  {
+    category: "General & Philosophy",
+    items: [
+      {
+        question: "What makes QShala different from traditional quiz competitions?",
+        answer: "Traditional quizzes test rote memorization of static trivia. QShala focuses on Socratic storytelling, inquiry-led thinking, and 'Why?' questions. We turn learning into an active discovery quest rather than a memory test."
+      },
+      {
+        question: "Are QShala sessions conducted online, in-person, or hybrid?",
+        answer: "Both! We host live in-person auditoriums and stage championships, as well as hybrid and fully remote interactive sessions with proprietary digital buzzers and real-time leaderboards."
+      },
+      {
+        question: "Who founded QShala and where is the headquarters located?",
+        answer: "QShala was founded in 2014 by national quizmasters Sachin Ravi and Raghav Chakravarthy. Our headquarters is in JP Nagar, Bengaluru, and we conduct programs across India and globally."
+      }
+    ]
+  },
+  {
+    category: "For Schools & K-12",
+    items: [
+      {
+        question: "How do QShala Quriosity Clubs fit into a school timetable?",
+        answer: "QShala Quriosity Clubs are designed as 40 to 60-minute weekly timetabled modules that easily complement or replace standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12."
+      },
+      {
+        question: "What year-long programs do you offer for schools?",
+        answer: "We offer four distinct year-long curriculum programs: 1. Weekly Quriosity Clubs, 2. Financial Literacy for Kids, 3. Public Speaking & Socratic Debate, and 4. Current Affairs Storytelling, along with inter-school championships."
+      },
+      {
+        question: "What age groups are school programs designed for?",
+        answer: "We have age-tailored tracks for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers)."
+      }
+    ]
+  },
+  {
+    category: "For Corporates & Teams",
+    items: [
+      {
+        question: "How do QShala corporate trivia sessions help reduce attrition and build connection?",
+        answer: "Shared play builds psychological safety and cross-team camaraderie. Our low-pressure, high-fun trivia tournaments create environments where colleagues connect deeply beyond day-to-day work tasks."
+      },
+      {
+        question: "Can QShala customize trivia around company history and product onboarding?",
+        answer: "Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding quest cards tailored specifically to your corporate culture, values, and compliance lore."
+      },
+      {
+        question: "What group sizes can you accommodate for corporate offsites?",
+        answer: "We have hosted offsite sessions for intimate leadership teams of 15 to 30 people, all the way to massive annual townhalls with 3,000+ hybrid employees across multiple cities."
+      }
+    ]
+  },
+  {
+    category: "Campus & Community Quizzes",
+    items: [
+      {
+        question: "How do you handle collegiate quiz festivals and fests?",
+        answer: "We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India's top colleges."
+      },
+      {
+        question: "Can we host a family or apartment complex quiz night?",
+        answer: "Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams."
+      }
+    ]
+  }
+];
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": "https://qshala.vercel.app/faq#page",
+  "name": "QShala Frequently Asked Questions",
+  "mainEntity": ALL_FAQS.flatMap(group => 
+    group.items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  )
+};
+---
+
+<BaseLayout 
+  title="Frequently Asked Questions (FAQ) | QShala India"
+  description="Find answers about QShala's school curiosity clubs, corporate trivia nights, collegiate quizzes, year-long programs, and booking details."
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "FAQ", item: "/faq" }
+  ]}
+  schema={faqSchema}
+>
+  <Navbar />
+  
+  <main id="main-content" class="flex-grow pt-28 pb-24 px-4 sm:px-8 max-w-5xl mx-auto space-y-16 bg-[#FFFDF5]">
+    
+    <!-- Page Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
+        Help Center &amp; FAQs
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+        Frequently Asked Questions.
+      </h1>
+      <p class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed">
+        Everything you need to know about QShala's methodology, school programs, corporate offsites, and custom quizzing experiences.
+      </p>
+    </div>
+
+    <!-- Categorized FAQ Groups -->
+    <div class="space-y-12">
+      {ALL_FAQS.map((group) => (
+        <div class="space-y-6">
+          <div class="border-b border-slate-200 pb-2">
+            <h2 class="text-2xl font-black text-slate-900 font-heading">
+              {group.category}
+            </h2>
+          </div>
+
+          <div class="space-y-4">
+            {group.items.map((item) => (
+              <details class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs group open:shadow-sm open:ring-1 open:ring-[#30B2E7]/30 transition-all">
+                <summary class="font-black text-base sm:text-lg font-heading text-slate-900 cursor-pointer list-none flex items-center justify-between gap-4 select-none focus-visible:outline-2 focus-visible:outline-[#30B2E7]">
+                  <span>{item.question}</span>
+                  <span class="w-8 h-8 rounded-full bg-slate-100 group-open:bg-[#30B2E7] group-open:text-white flex items-center justify-center shrink-0 transition-all text-xs">
+                    ▼
+                  </span>
+                </summary>
+                <div class="pt-4 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed border-t border-slate-100 mt-4">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Direct Inquiry Card -->
+    <div class="bg-[#FFF8E1] rounded-3xl p-8 md:p-12 border border-amber-200/80 shadow-sm text-center space-y-6">
+      <h2 class="text-3xl font-black text-slate-900 font-heading">
+        Still Have a Question?
+      </h2>
+      <p class="text-slate-700 font-semibold text-sm sm:text-base max-w-xl mx-auto">
+        Speak directly with our team or call Co-Founder Sachin Ravi. We are happy to help design the right experience for your team or school.
+      </p>
+      <div class="pt-2 flex flex-wrap justify-center gap-4">
+        <a 
+          href="/contact"
+          class="px-8 py-3.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all"
+        >
+          Contact Our Team &rarr;
+        </a>
+        <a 
+          href="tel:+918971676100"
+          class="px-8 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm border border-slate-200 transition-all"
+        >
+          📞 Call +91 89716 76100
+        </a>
+      </div>
+    </div>
+
+  </main>
+  
+  <Footer />
+</BaseLayout>

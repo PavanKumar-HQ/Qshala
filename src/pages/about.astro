@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import QTMascot from '../components/QTMascot';
 import QTAnimatedPlayer from '../components/QTAnimatedPlayer';
 import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
 
@@ -142,77 +141,57 @@ const INVESTORS_ADVISORS = [
       </div>
     </section>
 
-    <!-- 3. SUPPORT (INVESTORS & PARTNERS): MARQUEE STRIP -->
-    <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-200/60 relative w-full overflow-hidden">
-      <div class="w-full space-y-8">
+    <!-- 3. SUPPORT (INVESTORS & PARTNERS): FIXED GRID -->
+    <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-100 relative w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 space-y-8">
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 px-4 sm:px-8 md:px-12">
-          <div>
-            <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading">
-              Supported By
-            </span>
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mt-2 font-heading">
-              Backed &amp; Supported by Industry Pioneers.
-            </h2>
-          </div>
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm">
+            Supported By
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight font-heading">
+            Backed &amp; Supported by Industry Pioneers.
+          </h2>
         </div>
 
-        <div class="marquee-container relative w-full overflow-hidden">
-          <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-[#E8F6FD] to-transparent"></div>
-          <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-[#E8F6FD] to-transparent"></div>
-          
-          <div class="marquee-track flex gap-5 w-max px-4">
-            {[...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS, ...INVESTORS_ADVISORS].map((inv) => (
-              <div class="p-5 rounded-2xl bg-white/90 border border-sky-100 shadow-sm space-y-3 w-72 sm:w-80 shrink-0 hover:shadow-md transition-shadow flex flex-col justify-between">
-                <div>
-                  <div class="flex items-start justify-between gap-3">
-                    <span 
-                      class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading inline-block"
-                      style={`background-color: ${inv.color};`}
-                    >
-                      {inv.badge}
-                    </span>
-                    <div class="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 shadow-sm shrink-0">
-                      <img src={inv.logo} alt={inv.name} class="w-full h-full object-contain" onerror="this.style.display='none'" />
-                    </div>
+        <!-- Fixed 3-Column Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+          {INVESTORS_ADVISORS.map((inv) => (
+            <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-3">
+                  <span 
+                    class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-sm inline-block"
+                    style={`background-color: ${inv.color};`}
+                  >
+                    {inv.badge}
+                  </span>
+                  <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-sm shrink-0">
+                    <img src={inv.logo} alt={inv.name} class="w-full h-full object-contain" onerror="this.style.display='none'" />
                   </div>
-                  <h3 class="text-base font-black text-slate-900 font-heading leading-tight pt-2">{inv.name}</h3>
-                  <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
-                    {inv.role}
-                  </p>
                 </div>
+                <h3 class="text-lg font-black text-slate-900 font-heading leading-tight pt-3">{inv.name}</h3>
+                <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
+                  {inv.role}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
       </div>
     </section>
 
-    <style>
-      .marquee-track {
-        animation: scroll-left-investors 60s linear infinite;
-      }
-      .marquee-container:hover .marquee-track {
-        animation-play-state: paused;
-      }
-      @keyframes scroll-left-investors {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-100% / 3)); }
-      }
-    </style>
-
     <!-- 4. MEET QT MASCOT SECTION -->
     <section id="meet-qt" class="py-12 md:py-16 bg-[#FFFDF5] relative w-full px-4 sm:px-8 md:px-12">
-      <div class="w-full">
+      <div class="max-w-7xl mx-auto">
         
-        <!-- Soft rounded cream background matching client brand guidelines (Full Page Fit) -->
-        <div class="bg-[#FFF5D6] rounded-3xl p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full border-2 border-slate-900/10">
+        <div class="bg-[#FFF8E1] rounded-3xl p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full border border-amber-200/60">
           
           <!-- Left: Mascot Story -->
           <div class="lg:col-span-7 space-y-6">
             <div class="space-y-2">
-              <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase font-heading border border-slate-900/20">
+              <span class="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading shadow-sm">
                 MEET QT!
               </span>
               <h2 class="text-3xl md:text-5xl font-black text-slate-900 font-heading leading-tight">
@@ -242,10 +221,10 @@ const INVESTORS_ADVISORS = [
               <a 
                 href="/assets/qt-sticker-pack.zip" 
                 download
-                class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
+                class="px-5 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
               >
                 <span>QT Sticker pack</span>
-                <svg class="w-3.5 h-3.5 fill-current text-black group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 fill-current text-slate-950 group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
               </a>
@@ -253,10 +232,10 @@ const INVESTORS_ADVISORS = [
               <a 
                 href="/assets/qt-emojis.zip" 
                 download
-                class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
+                class="px-5 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
               >
                 <span>QT Emojis</span>
-                <svg class="w-3.5 h-3.5 fill-current text-black group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 fill-current text-slate-950 group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
               </a>
@@ -264,10 +243,10 @@ const INVESTORS_ADVISORS = [
               <a 
                 href="/assets/qt-gifs.zip" 
                 download
-                class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs font-heading border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
+                class="px-5 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-between gap-4 group"
               >
                 <span>QT Gifs</span>
-                <svg class="w-3.5 h-3.5 fill-current text-black group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 fill-current text-slate-950 group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24">
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
               </a>

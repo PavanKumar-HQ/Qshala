@@ -4,83 +4,74 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 
-const BRAND_PALETTE = [
-  { bg: '#30B2E7', text: '#FFFFFF' }, // Qurious Sky
-  { bg: '#FDB913', text: '#0F172A' }, // Joy of Quest
-  { bg: '#75B543', text: '#FFFFFF' }, // Always Questioning
-  { bg: '#9333EA', text: '#FFFFFF' }, // Purple
-  { bg: '#EC4899', text: '#FFFFFF' }  // Pink
-];
-
 const SERVICE_MODULES = [
   {
     id: "schools",
-    typeParam: "school",
-    title: "Academic Year and Custom Quizzes",
+    href: "/schools",
+    title: "Schools & K-12 Institutions",
     badge: "Schools",
-    description: "Empowering K-12 educational institutions with year-round weekly quriosity clubs, current affairs storytelling, and socratic learning integrated directly into school timetables. Beyond our full-year academic programs, we host high-energy inter-school quiz championships, science bees, and sports trivia leagues throughout the academic calendar.",
-    highlights: ["Year-Round Quriosity Clubs", "Socratic Science & Civics", "Inter-School Quiz Tournaments", "Current Affairs Storytelling"],
+    description: "Empowering 250+ K-12 schools with timetabled weekly Quriosity Clubs, Financial Literacy modules, Public Speaking & Socratic Debate, and real-world General Knowledge. Plus high-energy inter-school quiz championships.",
+    programs: ["Weekly Quriosity Clubs", "Financial Literacy for Kids", "Public Speaking & Socratic Debate", "GK & Current Affairs", "Inter-School Championships"],
     mascotVariant: "reading" as const,
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     imageAlt: "School students learning curiously in classroom",
-    salesTeam: "School Academic & Sales Team",
+    ctaText: "Explore School Programs",
     color: "#30B2E7",
     bgTint: "#E8F6FD"
   },
   {
-    id: "colleges",
-    typeParam: "college",
-    title: "Multi-Disciplinary Campus Quizzes",
-    badge: "Colleges",
-    description: "Bringing high-octane quiz championships to top college campuses across India. We double down on application-based quriosity across diverse academic domains—from Law moot court trivia, Finance & Business case leagues, Literature & Arts fests, to STEM & Public Policy hackathons.",
-    highlights: ["Law & Legal Trivia", "Finance & Economics Leagues", "Business & Strategy Fests", "Literature & Cultural Quizzes", "STEM & Policy Hackathons"],
-    mascotVariant: "idea" as const,
-    imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
-    imageAlt: "College students celebrating graduation and campus fest",
-    salesTeam: "Higher Ed & Campus Sales Team",
-    color: "#FDB913",
-    bgTint: "#FFF8E1"
-  },
-  {
     id: "companies",
-    typeParam: "company",
-    title: "Corporate Engagement",
+    href: "/companies",
+    title: "Corporates & Hybrid Teams",
     badge: "Companies",
-    description: "High-impact employee engagement and hybrid team bonding for global enterprises. We gamify brand history, company values, product onboarding, and leadership offsites for industry leaders including Flipkart, Wipro, TCS, Infosys, Google, HDFC Bank, Amazon, Microsoft, Byju's, Netflix, and Apple.",
-    highlights: ["Flipkart", "Wipro", "TCS", "Infosys", "Google", "HDFC Bank", "Amazon", "Microsoft", "Netflix", "Byju's"],
-    isNameDrop: true,
+    description: "High-impact employee engagement, Friday trivia leagues, and gamified new-hire onboarding. Trusted by 80+ top companies including Google, Flipkart, Wipro, TCS, and Infosys to build camaraderie and psychological safety.",
+    programs: ["Live Trivia Championships", "Gamified Onboarding Quests", "Cross-Hub Mixers", "Leadership Offsites"],
     mascotVariant: "professional" as const,
     imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Corporate team collaborating during live event",
-    salesTeam: "Corporate L&D & HR Sales Team",
+    ctaText: "Explore Corporate Solutions",
     color: "#75B543",
     bgTint: "#EDF7E5"
   },
   {
+    id: "colleges",
+    href: "/colleges",
+    title: "Colleges & Campus Fests",
+    badge: "Colleges",
+    description: "Multi-disciplinary campus quiz championships with packed auditoriums. Covering Law moot trivia, Finance & Economics leagues, Business strategy simulations, and STEM hackathons across premier institutions.",
+    programs: ["Campus Fest Championships", "Law & Moot Trivia", "Finance & Economics Leagues", "STEM & Policy Quests"],
+    mascotVariant: "idea" as const,
+    imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "College students celebrating graduation and campus fest",
+    ctaText: "Explore Campus Fests",
+    color: "#FDB913",
+    bgTint: "#FFF8E1"
+  },
+  {
     id: "communities",
-    typeParam: "community",
-    title: "Community Engagement",
+    href: "/communities",
+    title: "Communities & Families",
     badge: "Communities",
-    description: "Quriosity doesn't just belong in classrooms or offices! We bring customized interactive quizzes to every community setting under the sun—from intimate wedding icebreakers, landmark birthday parties, and neighborhood housing societies, to large-scale public policy conventions and national finance summits.",
-    highlights: ["Weddings", "Birthday Parties", "Public Policy Conventions", "Finance Summits", "Housing Societies", "Alumni Reunions"],
+    description: "Screen-free family game nights, apartment complex tournaments, landmark celebrations, and public policy summits. Bringing generations together through playful discovery and storytelling.",
+    programs: ["Apartment Trivia Leagues", "Family Game Nights", "Milestone Celebrations", "Public Policy Summits"],
     mascotVariant: "curious" as const,
     imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Friends gathering happily at a community event",
-    salesTeam: "Community & Special Events Team",
+    ctaText: "Explore Community Quizzes",
     color: "#30B2E7",
     bgTint: "#E8F6FD"
   },
   {
     id: "custom",
-    typeParam: "custom",
-    title: "Custom Experiences",
+    href: "/custom",
+    title: "Custom Experiences & Quests",
     badge: "Custom",
-    description: "TELL US! QShala is founded on a pure, unbridled love for Quriosity. Whether it's a niche museum quest, a custom podcast quiz, a global virtual league, or a brand-new concept—we're happy to bring our love for learning anywhere!",
-    highlights: ["Custom Concept Development", "Niche Topic Quizzes", "Virtual Global Leagues", "Museum Quests"],
+    description: "Bespoke experiences crafted from scratch—from museum treasure hunts, custom podcast trivia, and brand launches, to interactive digital quiz products. Tell us your vision, and we will build it.",
+    programs: ["Museum Treasure Hunts", "Brand Launch Activations", "Podcast Trivia Experiences", "Bespoke Quests"],
     mascotVariant: "trophy" as const,
     imageSrc: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Team designing custom learning experience",
-    salesTeam: "Special Experience & Custom Quiz Team",
+    ctaText: "Explore Custom Quests",
     color: "#FDB913",
     bgTint: "#FFF8E1"
   }
@@ -100,10 +91,6 @@ const servicesSchema = {
       "serviceType": service.badge,
       "provider": {
         "@id": "https://qshala.vercel.app/#organization"
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": service.badge
       }
     }
   }))
@@ -111,8 +98,8 @@ const servicesSchema = {
 ---
 
 <BaseLayout 
-  title="Quriosity Services & Custom Quizzes | QShala India"
-  description="Explore QShala's quiz and learning experiences for K-12 schools, campus fests, corporate team engagement, community events, and custom celebrations."
+  title="Quriosity Services & Programs | QShala India"
+  description="Consultative learning and quiz programs for K-12 schools, corporate teams, college fests, communities, and custom experiences."
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" }
@@ -123,40 +110,39 @@ const servicesSchema = {
 
   <main id="main-content" class="flex-grow pt-28 pb-24 overflow-x-hidden bg-[#FFFDF5] w-full">
 
-    <!-- Page Header (Full Width Fit) -->
+    <!-- Page Header -->
     <section class="py-8 w-full px-4 sm:px-8 md:px-12">
-      <div class="w-full text-center space-y-4">
+      <div class="max-w-4xl mx-auto text-center space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#FDB913] animate-ping"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
           <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
-            QShala Quriosity Services
+            Our Learning Programs
           </span>
         </div>
 
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading">
-          Book a Quiz now!
+          Curiosity for Every Audience.
         </h1>
 
-        <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-4xl mx-auto leading-relaxed">
-          Tailored quriosity experiences for schools, colleges, companies, communities, and custom celebrations. Click <span class="text-slate-900 font-black">&ldquo;BOOK NOW!&rdquo;</span> on any segment to connect directly with that dedicated sales team.
+        <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          Because sales are consultative, our expert quizmasters and instructional designers tailor every program to your goals. Select an audience below to explore detailed offerings and connect directly with our leads.
         </p>
       </div>
     </section>
 
-    <!-- Services Modules Stack (Full Page Width Fit w-full) -->
-    <section class="py-4 w-full px-4 sm:px-8 md:px-12 space-y-12">
+    <!-- Services Modules Stack -->
+    <section class="py-4 max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
       {SERVICE_MODULES.map((module, idx) => {
         const isReversed = idx % 2 !== 0;
         return (
           <div 
             id={module.id}
-            class="group p-8 sm:p-10 md:p-12 rounded-3xl transition-all duration-300 border-2 border-slate-900/10 hover:border-slate-900 shadow-sm hover:shadow-xl hover:-translate-y-1 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full"
-            style={`background-color: ${module.bgTint};`}
+            class="group p-8 sm:p-10 rounded-3xl transition-all duration-300 border border-slate-200/80 hover:border-slate-300 shadow-sm hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white"
           >
             <!-- Image Thumbnail -->
             <div class={`lg:col-span-5 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
-              <div class="relative overflow-visible">
-                <div class="overflow-hidden rounded-2xl border-2 border-slate-900 aspect-[4/3] bg-white shadow-sm">
+              <div class="relative">
+                <div class="overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100 shadow-sm">
                   <img 
                     src={module.imageSrc} 
                     alt={module.imageAlt} 
@@ -165,40 +151,47 @@ const servicesSchema = {
                   />
                 </div>
 
-                <div class="absolute -top-4 -right-4 scale-95 bg-white p-2 rounded-2xl border-2 border-slate-900 shadow-sm group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                <div class="absolute -top-3 -right-3 bg-white p-2 rounded-2xl shadow-sm border border-slate-100 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
                   <QTMascot client:visible variant={module.mascotVariant} size="sm" />
                 </div>
               </div>
             </div>
 
             <!-- Content Column -->
-            <div class={`lg:col-span-7 space-y-6 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
+            <div class={`lg:col-span-7 space-y-5 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
               <div class="space-y-3">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span 
-                    class="px-3.5 py-1 rounded-full text-white font-black text-xs uppercase font-heading shadow-sm border border-slate-900"
-                    style={`background-color: ${module.color};`}
-                  >
-                    {module.badge}
-                  </span>
-                </div>
+                <span 
+                  class="inline-block px-3.5 py-1 rounded-full text-white font-black text-xs uppercase font-heading shadow-sm"
+                  style={`background-color: ${module.color};`}
+                >
+                  {module.badge}
+                </span>
 
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-heading tracking-tight">
                   {module.title}
                 </h2>
 
-                <p class="text-slate-800 text-sm sm:text-base font-semibold leading-relaxed">
+                <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
                   {module.description}
                 </p>
               </div>
 
-              <!-- Action CTA Row -->
-              <div class="pt-4 flex items-center justify-between gap-4 border-t border-slate-900/10">
+              {/* Program Highlights Pill Tags */}
+              <div class="flex flex-wrap gap-2 pt-1">
+                {module.programs.map((prog) => (
+                  <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold font-heading">
+                    • {prog}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Action CTA -->
+              <div class="pt-3 border-t border-slate-100">
                 <a
-                  href={`/book-a-quiz?type=${module.typeParam}`}
-                  class="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 font-heading transition-all inline-flex items-center gap-2 group/btn shrink-0"
+                  href={module.href}
+                  class="px-7 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-0.5 font-heading transition-all inline-flex items-center gap-2 group/btn"
                 >
-                  <span>BOOK NOW!</span>
+                  <span>{module.ctaText}</span>
                   <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
                 </a>
               </div>

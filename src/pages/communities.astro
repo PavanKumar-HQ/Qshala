@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import QTMascot from '../components/QTMascot';
+
+const communityServiceSchema = {
+  "@type": "Service",
+  "@id": "https://qshala.vercel.app/communities#service",
+  "name": "QShala for Communities & Families",
+  "serviceType": "Community Quizzes, Family Game Nights & Social Trivia",
+  "description": "Screen-free family trivia nights, apartment complex tournaments, and community events across India.",
+  "provider": {
+    "@id": "https://qshala.vercel.app/#organization"
+  }
+};
+---
+
+<BaseLayout 
+  title="QShala for Communities & Families | Family Game Nights & Pub Quizzes"
+  description="Bring people together through screen-free family game nights, apartment complex trivia, pub quizzes, and milestone celebrations."
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Services", item: "/services" },
+    { name: "For Communities", item: "/communities" }
+  ]}
+  schema={communityServiceSchema}
+>
+  <Navbar />
+  
+  <main id="main-content" class="flex-grow pt-28 pb-24 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 bg-[#FFFDF5]">
+    
+    <!-- Hero Section -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
+        Communities &amp; Families
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+        Curiosity Beyond the Classroom.
+      </h1>
+      <p class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed">
+        From screen-free weekend family game nights and apartment tournaments, to milestone celebrations and policy summits—we make learning a social celebration.
+      </p>
+    </div>
+
+    <!-- Mascot Spotlight -->
+    <div class="flex justify-center">
+      <QTMascot client:visible variant="curious" size="lg" badgeText="All Ages Welcome!" />
+    </div>
+
+    <!-- Formats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {[
+        {
+          title: "Apartment & Housing Leagues",
+          desc: "Weekend offline tournaments bringing kids, parents, and grandparents together on collaborative neighborhood teams.",
+          bg: "bg-[#E8F6FD]",
+          accent: "#30B2E7"
+        },
+        {
+          title: "Milestone Celebrations & Birthdays",
+          desc: "Customized trivia celebrating personal stories, friendship memories, and landmark birthdays or anniversaries.",
+          bg: "bg-[#FFF8E1]",
+          accent: "#FDB913"
+        },
+        {
+          title: "Public Policy & Cultural Summits",
+          desc: "Gamified knowledge sessions at national conventions, literary festivals, and civic forums.",
+          bg: "bg-[#EDF7E5]",
+          accent: "#75B543"
+        }
+      ].map(item => (
+        <div class={`rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all ${item.bg} space-y-3`}>
+          <span class="w-3 h-3 rounded-full inline-block" style={`background-color: ${item.accent};`}></span>
+          <h3 class="text-2xl font-black font-heading text-slate-900 leading-snug">{item.title}</h3>
+          <p class="text-slate-700 text-sm font-semibold leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- DIRECT DEPARTMENT CONTACT -->
+    <div class="bg-[#E8F6FD] rounded-3xl p-8 md:p-12 border border-sky-200/80 shadow-sm text-center max-w-4xl mx-auto space-y-8">
+      <div class="space-y-3">
+        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm">
+          Community Inquiries
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
+          Connect with Our Community Team
+        </h2>
+        <p class="text-slate-700 font-semibold text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Hosting an event for your society, club, or family? Speak with our events team or connect directly with Sachin.
+        </p>
+      </div>
+
+      <!-- Direct Contact Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+        <div class="p-6 rounded-2xl bg-white border border-sky-100 shadow-sm space-y-3">
+          <div class="text-xs font-black uppercase text-sky-600 font-heading">Community Coordinator</div>
+          <div class="text-lg font-black text-slate-900 font-heading">Community &amp; Social Team</div>
+          <div class="text-xs text-slate-600 font-semibold">Apartments, Family Nights &amp; Social Quizzes</div>
+          <div class="pt-2 space-y-2">
+            <a href="mailto:qshala@walnuts.co.in" class="text-xs font-black text-[#30B2E7] hover:underline block font-heading">
+              ✉ qshala@walnuts.co.in
+            </a>
+            <a href="tel:+918971676100" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#30B2E7] text-white font-black text-xs font-heading shadow-sm hover:bg-sky-500 transition-colors">
+              📞 Call Team: +91 89716 76100
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-sky-100 shadow-sm space-y-3">
+          <div class="text-xs font-black uppercase text-sky-600 font-heading">Co-Founder</div>
+          <div class="text-lg font-black text-slate-900 font-heading">Sachin Ravi</div>
+          <div class="text-xs text-slate-600 font-semibold">Special Events &amp; Public Summits</div>
+          <div class="pt-2 space-y-2">
+            <a href="mailto:sachin@walnuts.co.in" class="text-xs font-black text-sky-700 hover:underline block font-heading">
+              ✉ sachin@walnuts.co.in
+            </a>
+            <a href="tel:+918971676100" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs font-heading shadow-sm hover:bg-amber-400 transition-colors">
+              📞 Call Sachin: +91 89716 76100
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <a 
+          href="https://wa.me/918971676100?text=Hi%20QShala,%20we%20want%20to%20plan%20a%20community%20or%20family%20quiz%20night." 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+        >
+          <span>Chat on WhatsApp &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+  
+  <Footer />
+</BaseLayout>

@@ -38,25 +38,24 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{
-        y: -8,
-        scale: 1.015,
-        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+        y: -6,
+        boxShadow: '0 20px 30px -10px rgba(0, 0, 0, 0.08)',
       }}
       transition={{ type: 'spring', stiffness: 350, damping: 22 }}
-      className="group bg-white rounded-3xl p-5 md:p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full min-h-[460px] relative overflow-hidden transition-colors"
+      className="group bg-white rounded-3xl p-6 border border-slate-100/90 shadow-sm flex flex-col h-full min-h-[440px] relative overflow-hidden transition-all"
     >
       {/* Top Badges */}
       <div className="flex items-center justify-between mb-4 gap-2">
-        <span className="px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider border border-black shrink-0 group-hover:scale-105 transition-transform">
+        <span className="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider shrink-0 shadow-sm">
           {quiz.category}
         </span>
-        <span className="px-3 py-1 rounded-full bg-[#FDB913] text-black text-[11px] font-black border border-black shrink-0 group-hover:rotate-2 transition-transform">
+        <span className="px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 text-[11px] font-black shrink-0 shadow-sm">
           {quiz.difficulty}
         </span>
       </div>
 
       {/* Question */}
-      <h3 className="text-lg font-black text-black leading-snug mb-4 flex-none group-hover:text-[#30B2E7] transition-colors" style={{ fontFamily: 'Causten Round Black, sans-serif' }}>
+      <h3 className="text-lg font-black text-slate-900 leading-snug mb-4 flex-none group-hover:text-[#30B2E7] transition-colors" style={{ fontFamily: 'Causten Round Black, sans-serif' }}>
         {quiz.question}
       </h3>
 
@@ -66,11 +65,11 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
           const isCorrect = idx === quiz.correctAnswer;
           const isSelected = selected === idx;
 
-          let bg = 'bg-slate-100 hover:bg-[#FDB913]/30 hover:text-slate-950 text-slate-850 hover:translate-x-1';
+          let bg = 'bg-slate-50 hover:bg-[#FDB913]/25 hover:text-slate-950 text-slate-800 border border-slate-100 hover:border-amber-200';
           if (selected !== null) {
-            if (isCorrect) bg = 'bg-[#75B543] text-white font-black shadow-sm';
-            else if (isSelected) bg = 'bg-rose-500 text-white font-black shadow-sm';
-            else bg = 'bg-slate-100 text-slate-400 opacity-40';
+            if (isCorrect) bg = 'bg-[#75B543] text-white font-black shadow-sm border-transparent';
+            else if (isSelected) bg = 'bg-rose-500 text-white font-black shadow-sm border-transparent';
+            else bg = 'bg-slate-50 text-slate-400 opacity-40 border-transparent';
           }
 
           return (
@@ -96,22 +95,22 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-4 rounded-2xl bg-[#FDB913] border-2 border-black p-3 text-black text-xs font-bold leading-relaxed"
+            className="mt-4 rounded-2xl bg-[#FFF8E1] border border-amber-200/80 p-3.5 text-slate-900 text-xs font-semibold leading-relaxed shadow-sm"
           >
-            <div className="font-black uppercase tracking-wider text-[10px] mb-1">QT's Quriosity Flash:</div>
+            <div className="font-black uppercase tracking-wider text-[10px] text-amber-700 mb-1 font-heading">QT's Quriosity Flash:</div>
             {quiz.explanation}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Footer: Mascot without redundant instruction text */}
-      <div className="mt-4 pt-2 flex items-center justify-end border-t border-slate-100">
+      {/* Footer: Mascot */}
+      <div className="mt-4 pt-3 flex items-center justify-end border-t border-slate-100">
         <img
           src={mascotSrc}
           alt="QT Mascot"
-          width="46"
-          height="46"
-          className="object-contain -mb-1 drop-shadow-sm group-hover:scale-115 group-hover:-rotate-6 transition-transform duration-300"
+          width="44"
+          height="44"
+          className="object-contain drop-shadow-sm group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"
           loading="eager"
         />
       </div>

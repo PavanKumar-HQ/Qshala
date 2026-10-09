@@ -2,8 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import InteractiveCaseStudiesShowcase from '../components/InteractiveCaseStudiesShowcase';
 import { CASE_STUDIES_DATA } from '../lib/data';
+
+const CASE_STUDY_IMAGES: Record<string, string> = {
+  'dps-bangalore-quriosity-league': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+  'flipkart-corporate-trivia-league': 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
+  'wipro-onboarding-gamification': 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop',
+  'nps-socratic-science-storytelling': 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
+  'inventure-academy-critical-thinking': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
+  'tcs-cross-hub-workplace-engagement': 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
+  'iit-bombay-techfest-championship': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop',
+  'iim-bangalore-business-simulations': 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop',
+  'sobha-city-family-game-nights': 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop',
+  'wework-community-networking-nights': 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
+};
+
+const CATEGORY_COLORS: Record<string, string> = {
+  School: '#75B543',
+  Corporate: '#FDB913',
+  College: '#30B2E7',
+  Community: '#9333EA',
+};
 ---
 
 <BaseLayout 
@@ -16,20 +35,112 @@ import { CASE_STUDIES_DATA } from '../lib/data';
   ]}
 >
   <Navbar />
-  <main id="main-content" class="flex-grow pt-36 pb-24 px-6 bg-[#FFFDF5]">
-    <div class="max-w-7xl mx-auto space-y-12">
-      <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase border border-black font-heading shadow-sm">
-          Measurable Results &amp; Impact
-        </span>
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 font-heading">QShala Case Studies</h1>
-        <p class="text-slate-600 text-base font-semibold max-w-xl mx-auto">
-          Explore how 10+ leading schools, corporates, universities, and communities use QShala to spark quriosity and engagement.
-        </p>
-      </div>
-
-      <InteractiveCaseStudiesShowcase caseStudies={CASE_STUDIES_DATA} client:load />
+  
+  <main id="main-content" class="flex-grow pt-28 pb-24 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 bg-[#FFFDF5]">
+    
+    <!-- Page Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
+        Real Impact Stories
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+        QShala Case Studies.
+      </h1>
+      <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+        Explore how leading schools, corporate workplaces, universities, and communities use QShala to ignite curiosity and active learning.
+      </p>
     </div>
+
+    <!-- Blog-style 2-Column Wide Image Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+      {CASE_STUDIES_DATA.map((cs) => {
+        const image = CASE_STUDY_IMAGES[cs.slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
+        const tagColor = CATEGORY_COLORS[cs.clientType] || '#30B2E7';
+
+        return (
+          <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+            
+            {/* Top Image Banner */}
+            <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
+              <img 
+                src={image} 
+                alt={cs.clientName} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4">
+                <span 
+                  class="px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-sm"
+                  style={`background-color: ${tagColor};`}
+                >
+                  {cs.clientType} • {cs.clientName}
+                </span>
+              </div>
+            </div>
+
+            {/* Card Content */}
+            <div class="p-6 sm:p-8 space-y-4 flex-grow flex flex-col justify-between">
+              <div class="space-y-3">
+                <h2 class="text-xl sm:text-2xl font-black text-slate-900 font-heading leading-snug group-hover:text-[#30B2E7] transition-colors">
+                  {cs.title}
+                </h2>
+
+                {/* Single Clean Text Box */}
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 text-sm font-semibold leading-relaxed">
+                  {cs.summary}
+                </div>
+              </div>
+
+              {/* Quote & Tags */}
+              <div class="pt-4 border-t border-slate-100 space-y-3">
+                <blockquote class="italic text-xs text-slate-600 font-medium">
+                  &ldquo;{cs.quote.text}&rdquo; — <span class="font-bold text-slate-900 not-italic">{cs.quote.author} ({cs.quote.role})</span>
+                </blockquote>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                  <div class="flex flex-wrap gap-1.5">
+                    {cs.tags.map((tag) => (
+                      <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a 
+                    href="/contact" 
+                    class="text-xs font-black text-[#30B2E7] hover:underline font-heading uppercase tracking-wider"
+                  >
+                    Discuss Similar Plan &rarr;
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Consultation Banner -->
+    <div class="bg-[#FFF8E1] rounded-3xl p-8 md:p-12 border border-amber-200/80 shadow-sm text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-3xl font-black text-slate-900 font-heading">
+        Ready to Create Your Own Impact Story?
+      </h2>
+      <p class="text-slate-700 font-semibold text-sm sm:text-base">
+        Partner with QShala to design custom learning tracks or live quiz championships for your institution.
+      </p>
+      <div class="pt-2 flex flex-wrap justify-center gap-4">
+        <a 
+          href="/contact"
+          class="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all"
+        >
+          Speak with Our Team &rarr;
+        </a>
+      </div>
+    </div>
+
   </main>
+  
   <Footer />
 </BaseLayout>
