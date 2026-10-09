@@ -3,6 +3,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ShopStorefront from '../components/ShopStorefront';
+import { PRODUCTS_DATA } from '../lib/data';
+
+const shopSchema = {
+  "@type": "OfferCatalog",
+  "@id": "https://qshala.vercel.app/shop#catalog",
+  "name": "QShala Quriosity Store & Thinking Games",
+  "description": "Curated socratic books, brain teasers, interactive quiz card games, and official QT mascot merchandise.",
+  "itemListElement": PRODUCTS_DATA.map((product, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Product",
+      "name": product.title,
+      "description": product.description,
+      "category": product.category,
+      "brand": {
+        "@type": "Brand",
+        "name": "QShala"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": product.price.replace(/[^\d]/g, ''),
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@id": "https://qshala.vercel.app/#organization"
+        }
+      }
+    }
+  }))
+};
 ---
 
 <BaseLayout 
@@ -13,6 +44,7 @@ import ShopStorefront from '../components/ShopStorefront';
     { name: "Home", item: "/" },
     { name: "Store", item: "/shop" }
   ]}
+  schema={shopSchema}
 >
   <Navbar />
 

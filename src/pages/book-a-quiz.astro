@@ -3,6 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MultiStepBooking from '../components/MultiStepBooking';
+
+const bookingServiceSchema = {
+  "@type": "Service",
+  "@id": "https://qshala.vercel.app/book-a-quiz#service",
+  "name": "Custom Quiz Curation & Quizmaster Services",
+  "serviceType": "Live & Virtual Event Quizzing",
+  "description": "Tailored quizmaster hosting, custom question curation, multimedia buzzer systems, and live leaderboards for schools, corporates, colleges, and private events.",
+  "provider": {
+    "@id": "https://qshala.vercel.app/#organization"
+  }
+};
 ---
 
 <BaseLayout 
@@ -12,6 +23,7 @@ import MultiStepBooking from '../components/MultiStepBooking';
     { name: "Home", item: "/" },
     { name: "Book a Quiz", item: "/book-a-quiz" }
   ]}
+  schema={bookingServiceSchema}
 >
   <Navbar />
   <main id="main-content" class="flex-grow pt-32 pb-24 px-6">

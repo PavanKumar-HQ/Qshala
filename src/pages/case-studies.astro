@@ -23,6 +23,25 @@ const CATEGORY_COLORS: Record<string, string> = {
   College: '#30B2E7',
   Community: '#9333EA',
 };
+
+const caseStudiesSchema = {
+  "@type": "ItemList",
+  "@id": "https://qshala.vercel.app/case-studies#list",
+  "name": "QShala Learning Impact & Partner Case Studies",
+  "itemListElement": CASE_STUDIES_DATA.map((study, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "CreativeWork",
+      "name": study.title,
+      "headline": study.title,
+      "abstract": study.summary,
+      "author": {
+        "@id": "https://qshala.vercel.app/#organization"
+      }
+    }
+  }))
+};
 ---
 
 <BaseLayout 
@@ -33,6 +52,7 @@ const CATEGORY_COLORS: Record<string, string> = {
     { name: "Home", item: "/" },
     { name: "Case Studies", item: "/case-studies" }
   ]}
+  schema={caseStudiesSchema}
 >
   <Navbar />
   
