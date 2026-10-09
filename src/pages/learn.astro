@@ -150,15 +150,26 @@ const BLOG_CARDS = [
     mascotVariant: "curious" as const
   }
 ];
+const learnSchema = {
+  "@type": "CollectionPage",
+  "@id": "https://qshala.vercel.app/learn#collection",
+  "name": "QShala Learn & Resources Hub",
+  "description": "Curated learning tools, socratic masterclasses, and current affairs portals for young curious minds and educators.",
+  "publisher": {
+    "@id": "https://qshala.vercel.app/#organization"
+  }
+};
 ---
 
 <BaseLayout 
   title="Learn & Resources Hub | Quizzing 101 & Masterclasses | QShala"
   description="Explore QShala's learning resources: Quizzing 101, socratic masterclasses, curated news sources for students, and behind-the-scenes stories."
+  pageType="CollectionPage"
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Learn", item: "/learn" }
   ]}
+  schema={learnSchema}
 >
   <Navbar />
 

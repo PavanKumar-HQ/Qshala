@@ -28,7 +28,7 @@ const INVESTORS_ADVISORS = [
     company: "Lowe Lintas",
     color: "#75B543",
     badge: "Strategic Advisor",
-    logo: "/assets/logos/lowelintas.png"
+    logo: "/assets/logos/lowelintas.webp"
   },
   {
     name: "Sanjay Tambwekar",
@@ -52,9 +52,19 @@ const INVESTORS_ADVISORS = [
     company: "Uptycs",
     color: "#30B2E7",
     badge: "Angel Backer",
-    logo: "/assets/logos/uptycs.png"
+    logo: "/assets/logos/uptycs.webp"
   }
 ];
+
+const aboutSchema = {
+  "@type": "AboutPage",
+  "@id": "https://qshala.vercel.app/about#page",
+  "name": "About QShala — Our Story, Founders & Mission",
+  "description": "Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by Nithin Kamath and Kalyan Banerjee.",
+  "mainEntity": {
+    "@id": "https://qshala.vercel.app/#organization"
+  }
+};
 ---
 
 <BaseLayout 
@@ -65,6 +75,7 @@ const INVESTORS_ADVISORS = [
     { name: "Home", item: "/" },
     { name: "About Us", item: "/about" }
   ]}
+  schema={aboutSchema}
 >
   <Navbar />
 

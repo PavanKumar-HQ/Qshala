@@ -176,7 +176,7 @@ const articleSchema = {
   "isPartOf": {
     "@id": "https://qshala.vercel.app/#website"
   },
-  "image": "https://qshala.vercel.app/og-image.jpg"
+  "image": "https://qshala.vercel.app/og-image.webp"
 };
 ---
 
@@ -204,13 +204,13 @@ const articleSchema = {
       <div class="lg:col-span-8 space-y-10">
         <!-- Back Button -->
         <div>
-          <a href="/blog" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-900 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all font-black uppercase text-xs font-heading">
+          <a href="/blog" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-900 border border-slate-200 shadow-xs hover:-translate-y-0.5 hover:shadow-sm transition-all font-black uppercase text-xs font-heading">
             &larr; Back to Magazine &amp; Blog
           </a>
         </div>
 
         <!-- Article Header -->
-        <div class="space-y-4 border-b-2 border-slate-900 pb-8">
+        <div class="space-y-4 border-b border-slate-200 pb-8">
           <div class="flex flex-wrap items-center gap-3">
             <span class="px-3.5 py-1 rounded-full text-slate-950 font-black text-[10px] font-heading uppercase" style={`background-color: ${post.color};`}>
               {post.category}
@@ -228,13 +228,13 @@ const articleSchema = {
         <div class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" set:html={post.content} />
 
         <!-- Footer CTA Box -->
-        <div class="bg-[#FFF8E1] rounded-3xl p-8 border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col sm:flex-row items-center justify-between gap-6 mt-12">
+        <div class="bg-[#FFF8E1] rounded-3xl p-8 border border-amber-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 mt-12">
           <div class="space-y-1 text-center sm:text-left">
             <h3 class="text-xl font-black font-heading text-slate-900">Enjoyed this perspective?</h3>
             <p class="text-slate-700 text-xs font-semibold">Book a live socratic quiz session for your school or organization.</p>
           </div>
-          <a href="/book-a-quiz" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all whitespace-nowrap">
-            Book a Quiz &rarr;
+          <a href="/contact" class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap">
+            Schedule an Experience &rarr;
           </a>
         </div>
       </div>
@@ -246,7 +246,7 @@ const articleSchema = {
         </div>
         
         <!-- Mini Newsletter Widget -->
-        <div class="bg-white p-8 rounded-3xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center w-full max-w-sm">
+        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm text-center w-full max-w-sm">
           <h4 class="font-black text-slate-900 font-heading text-lg mb-2">Quriosity Newsletter</h4>
           <p class="text-xs text-slate-600 font-semibold mb-6">Get 1 puzzle and fun facts every Sunday.</p>
           <form action="mailto:qshala@walnuts.co.in" method="post" class="space-y-3">
@@ -257,9 +257,9 @@ const articleSchema = {
               aria-label="Email address for weekly Sunday puzzle newsletter"
               placeholder="Your Email Address" 
               required 
-              class="w-full px-4 py-3 rounded-full border-2 border-slate-200 bg-[#FFFDF5] focus:border-black focus:outline-none text-sm font-semibold transition-colors" 
+              class="w-full px-4 py-3 rounded-full border border-slate-200 bg-[#FFFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] text-sm font-semibold transition-colors" 
             />
-            <button type="submit" class="w-full py-3 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#68A53B] transition-colors">
+            <button type="submit" class="w-full py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md transition-all cursor-pointer">
               Subscribe
             </button>
           </form>

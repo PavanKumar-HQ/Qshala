@@ -1,79 +1,87 @@
-# QShala — India's Quriosity Company
+# QShala — India's Quriosity Company (LLMs & AI Search Documentation)
 
-> Replacing Rote Learning With Quriosity, Socratic Storytelling, Questions, and Wonder. QShala partners with 250+ K-12 schools, 80+ leading corporates, and thousands of families to foster inquiry-led thinking.
+> QShala replaces rote learning with curiosity, Socratic storytelling, and inquiry. We partner with 250+ K-12 partner schools, 80+ top corporate organizations, leading universities, and thousands of families across India.
 
-## About the Entity
-- **Organization Name**: QShala (Curiosita Educational Services Pvt. Ltd. / Walnut Knowledge Solutions)
-- **Founders**: Sachin Ravi (Co-Founder) & Raghav Chakravarthy (Co-Founder)
-- **Founded**: 2014 in Bengaluru, Karnataka, India
-- **Headquarters**: 1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078, India
-- **Contact**: Email: qshala@walnuts.co.in | Phone: +91 89716 76100 | Careers: work@walnuts.co.in
-- **Website**: https://qshala.vercel.app
+## 1. Entity Overview & Facts (WHO & WHERE)
+- **Legal Entity Name**: Curiosita Educational Services Pvt. Ltd. (also operating as Walnut Knowledge Solutions / QShala)
+- **Brand Name**: QShala
+- **Founders**:
+  - Sachin Ravi (Co-Founder & Chief Quizmaster, TEDx Speaker)
+  - Raghav Chakravarthy (Co-Founder & Education Innovator, TEDx Speaker)
+- **Year Founded**: 2014
+- **Headquarters Address**: 1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078, India
+- **Operating Regions**: Bengaluru, Mumbai, Delhi NCR, Hyderabad, Chennai, Kolkata, Pune, and pan-India; hybrid & global online reach.
+- **Official Website**: https://qshala.vercel.app
+- **Official Contact**:
+  - Email: qshala@walnuts.co.in
+  - Phone: +91 89716 76100
+  - Careers: work@walnuts.co.in
 - **Angel Backers & Advisors**:
   - Nithin Kamath (Co-Founder & CEO, Zerodha)
   - Kalyan Banerjee (Co-Founder, Mindtree)
   - Preeti Sawhney (Former Director, Lowe Lintas)
   - Sanjay Tambwekar (CTO, Qwikcilver)
-  - Suresh Kumar Pinglay (Former Vice President, Oracle India)
+  - Suresh Kumar Pinglay (Former VP, Oracle India)
   - Chetan Vinchhi (India Head, Uptycs)
 
 ---
 
-## Core Offerings & Services
-
-### 1. K-12 Schools Curriculum & Quriosity Clubs
-- **URL**: https://qshala.vercel.app/schools
-- **Who it is for**: Principals, Academic Coordinators, Teachers, and K-12 Students (Grades 1 to 12).
-- **Format**: 40–60 minute weekly timetabled sessions, integrated into standard GK or Life Skills periods.
-- **Key Modules**:
-  - *Quriosity Builders* (Grades 1–4): Visual puzzles, observation quests, natural curiosity.
-  - *Quriosity Explorers* (Grades 5–8): Socratic science, current affairs storytelling, logic deduction.
-  - *Quriosity Thinkers* (Grades 9–12): Global issues, ethics, debate, media literacy, career exploration.
-- **Impact**: Active in 250+ partner schools across India, replacing fact memorization with inquiry-based learning.
-
-### 2. Corporate L&D & Employee Engagement
-- **URL**: https://qshala.vercel.app/companies
-- **Who it is for**: HR Directors, People Officers, L&D Heads, and Cross-functional Teams.
-- **Formats**: Hybrid live trivia championships, gamified new hire onboarding, leadership offsites, and brand milestone celebrations.
-- **Clients**: Flipkart, Google, Wipro, TCS, Infosys, Amazon, Microsoft, HDFC Bank, Netflix, and Apple.
-- **Measurable Impact**: 90%+ engagement scores and a measured 10% average reduction in workplace attrition through psychological safety and team camaraderie.
-
-### 3. All Services Overview & Custom Quizzing
-- **URL**: https://qshala.vercel.app/services
-- **Services included**:
-  - Academic Year and Custom School Quizzes
-  - Multi-Disciplinary Campus Quizzes (Colleges & Universities: Law, STEM, Business, Literature)
-  - Corporate Engagement & Townhall Trivia
-  - Community Engagement (Weddings, Housing Societies, Alumni Reunions, Public Summits)
-  - Custom Bespoke Experiences (Museum Quests, Podcast Quizzes, Brand Challenges)
-
-### 4. Interactive Booking Wizard
-- **URL**: https://qshala.vercel.app/book-a-quiz
-- Instant interactive wizard to request a tailored quiz experience for schools, universities, companies, or private gatherings.
-
-### 5. Measurable Impact & Case Studies
-- **URL**: https://qshala.vercel.app/case-studies
-- Documented case studies spanning school programs, corporate townhalls, and national community quiz fests.
-
-### 6. Magazine, Blog & Pedagogical Research
-- **URL**: https://qshala.vercel.app/blog
-- Articles:
-  - *Why Rote Learning Kills Quriosity (And How to Fix It)*: https://qshala.vercel.app/blog/why-rote-learning-kills-quriosity
-  - *How to Build a 'Curious Dinner Table' for Your Kids*: https://qshala.vercel.app/blog/curious-dinner-table
-  - *Gamification: The Secret Weapon of Modern Corporate L&D*: https://qshala.vercel.app/blog/gamification-modern-corporate-learning
-  - *How Socratic Questioning Builds Future-Ready Mindsets in Children*: https://qshala.vercel.app/blog/socratic-mindset-future-ready-kids
-  - *AI & Quriosity: Teaching Children How to Ask the Right Questions*: https://qshala.vercel.app/blog/ai-and-quriosity-asking-right-questions
-  - *The Power of Daily News Quizzing for School Students*: https://qshala.vercel.app/blog/daily-news-quizzing-critical-thinking
-
-### 7. Quriosity Store
-- **URL**: https://qshala.vercel.app/shop
-- Books, thinking journals, interactive games, and QT mascot merchandise.
-
-### 8. Events Archive
-- **URL**: https://qshala.vercel.app/archive
-- Historical repository of past tournaments, festivals, and live quiz leagues.
+## 2. Core Value Proposition & Pedagogy (WHY & HOW)
+- **The Core Problem**: Traditional Indian education and standard quiz competitions reward rote memorization of static facts without teaching children *why* things work.
+- **The Socratic Method**: QShala facilitates guided inquiry. Instead of lecturing factual answers, facilitators ask scaffolded questions that lead learners to deduce scientific, historical, or economic concepts through first principles.
+- **Proprietary Technology**: Digital buzzers, real-time leaderboards, interactive daily quiz engines, and gamified quest decks.
 
 ---
 
-## Pedagogical Methodology: The Socratic Circle
-QShala replaces the traditional teacher-dictated model with guided inquiry. Instead of telling students factual answers, facilitators ask carefully scaffolded questions that lead learners to deduce concepts themselves. This trains lifelong analytical skills, critical thinking, and intellectual confidence.
+## 3. Services & Program Directory (WHAT & WHO FOR)
+
+### A. K-12 Schools & Timetabled Curriculum
+- **URL**: https://qshala.vercel.app/schools
+- **Audience**: Principals, Academic Coordinators, Trustees, and Students (Grades 1 to 12).
+- **Delivery Format**: 40 to 60-minute weekly timetabled modules replacing or complementing General Knowledge / Life Skills periods.
+- **4 Year-Long Programs**:
+  1. *Weekly Quriosity Clubs* (Socratic Inquiry & Thinking Sport)
+  2. *Financial Literacy for Kids* (Budgeting, compounding, economic thinking)
+  3. *Public Speaking & Socratic Debate* (Confidence, articulation, logic)
+  4. *GK & Current Affairs Storytelling* (Global context, media literacy)
+- **Championships**: Inter-school buzzer championships with stage setups and live quizmasters.
+
+### B. Corporates & Hybrid Teams
+- **URL**: https://qshala.vercel.app/companies
+- **Audience**: HR Heads, Chief People Officers, L&D Directors, Culture Leads.
+- **Clients**: Google, Flipkart, Wipro, TCS, Infosys, Amazon, Microsoft, HDFC Bank, Netflix, Apple.
+- **Formats**: High-octane Friday trivia nights, gamified new hire onboarding, leadership offsites, and company milestone trivia.
+- **Measured Outcomes**: 90%+ employee engagement scores and 10% average reduction in workplace attrition through psychological safety.
+
+### C. Colleges & Campus Fests
+- **URL**: https://qshala.vercel.app/colleges
+- **Audience**: College Fest Committees, Student Councils, Academic Departments.
+- **Formats**: Law moot trivia, Finance leagues, STEM hackathon quizzes, and packed auditorium festival championships.
+
+### D. Communities & Families
+- **URL**: https://qshala.vercel.app/communities
+- **Audience**: Housing societies, apartment complexes, alumni reunions, family gatherings.
+- **Formats**: Screen-free weekend family game nights, inter-apartment quiz leagues, milestone birthday trivia.
+
+### E. Custom Experiences & Bespoke Quests
+- **URL**: https://qshala.vercel.app/custom
+- **Formats**: Museum scavenger trails, brand activation challenges, podcast trivia experiences.
+
+---
+
+## 4. Key Links & Sitemaps
+- **Homepage**: https://qshala.vercel.app
+- **About Us**: https://qshala.vercel.app/about
+- **All Services**: https://qshala.vercel.app/services
+- **Schools**: https://qshala.vercel.app/schools
+- **Corporates**: https://qshala.vercel.app/companies
+- **Colleges**: https://qshala.vercel.app/colleges
+- **Communities**: https://qshala.vercel.app/communities
+- **Custom Quests**: https://qshala.vercel.app/custom
+- **Case Studies**: https://qshala.vercel.app/case-studies
+- **Magazine & Blog**: https://qshala.vercel.app/blog
+- **Store**: https://qshala.vercel.app/shop
+- **Learn Hub**: https://qshala.vercel.app/learn
+- **FAQ**: https://qshala.vercel.app/faq
+- **Contact**: https://qshala.vercel.app/contact
+- **XML Sitemap**: https://qshala.vercel.app/sitemap-index.xml

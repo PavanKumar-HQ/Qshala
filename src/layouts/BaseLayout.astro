@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 export interface BreadcrumbItem {
   name: string;
@@ -23,7 +23,7 @@ export interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
-  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'ItemPage' | 'CollectionPage';
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'ItemPage' | 'CollectionPage' | 'FAQPage';
   breadcrumbs?: BreadcrumbItem[];
   articleMeta?: ArticleMetadata;
   schema?: Record<string, any> | Array<Record<string, any>>;
@@ -31,7 +31,7 @@ export interface Props {
 
 const {
   title = "QShala | Questions • Quriosity • Quests — India's Quriosity Company",
-  description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, Questions, and Wonder. Partnering with 250+ Schools & 80+ Corporates across India.",
+  description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, and Inquiry. Partnering with 250+ Schools & 80+ Corporates across India. Founded by Quizmasters Sachin Ravi & Raghav Chakravarthy.",
   canonical,
   ogImage,
   ogType = 'website',
@@ -43,22 +43,31 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://qshala.vercel.app';
+// Strip query/UTM parameters and clean trailing slash
 const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const canonicalURL = canonical || (cleanPath === '/' ? siteUrl : `${siteUrl}${cleanPath}`);
-const ogImageUrl = ogImage || `${siteUrl}/og-image.jpg?v=10`;
+const ogImageUrl = ogImage || `${siteUrl}/og-image.webp`;
 
-// Organization Entity
+// Master Organization & LocalBusiness Entity
 const orgEntity: Record<string, any> = {
-  "@type": "EducationalOrganization",
+  "@type": ["EducationalOrganization", "LocalBusiness"],
   "@id": `${siteUrl}/#organization`,
-  "name": "QShala - Curiosita Educational Services",
-  "alternateName": ["QShala", "Walnut Knowledge Solutions", "Curiosita Educational Services"],
+  "name": "QShala",
+  "legalName": "Curiosita Educational Services Pvt. Ltd.",
+  "alternateName": ["QShala India", "Walnut Knowledge Solutions", "Curiosita Educational Services"],
   "url": siteUrl,
-  "logo": `${siteUrl}/assets/logos/QShala%20Logo%201.svg`,
-  "image": `${siteUrl}/og-image.jpg`,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/assets/logos/QShala%20Logo%201.svg`,
+    "caption": "QShala Logo"
+  },
+  "image": `${siteUrl}/og-image.webp`,
   "description": "India's premier curiosity platform fostering socratic questioning, critical thinking, school curiosity clubs, and corporate trivia engagement.",
   "telephone": "+91-89716-76100",
   "email": "qshala@walnuts.co.in",
+  "priceRange": "$$",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "Credit Card, Debit Card, UPI, Net Banking",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar",
@@ -67,28 +76,71 @@ const orgEntity: Record<string, any> = {
     "postalCode": "560078",
     "addressCountry": "IN"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 12.9063,
+    "longitude": 77.5857
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "India"
+    },
+    {
+      "@type": "City",
+      "name": "Bengaluru"
+    },
+    {
+      "@type": "City",
+      "name": "Mumbai"
+    },
+    {
+      "@type": "City",
+      "name": "Delhi NCR"
+    }
+  ],
+  "knowsAbout": [
+    "Socratic Method",
+    "Quizzing",
+    "Quizmastering in India",
+    "Critical Thinking for Children",
+    "Financial Literacy for Kids",
+    "Public Speaking & Debate",
+    "Corporate Employee Engagement",
+    "Gamified Learning"
+  ],
   "founders": [
     {
       "@type": "Person",
       "name": "Sachin Ravi",
-      "jobTitle": "Co-Founder",
+      "jobTitle": "Co-Founder & Chief Quizmaster",
       "sameAs": "https://www.linkedin.com/in/sachin-ravi-60b6432b/"
     },
     {
       "@type": "Person",
       "name": "Raghav Chakravarthy",
-      "jobTitle": "Co-Founder",
+      "jobTitle": "Co-Founder & Education Innovator",
       "sameAs": "https://www.linkedin.com/in/raghav-chakravarthy-75051a37/"
     }
   ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-89716-76100",
-    "contactType": "customer service",
-    "email": "qshala@walnuts.co.in",
-    "areaServed": "IN",
-    "availableLanguage": ["English", "Hindi", "Kannada"]
-  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-89716-76100",
+      "contactType": "customer service",
+      "email": "qshala@walnuts.co.in",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi", "Kannada"]
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-89716-76100",
+      "contactType": "sales",
+      "email": "qshala@walnuts.co.in",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi", "Kannada"]
+    }
+  ],
   "sameAs": [
     "https://twitter.com/qshala",
     "https://www.linkedin.com/company/walnut-knowledge-solutions/",
@@ -104,6 +156,7 @@ const websiteEntity: Record<string, any> = {
   "@id": `${siteUrl}/#website`,
   "url": siteUrl,
   "name": "QShala — India's Quriosity Company",
+  "description": "Replacing rote learning with socratic inquiry, storytelling, and wonder across India.",
   "publisher": {
     "@id": `${siteUrl}/#organization`
   },
@@ -156,7 +209,7 @@ const jsonLd = {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -167,19 +220,28 @@ const jsonLd = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#30B2E7" />
+    <meta name="color-scheme" content="light" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
-    <!-- Robots Directives -->
+    <!-- Robots Directives for Search & AI Answer Engines -->
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      </>
     )}
 
     <!-- Author & Attribution -->
     <meta name="author" content="QShala - Curiosita Educational Services" />
     <meta name="publisher" content="QShala" />
-    <meta name="copyright" content="Walnut Knowledge Solutions" />
+    <meta name="copyright" content="Curiosita Educational Services Pvt. Ltd." />
+    <meta name="rating" content="General" />
+    <meta name="format-detection" content="telephone=yes" />
 
     <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Link Preview -->
     <meta property="og:site_name" content="QShala — India's Quriosity Company" />
@@ -189,9 +251,9 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:secure_url" content={ogImageUrl} />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="628" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -227,13 +289,13 @@ const jsonLd = {
       </style>
     </noscript>
 
-    <!-- Schema.org JSON-LD Graph for Rich Search Results, AEO & AI Engines -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- Schema.org JSON-LD Graph for Search Engines, AEO & AI Engines -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     
-    <!-- Self-hosted font preloads for performance -->
+    <!-- Self-hosted font preloads for optimal performance & zero layout shift -->
     <link rel="preload" href="/fonts/Trustha - Causten Round Black.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/Trustha - Causten Round Regular.otf" as="font" type="font/otf" crossorigin />
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- Inline script to handle loader logic correctly with View Transitions -->
     <script is:inline>
@@ -284,7 +346,7 @@ const jsonLd = {
     <!-- Accessible Skip to Main Content Link -->
     <a 
       href="#main-content" 
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-[#FDB913] focus:text-slate-950 focus:font-black focus:border-2 focus:border-black focus:rounded-full focus:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading text-xs uppercase tracking-wider transition-all"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-2.5 focus:bg-[#FDB913] focus:text-slate-950 focus:font-black focus:rounded-full focus:shadow-md font-heading text-xs uppercase tracking-wider transition-all"
     >
       Skip to main content
     </a>

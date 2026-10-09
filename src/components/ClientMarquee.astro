@@ -28,7 +28,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
 
   <!-- Header -->
   <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
-    <span class="inline-block px-4 py-1.5 rounded-full bg-[#FDB913] text-black font-black text-xs uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading">
+    <span class="inline-block px-4 py-1.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs">
       Trusted by the Best
     </span>
     <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-4 font-heading">
@@ -94,7 +94,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
     </div>
   </div>
 
-  <!-- Stats strip (Unified Brand Blue treatment, Average Rating removed) -->
+  <!-- Stats strip -->
   <div class="max-w-4xl mx-auto px-6 mt-14">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
       {[
@@ -103,7 +103,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
         { value: "18+",  label: "Cities Covered",     color: "#30B2E7", bg: "#E8F6FD" },
       ].map((stat) => (
         <div
-          class="flex flex-col items-center justify-center py-6 px-4 rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+          class="flex flex-col items-center justify-center py-6 px-4 rounded-2xl border border-slate-200/80 shadow-xs text-center transition-all hover:-translate-y-1 hover:shadow-md"
           style={`background-color: ${stat.bg};`}
         >
           <span class="text-3xl font-black font-heading" style={`color: ${stat.color}`}>{stat.value}</span>
