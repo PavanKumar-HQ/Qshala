@@ -81,9 +81,10 @@ export default function QuriosityRecommendationWidget() {
 
         <a
           href={rec.link}
-          className="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap font-heading transition-all shrink-0"
+          className="w-full sm:w-auto text-center flex items-center justify-center min-h-[44px] px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-xs border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap font-heading transition-all shrink-0 active:scale-95"
         >
-          View Program Details →
+          <span>View Program Details</span>
+          <span className="ml-1.5">&rarr;</span>
         </a>
       </div>
     </div>

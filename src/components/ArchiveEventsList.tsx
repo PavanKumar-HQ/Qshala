@@ -123,6 +123,22 @@ export default function ArchiveEventsList() {
     return matchYear && matchMonth;
   });
 
+  const handleModalNext = () => {
+    const idx = filteredEvents.findIndex((e) => e.id === activeModalEvent?.id);
+    if (idx !== -1) {
+      const nextIdx = (idx + 1) % filteredEvents.length;
+      setActiveModalEvent(filteredEvents[nextIdx]);
+    }
+  };
+
+  const handleModalPrev = () => {
+    const idx = filteredEvents.findIndex((e) => e.id === activeModalEvent?.id);
+    if (idx !== -1) {
+      const prevIdx = (idx - 1 + filteredEvents.length) % filteredEvents.length;
+      setActiveModalEvent(filteredEvents[prevIdx]);
+    }
+  };
+
   return (
     <div className="w-full space-y-8">
       
@@ -355,19 +371,42 @@ export default function ArchiveEventsList() {
             </div>
 
             <div className="pt-4 border-t-2 border-slate-900 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
-              <button
-                onClick={() => setActiveModalEvent(null)}
-                className="w-full sm:w-auto px-5 py-3 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-900 font-black text-xs font-heading text-center min-h-[44px]"
-              >
-                Close
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleModalPrev}
+                  aria-label="Previous event"
+                  className="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-xs font-heading border border-slate-300 min-h-[40px] flex items-center gap-1.5 cursor-pointer active:scale-95"
+                >
+                  <span>&larr;</span>
+                  <span>Prev Event</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleModalNext}
+                  aria-label="Next event"
+                  className="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-xs font-heading border border-slate-300 min-h-[40px] flex items-center gap-1.5 cursor-pointer active:scale-95"
+                >
+                  <span>Next Event</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
 
-              <a
-                href="/book-a-quiz"
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md text-center min-h-[44px] flex items-center justify-center"
-              >
-                Host Quiz at your School / Office &rarr;
-              </a>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <button
+                  onClick={() => setActiveModalEvent(null)}
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-900 font-black text-xs font-heading text-center min-h-[44px]"
+                >
+                  Close
+                </button>
+
+                <a
+                  href="/book-a-quiz"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md text-center min-h-[44px] flex items-center justify-center"
+                >
+                  Host Quiz &rarr;
+                </a>
+              </div>
             </div>
           </div>
         </div>

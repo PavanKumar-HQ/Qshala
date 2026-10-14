@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface GalleryPhoto {
   id: string;
@@ -10,6 +10,8 @@ interface GalleryPhoto {
   image: string;
   aspect: string;
 }
+
+const CATEGORIES = ['All Moments', 'Schools', 'Corporate', 'Colleges'] as const;
 
 const AUDIENCE_PHOTOS: GalleryPhoto[] = [
   {
@@ -60,9 +62,15 @@ const AUDIENCE_PHOTOS: GalleryPhoto[] = [
 ];
 
 export default function TheQshalaEffect() {
+  const [selectedTag, setSelectedTag] = useState<string>('All Moments');
+
+  const filteredPhotos = selectedTag === 'All Moments'
+    ? AUDIENCE_PHOTOS
+    : AUDIENCE_PHOTOS.filter((p) => p.tag === selectedTag);
+
   return (
     <section className="w-full py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#FFFDF5]">
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -77,8 +85,30 @@ export default function TheQshalaEffect() {
           </p>
         </div>
 
+        {/* Category Filter Pills */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
+          {CATEGORIES.map((cat) => {
+            const isActive = selectedTag === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setSelectedTag(cat)}
+                className={`px-4 py-1.5 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[36px] ${
+                  isActive
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Dynamic Curated Photo Gallery - Just Label Bubbles (No Titles) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        {selectedTag === 'All Moments' ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
           
           {/* Main Large Feature Card */}
           <motion.div
@@ -165,8 +195,37 @@ export default function TheQshalaEffect() {
               </div>
             </motion.div>
           ))}
-
         </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+          {filteredPhotos.map((photo, idx) => (
+            <motion.div
+              key={photo.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: idx * 0.08 }}
+              className="relative rounded-3xl overflow-hidden shadow-sm group min-h-[260px] sm:min-h-[300px] flex flex-col justify-end"
+            >
+              <img
+                src={photo.image}
+                alt={photo.tag}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              
+              <div className="relative z-10 p-5 md:p-6">
+                <span 
+                  className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
+                  style={{ backgroundColor: photo.tagColor }}
+                >
+                  {photo.tag}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
 
       </div>
     </section>

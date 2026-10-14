@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Camera } from 'lucide-react';
 
 export interface BlogPost {
@@ -89,12 +89,45 @@ const ALL_BLOG_POSTS: BlogPost[] = [
   }
 ];
 
+const FILTERS = [
+  { id: 'All', label: 'All Updates' },
+  { id: 'Blog', label: 'Blog Articles' },
+  { id: 'Events', label: 'Event Photos' },
+] as const;
+
 export default function BlogShowcase() {
+  const [filter, setFilter] = useState<'All' | 'Blog' | 'Events'>('All');
+
+  const visiblePosts = filter === 'All'
+    ? ALL_BLOG_POSTS
+    : ALL_BLOG_POSTS.filter((p) => p.category === filter);
+
   return (
-    <div className="w-full">
+    <div className="w-full space-y-8">
+      {/* Category Filter Pills (Avoids endless scroll on mobile) */}
+      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
+        {FILTERS.map((tab) => {
+          const isActive = filter === tab.id;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setFilter(tab.id)}
+              className={`px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] ${
+                isActive
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+
       {/* Unified Blog Grid (Strictly labeled Blog and Events) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-        {ALL_BLOG_POSTS.map((post) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full">
+        {visiblePosts.map((post) => {
           const isEvent = post.category === 'Events';
 
           return (
@@ -146,12 +179,12 @@ export default function BlogShowcase() {
                   </p>
                 </div>
 
-                {/* Read Button */}
+                {/* Read Button with Touch-Optimized 44px min-height */}
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-xs text-slate-400 font-semibold">{post.date}</span>
                   <a
                     href={`/blog/${post.slug}`}
-                    className="px-5 py-2 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5"
+                    className="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5 min-h-[44px]"
                   >
                     <span>Read</span>
                     <span>&rarr;</span>

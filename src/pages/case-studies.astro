@@ -71,6 +71,45 @@ const caseStudiesSchema = {
       </p>
     </div>
 
+    <!-- Category Filter Bar -->
+    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1" id="csFilterBar">
+      <button
+        type="button"
+        data-filter="all"
+        class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-slate-900 text-white shadow-xs"
+      >
+        All Stories (10)
+      </button>
+      <button
+        type="button"
+        data-filter="School"
+        class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+      >
+        Schools
+      </button>
+      <button
+        type="button"
+        data-filter="Corporate"
+        class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+      >
+        Corporates
+      </button>
+      <button
+        type="button"
+        data-filter="College"
+        class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+      >
+        Colleges
+      </button>
+      <button
+        type="button"
+        data-filter="Community"
+        class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+      >
+        Community
+      </button>
+    </div>
+
     <!-- Blog-style 2-Column Wide Image Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
       {CASE_STUDIES_DATA.map((cs) => {
@@ -78,7 +117,7 @@ const caseStudiesSchema = {
         const tagColor = CATEGORY_COLORS[cs.clientType] || '#30B2E7';
 
         return (
-          <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <article data-category={cs.clientType} class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
             
             {/* Top Image Banner */}
             <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
@@ -155,3 +194,36 @@ const caseStudiesSchema = {
   
   <Footer />
 </BaseLayout>
+
+<script>
+  function setupCaseStudiesFilter() {
+    const buttons = document.querySelectorAll('.cs-filter-btn');
+    const cards = document.querySelectorAll('article[data-category]');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        buttons.forEach((b) => {
+          if (b === btn) {
+            b.className = "cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-slate-900 text-white shadow-xs";
+          } else {
+            b.className = "cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-white text-slate-700 hover:bg-slate-100 border border-slate-200";
+          }
+        });
+
+        cards.forEach((card) => {
+          const el = card as HTMLElement;
+          const cat = el.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            el.style.display = '';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  setupCaseStudiesFilter();
+  document.addEventListener('astro:page-load', setupCaseStudiesFilter);
+</script>

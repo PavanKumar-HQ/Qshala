@@ -42,6 +42,24 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
     setCurrentIndex((prev) => (prev - 1 + displayStudies.length) % displayStudies.length);
   };
 
+  const handleModalNext = () => {
+    const idx = displayStudies.findIndex((s) => s.id === selectedModalCase?.id);
+    if (idx !== -1) {
+      const nextIdx = (idx + 1) % displayStudies.length;
+      setSelectedModalCase(displayStudies[nextIdx]);
+      setCurrentIndex(nextIdx);
+    }
+  };
+
+  const handleModalPrev = () => {
+    const idx = displayStudies.findIndex((s) => s.id === selectedModalCase?.id);
+    if (idx !== -1) {
+      const prevIdx = (idx - 1 + displayStudies.length) % displayStudies.length;
+      setSelectedModalCase(displayStudies[prevIdx]);
+      setCurrentIndex(prevIdx);
+    }
+  };
+
   const cs = displayStudies[currentIndex % displayStudies.length];
   const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional'] as const;
   const mascot = mascotVariants[currentIndex % mascotVariants.length];
@@ -59,7 +77,14 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_e, { offset }) => {
+              if (offset.x < -60) handleNext();
+              else if (offset.x > 60) handlePrev();
+            }}
+            className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full cursor-grab active:cursor-grabbing"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -203,10 +228,31 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </footer>
               </blockquote>
 
-              <div className="pt-4 flex justify-end">
+              <div className="pt-4 border-t border-slate-100 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleModalPrev}
+                    aria-label="View previous case study"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-black text-xs font-heading transition-colors cursor-pointer min-h-[40px] active:scale-95"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                    <span>Prev Story</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleModalNext}
+                    aria-label="View next case study"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-black text-xs font-heading transition-colors cursor-pointer min-h-[40px] active:scale-95"
+                  >
+                    <span>Next Story</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
                 <a
                   href="/contact"
-                  className="px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all"
+                  className="px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all text-center min-h-[44px] flex items-center justify-center"
                 >
                   Schedule an Experience &rarr;
                 </a>

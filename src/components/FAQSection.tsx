@@ -86,14 +86,14 @@ export default function FAQSection() {
 
               {/* Answer Panel */}
               {isOpen && (
-                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-4">
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-3 sm:gap-4">
                   <p className="flex-1 min-w-0">{faq.answer}</p>
                   <img
                     src={faq.mascot}
                     alt="QT Mascot"
                     width={48}
                     height={48}
-                    className="shrink-0 object-contain hidden sm:block pointer-events-none self-end"
+                    className="shrink-0 object-contain w-9 h-9 sm:w-12 sm:h-12 pointer-events-none self-end"
                   />
                 </div>
               )}

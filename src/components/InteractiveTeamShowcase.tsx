@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import QTMascot from './QTMascot';
 
 interface TeamMember {
@@ -13,6 +13,8 @@ interface TeamMember {
   bg: string;
   tag: string;
 }
+
+const DEPARTMENTS = ['All Crew', 'Curriculum', 'Content', 'Partnerships', 'Technology', 'Design', 'Corporate'] as const;
 
 const CREW: TeamMember[] = [
   {
@@ -90,8 +92,14 @@ const CREW: TeamMember[] = [
 ];
 
 export default function InteractiveTeamShowcase() {
+  const [selectedDept, setSelectedDept] = useState<string>('All Crew');
+
+  const filteredCrew = selectedDept === 'All Crew'
+    ? CREW
+    : CREW.filter((m) => m.category === selectedDept || m.tag === selectedDept);
+
   return (
-    <div className="space-y-12 w-full">
+    <div className="space-y-8 sm:space-y-10 w-full">
 
       {/* Main Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -106,9 +114,30 @@ export default function InteractiveTeamShowcase() {
         </p>
       </div>
 
+      {/* Department Filter Pills */}
+      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
+        {DEPARTMENTS.map((dept) => {
+          const isActive = selectedDept === dept;
+          return (
+            <button
+              key={dept}
+              type="button"
+              onClick={() => setSelectedDept(dept)}
+              className={`px-3.5 py-1.5 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[36px] ${
+                isActive
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              {dept}
+            </button>
+          );
+        })}
+      </div>
+
       {/* 3-Column Spacious Team Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        {CREW.map((member) => (
+        {filteredCrew.map((member) => (
           <div 
             key={member.id}
             className="p-6 rounded-3xl shadow-xs hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-200/80 bg-white"
