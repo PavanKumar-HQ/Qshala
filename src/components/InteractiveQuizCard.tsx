@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { QuizCardData } from '../lib/data';
 import { triggerConfetti } from '../lib/utils';
+import { RefreshCw } from 'lucide-react';
 
 interface InteractiveQuizCardProps {
   quiz: QuizCardData;
+  onShuffle?: () => void;
 }
 
 const MASCOT_MAP: Record<string, string> = {
@@ -21,7 +23,7 @@ function getMascot(category: string): string {
   return '/assets/qt/QT Idea.svg';
 }
 
-export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) {
+export default function InteractiveQuizCard({ quiz, onShuffle }: InteractiveQuizCardProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const mascotSrc = getMascot(quiz.category);
 
@@ -103,8 +105,23 @@ export default function InteractiveQuizCard({ quiz }: InteractiveQuizCardProps) 
         )}
       </AnimatePresence>
 
-      {/* Footer: Mascot */}
-      <div className="mt-4 pt-3 flex items-center justify-end border-t border-slate-100">
+      {/* Footer: Shuffle Action & Mascot */}
+      <div className="mt-4 pt-3 flex items-center justify-between border-t border-slate-100">
+        {onShuffle ? (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onShuffle();
+            }}
+            aria-label={`Shuffle ${quiz.difficulty} question`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#30B2E7] hover:text-white text-slate-700 font-black text-xs border border-slate-200/80 shadow-xs active:scale-95 transition-all font-heading cursor-pointer min-h-[36px]"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Shuffle Question</span>
+          </button>
+        ) : <div />}
+
         <img
           src={mascotSrc}
           alt="QT Mascot"
