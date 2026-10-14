@@ -50,7 +50,7 @@ export default function DailyQuizSection({ initialQuizzes }: { initialQuizzes?: 
           className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-black text-xs sm:text-sm border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all font-heading cursor-pointer"
         >
           <RefreshCw className="w-4 h-4 text-[#30B2E7]" />
-          <span>Shuffle the questions</span>
+          <span>Shuffle Questions</span>
         </button>
       </div>
     </div>

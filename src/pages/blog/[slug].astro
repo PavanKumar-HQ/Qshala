@@ -279,7 +279,7 @@ const articleSchema = {
   "isPartOf": {
     "@id": "https://qshala.vercel.app/#website"
   },
-  "image": "https://qshala.vercel.app/og-image.webp"
+  "image": post.gallery && post.gallery[0] ? post.gallery[0].url : "https://qshala.vercel.app/og-image.webp"
 };
 ---
 
@@ -287,10 +287,13 @@ const articleSchema = {
   title={`${post.title} | QShala Blog`}
   description={post.summary}
   ogType="article"
+  ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.vercel.app/og-image.webp'}
   articleMeta={{
+    publishedTime: post.isoDate,
+    modifiedTime: "2026-10-14T18:00:00+05:30",
     author: post.author,
     section: post.category,
-    tags: [post.category, "Quriosity", "Education", "QShala"]
+    tags: [post.category, "Quriosity", "Education", "QShala", "Quizzing India"]
   }}
   breadcrumbs={[
     { name: "Home", item: "/" },

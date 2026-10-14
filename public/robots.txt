@@ -15,13 +15,25 @@ User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin/
 
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
 # Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
 
-# Anthropic Claude
+# Anthropic Claude & Claude Search
 User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin/
+
+User-agent: anthropic-ai
 Allow: /
 Disallow: /admin/
 
@@ -41,6 +53,11 @@ Disallow: /admin/
 
 # Apple Search & Siri
 User-agent: Applebot
+Allow: /
+Disallow: /admin/
+
+# Meta AI & External Crawlers
+User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /admin/
 
