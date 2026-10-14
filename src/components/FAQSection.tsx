@@ -25,22 +25,22 @@ const FAQS = [
   {
     question: 'What age groups are QShala programs designed for?',
     answer: 'We have age-tailored programs for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers).',
-    mascot: '/assets/qt/QT curious.svg',
+    mascot: '/assets/qt/Qt curious.svg',
   },
   {
     question: 'Can QShala customize trivia around our company history and products?',
     answer: 'Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture.',
-    mascot: '/assets/qt/QT Sherlock.svg',
+    mascot: '/assets/qt/QT sherlock.svg',
   },
   {
     question: 'What formats are offered for college campus fests and hackathons?',
     answer: 'We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India\'s top colleges.',
-    mascot: '/assets/qt/QT Trophy.svg',
+    mascot: '/assets/qt/QT with trophy.svg',
   },
   {
     question: 'Can families or community groups host a private quiz or game night?',
     answer: 'Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams.',
-    mascot: '/assets/qt/QT Holding Money.svg',
+    mascot: '/assets/qt/QT holding money.svg',
   },
 ];
 

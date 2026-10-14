@@ -25,20 +25,20 @@ export const CATEGORY_BADGES: Record<EventCategory, { bg: string; text: string; 
     text: 'text-emerald-800',
     border: 'border-emerald-300'
   },
-  College: {
+  Corporate: {
     bg: 'bg-amber-100',
-    text: 'text-amber-800',
+    text: 'text-amber-900',
     border: 'border-amber-300'
   },
-  Corporate: {
+  College: {
     bg: 'bg-sky-100',
     text: 'text-sky-800',
     border: 'border-sky-300'
   },
   Community: {
-    bg: 'bg-rose-100',
-    text: 'text-rose-800',
-    border: 'border-rose-300'
+    bg: 'bg-purple-100',
+    text: 'text-purple-800',
+    border: 'border-purple-300'
   }
 };
 
@@ -71,7 +71,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     desc: 'Compete against other top companies in this team-building trivia tournament.',
     buttonType: 'learn_more',
     buttonText: 'Learn More',
-    buttonUrl: '/services'
+    buttonUrl: '/companies'
   },
   {
     id: 'ev-4',
@@ -79,13 +79,13 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     category: 'School',
     date: 'Dec 10, 2026',
     desc: 'The grand finale of our nation-wide inter-school quiz competition.',
-    buttonType: 'none',
-    buttonText: '',
-    buttonUrl: ''
+    buttonType: 'learn_more',
+    buttonText: 'Learn More',
+    buttonUrl: '/schools'
   }
 ];
 
-const STORAGE_KEY = 'qshala_upcoming_events';
+const STORAGE_KEY = 'qshala_upcoming_events_v3';
 const EVENT_NAME = 'qshala_events_updated';
 
 export function getUpcomingEvents(): UpcomingEvent[] {
