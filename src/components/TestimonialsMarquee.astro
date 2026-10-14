@@ -57,9 +57,6 @@ const STATIC_TESTIMONIALS = [
     initials: "MJ"
   }
 ];
-
-const topRow = STATIC_TESTIMONIALS.slice(0, 3);
-const bottomRow = STATIC_TESTIMONIALS.slice(3, 5);
 ---
 
 <section id="testimonials" class="py-14 bg-[#FFFDF5] border-t-2 border-b-2 border-slate-200/80 relative">
@@ -74,14 +71,15 @@ const bottomRow = STATIC_TESTIMONIALS.slice(3, 5);
     </h2>
   </div>
 
-  <!-- Static 5-Grid Box Layout: 3 on Top Row, 2 Centered on Bottom Row -->
-  <div class="max-w-7xl mx-auto px-6 space-y-6">
-    
-    <!-- Top Row: 3 Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {topRow.map((item) => (
+  <!-- Single Row Layout -->
+  <div class="max-w-7xl mx-auto px-6">
+    <div 
+      class="flex gap-6 overflow-x-auto scrollbar-none py-4 snap-x snap-mandatory px-1"
+      style="scrollbar-width: none; -ms-overflow-style: none;"
+    >
+      {STATIC_TESTIMONIALS.map((item) => (
         <div 
-          class="testimonial-card"
+          class="testimonial-card w-[82vw] max-w-[320px] sm:w-[350px] md:w-[380px] shrink-0 snap-start"
           style={`--accent: ${item.accent}; --bg: ${item.bg};`}
         >
           <!-- Stars & Type Badge -->
@@ -119,50 +117,6 @@ const bottomRow = STATIC_TESTIMONIALS.slice(3, 5);
         </div>
       ))}
     </div>
-
-    <!-- Bottom Row: 2 Cards Centered -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-      {bottomRow.map((item) => (
-        <div 
-          class="testimonial-card"
-          style={`--accent: ${item.accent}; --bg: ${item.bg};`}
-        >
-          <!-- Stars & Type Badge -->
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-1 text-amber-400">
-              {Array.from({ length: item.stars }).map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white border border-slate-300 text-slate-800 font-heading">
-              {item.type}
-            </span>
-          </div>
-
-          <!-- Quote -->
-          <p class="text-slate-800 text-sm font-semibold leading-relaxed mb-6 flex-grow font-sans italic">
-            &ldquo;{item.quote}&rdquo;
-          </p>
-
-          <!-- Author Info -->
-          <div class="flex items-center gap-3 pt-3 border-t border-slate-900/10 mt-auto">
-            <div 
-              class="w-9 h-9 rounded-full flex items-center justify-center font-black text-xs text-white border-2 border-black flex-shrink-0 font-heading"
-              style={`background-color: ${item.accent};`}
-            >
-              {item.initials}
-            </div>
-            <div class="min-w-0">
-              <div class="font-black text-xs text-slate-900 truncate font-heading">{item.author}</div>
-              <div class="text-[10px] text-slate-600 font-medium truncate">{item.role}, <span class="font-semibold text-slate-800">{item.org}</span></div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-
   </div>
 
 </section>

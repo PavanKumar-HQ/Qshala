@@ -10,8 +10,7 @@ const SERVICE_MODULES = [
     href: "/schools",
     title: "Schools & K-12 Institutions",
     badge: "Schools",
-    description: "Empowering 250+ K-12 schools with timetabled weekly Quriosity Clubs, Financial Literacy modules, Public Speaking & Socratic Debate, and real-world General Knowledge. Plus high-energy inter-school quiz championships.",
-    programs: ["Weekly Quriosity Clubs", "Financial Literacy for Kids", "Public Speaking & Socratic Debate", "GK & Current Affairs", "Inter-School Championships"],
+    description: "Timetabled weekly curiosity clubs, thinking skills, and inter-school championships for 250+ partner schools across India.",
     mascotVariant: "reading" as const,
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     imageAlt: "School students learning curiously in classroom",
@@ -23,9 +22,8 @@ const SERVICE_MODULES = [
     id: "companies",
     href: "/companies",
     title: "Corporates & Hybrid Teams",
-    badge: "Companies",
-    description: "High-impact employee engagement, Friday trivia leagues, and gamified new-hire onboarding. Trusted by 80+ top companies including Google, Flipkart, Wipro, TCS, and Infosys to build camaraderie and psychological safety.",
-    programs: ["Live Trivia Championships", "Gamified Onboarding Quests", "Cross-Hub Mixers", "Leadership Offsites"],
+    badge: "Corporate",
+    description: "High-impact employee engagement, Friday trivia leagues, and gamified new-hire onboarding for 80+ top companies.",
     mascotVariant: "professional" as const,
     imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Corporate team collaborating during live event",
@@ -38,12 +36,11 @@ const SERVICE_MODULES = [
     href: "/colleges",
     title: "Colleges & Campus Fests",
     badge: "Colleges",
-    description: "Multi-disciplinary campus quiz championships with packed auditoriums. Covering Law moot trivia, Finance & Economics leagues, Business strategy simulations, and STEM hackathons across premier institutions.",
-    programs: ["Campus Fest Championships", "Law & Moot Trivia", "Finance & Economics Leagues", "STEM & Policy Quests"],
+    description: "Multi-disciplinary campus quiz championships, law moot trivia, finance leagues, and STEM hackathons across premier universities.",
     mascotVariant: "idea" as const,
     imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
     imageAlt: "College students celebrating graduation and campus fest",
-    ctaText: "Explore Campus Fests",
+    ctaText: "Explore College Programs",
     color: "#FDB913",
     bgTint: "#FFF8E1"
   },
@@ -52,12 +49,11 @@ const SERVICE_MODULES = [
     href: "/communities",
     title: "Communities & Families",
     badge: "Communities",
-    description: "Screen-free family game nights, apartment complex tournaments, landmark celebrations, and public policy summits. Bringing generations together through playful discovery and storytelling.",
-    programs: ["Apartment Trivia Leagues", "Family Game Nights", "Milestone Celebrations", "Public Policy Summits"],
+    description: "Screen-free family game nights, apartment complex tournaments, and landmark celebrations bringing generations together.",
     mascotVariant: "curious" as const,
     imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Friends gathering happily at a community event",
-    ctaText: "Explore Community Quizzes",
+    ctaText: "Explore Community Programs",
     color: "#30B2E7",
     bgTint: "#E8F6FD"
   },
@@ -66,8 +62,7 @@ const SERVICE_MODULES = [
     href: "/custom",
     title: "Custom Experiences & Quests",
     badge: "Custom",
-    description: "Bespoke experiences crafted from scratch—from museum treasure hunts, custom podcast trivia, and brand launches, to interactive digital quiz products. Tell us your vision, and we will build it.",
-    programs: ["Museum Treasure Hunts", "Brand Launch Activations", "Podcast Trivia Experiences", "Bespoke Quests"],
+    description: "Bespoke curiosity experiences, museum treasure hunts, podcast trivia, and custom brand activations designed from scratch.",
     mascotVariant: "trophy" as const,
     imageSrc: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Team designing custom learning experience",
@@ -130,19 +125,19 @@ const servicesSchema = {
       </div>
     </section>
 
-    <!-- Services Modules Stack -->
-    <section class="py-4 max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+    <!-- Services Modules Stack - Simplified & Highly Scrollable -->
+    <section class="py-4 max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
       {SERVICE_MODULES.map((module, idx) => {
         const isReversed = idx % 2 !== 0;
         return (
           <div 
             id={module.id}
-            class="group p-8 sm:p-10 rounded-3xl transition-all duration-300 border border-slate-200/80 hover:border-slate-300 shadow-sm hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white"
+            class="group p-6 sm:p-8 rounded-3xl transition-all duration-300 border border-slate-200/80 hover:border-slate-300 shadow-sm hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white"
           >
             <!-- Image Thumbnail -->
             <div class={`lg:col-span-5 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
               <div class="relative">
-                <div class="overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100 shadow-sm">
+                <div class="overflow-hidden rounded-2xl aspect-[16/10] bg-slate-100 shadow-sm">
                   <img 
                     src={module.imageSrc} 
                     alt={module.imageAlt} 
@@ -157,9 +152,9 @@ const servicesSchema = {
               </div>
             </div>
 
-            <!-- Content Column -->
-            <div class={`lg:col-span-7 space-y-5 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
-              <div class="space-y-3">
+            <!-- Content Column: Label, Title, One Brief Line, CTA Button -->
+            <div class={`lg:col-span-7 space-y-4 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
+              <div class="space-y-2">
                 <span 
                   class="inline-block px-3.5 py-1 rounded-full text-white font-black text-xs uppercase font-heading shadow-sm"
                   style={`background-color: ${module.color};`}
@@ -176,20 +171,11 @@ const servicesSchema = {
                 </p>
               </div>
 
-              {/* Program Highlights Pill Tags */}
-              <div class="flex flex-wrap gap-2 pt-1">
-                {module.programs.map((prog) => (
-                  <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold font-heading">
-                    • {prog}
-                  </span>
-                ))}
-              </div>
-
               <!-- Action CTA -->
-              <div class="pt-3 border-t border-slate-100">
+              <div class="pt-2">
                 <a
                   href={module.href}
-                  class="px-7 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-0.5 font-heading transition-all inline-flex items-center gap-2 group/btn"
+                  class="px-7 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-0.5 font-heading transition-all inline-flex items-center gap-2 group/btn"
                 >
                   <span>{module.ctaText}</span>
                   <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>

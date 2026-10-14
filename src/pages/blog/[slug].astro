@@ -7,9 +7,85 @@ import QTMascot from '../../components/QTMascot';
 export async function getStaticPaths() {
   const posts = [
     {
+      slug: 'bangalore-inter-school-quriosity-cup-2026',
+      title: 'Bangalore Inter-School Quriosity Cup 2026',
+      category: 'Events',
+      readTime: 'Photo Gallery',
+      date: 'July 2026',
+      isoDate: '2026-07-20T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Over 1,200 student quizzers representing 64 schools competed across 4 adrenaline-pumping buzzer rounds at St. John\'s Auditorium.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          The 2026 edition of the Bangalore Inter-School Quriosity Cup brought together over 1,200 enthusiastic student quizzers representing 64 premier K-12 schools across Bengaluru for a day of socratic deduction, team strategy, and high-energy quizzing.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">A Celebration of Inquiry Over Rote Memory</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Unlike standard trivia championships that reward encyclopedic recall, the Quriosity Cup tested reasoning, lateral thinking, and collaborative hypothesis-testing. Finalist teams tackled multi-layered visual clues, reverse-engineering scientific discoveries and historical crossroads.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Event Photo Access for Participants</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          All participating students, teachers, and parents can browse, view, and save event photographs below from the preliminary heats, stage rounds, and awards ceremony.
+        </p>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop", caption: "Packed auditorium cheering as the finalists took the stage" },
+        { url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", caption: "Team DPS East conferring during the socratic science round" },
+        { url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop", caption: "Quizmaster Sachin Ravi breaking down a trick history question" },
+        { url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop", caption: "Audience questions and parent spot trivia giveaways" },
+        { url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", caption: "Trophy ceremony celebrating the 2026 championship winners" },
+        { url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop", caption: "Hands shooting up across the middle-school tier" },
+        { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop", caption: "Scoreboard update before the high-stakes final buzzer round" },
+        { url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop", caption: "Students celebrating with QT mascot stickers and certificates" },
+        { url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop", caption: "Principals and coordinators gathering for the closing keynote" },
+        { url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop", caption: "Group photo with participating school teams" }
+      ]
+    },
+    {
+      slug: 'national-corporate-trivia-summit',
+      title: 'National Corporate Trivia League Finals',
+      category: 'Events',
+      readTime: 'Photo Gallery',
+      date: 'June 2026',
+      isoDate: '2026-06-25T10:00:00+05:30',
+      author: 'Raghav Chakravarthy',
+      authorRole: 'Co-Founder, Chief Quizmaster',
+      summary: '48 corporate teams from Flipkart, Google, Wipro, TCS, and Amazon competed in high-octane live buzzer trivia at JW Marriott, Bengaluru.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          The National Corporate Trivia League Finals hosted 48 corporate teams for a Friday evening of high-stakes buzzer rounds, team bonding, and lateral thinking challenges.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Building Culture Through Gamified Camaraderie</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Participating teams engaged in multi-tier rounds designed by QShala's experience team—spanning 90s pop culture, business brand lore, audio-visual mysteries, and rapid-fire buzzers.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Corporate Event Photos</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Browse and download photos from the team qualifiers, live buzzer clashes, and the final trophy celebration below.
+        </p>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop", caption: "Engineering and HR teams collaborating on rapid-fire business trivia" },
+        { url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop", caption: "Cross-functional laughter during the brand lore audio round" },
+        { url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop", caption: "Digital buzzers and live interactive leaderboard display" },
+        { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop", caption: "Awards presented for best team chemistry and top trivia master" },
+        { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop", caption: "Networking dinner and post-event discussions" },
+        { url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", caption: "Team high-fives as the winning answer was locked in" },
+        { url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop", caption: "Quizmaster facilitating the rapid-fire championship clash" },
+        { url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1200&auto=format&fit=crop", caption: "Audience participation round with over 300 spectators" },
+        { url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop", caption: "Celebrating corporate learning and psychological safety" },
+        { url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", caption: "All finalists gathering for the commemorative group snapshot" }
+      ]
+    },
+    {
       slug: 'why-rote-learning-kills-quriosity',
       title: 'Why Rote Learning Kills Quriosity (And How to Fix It)',
-      category: 'Pedagogy',
+      category: 'Blog',
       readTime: '5 min read',
       date: 'Aug 1, 2026',
       isoDate: '2026-08-01T10:00:00+05:30',
@@ -44,7 +120,7 @@ export async function getStaticPaths() {
     {
       slug: 'curious-dinner-table',
       title: "How to Build a 'Curious Dinner Table' for Your Kids",
-      category: 'Parenting',
+      category: 'Blog',
       readTime: '4 min read',
       date: 'July 28, 2026',
       isoDate: '2026-07-28T10:00:00+05:30',
@@ -76,7 +152,7 @@ export async function getStaticPaths() {
     {
       slug: 'gamification-modern-corporate-learning',
       title: 'Gamification: The Secret Weapon of Modern Corporate L&D',
-      category: 'Workplace Culture',
+      category: 'Blog',
       readTime: '6 min read',
       date: 'July 15, 2026',
       isoDate: '2026-07-15T10:00:00+05:30',
@@ -102,7 +178,7 @@ export async function getStaticPaths() {
     {
       slug: 'socratic-mindset-future-ready-kids',
       title: 'How Socratic Questioning Builds Future-Ready Mindsets in Children',
-      category: 'Cognitive Growth',
+      category: 'Blog',
       readTime: '5 min read',
       date: 'Aug 5, 2026',
       isoDate: '2026-08-05T10:00:00+05:30',
@@ -124,7 +200,7 @@ export async function getStaticPaths() {
     {
       slug: 'ai-and-quriosity-asking-right-questions',
       title: 'AI & Quriosity: Teaching Children How to Ask the Right Questions',
-      category: 'AI & Tech',
+      category: 'Blog',
       readTime: '6 min read',
       date: 'Aug 3, 2026',
       isoDate: '2026-08-03T10:00:00+05:30',
@@ -146,7 +222,7 @@ export async function getStaticPaths() {
     {
       slug: 'daily-news-quizzing-critical-thinking',
       title: 'The Power of Daily News Quizzing for School Students',
-      category: 'Current Affairs',
+      category: 'Blog',
       readTime: '4 min read',
       date: 'Aug 2, 2026',
       isoDate: '2026-08-02T10:00:00+05:30',
@@ -184,7 +260,7 @@ const articleSchema = {
   "inLanguage": "en-IN",
   "url": `https://qshala.vercel.app/blog/${post.slug}`,
   "datePublished": post.isoDate,
-  "dateModified": "2026-10-09T18:00:00+05:30",
+  "dateModified": "2026-10-14T18:00:00+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": `https://qshala.vercel.app/blog/${post.slug}`
@@ -208,17 +284,17 @@ const articleSchema = {
 ---
 
 <BaseLayout 
-  title={`${post.title} | QShala Magazine`}
+  title={`${post.title} | QShala Blog`}
   description={post.summary}
   ogType="article"
   articleMeta={{
-    author: "QShala Editorial Team",
+    author: post.author,
     section: post.category,
     tags: [post.category, "Quriosity", "Education", "QShala"]
   }}
   breadcrumbs={[
     { name: "Home", item: "/" },
-    { name: "Magazine & Blog", item: "/blog" },
+    { name: "Blog", item: "/blog" },
     { name: post.title, item: `/blog/${post.slug}` }
   ]}
   schema={articleSchema}
@@ -232,14 +308,15 @@ const articleSchema = {
         <!-- Back Button -->
         <div>
           <a href="/blog" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-900 border border-slate-200 shadow-xs hover:-translate-y-0.5 hover:shadow-sm transition-all font-black uppercase text-xs font-heading">
-            &larr; Back to Magazine &amp; Blog
+            &larr; Back to Blog
           </a>
         </div>
 
         <!-- Article Header -->
         <div class="space-y-4 border-b border-slate-200 pb-8">
           <div class="flex flex-wrap items-center gap-3">
-            <span class="px-3.5 py-1 rounded-full text-slate-950 font-black text-[10px] font-heading uppercase" style={`background-color: ${post.color};`}>
+            <!-- Strictly two labels: Blog or Events -->
+            <span class={`px-3.5 py-1 rounded-full font-black text-xs font-heading uppercase ${post.category === 'Events' ? 'bg-[#FDB913] text-slate-950' : 'bg-[#30B2E7] text-white'}`}>
               {post.category}
             </span>
             <span class="text-xs font-bold text-slate-500 font-heading">{post.date}</span>
@@ -253,6 +330,41 @@ const articleSchema = {
 
         <!-- Article Body -->
         <div class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" set:html={post.content} />
+
+        <!-- Optional Image / Gallery Section (Shows only if images are provided) -->
+        {post.gallery && post.gallery.length > 0 && (
+          <section class="mt-12 pt-8 border-t border-slate-200 space-y-6">
+            <div class="space-y-1">
+              <span class="inline-block px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading">
+                Event Gallery ({post.gallery.length} Photos)
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900">
+                Event Photos &amp; Highlights
+              </h2>
+              <p class="text-slate-600 text-sm font-semibold">
+                High-resolution event photographs. Participants and attendees can view and access their photos below.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {post.gallery.map((photo) => (
+                <div class="group relative rounded-2xl overflow-hidden shadow-xs border border-slate-200/80 bg-slate-100 aspect-[4/3]">
+                  <img 
+                    src={photo.url} 
+                    alt={photo.caption} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    loading="lazy"
+                  />
+                  {photo.caption && (
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+                      <p class="text-white text-xs font-semibold leading-snug">{photo.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <!-- Footer CTA Box -->
         <div class="bg-[#FFF8E1] rounded-3xl p-8 border border-amber-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 mt-12">

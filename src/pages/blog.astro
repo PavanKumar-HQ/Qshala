@@ -8,7 +8,7 @@ import BlogShowcase from '../components/BlogShowcase';
 const blogSchema = {
   "@type": "CollectionPage",
   "@id": "https://qshala.vercel.app/blog#collection",
-  "name": "QShala Magazine, Articles & Event Coverage",
+  "name": "QShala Blog",
   "description": "Read insights on socratic education, school quiz clubs, quizmastering in India, corporate trivia, and view photo event reports from across India.",
   "publisher": {
     "@id": "https://qshala.vercel.app/#organization"
@@ -17,12 +17,12 @@ const blogSchema = {
 ---
 
 <BaseLayout 
-  title="Quriosity Magazine & Event Reports | Quizmaster in India & Bangalore Quizzing"
-  description="Explore perspectives on socratic learning, child curiosity, corporate trivia, and comprehensive photo event reports from India's premier quizmasters."
+  title="Blog | QShala India — Questions, Quriosity, Quests"
+  description="Explore perspectives on socratic learning, child curiosity, corporate trivia, and live photo event reports from India's premier quizmasters."
   pageType="CollectionPage"
   breadcrumbs={[
     { name: "Home", item: "/" },
-    { name: "Magazine & Events", item: "/blog" }
+    { name: "Blog", item: "/blog" }
   ]}
   schema={blogSchema}
 >
@@ -33,7 +33,7 @@ const blogSchema = {
     <!-- Page Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
       <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-        QShala Magazine &amp; Live Reports
+        QShala Blog
       </span>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -46,7 +46,7 @@ const blogSchema = {
       </div>
       
       <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Perspectives on Socratic education, cognitive growth, quizmastering in Bangalore and across India, plus photo reports from live championships.
+        Perspectives on Socratic education, cognitive growth, quizmastering in Bangalore and across India, plus event reports and photo access for participants.
       </p>
     </div>
 

@@ -60,7 +60,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     date: 'Oct 22, 2026',
     desc: 'Test your knowledge on the evolution of technology, from the abacus to AI.',
     buttonType: 'register',
-    buttonText: 'Join Waitlist',
+    buttonText: 'Register Now',
     buttonUrl: '/book-a-quiz'
   },
   {

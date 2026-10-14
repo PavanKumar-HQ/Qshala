@@ -70,14 +70,14 @@ export default function TheQshalaEffect() {
             Live Moments
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            The Qshala effect.
+            The QShala effect.
           </h2>
           <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Moments of electric energy, high-fives, and unbridled curiosity captured across schools, colleges, and corporate stages across India.
           </p>
         </div>
 
-        {/* Dynamic Curated Photo Gallery */}
+        {/* Dynamic Curated Photo Gallery - Just Label Bubbles (No Titles) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
           
           {/* Main Large Feature Card */}
@@ -86,26 +86,23 @@ export default function TheQshalaEffect() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-sm group min-h-[380px] md:min-h-[460px] flex flex-col justify-end"
+            className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-sm group min-h-[380px] md:min-h-[440px] flex flex-col justify-end"
           >
             <img
               src={AUDIENCE_PHOTOS[0].image}
-              alt={AUDIENCE_PHOTOS[0].title}
+              alt={AUDIENCE_PHOTOS[0].tag}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             
-            <div className="relative z-10 p-6 md:p-8 space-y-2">
+            <div className="relative z-10 p-6 md:p-8">
               <span 
-                className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-sm"
+                className="inline-block px-4 py-1.5 rounded-full text-white text-xs sm:text-sm font-black uppercase font-heading shadow-md"
                 style={{ backgroundColor: AUDIENCE_PHOTOS[0].tagColor }}
               >
                 {AUDIENCE_PHOTOS[0].tag}
               </span>
-              <h3 className="text-xl md:text-2xl font-black text-white font-heading leading-snug max-w-xl">
-                {AUDIENCE_PHOTOS[0].title}
-              </h3>
             </div>
           </motion.div>
 
@@ -118,26 +115,23 @@ export default function TheQshalaEffect() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 * (idx + 1) }}
-                className="relative rounded-3xl overflow-hidden shadow-sm group min-h-[220px] flex flex-col justify-end flex-1"
+                className="relative rounded-3xl overflow-hidden shadow-sm group min-h-[200px] flex flex-col justify-end flex-1"
               >
                 <img
                   src={photo.image}
-                  alt={photo.title}
+                  alt={photo.tag}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 
-                <div className="relative z-10 p-5 space-y-1.5">
+                <div className="relative z-10 p-5">
                   <span 
-                    className="inline-block px-3 py-0.5 rounded-full text-white text-[11px] font-black uppercase font-heading shadow-sm"
+                    className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
                     style={{ backgroundColor: photo.tagColor }}
                   >
                     {photo.tag}
                   </span>
-                  <h3 className="text-base font-black text-white font-heading leading-snug">
-                    {photo.title}
-                  </h3>
                 </div>
               </motion.div>
             ))}
@@ -151,26 +145,23 @@ export default function TheQshalaEffect() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 * (idx + 3) }}
-              className={`relative rounded-3xl overflow-hidden shadow-sm group min-h-[240px] flex flex-col justify-end ${idx === 0 ? 'md:col-span-1' : 'md:col-span-2'}`}
+              className={`relative rounded-3xl overflow-hidden shadow-sm group min-h-[220px] flex flex-col justify-end ${idx === 0 ? 'md:col-span-1' : 'md:col-span-2'}`}
             >
               <img
                 src={photo.image}
-                alt={photo.title}
+                alt={photo.tag}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               
-              <div className="relative z-10 p-5 md:p-6 space-y-1.5">
+              <div className="relative z-10 p-5 md:p-6">
                 <span 
-                  className="inline-block px-3 py-0.5 rounded-full text-white text-[11px] font-black uppercase font-heading shadow-sm"
+                  className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
                   style={{ backgroundColor: photo.tagColor }}
                 >
                   {photo.tag}
                 </span>
-                <h3 className="text-base md:text-lg font-black text-white font-heading leading-snug">
-                  {photo.title}
-                </h3>
               </div>
             </motion.div>
           ))}

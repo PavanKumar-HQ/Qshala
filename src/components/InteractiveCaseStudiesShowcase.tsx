@@ -21,6 +21,13 @@ const CASE_STUDY_IMAGES: Record<string, string> = {
   'wework-community-networking-nights': 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
 };
 
+const CATEGORY_STYLES: Record<string, { bg: string; text: string; buttonBg: string; buttonHover: string; solidText: string }> = {
+  School: { bg: 'bg-[#75B543]/15', text: 'text-[#75B543]', buttonBg: 'bg-[#75B543]', buttonHover: 'hover:bg-emerald-600', solidText: 'text-white' },
+  Corporate: { bg: 'bg-[#FDB913]/25', text: 'text-amber-800', buttonBg: 'bg-[#FDB913]', buttonHover: 'hover:bg-amber-400', solidText: 'text-slate-950' },
+  College: { bg: 'bg-[#30B2E7]/15', text: 'text-[#30B2E7]', buttonBg: 'bg-[#30B2E7]', buttonHover: 'hover:bg-sky-500', solidText: 'text-white' },
+  Community: { bg: 'bg-[#9333EA]/15', text: 'text-[#9333EA]', buttonBg: 'bg-[#9333EA]', buttonHover: 'hover:bg-purple-600', solidText: 'text-white' },
+};
+
 export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
   // Curated items for homepage rotation
   const displayStudies = caseStudies.slice(0, 5);
@@ -39,6 +46,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
   const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional'] as const;
   const mascot = mascotVariants[currentIndex % mascotVariants.length];
   const currentImage = CASE_STUDY_IMAGES[cs.slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
+  const catStyle = CATEGORY_STYLES[cs.clientType] || CATEGORY_STYLES.School;
 
   return (
     <div className="space-y-6">
@@ -73,7 +81,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
               {/* School Name & Single Text Box */}
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="px-3.5 py-1 rounded-full bg-[#30B2E7]/15 text-[#30B2E7] font-black text-xs uppercase font-heading">
+                  <span className={`px-3.5 py-1 rounded-full ${catStyle.bg} ${catStyle.text} font-black text-xs uppercase font-heading`}>
                     {cs.clientType}
                   </span>
                   <span className="text-slate-900 font-black text-sm uppercase tracking-wider font-heading">
@@ -167,7 +175,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
               </button>
 
               <div className="space-y-2">
-                <span className="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm">
+                <span className={`px-3.5 py-1 rounded-full ${(CATEGORY_STYLES[selectedModalCase.clientType] || CATEGORY_STYLES.School).buttonBg} ${(CATEGORY_STYLES[selectedModalCase.clientType] || CATEGORY_STYLES.School).solidText} font-black text-xs uppercase font-heading shadow-sm`}>
                   {selectedModalCase.clientType} • {selectedModalCase.clientName}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading leading-tight pt-2">

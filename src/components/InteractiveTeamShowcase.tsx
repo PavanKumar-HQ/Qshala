@@ -106,47 +106,43 @@ export default function InteractiveTeamShowcase() {
         </p>
       </div>
 
-      {/* Taller, Narrower Flashcard-Style Team Cards with Bigger Images */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 w-full">
+      {/* 3-Column Spacious Team Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         {CREW.map((member) => (
           <div 
             key={member.id}
-            className="rounded-3xl p-5 shadow-xs hover:shadow-lg hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group border border-slate-200/80 bg-white relative overflow-hidden min-h-[440px]"
+            className="p-6 rounded-3xl shadow-xs hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-200/80 bg-white"
+            style={{ backgroundColor: member.bg }}
           >
-            {/* Top Tag & Mascot */}
-            <div className="flex items-center justify-between gap-2 mb-3">
-              <span 
-                className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-xs"
-                style={{ backgroundColor: member.color }}
-              >
-                {member.tag}
-              </span>
-              <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
-                <QTMascot variant={member.variant} size="sm" />
+            <div className="space-y-4 flex-grow flex flex-col">
+              <div className="flex items-center justify-between">
+                <span 
+                  className="px-3 py-1 rounded-full text-[11px] font-black uppercase text-white font-heading shadow-xs"
+                  style={{ backgroundColor: member.color }}
+                >
+                  {member.tag}
+                </span>
+                <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+                  <QTMascot variant={member.variant} size="sm" />
+                </div>
               </div>
-            </div>
 
-            {/* Flashcard Large Image & Content */}
-            <div className="flex flex-col items-center text-center space-y-3 flex-grow">
-              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-sm border-2 border-white shrink-0 group-hover:scale-105 transition-transform duration-300 bg-slate-100">
+              <div className="flex flex-col items-center justify-center pt-2 pb-1">
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="w-full h-full object-cover" 
+                  className="w-24 h-24 rounded-full object-cover shadow-sm mb-3 border-2 border-white" 
                   loading="lazy"
                 />
-              </div>
-
-              <div className="space-y-1 pt-1">
-                <h3 className="text-lg font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors">
+                <h3 className="text-xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors text-center">
                   {member.name}
                 </h3>
-                <p className="text-xs font-bold text-slate-500 font-heading uppercase tracking-wider">
+                <div className="text-xs font-bold text-slate-600 mt-1 font-heading text-center">
                   {member.role}
-                </p>
+                </div>
               </div>
 
-              <p className="text-slate-700 text-xs font-semibold leading-relaxed pt-2 border-t border-slate-100">
+              <p className="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed text-center pt-2 border-t border-slate-900/10">
                 {member.bio}
               </p>
             </div>

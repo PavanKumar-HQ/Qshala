@@ -117,21 +117,12 @@ const caseStudiesSchema = {
                   &ldquo;{cs.quote.text}&rdquo; — <span class="font-bold text-slate-900 not-italic">{cs.quote.author} ({cs.quote.role})</span>
                 </blockquote>
 
-                <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-                  <div class="flex flex-wrap gap-1.5">
-                    {cs.tags.map((tag) => (
-                      <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a 
-                    href="/contact" 
-                    class="text-xs font-black text-[#30B2E7] hover:underline font-heading uppercase tracking-wider"
-                  >
-                    Discuss Similar Plan &rarr;
-                  </a>
+                <div class="flex flex-wrap items-center gap-1.5 pt-2">
+                  {cs.tags.map((tag) => (
+                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">
+                      #{tag}
+                    </span>
+                  ))}
                 </div>
               </div>
 
