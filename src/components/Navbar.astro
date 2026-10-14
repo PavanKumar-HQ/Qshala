@@ -177,6 +177,10 @@ const isLinkActive = (href: string) => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
           menuToggleBtn.setAttribute('aria-expanded', 'false');
+          const href = link.getAttribute('href') || link.getAttribute('data-nav-href');
+          if (href && (href === window.location.pathname || href === window.location.pathname.replace(/\/+$/, ''))) {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }
         });
       });
 

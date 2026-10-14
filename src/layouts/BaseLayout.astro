@@ -295,6 +295,54 @@ const jsonLd = {
     <!-- Self-hosted font preloads for optimal performance & zero layout shift -->
     <link rel="preload" href="/fonts/Trustha - Causten Round Black.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/Trustha - Causten Round Regular.otf" as="font" type="font/otf" crossorigin />
+    <!-- View Transitions Viewport Safety & Error Guard -->
+    <script is:inline>
+      (function() {
+        // Intercept native View Transitions to prevent uncaught InvalidStateError when viewport resizes/aborts
+        if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+          var origStart = document.startViewTransition.bind(document);
+          document.startViewTransition = function(callback) {
+            try {
+              var vt = origStart(callback);
+              if (vt) {
+                if (vt.ready && typeof vt.ready.catch === 'function') {
+                  vt.ready.catch(function() {});
+                }
+                if (vt.finished && typeof vt.finished.catch === 'function') {
+                  vt.finished.catch(function() {});
+                }
+                if (vt.updateCallbackDone && typeof vt.updateCallbackDone.catch === 'function') {
+                  vt.updateCallbackDone.catch(function() {});
+                }
+              }
+              return vt;
+            } catch (err) {
+              if (typeof callback === 'function') {
+                try { callback(); } catch (e) {}
+              }
+              return {
+                finished: Promise.resolve(),
+                ready: Promise.resolve(),
+                updateCallbackDone: Promise.resolve(),
+                skipTransition: function() {}
+              };
+            }
+          };
+        }
+
+        // Defensive global unhandledrejection listener for transition aborts
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event.reason;
+          if (
+            reason &&
+            (reason.name === 'InvalidStateError' ||
+             (typeof reason.message === 'string' && reason.message.includes('Transition was aborted')))
+          ) {
+            event.preventDefault();
+          }
+        });
+      })();
+    </script>
     <ClientRouter />
 
     <!-- Inline script to handle loader logic correctly with View Transitions -->
@@ -312,6 +360,13 @@ const jsonLd = {
             if (window.hasLoaderShown) {
               ev.newDocument.documentElement.classList.add('skip-loader');
               ev.newDocument.documentElement.classList.remove('loading-active');
+            }
+          });
+
+          // Ensure proper scroll position restoration on page swap when not targeting an in-page hash
+          document.addEventListener('astro:after-swap', function() {
+            if (!window.location.hash) {
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             }
           });
         } catch(e) {}

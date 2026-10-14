@@ -1,5 +1,4 @@
 ---
-import QTMascot from './QTMascot';
 ---
 
 <footer 
@@ -23,9 +22,15 @@ import QTMascot from './QTMascot';
       </div>
 
       <div class="flex flex-col items-center gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
-        <!-- Responsive Mascot: size md on mobile (< sm) for compact height, lg on desktop -->
-        <QTMascot client:visible variant="idea" size="md" className="sm:hidden" />
-        <QTMascot client:visible variant="idea" size="lg" className="hidden sm:inline-flex" />
+        <!-- Responsive Mascot: single responsive SVG image avoiding island duplication -->
+        <img
+          src="/assets/qt/QT Idea.svg"
+          alt="QT Mascot Idea"
+          width="112"
+          height="112"
+          class="w-20 h-20 sm:w-28 sm:h-28 object-contain pointer-events-none drop-shadow-md shrink-0"
+          loading="lazy"
+        />
         <a
           href="/contact"
           class="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all text-xs sm:text-base font-heading text-center min-h-[44px] flex items-center justify-center"
