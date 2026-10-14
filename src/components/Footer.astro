@@ -3,31 +3,32 @@ import QTMascot from './QTMascot';
 ---
 
 <footer 
-  class="relative bg-slate-950 text-white rounded-t-[3rem] pt-12 md:pt-16 pb-12 overflow-hidden mt-8 md:mt-12 border-t-4 border-[#FDB913]"
+  class="relative bg-slate-950 text-white rounded-t-[2.5rem] sm:rounded-t-[3rem] pt-8 sm:pt-12 md:pt-16 pb-12 overflow-hidden mt-8 md:mt-12 border-t-4 border-[#FDB913]"
   style="padding-bottom: max(3rem, calc(2rem + env(safe-area-inset-bottom, 0px)));"
 >
   <div class="w-full px-4 sm:px-6 md:px-12 relative z-10">
 
     <!-- Top Banner with Joy of Quest Yellow -->
-    <div class="bg-[#FDB913] rounded-3xl p-6 sm:p-8 md:p-12 mb-12 sm:mb-16 flex flex-col md:flex-row items-center justify-between shadow-xl relative overflow-hidden text-center md:text-left gap-6">
-      <div class="max-w-xl mb-2 md:mb-0">
-        <span class="inline-block px-4 py-1.5 bg-black text-white rounded-full text-xs font-black uppercase tracking-wider mb-3 font-heading shadow-sm">
+    <div class="bg-[#FDB913] rounded-3xl p-5 sm:p-8 md:p-12 mb-8 sm:mb-14 flex flex-col md:flex-row items-center justify-between shadow-xl relative overflow-hidden text-center md:text-left gap-5 sm:gap-6">
+      <div class="max-w-xl">
+        <span class="inline-block px-3.5 py-1 sm:px-4 sm:py-1.5 bg-black text-white rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2 sm:mb-3 font-heading shadow-sm">
           Joy of Quest
         </span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight font-heading">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight font-heading">
           Ready to replace rote learning with quriosity?
         </h2>
-        <p class="text-slate-900 font-bold text-sm sm:text-base mt-2">
+        <p class="text-slate-900 font-bold text-xs sm:text-base mt-2 leading-relaxed">
           Partner with our team for consultative school programs, corporate trivia offsites, or custom quests.
         </p>
       </div>
 
-      <div class="flex flex-col items-center gap-4 shrink-0">
-        <!-- React Mascot Island hydrated on visibility without badge -->
-        <QTMascot client:visible variant="idea" size="lg" />
+      <div class="flex flex-col items-center gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
+        <!-- Responsive Mascot: size md on mobile (< sm) for compact height, lg on desktop -->
+        <QTMascot client:visible variant="idea" size="md" className="sm:hidden" />
+        <QTMascot client:visible variant="idea" size="lg" className="hidden sm:inline-flex" />
         <a
           href="/contact"
-          class="w-full sm:w-auto px-8 py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-full shadow-lg hover:scale-105 transition-all text-sm sm:text-base font-heading text-center"
+          class="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all text-xs sm:text-base font-heading text-center min-h-[44px] flex items-center justify-center"
         >
           Talk to us &rarr;
         </a>
@@ -35,7 +36,7 @@ import QTMascot from './QTMascot';
     </div>
 
     <!-- Footer Navigation & Contact Columns -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-8 sm:pb-12 border-b border-slate-800">
       
       <!-- Walnut Knowledge Solutions Legal Entity & Address -->
       <div class="lg:col-span-2 space-y-4">
@@ -44,8 +45,9 @@ import QTMascot from './QTMascot';
             src="/assets/logos/QShala Logo 1 W.svg"
             alt="QShala Logo"
             width="150"
-            height="40"
-            class="h-10 w-auto object-contain"
+            height="36"
+            class="h-8 sm:h-9 w-auto max-w-[150px] object-contain"
+            style="height: 36px; width: auto; max-width: 150px; display: block;"
             loading="lazy"
           />
         </a>
@@ -110,7 +112,7 @@ import QTMascot from './QTMascot';
             href="https://chat.whatsapp.com/QShalaQuriosityCommunity" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="w-full px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs flex items-center justify-center gap-2.5 transition-all font-heading shadow-md border border-black/20 hover:scale-102"
+            class="w-full px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs flex items-center justify-center gap-2.5 transition-all font-heading shadow-md border border-black/20 hover:scale-102 active:scale-95 min-h-[44px]"
           >
             <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.76.459 3.477 1.33 4.992l-1.413 5.161 5.279-1.385c1.454.793 3.097 1.213 4.79 1.214h.004c5.505 0 9.989-4.478 9.99-9.984 0-2.668-1.038-5.176-2.925-7.062-1.887-1.886-4.394-2.924-7.065-2.924zm5.834 14.162c-.247.692-1.433 1.332-1.988 1.413-.505.074-1.157.106-3.72-.949-3.056-1.258-5.025-4.364-5.177-4.567-.152-.203-1.233-1.638-1.233-3.125 0-1.487.778-2.219 1.056-2.522.278-.303.606-.378.808-.378.202 0 .404.002.581.01.189.008.441-.072.693.53.252.602.859 2.096.934 2.247.075.152.126.329.025.53-.101.202-.152.329-.303.505-.152.177-.32.395-.456.53-.152.152-.311.317-.134.62.177.303.787 1.298 1.687 2.101 1.157 1.031 2.132 1.35 2.434 1.498.303.148.48.126.657-.076.177-.202.757-.883.959-1.186.202-.303.404-.253.682-.152.278.101 1.767.833 2.07 1.01.303.177.505.265.581.391.075.127.075.733-.172 1.425z"/>
