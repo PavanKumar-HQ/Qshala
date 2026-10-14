@@ -149,7 +149,7 @@ export default function UpcomingEventsSlider() {
       </div>
 
       {/* Mobile-Only Navigation Controls Row (< sm) */}
-      <div className="flex sm:hidden items-center justify-between px-2">
+      <div className="flex sm:hidden items-center justify-between px-2 pt-1">
         <span className="text-xs font-bold text-slate-500 font-heading">
           Swipe or tap &rarr;
         </span>
@@ -158,10 +158,10 @@ export default function UpcomingEventsSlider() {
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
             aria-label="Previous events"
-            className={`w-10 h-10 rounded-full border-2 border-black flex items-center justify-center font-black transition-all ${
+            className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border-2 border-black flex items-center justify-center font-black transition-all ${
               canScrollLeft
-                ? 'bg-white text-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-95'
-                : 'bg-slate-100 text-slate-300 border-slate-300 opacity-40'
+                ? 'bg-white text-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-95 cursor-pointer'
+                : 'bg-slate-100 text-slate-300 border-slate-300 opacity-40 cursor-not-allowed'
             }`}
           >
             <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
@@ -170,10 +170,10 @@ export default function UpcomingEventsSlider() {
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
             aria-label="Next events"
-            className={`w-10 h-10 rounded-full border-2 border-black flex items-center justify-center font-black transition-all ${
+            className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border-2 border-black flex items-center justify-center font-black transition-all ${
               canScrollRight
-                ? 'bg-[#FDB913] text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-95'
-                : 'bg-slate-100 text-slate-300 border-slate-300 opacity-40'
+                ? 'bg-[#FDB913] text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-95 cursor-pointer'
+                : 'bg-slate-100 text-slate-300 border-slate-300 opacity-40 cursor-not-allowed'
             }`}
           >
             <ChevronRight className="w-5 h-5 stroke-[2.5]" />

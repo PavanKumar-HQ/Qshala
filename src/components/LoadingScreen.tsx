@@ -69,7 +69,7 @@ export default function LoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.03 }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFFDF5] text-black select-none pointer-events-auto"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFFDF5] text-black select-none pointer-events-auto overflow-hidden"
         >
           {/* Ambient Glows */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">

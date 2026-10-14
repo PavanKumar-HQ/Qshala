@@ -258,9 +258,26 @@ html {
   text-size-adjust: 100%;
 }
 
-/* Ensure media never overflows viewport bounds while preserving explicit heights */
-img, video, canvas {
+/* Prevent long words, headings, or URLs from forcing horizontal overflow */
+h1, h2, h3, h4, h5, h6, p, a, span, li, blockquote {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Ensure all media and embeds never overflow viewport bounds */
+img, video, canvas, svg, iframe {
   max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Preserve intrinsic aspect ratios for images and videos */
+img, video {
+  height: auto;
+}
+
+/* Touch responsiveness: eliminate sluggish tap highlights on mobile browsers */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Prevent iOS Safari from auto-zooming on focus by guaranteeing 16px minimum */
@@ -295,5 +312,28 @@ img, video, canvas {
   padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
 }
 
+/* Viewport height utility fallbacks */
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
 
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
 
+/* Momentum scrolling for iOS overflow containers */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

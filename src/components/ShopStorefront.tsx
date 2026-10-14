@@ -288,11 +288,11 @@ export default function ShopStorefront() {
       </div>
 
       {/* 3-Column Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full pt-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full pt-2">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-5 group relative"
+            className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-5 group relative"
           >
             {/* Mascot Badge */}
             <div className="absolute top-4 right-4 z-10 scale-90 origin-top-right">
@@ -364,7 +364,7 @@ export default function ShopStorefront() {
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/60 backdrop-blur-sm">
           <div 
-            className="w-full max-w-md bg-[#FFFDF5] h-[100dvh] shadow-2xl border-l border-slate-200 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300"
+            className="w-full max-w-md bg-[#FFFDF5] h-[100dvh] shadow-2xl border-l border-slate-200 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto scroll-touch animate-in slide-in-from-right duration-300"
             style={{
               paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
               paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
@@ -384,7 +384,7 @@ export default function ShopStorefront() {
                 <button
                   onClick={() => setIsCartOpen(false)}
                   aria-label="Close cart"
-                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-200 flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border border-slate-200 flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
                 >
                   <svg className="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -398,7 +398,7 @@ export default function ShopStorefront() {
                   <p className="text-slate-600 font-bold text-sm">Your cart is currently empty!</p>
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="px-6 py-2.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md"
+                    className="px-6 py-3 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md min-h-[44px]"
                   >
                     Start Shopping
                   </button>
@@ -424,11 +424,11 @@ export default function ShopStorefront() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-200">
+                      <div className="flex items-center gap-1.5 sm:gap-2 bg-slate-100 p-1.5 rounded-full border border-slate-200">
                         <button
                           onClick={() => handleUpdateQuantity(product.id, -1)}
                           aria-label={`Decrease quantity of ${product.title}`}
-                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
+                          className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
                         >
                           -
                         </button>
@@ -436,7 +436,7 @@ export default function ShopStorefront() {
                         <button
                           onClick={() => handleUpdateQuantity(product.id, 1)}
                           aria-label={`Increase quantity of ${product.title}`}
-                          className="w-8 h-8 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
+                          className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border border-slate-200 active:scale-95 cursor-pointer shadow-xs"
                         >
                           +
                         </button>

@@ -38,8 +38,8 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
 
   <!-- Row 1: Left scroll -->
   <div class="marquee-container mb-4" id="marquee-row-1">
-    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
-    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-20 md:w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-20 md:w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
     <div class="marquee-track scroll-left flex gap-5 w-max">
       {row1.map((client) => (
         <div class="client-card" style={`--accent: ${client.color}; --bg: ${client.bg};`}>
@@ -67,8 +67,8 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
 
   <!-- Row 2: Right scroll -->
   <div class="marquee-container" id="marquee-row-2">
-    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
-    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
+    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-20 md:w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-20 md:w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
     <div class="marquee-track scroll-right flex gap-5 w-max">
       {row2.map((client) => (
         <div class="client-card" style={`--accent: ${client.color}; --bg: ${client.bg};`}>
@@ -140,6 +140,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
     gap: 20px;
     width: max-content;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .scroll-left {
@@ -148,6 +149,17 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
 
   .scroll-right {
     animation: scroll-right 22s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-left,
+    .scroll-right {
+      animation: none !important;
+    }
+    .marquee-container {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
   }
 
   /* ── Pause on hover (applied to the container, affects the track inside) ── */

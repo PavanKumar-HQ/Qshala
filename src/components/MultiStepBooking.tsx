@@ -63,20 +63,20 @@ export default function MultiStepBooking() {
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-3xl p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
-        <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading">
+      <div className="bg-white rounded-3xl p-5 sm:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
+        <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading inline-block">
           Request Routed to {salesTeamName}
         </span>
-        <h2 className="text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Quriosity!</h2>
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Quriosity!</h2>
         <p className="text-slate-700 text-sm font-semibold max-w-md mx-auto leading-relaxed">
-          Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black">{formData.email}</span> within 24 hours.
+          Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black break-all">{formData.email}</span> within 24 hours.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-3xl p-6 md:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-3xl mx-auto">
+    <div className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-3xl mx-auto">
       
       {/* Route Badge */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#FFFDF5] p-3.5 rounded-2xl border border-slate-200">
@@ -251,29 +251,29 @@ export default function MultiStepBooking() {
           </div>
         )}
 
-        <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between gap-3 flex-wrap">
+        <div className="mt-8 pt-4 border-t border-slate-200 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {step > 1 ? (
             <button
               type="button"
               onClick={handlePrev}
-              className="px-6 py-3 rounded-full bg-white text-slate-800 font-black text-xs border-2 border-black font-heading hover:bg-slate-100 cursor-pointer active:scale-95 transition-transform"
+              className="px-6 py-3 rounded-full bg-white text-slate-800 font-black text-xs border-2 border-black font-heading hover:bg-slate-100 cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
             >
               &larr; Back
             </button>
-          ) : <div />}
+          ) : <div className="hidden sm:block" />}
 
           {step < 4 ? (
             <button
               type="button"
               onClick={handleNext}
-              className="px-8 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform"
+              className="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
             >
               Continue &rarr;
             </button>
           ) : (
             <button
               type="submit"
-              className="px-8 py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform"
+              className="px-8 py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
             >
               Submit to {salesTeamName} &rarr;
             </button>

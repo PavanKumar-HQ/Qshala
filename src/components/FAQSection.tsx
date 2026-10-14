@@ -68,9 +68,9 @@ export default function FAQSection() {
                 type="button"
                 onClick={() => setOpenIdx(isOpen ? null : idx)}
                 aria-expanded={isOpen}
-                className="w-full p-6 text-left flex items-center justify-between gap-4 font-black font-heading text-slate-900 transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] focus-visible:ring-offset-2"
+                className="w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-black font-heading text-slate-900 transition-colors cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] focus-visible:ring-offset-2 min-h-[48px]"
               >
-                <span className="text-base sm:text-lg leading-snug">{faq.question}</span>
+                <span className="text-base sm:text-lg leading-snug flex-1 min-w-0">{faq.question}</span>
                 <div
                   style={{
                     transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -86,8 +86,8 @@ export default function FAQSection() {
 
               {/* Answer Panel */}
               {isOpen && (
-                <div className="px-6 pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-4">
-                  <p className="flex-1">{faq.answer}</p>
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-4">
+                  <p className="flex-1 min-w-0">{faq.answer}</p>
                   <img
                     src={faq.mascot}
                     alt="QT Mascot"

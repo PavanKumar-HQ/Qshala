@@ -59,7 +59,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full"
+            className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-sm relative overflow-hidden flex flex-col justify-between h-full w-full"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -94,10 +94,9 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </h3>
 
                 {/* Single Consolidated Text Box */}
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100/90 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-100/90 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
                   {cs.summary}
                 </div>
-
                 <div className="pt-2">
                   <button
                     onClick={() => setSelectedModalCase(cs)}
@@ -134,15 +133,17 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </span>
                 <button
                   onClick={handlePrev}
-                  className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold transition-all hover:scale-105 cursor-pointer shadow-sm"
+                  className="p-2.5 min-w-[44px] min-h-[44px] rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold transition-all hover:scale-105 cursor-pointer shadow-sm flex items-center justify-center"
                   title="Previous Story"
+                  aria-label="Previous Story"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="p-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-bold transition-all hover:scale-105 cursor-pointer shadow-sm"
+                  className="p-2.5 min-w-[44px] min-h-[44px] rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-bold transition-all hover:scale-105 cursor-pointer shadow-sm flex items-center justify-center"
                   title="Next Story"
+                  aria-label="Next Story"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -159,17 +160,18 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 15 }}
-              className="bg-white rounded-3xl p-8 max-w-2xl w-full shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto border border-slate-100"
+              className="bg-white rounded-3xl p-5 sm:p-8 max-w-2xl w-full shadow-2xl relative space-y-6 max-h-[calc(100dvh-2rem)] overflow-y-auto scroll-touch border border-slate-100"
             >
               <button
                 onClick={() => setSelectedModalCase(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                aria-label="Close case study dialog"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

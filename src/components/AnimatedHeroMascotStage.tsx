@@ -45,12 +45,12 @@ export default function AnimatedHeroMascotStage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.25 }}
-              className="relative px-5 py-3.5 rounded-2xl bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] max-w-sm sm:max-w-md w-full flex items-center gap-3"
+              className="relative px-3.5 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-[#FFFDF5] border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] max-w-sm sm:max-w-md w-full flex items-center gap-2.5 sm:gap-3"
             >
               <div className="p-1.5 rounded-xl bg-[#FDB913] text-black shrink-0 border-2 border-black shadow-[1.5px_1.5px_0px_0px_rgba(0,0,0,1)]">
                 <HelpCircle className="w-4 h-4" />
               </div>
-              <p className="text-xs sm:text-sm font-black text-slate-900 leading-snug font-heading text-left flex-1">
+              <p className="text-xs sm:text-sm font-black text-slate-900 leading-snug font-heading text-left flex-1 min-w-0">
                 &ldquo;{currentFact}&rdquo;
               </p>
               {/* Speech Bubble Arrow */}

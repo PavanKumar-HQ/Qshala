@@ -215,7 +215,7 @@ export default function ArchiveEventsList() {
           filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="p-6 sm:p-8 rounded-3xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full"
+              className="p-5 sm:p-8 rounded-3xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full"
               style={{ backgroundColor: event.cardColor }}
             >
               {/* Event Image */}
@@ -298,8 +298,8 @@ export default function ArchiveEventsList() {
 
       {/* Modal Detailed Report Viewer */}
       {activeModalEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
-          <div className="bg-[#FFFDF5] rounded-3xl border-4 border-slate-900 shadow-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm">
+          <div className="bg-[#FFFDF5] rounded-3xl border-4 border-slate-900 shadow-2xl max-w-2xl w-full p-5 sm:p-8 space-y-6 max-h-[calc(100dvh-2rem)] overflow-y-auto scroll-touch animate-in zoom-in-95 duration-200">
             <div className="flex items-start justify-between pb-4 border-b-2 border-slate-900">
               <div className="space-y-1">
                 <span className="px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs font-heading uppercase">
@@ -315,10 +315,10 @@ export default function ArchiveEventsList() {
 
               <button
                 onClick={() => setActiveModalEvent(null)}
-                aria-label="Close modal"
-                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border-2 border-slate-900 flex items-center justify-center shrink-0 cursor-pointer"
+                aria-label="Close archive details dialog"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-sm border-2 border-slate-900 flex items-center justify-center shrink-0 cursor-pointer active:scale-95 transition-transform"
               >
-                <svg className="w-4 h-4 fill-current text-slate-900" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
                   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                 </svg>
               </button>
@@ -354,20 +354,20 @@ export default function ArchiveEventsList() {
               </div>
             </div>
 
-            <div className="pt-4 border-t-2 border-slate-900 flex items-center justify-between gap-4">
-              <a
-                href="/book-a-quiz"
-                className="px-6 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md"
-              >
-                Host Quiz at your School / Office &rarr;
-              </a>
-
+            <div className="pt-4 border-t-2 border-slate-900 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <button
                 onClick={() => setActiveModalEvent(null)}
-                className="px-5 py-2.5 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-900 font-black text-xs font-heading"
+                className="w-full sm:w-auto px-5 py-3 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-900 font-black text-xs font-heading text-center min-h-[44px]"
               >
                 Close
               </button>
+
+              <a
+                href="/book-a-quiz"
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black text-xs uppercase font-heading border-2 border-slate-900 shadow-md text-center min-h-[44px] flex items-center justify-center"
+              >
+                Host Quiz at your School / Office &rarr;
+              </a>
             </div>
           </div>
         </div>
