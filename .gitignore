@@ -10,15 +10,17 @@
 !.yarn/releases
 !.yarn/versions
 
+# Astro & build outputs
+/dist/
+/.astro/
+
 # testing
 /coverage
 
-# next.js
+# production & legacy build
+/build
 /.next/
 /out/
-
-# production
-/build
 
 # misc
 .DS_Store
