@@ -1,5 +1,8 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# QShala Engineering Guidelines
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+- **Framework**: Astro 5 (Static Site Generation + React 19 Islands)
+- **Styling**: Tailwind CSS v4 via `@tailwindcss/vite`
+- **TypeScript**: Strict mode enabled
+- **Build**: `npm run build` (`astro check && astro build`)
+- **Architecture**: Content-focused SSG with hydrated React islands for interactive features.
+

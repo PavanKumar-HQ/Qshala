@@ -159,9 +159,16 @@ const isLinkActive = (href: string) => {
     });
   }
 
+  let outsideClickHandler: ((e: MouseEvent) => void) | null = null;
+
   function setupMenuToggle() {
     const menuToggleBtn = document.getElementById('menuToggleBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+
+    if (outsideClickHandler) {
+      document.removeEventListener('click', outsideClickHandler);
+      outsideClickHandler = null;
+    }
 
     if (menuToggleBtn && mobileMenu) {
       menuToggleBtn.onclick = (e) => {
@@ -174,22 +181,24 @@ const isLinkActive = (href: string) => {
       // Auto-close dropdown when a navigation link is clicked
       const menuLinks = mobileMenu.querySelectorAll('a');
       menuLinks.forEach((link) => {
-        link.addEventListener('click', () => {
+        link.onclick = () => {
           mobileMenu.classList.add('hidden');
           menuToggleBtn.setAttribute('aria-expanded', 'false');
           const href = link.getAttribute('href') || link.getAttribute('data-nav-href');
           if (href && (href === window.location.pathname || href === window.location.pathname.replace(/\/+$/, ''))) {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           }
-        });
+        };
       });
 
-      document.addEventListener('click', (e) => {
+      outsideClickHandler = (e: MouseEvent) => {
         if (!mobileMenu.contains(e.target as Node) && !menuToggleBtn.contains(e.target as Node)) {
           mobileMenu.classList.add('hidden');
           menuToggleBtn.setAttribute('aria-expanded', 'false');
         }
-      });
+      };
+
+      document.addEventListener('click', outsideClickHandler);
     }
   }
 

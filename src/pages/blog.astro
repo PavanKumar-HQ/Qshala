@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 import BlogShowcase from '../components/BlogShowcase';
+import NewsletterSubscription from '../components/NewsletterSubscription';
 
 const blogSchema = {
   "@type": "CollectionPage",
@@ -70,21 +71,9 @@ const blogSchema = {
           </p>
         </div>
         
-        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault();">
-          <input 
-            type="email" 
-            placeholder="Enter your email address" 
-            aria-label="Email address for Quriosity Digest"
-            class="flex-grow px-5 py-3.5 rounded-full bg-white border border-slate-200 text-base sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#75B543] shadow-xs"
-            required
-          />
-          <button 
-            type="submit" 
-            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-slate-900 hover:bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading transition-colors shrink-0 shadow-sm hover:shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 min-h-[44px] flex items-center justify-center"
-          >
-            Subscribe &rarr;
-          </button>
-        </form>
+        <div class="max-w-md mx-auto">
+          <NewsletterSubscription client:visible variant="digest" placeholder="Enter your email address" buttonLabel="Subscribe →" />
+        </div>
       </div>
     </section>
 

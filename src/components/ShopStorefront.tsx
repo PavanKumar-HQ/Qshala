@@ -447,21 +447,37 @@ export default function ShopStorefront() {
               )}
             </div>
 
-            {cart.length > 0 && (
-              <div className="pt-4 border-t border-slate-200 space-y-4 bg-[#FFFDF5]">
-                <div className="flex items-center justify-between text-lg font-black text-slate-900 font-heading">
-                  <span>Subtotal:</span>
-                  <span>₹{subtotalPrice}/-</span>
-                </div>
+            {cart.length > 0 && (() => {
+              const orderSummary = cart.map(i => `• ${i.product.title} (x${i.quantity}) - ₹${i.product.price * i.quantity}/-`).join('\n');
+              const waText = `*New QShala Store Order Inquiry* 🛍️\n\n*Cart Items:*\n${orderSummary}\n\n*Subtotal:* ₹${subtotalPrice}/-\n\nPlease confirm delivery availability and payment details.`;
+              const waOrderUrl = `https://wa.me/918971676100?text=${encodeURIComponent(waText)}`;
 
-                <a
-                  href="/contact"
-                  className="w-full py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md text-center block transition-all"
-                >
-                  Proceed to Checkout &rarr;
-                </a>
-              </div>
-            )}
+              return (
+                <div className="pt-4 border-t border-slate-200 space-y-3 bg-[#FFFDF5]">
+                  <div className="flex items-center justify-between text-lg font-black text-slate-900 font-heading">
+                    <span>Subtotal:</span>
+                    <span>₹{subtotalPrice}/-</span>
+                  </div>
+
+                  <a
+                    href={waOrderUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md text-center transition-all min-h-[44px] flex items-center justify-center gap-2"
+                  >
+                    <span>💬 Order via WhatsApp (Instant)</span>
+                    <span>&rarr;</span>
+                  </a>
+
+                  <a
+                    href={`/contact`}
+                    className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-black text-xs uppercase tracking-wider font-heading text-center block transition-all"
+                  >
+                    Inquire via Contact Form
+                  </a>
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}

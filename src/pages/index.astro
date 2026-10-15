@@ -12,6 +12,7 @@ import AnimatedHeroMascotStage from '../components/AnimatedHeroMascotStage';
 import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
+import NewsletterSubscription from '../components/NewsletterSubscription';
 import { CASE_STUDIES_DATA } from '../lib/data';
 
 const faqSchema = {
@@ -318,23 +319,9 @@ const faqSchema = {
         
         <!-- Right Form & Mascot -->
         <div class="w-full lg:w-1/2 flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-6">
-          <form class="flex w-full max-w-md flex-col sm:flex-row gap-3 relative z-10" onsubmit="event.preventDefault();">
-            <input 
-              type="email" 
-              id="qshots-email"
-              name="email"
-              aria-label="Email address for QShots daily trivia"
-              placeholder="Enter your email address" 
-              class="flex-grow px-5 sm:px-6 py-3.5 sm:py-4 rounded-full bg-white border border-slate-200 text-sm font-medium focus:outline-none focus:border-[#75B543] focus:ring-4 focus:ring-[#75B543]/10 shadow-sm transition-all"
-              required
-            />
-            <button 
-              type="submit" 
-              class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-slate-900 text-white font-black text-xs uppercase font-heading hover:bg-[#75B543] transition-colors whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer flex items-center justify-center shrink-0"
-            >
-              Subscribe &rarr;
-            </button>
-          </form>
+          <div class="w-full max-w-md">
+            <NewsletterSubscription client:visible variant="qshots" placeholder="Enter your email address" />
+          </div>
 
           <!-- Mascot -->
           <div class="hidden sm:block shrink-0 transform hover:scale-110 hover:-rotate-6 transition-transform duration-300">

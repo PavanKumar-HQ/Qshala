@@ -6,8 +6,6 @@ import {
   HelpCircle, 
   ShoppingBag, 
   FileText, 
-  CheckCircle2, 
-  Clock, 
   Search, 
   Plus, 
   Filter, 
@@ -15,8 +13,6 @@ import {
   Sparkles,
   Lock,
   LogOut,
-  Mail,
-  Phone,
   Calendar,
   Edit2,
   Trash2,
@@ -33,74 +29,22 @@ import {
   type EventCategory,
   type EventButtonType
 } from '../../lib/eventsStore';
+import {
+  getStoredLeads,
+  updateLeadStatus as persistLeadStatus,
+  deleteLead as persistDeleteLead,
+  onLeadsChange,
+  type BookingLead
+} from '../../lib/leadsStore';
 
 type AdminTab = 'overview' | 'events' | 'bookings' | 'quizzes' | 'store' | 'blogs';
-
-interface BookingLead {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  organization: string;
-  audienceType: string;
-  eventDate: string;
-  status: 'New' | 'Contacted' | 'Confirmed';
-  createdAt: string;
-}
-
-const MOCK_BOOKINGS: BookingLead[] = [
-  {
-    id: 'BK-101',
-    name: 'Sunita Sharma',
-    email: 'sunita@dpsbangalore.edu.in',
-    phone: '+91 98765 43210',
-    organization: 'DPS Bangalore East',
-    audienceType: 'School & Students (K-12)',
-    eventDate: '2026-08-20',
-    status: 'New',
-    createdAt: '10 mins ago'
-  },
-  {
-    id: 'BK-102',
-    name: 'Manish Jain',
-    email: 'manish.jain@wipro.com',
-    phone: '+91 98111 22334',
-    organization: 'Wipro Technologies',
-    audienceType: 'Corporate Offsite / Team',
-    eventDate: '2026-09-05',
-    status: 'Contacted',
-    createdAt: '2 hours ago'
-  },
-  {
-    id: 'BK-103',
-    name: 'Ananya Rao',
-    email: 'ananya@christuniversity.in',
-    phone: '+91 99000 88776',
-    organization: 'Christ University Fest',
-    audienceType: 'College Campus Fest',
-    eventDate: '2026-08-28',
-    status: 'Confirmed',
-    createdAt: '1 day ago'
-  },
-  {
-    id: 'BK-104',
-    name: 'Rohan Mehta',
-    email: 'rohan@flipkart.com',
-    phone: '+91 97777 66554',
-    organization: 'Flipkart HR',
-    audienceType: 'Corporate Offsite / Team',
-    eventDate: '2026-09-12',
-    status: 'New',
-    createdAt: '2 days ago'
-  }
-];
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState('');
   const [loginError, setLoginError] = useState('');
   const [activeTab, setActiveTab] = useState<AdminTab>('overview');
-  const [bookings, setBookings] = useState<BookingLead[]>(MOCK_BOOKINGS);
+  const [bookings, setBookings] = useState<BookingLead[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('All');
 
@@ -120,6 +64,13 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     setEvents(getUpcomingEvents());
+    setBookings(getStoredLeads());
+    const unsubLeads = onLeadsChange((updatedLeads) => {
+      setBookings(updatedLeads);
+    });
+    return () => {
+      unsubLeads();
+    };
   }, []);
 
   const handleOpenAddEvent = () => {
@@ -184,9 +135,17 @@ export default function AdminDashboard() {
   };
 
   const updateBookingStatus = (id: string, newStatus: 'New' | 'Contacted' | 'Confirmed') => {
+    persistLeadStatus(id, newStatus);
     setBookings(prev =>
       prev.map(b => (b.id === id ? { ...b, status: newStatus } : b))
     );
+  };
+
+  const handleDeleteLead = (id: string) => {
+    if (confirm('Delete this booking record?')) {
+      persistDeleteLead(id);
+      setBookings(prev => prev.filter(b => b.id !== id));
+    }
   };
 
   const filteredBookings = bookings.filter(b => {
@@ -679,18 +638,25 @@ export default function AdminDashboard() {
                       </span>
                     </td>
                     <td className="p-4 text-right">
-                      <div className="flex justify-end gap-1.5">
+                      <div className="flex justify-end gap-1.5 items-center">
                         <button
                           onClick={() => updateBookingStatus(b.id, 'Contacted')}
                           className="px-2.5 py-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-black font-black text-[10px]"
                         >
-                          Mark Contacted
+                          Contacted
                         </button>
                         <button
                           onClick={() => updateBookingStatus(b.id, 'Confirmed')}
                           className="px-2.5 py-1 rounded-xl bg-[#75B543] text-white border border-black font-black text-[10px]"
                         >
                           Confirm
+                        </button>
+                        <button
+                          onClick={() => handleDeleteLead(b.id)}
+                          className="p-1 rounded-lg text-rose-600 hover:bg-rose-50 border border-rose-200 transition-colors"
+                          title="Delete lead"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
                     </td>

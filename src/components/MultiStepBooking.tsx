@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { saveLead, generateWhatsAppBookingUrl } from '../lib/leadsStore';
 
 type BookingStep = 1 | 2 | 3 | 4;
 
@@ -56,21 +57,61 @@ export default function MultiStepBooking() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    saveLead({
+      type: 'quiz_booking',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      organization: formData.organization,
+      audienceType: formData.audienceType,
+      eventDate: formData.eventDate,
+      message: `Expected: ${formData.expectedAudience} | Topic: ${formData.preferredTopic} | Notes: ${formData.additionalNotes}`
+    });
     setIsSubmitted(true);
   };
 
   const salesTeamName = TEAM_CONTACT_NOTE[formData.audienceType] || 'QShala Quriosity Team';
+  const whatsappUrl = generateWhatsAppBookingUrl({
+    name: formData.name,
+    organization: formData.organization,
+    audienceType: formData.audienceType,
+    eventDate: formData.eventDate,
+    email: formData.email,
+    phone: formData.phone,
+    notes: formData.additionalNotes
+  });
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-3xl p-5 sm:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
+      <div className="bg-white rounded-3xl p-5 sm:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-5">
         <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading inline-block">
           Request Routed to {salesTeamName}
         </span>
         <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Quriosity!</h2>
         <p className="text-slate-700 text-sm font-semibold max-w-md mx-auto leading-relaxed">
-          Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black break-all">{formData.email}</span> within 24 hours.
+          Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been logged and routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black break-all">{formData.email}</span> within 24 hours.
         </p>
+
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md inline-flex items-center justify-center gap-2 transition-all min-h-[44px]"
+          >
+            <span>💬 Instant Connect via WhatsApp</span>
+            <span>&rarr;</span>
+          </a>
+          <button
+            onClick={() => {
+              setIsSubmitted(false);
+              setStep(1);
+            }}
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-xs uppercase tracking-wider font-heading transition-all min-h-[44px]"
+          >
+            Book Another Experience
+          </button>
+        </div>
       </div>
     );
   }
