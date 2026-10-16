@@ -122,13 +122,19 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-100/90 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
                   {cs.summary}
                 </div>
-                <div className="pt-2">
-                  <button
-                    onClick={() => setSelectedModalCase(cs)}
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <a
+                    href={`/blog/${cs.slug}`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <span>Read Full Story</span>
+                    <span>Read Event Story &amp; View Photos</span>
                     <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <button
+                    onClick={() => setSelectedModalCase(cs)}
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-black text-xs uppercase tracking-wider font-heading transition-all cursor-pointer"
+                  >
+                    <span>Quick Preview</span>
                   </button>
                 </div>
               </div>
@@ -250,12 +256,20 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                   </button>
                 </div>
 
-                <a
-                  href="/contact"
-                  className="px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all text-center min-h-[44px] flex items-center justify-center"
-                >
-                  Schedule an Experience &rarr;
-                </a>
+                <div className="flex flex-wrap items-center gap-2">
+                  <a
+                    href={`/blog/${selectedModalCase.slug}`}
+                    className="px-5 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all text-center min-h-[40px] flex items-center justify-center"
+                  >
+                    View Photos &amp; Event Story &rarr;
+                  </a>
+                  <a
+                    href="/contact"
+                    className="px-5 py-2.5 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all text-center min-h-[40px] flex items-center justify-center"
+                  >
+                    Schedule &rarr;
+                  </a>
+                </div>
               </div>
             </motion.div>
           </motion.div>

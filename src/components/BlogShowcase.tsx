@@ -24,6 +24,36 @@ const ALL_BLOG_POSTS: BlogPost[] = [
     photoCount: 10
   },
   {
+    slug: "dps-bangalore-quriosity-league",
+    title: "How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students",
+    category: "Events",
+    readTime: "Photo Gallery",
+    date: "August 2026",
+    summary: "Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
+    photoCount: 5
+  },
+  {
+    slug: "flipkart-corporate-trivia-league",
+    title: "Driving Hybrid Team Connection Across 12 Cities with Custom QShala Live Trivia",
+    category: "Events",
+    readTime: "Photo Gallery",
+    date: "July 2026",
+    summary: "A 6-week gamified cross-functional championship that boosted inter-departmental engagement during company-wide hybrid work initiatives.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+    photoCount: 4
+  },
+  {
+    slug: "iit-bombay-techfest-championship",
+    title: "Hosting India's Largest Inter-Collegiate Quriosity Quiz Championship",
+    category: "Events",
+    readTime: "Photo Gallery",
+    date: "February 2026",
+    summary: "Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+    photoCount: 2
+  },
+  {
     slug: "why-rote-learning-kills-quriosity",
     title: "Why Rote Learning Kills Quriosity (And How to Fix It)",
     category: "Blog",

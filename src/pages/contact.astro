@@ -8,24 +8,28 @@ import ContactForm from '../components/ContactForm';
 
 const CAREERS_ROLES = [
   {
+    slug: "careers-marketing-manager",
     title: "Marketing Manager",
     description: "Lead brand campaigns, school outreach, and digital quriosity stories.",
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     color: "#EDF7E5"
   },
   {
+    slug: "careers-operations-associate",
     title: "Operations Associate",
     description: "Manage live quiz event logistics, buzzer setups, and school coordination.",
     imageSrc: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
     color: "#FFF8E1"
   },
   {
+    slug: "careers-engagement-associate",
     title: "Engagement Associate",
     description: "Facilitate socratic sessions, host interactive trivia, and inspire young quizzers.",
     imageSrc: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
     color: "#E8F6FD"
   },
   {
+    slug: "careers-video-editor",
     title: "Video Editor",
     description: "Craft exciting video highlight reels, QShots clips, and animated stories.",
     imageSrc: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop",
@@ -236,8 +240,9 @@ const localBusinessSchema = {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {CAREERS_ROLES.map((role) => (
             <a
-              href="mailto:work@walnuts.co.in?subject=Application for " + role.title
-              class="rounded-3xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 group bg-white"
+              href={`/blog/${role.slug}`}
+              class="rounded-3xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-4 group bg-white cursor-pointer"
+              aria-label={`View full job description for ${role.title}`}
             >
               <div class="space-y-3">
                 <div class="relative overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100">
@@ -249,7 +254,7 @@ const localBusinessSchema = {
                   />
                 </div>
 
-                <h3 class="text-lg font-black text-slate-900 font-heading leading-snug">
+                <h3 class="text-lg font-black text-slate-900 font-heading leading-snug group-hover:text-[#75B543] transition-colors">
                   {role.title}
                 </h3>
 
@@ -259,8 +264,8 @@ const localBusinessSchema = {
               </div>
 
               <div class="pt-3 border-t border-slate-100 flex items-center justify-between font-heading font-black text-xs text-slate-900 group-hover:text-[#75B543] transition-colors">
-                <span>Apply via Email</span>
-                <span>&rarr;</span>
+                <span>View Full JD &amp; Details</span>
+                <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
               </div>
             </a>
           ))}

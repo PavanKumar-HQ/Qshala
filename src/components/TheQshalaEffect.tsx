@@ -78,7 +78,7 @@ export default function TheQshalaEffect() {
             Live Moments
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            The QShala effect.
+            The QShala Effect.
           </h2>
           <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Moments of electric energy, high-fives, and unbridled curiosity captured across schools, colleges, and corporate stages across India.

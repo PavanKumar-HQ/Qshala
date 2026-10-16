@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import QTMascot from './QTMascot';
 
 interface TeamMember {
@@ -14,32 +14,18 @@ interface TeamMember {
   tag: string;
 }
 
-const DEPARTMENTS = ['All Crew', 'Curriculum', 'Content', 'Partnerships', 'Technology', 'Design', 'Corporate'] as const;
-
 const CREW: TeamMember[] = [
   {
-    id: "preeti",
-    name: "Preeti K.",
-    role: "Head of Curriculum",
-    category: "Curriculum",
-    bio: "Designing inquiry frameworks and socratic questioning modules for 250+ partner schools.",
-    image: "https://ui-avatars.com/api/?name=Preeti+K&background=75B543&color=fff&size=300",
-    variant: "reading",
-    color: "#75B543",
-    bg: "#EDF7E5",
-    tag: "Curriculum"
-  },
-  {
-    id: "rohan",
-    name: "Rohan M.",
-    role: "Chief Quizmaster",
-    category: "Content",
-    bio: "Hosting high-stakes live quiz championships and inter-school tournaments across India.",
-    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=300",
-    variant: "idea",
-    color: "#9333EA",
-    bg: "#F3E8FF",
-    tag: "Content"
+    id: "ananya",
+    name: "Ananya M.",
+    role: "Senior Instructional Designer",
+    category: "Design",
+    bio: "Crafting storyboards, visual discovery prompts, and bringing the QT mascot to life.",
+    image: "https://ui-avatars.com/api/?name=Ananya+M&background=FDB913&color=fff&size=300",
+    variant: "holding_money",
+    color: "#FDB913",
+    bg: "#FFF8E1",
+    tag: "Design"
   },
   {
     id: "divya",
@@ -66,16 +52,52 @@ const CREW: TeamMember[] = [
     tag: "Technology"
   },
   {
-    id: "ananya",
-    name: "Ananya M.",
-    role: "Senior Instructional Designer",
-    category: "Design",
-    bio: "Crafting storyboards, visual discovery prompts, and bringing the QT mascot to life.",
-    image: "https://ui-avatars.com/api/?name=Ananya+M&background=FDB913&color=fff&size=300",
-    variant: "holding_money",
+    id: "preeti",
+    name: "Preeti K.",
+    role: "Head of Curriculum",
+    category: "Curriculum",
+    bio: "Designing inquiry frameworks and socratic questioning modules for 250+ partner schools.",
+    image: "https://ui-avatars.com/api/?name=Preeti+K&background=75B543&color=fff&size=300",
+    variant: "reading",
+    color: "#75B543",
+    bg: "#EDF7E5",
+    tag: "Curriculum"
+  },
+  {
+    id: "raghav",
+    name: "Raghav Chakravarthy",
+    role: "Co-Founder & Chief Quizmaster",
+    category: "Leadership",
+    bio: "National quizmaster, TEDx speaker, and education innovator transforming learning into an active discovery adventure.",
+    image: "/assets/team/raghav-chakravarthy.jpg",
+    variant: "sherlock",
+    color: "#30B2E7",
+    bg: "#E8F6FD",
+    tag: "Co-Founder"
+  },
+  {
+    id: "rohan",
+    name: "Rohan M.",
+    role: "Chief Quizmaster",
+    category: "Content",
+    bio: "Hosting high-stakes live quiz championships and inter-school tournaments across India.",
+    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=300",
+    variant: "idea",
+    color: "#9333EA",
+    bg: "#F3E8FF",
+    tag: "Content"
+  },
+  {
+    id: "sachin",
+    name: "Sachin Ravi",
+    role: "Co-Founder & Chief Quizmaster",
+    category: "Leadership",
+    bio: "National-level quizmaster and TEDx speaker on a mission to replace rote memorization with curiosity and wonder.",
+    image: "/assets/team/sachin-ravi.jpg",
+    variant: "quizzing",
     color: "#FDB913",
     bg: "#FFF8E1",
-    tag: "Design"
+    tag: "Co-Founder"
   },
   {
     id: "vikram",
@@ -92,11 +114,7 @@ const CREW: TeamMember[] = [
 ];
 
 export default function InteractiveTeamShowcase() {
-  const [selectedDept, setSelectedDept] = useState<string>('All Crew');
-
-  const filteredCrew = selectedDept === 'All Crew'
-    ? CREW
-    : CREW.filter((m) => m.category === selectedDept || m.tag === selectedDept);
+  const sortedCrew = [...CREW].sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="space-y-8 sm:space-y-10 w-full">
@@ -114,30 +132,9 @@ export default function InteractiveTeamShowcase() {
         </p>
       </div>
 
-      {/* Department Filter Pills */}
-      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
-        {DEPARTMENTS.map((dept) => {
-          const isActive = selectedDept === dept;
-          return (
-            <button
-              key={dept}
-              type="button"
-              onClick={() => setSelectedDept(dept)}
-              className={`px-3.5 py-1.5 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[36px] ${
-                isActive
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {dept}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 3-Column Spacious Team Cards */}
+      {/* 3-Column Spacious Team Cards in Alphabetical Order */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        {filteredCrew.map((member) => (
+        {sortedCrew.map((member) => (
           <div 
             key={member.id}
             className="p-6 rounded-3xl shadow-xs hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-200/80 bg-white"

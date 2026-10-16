@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import QTMascot from '../../components/QTMascot';
+import EventPhotoGallery from '../../components/EventPhotoGallery';
 
 export async function getStaticPaths() {
   const posts = [
@@ -28,7 +29,7 @@ export async function getStaticPaths() {
         </p>
         <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Event Photo Access for Participants</h2>
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          All participating students, teachers, and parents can browse, view, and save event photographs below from the preliminary heats, stage rounds, and awards ceremony.
+          All participating students, teachers, and parents can browse, click to open full-screen, and download high-resolution event photographs below from the preliminary heats, stage rounds, and awards ceremony.
         </p>
       `,
       gallery: [
@@ -82,6 +83,439 @@ export async function getStaticPaths() {
         { url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", caption: "All finalists gathering for the commemorative group snapshot" }
       ]
     },
+
+    // --- CASE STUDIES AS EVENT STORIES WITH PHOTO GALLERIES ---
+    {
+      slug: 'dps-bangalore-quriosity-league',
+      title: 'How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'August 2026',
+      isoDate: '2026-08-10T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          At Delhi Public School Bangalore East, static General Knowledge lectures were transformed into the most anticipated 45 minutes of the school week. Over 4,200 students across grades 1 through 10 now participate in weekly inquiry loops and championship buzzer rounds.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+          <div class="p-4 rounded-2xl bg-[#EDF7E5] border border-emerald-200 text-center">
+            <div class="text-2xl font-black text-[#75B543] font-heading">4,200+</div>
+            <div class="text-xs font-bold text-slate-700">Students Engaged</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#E8F6FD] border border-sky-200 text-center">
+            <div class="text-2xl font-black text-[#30B2E7] font-heading">+88%</div>
+            <div class="text-xs font-bold text-slate-700">Retention Score</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#FFF8E1] border border-amber-200 text-center">
+            <div class="text-2xl font-black text-amber-700 font-heading">98.4%</div>
+            <div class="text-xs font-bold text-slate-700">Parent Satisfaction</div>
+          </div>
+        </div>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Challenge: From Memorization to Wonder</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          Traditional GK worksheets emphasized rote recall of world capitals and static dates. QShala partnered with academic coordinators to integrate the Discover Curriculum and Socratic circles, encouraging students to deduce why events happened rather than simply memorizing what happened.
+        </p>
+        <blockquote class="border-l-4 border-[#75B543] pl-4 py-3 bg-[#EDF7E5] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;QShala turned standard GK into the most anticipated hour of the school week. Children ask 'Why?' with real passion now.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Sunita Sharma, Principal, DPS Bangalore East</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", caption: "Students engaged in hands-on socratic science challenges" },
+        { url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop", caption: "Team buzzer battle between middle school classes" },
+        { url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop", caption: "Quizmaster guiding students through lateral reasoning riddles" },
+        { url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop", caption: "Enthusiastic hand-raises during the audio-visual discovery round" },
+        { url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop", caption: "Annual Quriosity Cup trophy celebration with student champions" }
+      ]
+    },
+    {
+      slug: 'flipkart-corporate-trivia-league',
+      title: 'Driving Hybrid Team Connection Across 12 Cities with Custom QShala Live Trivia',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'July 2026',
+      isoDate: '2026-07-15T10:00:00+05:30',
+      author: 'Raghav Chakravarthy',
+      authorRole: 'Co-Founder, Chief Quizmaster',
+      summary: 'A 6-week gamified cross-functional championship that boosted inter-departmental engagement during company-wide hybrid work initiatives.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          To combat hybrid disconnect across engineering, product, and supply chain divisions across 12 cities, Flipkart deployed QShala's 6-week interactive Trivia League, connecting 1,800+ employees in live, high-octane buzzer tournaments.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+          <div class="p-4 rounded-2xl bg-[#FFF8E1] border border-amber-200 text-center">
+            <div class="text-2xl font-black text-amber-700 font-heading">1,800+</div>
+            <div class="text-xs font-bold text-slate-700">Employees Joined</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#EDF7E5] border border-emerald-200 text-center">
+            <div class="text-2xl font-black text-[#75B543] font-heading">94%</div>
+            <div class="text-xs font-bold text-slate-700">Live Engagement Rate</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#E8F6FD] border border-sky-200 text-center">
+            <div class="text-2xl font-black text-[#30B2E7] font-heading">92/100</div>
+            <div class="text-xs font-bold text-slate-700">NPS Score</div>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFF8E1] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;The energy QT and the QShala team brought to our townhalls was phenomenal. It bonded engineering and marketing seamlessly.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Rajesh Nair, Head of Employee Experience, Flipkart</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop", caption: "Cross-functional Flipkart squads competing in live buzzer finals" },
+        { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop", caption: "High-fives as real-time leaderboard positions shifted" },
+        { url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop", caption: "Interactive townhall trivia screen hosted by QShala" },
+        { url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", caption: "Championship winners holding the Flipkart Trivia Cup" }
+      ]
+    },
+    {
+      slug: 'wipro-onboarding-gamification',
+      title: 'Gamifying Onboarding & Corporate Culture for 5,000+ Global New Hires',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'June 2026',
+      isoDate: '2026-06-18T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Replaced traditional slide presentations with interactive brand quests and company history trivia tournaments.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Wipro replaced 8-hour passive presentation decks with QShala gamified discovery quests. New hires explored company lore, leadership milestones, and core values through rapid-fire interactive challenges.
+        </p>
+        <blockquote class="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFF8E1] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;We've been working with QShala for over two months now and we can't get enough of them! It makes culture stick.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Manish Jain, Global L&D Director, Wipro</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop", caption: "New hires working in agile pods on company history quests" },
+        { url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop", caption: "QShala buzzer clash during Wipro onboarding grand finale" }
+      ]
+    },
+    {
+      slug: 'nps-socratic-science-storytelling',
+      title: 'Pioneering Socratic Science & Civics Storytelling for Middle Schoolers',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'May 2026',
+      isoDate: '2026-05-20T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Integrated weekly real-world discovery modules to connect textbook science with current affairs and everyday phenomena.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          National Public School integrated weekly Socratic science quests. Over 2,100 students learned to connect physics, climate science, and civics directly with breaking global news.
+        </p>
+        <blockquote class="border-l-4 border-[#75B543] pl-4 py-3 bg-[#EDF7E5] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;Our middle schoolers are engaged like never before. They don't just memorize science—they question it.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Dr. Revathi Srinivasan, Academic Director, NPS</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop", caption: "Students demonstrating socratic deduction in class" },
+        { url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", caption: "Interactive questioning session with hands raised" }
+      ]
+    },
+    {
+      slug: 'inventure-academy-critical-thinking',
+      title: 'Building 21st-Century Critical Thinking & Public Debate Leagues',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'April 2026',
+      isoDate: '2026-04-12T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'A multi-tier quriosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Inventure Academy partnered with QShala to create dedicated critical thinking and civil debate leagues, preparing young learners for global discourse and logical debate.
+        </p>
+        <blockquote class="border-l-4 border-[#75B543] pl-4 py-3 bg-[#EDF7E5] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;QShala fits perfectly into our learner-centric philosophy. It builds confident, curious global citizens.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Nooraine Fazal, Co-Founder & Managing Trustee, Inventure Academy</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop", caption: "Students presenting evidence-based arguments in debate round" },
+        { url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop", caption: "Classroom debate and critical thinking circle" }
+      ]
+    },
+    {
+      slug: 'tcs-cross-hub-workplace-engagement',
+      title: 'Cross-Functional Workplace Engagement Across 8 Regional Tech Hubs',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'March 2026',
+      isoDate: '2026-03-15T10:00:00+05:30',
+      author: 'Raghav Chakravarthy',
+      authorRole: 'Co-Founder, Chief Quizmaster',
+      summary: 'Quarterly inter-hub quiz championships with live digital buzzers and real-time leaderboards.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          TCS hosted quarterly inter-hub trivia battles connecting 3,500+ participants across 8 tech campuses in India.
+        </p>
+        <blockquote class="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFF8E1] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;QShala for more than two months now and we can’t get enough of them! The excitement in our hubs is palpable.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Rahul Singh, VP Employee Engagement, TCS</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop", caption: "TCS tech teams during the cross-hub live stream buzzer round" }
+      ]
+    },
+    {
+      slug: 'iit-bombay-techfest-championship',
+      title: 'Hosting India\'s Largest Inter-Collegiate Quriosity Quiz Championship',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'February 2026',
+      isoDate: '2026-02-14T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          IIT Bombay Techfest hosted the annual National Techfest Quiz, packing the main convocation hall with over 6,000 students from 50+ universities across India.
+        </p>
+        <blockquote class="border-l-4 border-[#30B2E7] pl-4 py-3 bg-[#E8F6FD] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;The QShala quiz masters held an audience of 6,000 students spellbound for 3 straight hours.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Aakash Verma, Overall Coordinator, IIT Bombay Techfest</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", caption: "6,000 students cheering in the IIT Bombay Techfest auditorium" },
+        { url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop", caption: "Finalist collegiate quizzers facing the stage buzzer questions" }
+      ]
+    },
+    {
+      slug: 'iim-bangalore-business-simulations',
+      title: 'Real-World Business Case Study Simulations & Strategy Quests for MBAs',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'January 2026',
+      isoDate: '2026-01-22T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Interactive business trivia and market analysis strategy quests designed for future corporate leaders.',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          At IIM Bangalore, future business leaders tackled gamified market entry scenarios, financial history riddles, and brand strategy quests.
+        </p>
+        <blockquote class="border-l-4 border-[#30B2E7] pl-4 py-3 bg-[#E8F6FD] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;QShala brings an incredible blend of sharp business acumen and high-octane gamification.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Prof. Sourav Mukherji, Dean of Programs, IIM Bangalore</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop", caption: "MBA cohorts collaborating on competitive business strategy simulation" }
+      ]
+    },
+    {
+      slug: 'sobha-city-family-game-nights',
+      title: 'Screen-Free Weekend Family Game Nights & Neighborhood Pub Quizzes',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'September 2026',
+      isoDate: '2026-09-05T10:00:00+05:30',
+      author: 'Raghav Chakravarthy',
+      authorRole: 'Co-Founder, Chief Quizmaster',
+      summary: 'Bringing parents, kids, and neighbors together for weekend offline trivia tournaments in residential complexes.',
+      color: '#9333EA',
+      bg: 'bg-[#F3E8FF]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Sobha City hosted over 450 resident families for an evening of multi-generational trivia, swapping screens for team laughter.
+        </p>
+        <blockquote class="border-l-4 border-[#9333EA] pl-4 py-3 bg-[#F3E8FF] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;It brought our entire apartment complex together! Kids and grandparents were on the same team laughing and learning.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Priya Sundaram, President, Sobha Resident Association</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&auto=format&fit=crop", caption: "Grandparents and kids huddled together solving picture clues" }
+      ]
+    },
+    {
+      slug: 'wework-community-networking-nights',
+      title: 'Monthly Community Pub Quizzes & Startup Founder Networking Nights',
+      category: 'Events',
+      readTime: 'Case Study & Photos',
+      date: 'August 2026',
+      isoDate: '2026-08-25T10:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: 'Gamified pub quizzes hosted across WeWork spaces to spark casual networking among founders and freelancers.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Monthly founder and freelancer trivia nights across WeWork locations in Bengaluru, turning dry corporate mixers into high-energy networking tournaments.
+        </p>
+        <blockquote class="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFF8E1] rounded-r-2xl my-6">
+          <p class="text-slate-800 text-sm font-semibold italic">&ldquo;We've been working with QShala for more than two months now and we can’t get enough of them! Essential member experience.&rdquo;</p>
+          <footer class="text-slate-900 font-black text-xs not-italic mt-1 font-heading">— Bhavya Tripathi, Community Lead, WeWork</footer>
+        </blockquote>
+      `,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop", caption: "Entrepreneurs and developers networking over buzzer questions" }
+      ]
+    },
+
+    // --- CAREERS POSTS (FULL JOB DESCRIPTIONS) ---
+    {
+      slug: 'careers-marketing-manager',
+      title: 'Careers at QShala: Marketing Manager',
+      category: 'Careers',
+      readTime: 'Full Job Description',
+      date: 'Open Position',
+      isoDate: '2026-10-01T10:00:00+05:30',
+      author: 'QShala People Team',
+      authorRole: 'Talent & Culture',
+      summary: 'Lead brand campaigns, school outreach, and digital quriosity stories across India\'s premier inquiry learning platform.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          We are looking for a creative, growth-oriented <strong>Marketing Manager</strong> to lead our brand voice, school community campaigns, and digital storytelling initiatives at QShala headquarters in Bengaluru.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">About the Role</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          In this role, you will define how QShala reaches principals, educators, parents, and corporate L&D leaders across India. You will champion the mission of replacing rote memorization with Socratic questioning and inquiry-driven wonder.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Key Responsibilities:</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-6">
+          <li>Architect and execute multi-channel marketing campaigns across school partnerships and B2B corporate trivia.</li>
+          <li>Drive organic community growth through compelling educational storytelling, newsletter content, and social media.</li>
+          <li>Partner with founders Sachin Ravi and Raghav Chakravarthy to amplify flagship national championships like the QShala Quiz League (QQL).</li>
+          <li>Measure performance metrics across acquisition, engagement, and partner retention.</li>
+        </ul>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">What We Look For:</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-8">
+          <li>3+ years of experience in brand marketing, EdTech, or community growth.</li>
+          <li>Strong copywriting skills with a knack for translating complex educational concepts into delightful stories.</li>
+          <li>Passion for quizzing, curiosity, and non-traditional pedagogy.</li>
+        </ul>
+        <div class="p-6 rounded-3xl bg-[#EDF7E5] border border-emerald-200 space-y-3">
+          <h4 class="text-lg font-black text-slate-900 font-heading">How to Apply</h4>
+          <p class="text-slate-700 text-sm font-semibold">Send your portfolio or resume directly to our leadership team at <a href="mailto:work@walnuts.co.in?subject=Application for Marketing Manager" class="text-[#75B543] font-black underline">work@walnuts.co.in</a> with the subject line <em>"Application for Marketing Manager"</em>.</p>
+          <a href="mailto:work@walnuts.co.in?subject=Application for Marketing Manager" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm transition-all">
+            Apply via Email &rarr;
+          </a>
+        </div>
+      `
+    },
+    {
+      slug: 'careers-operations-associate',
+      title: 'Careers at QShala: Operations Associate',
+      category: 'Careers',
+      readTime: 'Full Job Description',
+      date: 'Open Position',
+      isoDate: '2026-10-01T10:00:00+05:30',
+      author: 'QShala People Team',
+      authorRole: 'Talent & Culture',
+      summary: 'Manage live quiz event logistics, buzzer setups, school tournament coordination, and on-ground execution.',
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          We are seeking an energetic <strong>Operations Associate</strong> to coordinate high-stakes live quiz championships, school timetable delivery, and digital buzzer hardware across Bengaluru and nationwide events.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Key Responsibilities:</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-6">
+          <li>Coordinate live quiz equipment, wireless buzzer systems, stage logistics, and venue setups.</li>
+          <li>Manage operational communication with participating school principals, teachers, and corporate event organizers.</li>
+          <li>Ensure smooth execution of weekly timetable schedules across 250+ partner schools.</li>
+        </ul>
+        <div class="p-6 rounded-3xl bg-[#FFF8E1] border border-amber-200 space-y-3">
+          <h4 class="text-lg font-black text-slate-900 font-heading">How to Apply</h4>
+          <p class="text-slate-700 text-sm font-semibold">Send your resume to <a href="mailto:work@walnuts.co.in?subject=Application for Operations Associate" class="text-amber-800 font-black underline">work@walnuts.co.in</a>.</p>
+          <a href="mailto:work@walnuts.co.in?subject=Application for Operations Associate" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm transition-all">
+            Apply via Email &rarr;
+          </a>
+        </div>
+      `
+    },
+    {
+      slug: 'careers-engagement-associate',
+      title: 'Careers at QShala: Engagement Associate & Quizmaster',
+      category: 'Careers',
+      readTime: 'Full Job Description',
+      date: 'Open Position',
+      isoDate: '2026-10-01T10:00:00+05:30',
+      author: 'QShala People Team',
+      authorRole: 'Talent & Culture',
+      summary: 'Facilitate socratic sessions, host interactive live trivia, and inspire thousands of young quizzers in classrooms and stages.',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Are you captivating on stage and passionate about igniting curiosity? Join our team of professional quizmasters as an <strong>Engagement Associate</strong>.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Key Responsibilities:</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-6">
+          <li>Facilitate interactive weekly Quriosity Club sessions across partner schools.</li>
+          <li>Host inter-school championships, corporate team offsites, and community quiz game nights.</li>
+          <li>Foster an inclusive, psychologically safe environment where every student feels excited to ask questions.</li>
+        </ul>
+        <div class="p-6 rounded-3xl bg-[#E8F6FD] border border-sky-200 space-y-3">
+          <h4 class="text-lg font-black text-slate-900 font-heading">How to Apply</h4>
+          <p class="text-slate-700 text-sm font-semibold">Send a short video introduction or your resume to <a href="mailto:work@walnuts.co.in?subject=Application for Engagement Associate" class="text-[#30B2E7] font-black underline">work@walnuts.co.in</a>.</p>
+          <a href="mailto:work@walnuts.co.in?subject=Application for Engagement Associate" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm transition-all">
+            Apply via Email &rarr;
+          </a>
+        </div>
+      `
+    },
+    {
+      slug: 'careers-video-editor',
+      title: 'Careers at QShala: Video Editor & Visual Storyteller',
+      category: 'Careers',
+      readTime: 'Full Job Description',
+      date: 'Open Position',
+      isoDate: '2026-10-01T10:00:00+05:30',
+      author: 'QShala People Team',
+      authorRole: 'Talent & Culture',
+      summary: 'Craft exciting video highlight reels, QShots clips, motion graphics, and animated brand stories.',
+      color: '#75B543',
+      bg: 'bg-[#EDF7E5]',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          Bring the magic of curiosity to video. We are looking for a skilled <strong>Video Editor & Motion Designer</strong> to turn live quiz events into dynamic, viral micro-learning content and highlight reels.
+        </p>
+        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Key Responsibilities:</h3>
+        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-6">
+          <li>Produce high-energy event recap reels and social-first QShots daily trivia clips.</li>
+          <li>Animate QT mascot assets and create branded visual assets for presentations and web experiences.</li>
+        </ul>
+        <div class="p-6 rounded-3xl bg-[#EDF7E5] border border-emerald-200 space-y-3">
+          <h4 class="text-lg font-black text-slate-900 font-heading">How to Apply</h4>
+          <p class="text-slate-700 text-sm font-semibold">Share links to your video reel or portfolio at <a href="mailto:work@walnuts.co.in?subject=Application for Video Editor" class="text-[#75B543] font-black underline">work@walnuts.co.in</a>.</p>
+          <a href="mailto:work@walnuts.co.in?subject=Application for Video Editor" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm transition-all">
+            Apply via Email &rarr;
+          </a>
+        </div>
+      `
+    },
+
+    // --- STANDARD BLOG PERSPECTIVES ---
     {
       slug: 'why-rote-learning-kills-quriosity',
       title: 'Why Rote Learning Kills Quriosity (And How to Fix It)',
@@ -109,12 +543,6 @@ export async function getStaticPaths() {
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
           At QShala, our <a href="/schools" class="text-[#30B2E7] font-bold underline hover:text-[#258eb9]">Weekly Quriosity Clubs for K-12 Schools</a> utilize Socratic questioning. Instead of telling children that an octopus has three hearts, we ask: <em>"Why would a creature that swims in the deep ocean need three separate hearts?"</em> This forces the mind to work through systemic biology, pressure, and energy distribution.
         </p>
-        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Three Ways Parents Can Spark Socratic Dialogue:</h3>
-        <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
-          <li><strong>Never answer "I don't know" alone:</strong> Follow it up with, "Let's figure out how we can test that."</li>
-          <li><strong>Ask "How do you know that?":</strong> Get children to explain the source of their facts.</li>
-          <li><strong>Compare and contrast:</strong> Ask questions like, "How is a computer keyboard similar to a piano?" Explore more conversation starters in our <a href="/learn" class="text-[#30B2E7] font-bold underline hover:text-[#258eb9]">Sunday Curiosity Club & Question Bank</a>.</li>
-        </ul>
       `
     },
     {
@@ -137,16 +565,6 @@ export async function getStaticPaths() {
         <p class="text-slate-700 leading-relaxed mb-6 font-medium">
           Standard questions yield standard answers ("Good", "Fine", "Nothing"). Instead, Nobel laureate Isidor Rabi's mother used to ask him: <em>"Did you ask a good question today, Izzy?"</em> Shifting the focus to inquiry changes what kids look out for during the day.
         </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Dinner Table Quiz Game</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          You don't need a buzzer system to play. Use QShala's <a href="/shop" class="text-[#75B543] font-bold underline hover:text-[#5d9434]">The Great Quriosity Deck (100 Flash Cards)</a>: pick one card, read the mystery, and let everyone guess. The goal isn't to get it right; it's to come up with the most creative theory. You can also organize larger sessions through our <a href="/communities" class="text-[#75B543] font-bold underline hover:text-[#5d9434]">Community & Family Game Nights</a>.
-        </p>
-        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Quick Prompts to Try Tonight:</h3>
-        <ul class="list-disc pl-6 space-y-3 text-slate-700 font-medium mb-8">
-          <li>"Why do you think windows are made of glass and not transparent plastic?"</li>
-          <li>"If you had to live in space for a year, what is the one household object you would miss the most?"</li>
-          <li>"How do you think birds know where to fly when winter comes?"</li>
-        </ul>
       `
     },
     {
@@ -164,14 +582,6 @@ export async function getStaticPaths() {
       content: `
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
           Traditional corporate slide decks are where employee engagement goes to die. To truly align teams and build shared culture, leading HR managers are turning to high-stakes, interactive gamification.
-        </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Why Buzzers Work Better Than Slides</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          In a live gamified setup (like <a href="/companies" class="text-[#FDB913] font-bold underline hover:text-amber-600">QShala's Corporate Trivia Nights</a>), employees aren't passively receiving information. They are competing, collaborating, and retrieving facts in real-time. This triggers dopamine release, making learning stick.
-        </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Decreasing Employee Attrition</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          Our data across 80+ enterprise partners shows that shared play builds psychological safety and cohesion. Teams that laugh and solve riddles together build stronger cross-functional relationships, contributing directly to a measurable decrease in workplace disconnect. Explore customized offsites via our <a href="/custom" class="text-[#FDB913] font-bold underline hover:text-amber-600">Custom Brand & Offsite Experiences</a>.
         </p>
       `
     },
@@ -191,10 +601,6 @@ export async function getStaticPaths() {
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
           When information is abundant, memory ceases to be a competitive advantage. The real superpower for the next generation is critical inquiry—the ability to look at complex systems, test assumptions, and ask socratic questions.
         </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">The Socratic Questioning Loop</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          Socratic questioning breaks down big concepts into small, self-discovered logical leaps. Instead of teaching environmental conservation as a lecture, we guide students to deduce why tree cover regulates city temperature through guided questioning in our <a href="/schools" class="text-[#30B2E7] font-bold underline hover:text-[#258eb9]">Public Speaking & Socratic Debate School Modules</a>.
-        </p>
       `
     },
     {
@@ -213,10 +619,6 @@ export async function getStaticPaths() {
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
           Artificial Intelligence can summarize textbooks in seconds, but it only responds to human intent. Teaching kids how to formulate precise, creative questions is now the highest form of digital literacy.
         </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">From Prompting to Insight</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          When students learn prompt framing with QShala, they discover that vague questions get generic answers, while deep, nuanced questions reveal fascinating insights. Practice daily question formulations on the <a href="/learn" class="text-[#75B543] font-bold underline hover:text-[#5d9434]">QShala Daily Quiz Platform</a>.
-        </p>
       `
     },
     {
@@ -234,10 +636,6 @@ export async function getStaticPaths() {
       content: `
         <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
           Children often find traditional newspapers boring. But when global events are converted into intriguing riddles and photo puzzles, news reading becomes an addictive daily habit.
-        </p>
-        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Connecting News to Daily Life</h2>
-        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
-          QShala Daily Quiz modules connect space missions, international trade, and scientific discoveries directly to topics taught in school textbooks. Discover our <a href="/schools" class="text-[#FDB913] font-bold underline hover:text-amber-600">GK & Current Affairs Storytelling Curriculum for Schools</a>.
         </p>
       `
     }
@@ -284,7 +682,7 @@ const articleSchema = {
 ---
 
 <BaseLayout 
-  title={`${post.title} | QShala Blog`}
+  title={`${post.title} | QShala`}
   description={post.summary}
   ogType="article"
   ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.vercel.app/og-image.webp'}
@@ -318,8 +716,11 @@ const articleSchema = {
         <!-- Article Header -->
         <div class="space-y-4 border-b border-slate-200 pb-8">
           <div class="flex flex-wrap items-center gap-3">
-            <!-- Strictly two labels: Blog or Events -->
-            <span class={`px-3.5 py-1 rounded-full font-black text-xs font-heading uppercase ${post.category === 'Events' ? 'bg-[#FDB913] text-slate-950' : 'bg-[#30B2E7] text-white'}`}>
+            <span class={`px-3.5 py-1 rounded-full font-black text-xs font-heading uppercase ${
+              post.category === 'Events' ? 'bg-[#FDB913] text-slate-950' : 
+              post.category === 'Careers' ? 'bg-[#75B543] text-white' : 
+              'bg-[#30B2E7] text-white'
+            }`}>
               {post.category}
             </span>
             <span class="text-xs font-bold text-slate-500 font-heading">{post.date}</span>
@@ -334,7 +735,7 @@ const articleSchema = {
         <!-- Article Body -->
         <div class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" set:html={post.content} />
 
-        <!-- Optional Image / Gallery Section (Shows only if images are provided) -->
+        <!-- Interactive Event Photo Gallery (Clickable, Openable in Full-Screen Lightbox & Downloadable) -->
         {post.gallery && post.gallery.length > 0 && (
           <section class="mt-12 pt-8 border-t border-slate-200 space-y-6">
             <div class="space-y-1">
@@ -345,38 +746,31 @@ const articleSchema = {
                 Event Photos &amp; Highlights
               </h2>
               <p class="text-slate-600 text-sm font-semibold">
-                High-resolution event photographs. Participants and attendees can view and access their photos below.
+                Click any photograph to view in full resolution or download. Attendees can view and access their high-res photos below.
               </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {post.gallery.map((photo) => (
-                <div class="group relative rounded-2xl overflow-hidden shadow-xs border border-slate-200/80 bg-slate-100 aspect-[4/3]">
-                  <img 
-                    src={photo.url} 
-                    alt={photo.caption} 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                    loading="lazy"
-                  />
-                  {photo.caption && (
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-3 flex items-end">
-                      <p class="text-white text-xs font-semibold leading-snug">{photo.caption}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <EventPhotoGallery client:load photos={post.gallery} title={post.title} />
           </section>
         )}
 
         <!-- Footer CTA Box -->
         <div class="bg-[#FFF8E1] rounded-3xl p-5 sm:p-8 border border-amber-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 mt-12">
           <div class="space-y-1 text-center sm:text-left">
-            <h3 class="text-xl font-black font-heading text-slate-900">Enjoyed this perspective?</h3>
-            <p class="text-slate-700 text-xs font-semibold">Book a live socratic quiz session for your school or organization.</p>
+            <h3 class="text-xl font-black font-heading text-slate-900">
+              {post.category === 'Careers' ? 'Want to join our mission?' : 'Enjoyed this story?'}
+            </h3>
+            <p class="text-slate-700 text-xs font-semibold">
+              {post.category === 'Careers' 
+                ? 'Send your resume to work@walnuts.co.in or explore other opportunities.' 
+                : 'Book a live socratic quiz session or workshop for your school or organization.'}
+            </p>
           </div>
-          <a href="/contact" class="w-full sm:w-auto text-center justify-center inline-flex items-center px-6 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap min-h-[44px]">
-            Schedule an Experience &rarr;
+          <a 
+            href={post.category === 'Careers' ? 'mailto:work@walnuts.co.in' : '/contact'} 
+            class="w-full sm:w-auto text-center justify-center inline-flex items-center px-6 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap min-h-[44px]"
+          >
+            {post.category === 'Careers' ? 'Contact Talent Team &rarr;' : 'Schedule an Experience &rarr;'}
           </a>
         </div>
       </div>
