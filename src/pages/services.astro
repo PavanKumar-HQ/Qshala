@@ -8,8 +8,8 @@ const SERVICE_MODULES = [
   {
     id: "schools",
     href: "/schools",
-    title: "Curiosity in Your School",
-    badge: "SCHOOLS",
+    title: "Quriosity in Your School",
+    badge: "Schools",
     description: "Year-round programs, competitions and teacher training that make learning something students look forward to.",
     mascotVariant: "reading" as const,
     imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
@@ -21,8 +21,8 @@ const SERVICE_MODULES = [
   {
     id: "companies",
     href: "/companies",
-    title: "Curiosity at Work",
-    badge: "COMPANIES",
+    title: "Quriosity at Work",
+    badge: "Companies",
     description: "Quizzes, games and team activities that get people talking, for offsites, onboarding and everything in between.",
     mascotVariant: "professional" as const,
     imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
@@ -34,8 +34,8 @@ const SERVICE_MODULES = [
   {
     id: "colleges",
     href: "/colleges",
-    title: "Curiosity on Campus",
-    badge: "COLLEGES",
+    title: "Quriosity on Campus",
+    badge: "Colleges",
     description: "From a fest quiz to a nationwide league, on any subject you can think of.",
     mascotVariant: "idea" as const,
     imageSrc: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
@@ -47,8 +47,8 @@ const SERVICE_MODULES = [
   {
     id: "communities",
     href: "/communities",
-    title: "Curiosity for Your Crowd",
-    badge: "COMMUNITIES",
+    title: "Quriosity for Your Crowd",
+    badge: "Communities & Families",
     description: "Your housing society, your family, your birthday or wedding guests. Wherever people gather, there's a quiz waiting.",
     mascotVariant: "curious" as const,
     imageSrc: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
@@ -60,8 +60,8 @@ const SERVICE_MODULES = [
   {
     id: "custom",
     href: "/custom",
-    title: "Have an Idea?",
-    badge: "CUSTOM",
+    title: "Let's Build Something New",
+    badge: "Custom",
     description: "Got an event we haven't thought of yet? Tell us and let's build it together!",
     mascotVariant: "trophy" as const,
     imageSrc: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
@@ -116,7 +116,7 @@ const servicesSchema = {
         </div>
 
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading">
-          Curiosity for Every Audience.
+          Quriosity for Every Audience.
         </h1>
 
         <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -125,8 +125,8 @@ const servicesSchema = {
       </div>
     </section>
 
-    <!-- Services Modules Stack - Simplified & Highly Scrollable -->
-    <section class="py-4 max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
+    <!-- Services Modules Stack - Expansive max-w-[1536px] Width -->
+    <section class="py-4 w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 space-y-8">
       {SERVICE_MODULES.map((module, idx) => {
         const isReversed = idx % 2 !== 0;
         return (

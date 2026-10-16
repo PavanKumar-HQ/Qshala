@@ -70,7 +70,7 @@ export default function TheQshalaEffect() {
 
   return (
     <section className="w-full py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#FFFDF5]">
-      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
+      <div className="w-full max-w-[1536px] mx-auto space-y-8 sm:space-y-10 px-2 sm:px-4 md:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">

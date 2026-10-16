@@ -63,42 +63,7 @@ const CREW: TeamMember[] = [
     bg: "#EDF7E5",
     tag: "Curriculum"
   },
-  {
-    id: "raghav",
-    name: "Raghav Chakravarthy",
-    role: "Co-Founder & Chief Quizmaster",
-    category: "Leadership",
-    bio: "National quizmaster, TEDx speaker, and education innovator transforming learning into an active discovery adventure.",
-    image: "/assets/team/raghav-chakravarthy.jpg",
-    variant: "sherlock",
-    color: "#30B2E7",
-    bg: "#E8F6FD",
-    tag: "Co-Founder"
-  },
-  {
-    id: "rohan",
-    name: "Rohan M.",
-    role: "Chief Quizmaster",
-    category: "Content",
-    bio: "Hosting high-stakes live quiz championships and inter-school tournaments across India.",
-    image: "https://ui-avatars.com/api/?name=Rohan+M&background=9333EA&color=fff&size=300",
-    variant: "idea",
-    color: "#9333EA",
-    bg: "#F3E8FF",
-    tag: "Content"
-  },
-  {
-    id: "sachin",
-    name: "Sachin Ravi",
-    role: "Co-Founder & Chief Quizmaster",
-    category: "Leadership",
-    bio: "National-level quizmaster and TEDx speaker on a mission to replace rote memorization with curiosity and wonder.",
-    image: "/assets/team/sachin-ravi.jpg",
-    variant: "quizzing",
-    color: "#FDB913",
-    bg: "#FFF8E1",
-    tag: "Co-Founder"
-  },
+
   {
     id: "vikram",
     name: "Vikram P.",
@@ -125,10 +90,10 @@ export default function InteractiveTeamShowcase() {
           Meet Our Team
         </span>
         <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          The Curiosity Crew.
+          The Quriosity Crew.
         </h2>
         <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-          The educators, quizmasters, researchers &amp; experience designers making curiosity an active sport every single day.
+          The educators, quizmasters, researchers &amp; experience designers making quriosity an active sport every single day.
         </p>
       </div>
 

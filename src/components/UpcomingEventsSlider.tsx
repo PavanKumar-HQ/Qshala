@@ -49,26 +49,23 @@ export default function UpcomingEventsSlider() {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="flex items-center gap-3 sm:gap-4 md:gap-5 w-full">
+      <div className="relative w-full">
         {/* Left Sideways Navigation Arrow (Desktop / Tablet) */}
-        <button
-          onClick={() => scroll('left')}
-          disabled={!canScrollLeft}
-          aria-label="Previous events"
-          className={`hidden sm:flex shrink-0 w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 rounded-full border-2 border-black items-center justify-center font-black transition-all ${
-            canScrollLeft
-              ? 'bg-white hover:bg-slate-100 text-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:scale-105 active:scale-95 cursor-pointer opacity-100'
-              : 'bg-white/80 text-slate-300 border-slate-300 shadow-none cursor-not-allowed opacity-40'
-          }`}
-        >
-          <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
-        </button>
+        {canScrollLeft && (
+          <button
+            onClick={() => scroll('left')}
+            aria-label="Previous events"
+            className="hidden sm:flex absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border-2 border-black bg-white hover:bg-slate-100 text-slate-900 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] items-center justify-center font-black transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+          </button>
+        )}
 
         {/* Horizontal Scroll Track */}
         <div
           ref={scrollContainerRef}
           onScroll={checkScroll}
-          className="flex-1 min-w-0 flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none py-4 snap-x snap-mandatory scroll-smooth px-1"
+          className="w-full flex gap-5 sm:gap-6 overflow-x-auto scrollbar-none py-4 snap-x snap-mandatory scroll-smooth px-1"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {events.map((ev) => {
@@ -82,7 +79,7 @@ export default function UpcomingEventsSlider() {
             return (
               <div
                 key={ev.id}
-                className="w-[82vw] max-w-[320px] sm:w-[340px] md:w-[380px] shrink-0 bg-white rounded-3xl p-5 sm:p-7 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between snap-start transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] group"
+                className="w-[84vw] max-w-[340px] sm:w-[350px] md:w-[380px] shrink-0 bg-white rounded-3xl p-6 sm:p-7 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between snap-start transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] group"
               >
                 {/* Top Section */}
                 <div className="space-y-4">
@@ -134,18 +131,15 @@ export default function UpcomingEventsSlider() {
         </div>
 
         {/* Right Sideways Navigation Arrow (Desktop / Tablet) */}
-        <button
-          onClick={() => scroll('right')}
-          disabled={!canScrollRight}
-          aria-label="Next events"
-          className={`hidden sm:flex shrink-0 w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 rounded-full border-2 border-black items-center justify-center font-black transition-all ${
-            canScrollRight
-              ? 'bg-[#FDB913] hover:bg-amber-400 text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:scale-105 active:scale-95 cursor-pointer opacity-100'
-              : 'bg-slate-100 text-slate-300 border-slate-300 shadow-none cursor-not-allowed opacity-40'
-          }`}
-        >
-          <ChevronRight className="w-6 h-6 stroke-[2.5]" />
-        </button>
+        {canScrollRight && (
+          <button
+            onClick={() => scroll('right')}
+            aria-label="Next events"
+            className="hidden sm:flex absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border-2 border-black bg-[#FDB913] hover:bg-amber-400 text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] items-center justify-center font-black transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+          </button>
+        )}
       </div>
 
       {/* Mobile-Only Navigation Controls Row (< sm) */}

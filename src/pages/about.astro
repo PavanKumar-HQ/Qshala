@@ -107,48 +107,111 @@ const aboutSchema = {
       </div>
     </section>
 
-    <!-- 2. FOUNDER STORY: 2-COLUMN FOUNDER CARDS -->
-    <section id="founder-story" class="py-10 md:py-14 bg-[#FFF8E1] relative w-full px-4 sm:px-8 md:px-12">
-      <div class="w-full space-y-8">
+    <!-- 2. FOUNDER STORY: PROMINENT EQUAL-ASPECT CO-FOUNDER SHOWCASE -->
+    <section id="founder-story" class="py-14 md:py-20 bg-[#FFF8E1] relative w-full border-t border-b border-amber-100">
+      <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 space-y-10">
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <span class="px-3.5 py-1.5 rounded-full bg-white text-slate-800 font-black text-xs uppercase tracking-wider font-heading shadow-sm border border-slate-200">
-              Est. 2014
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-amber-200/60 pb-6">
+          <div class="space-y-2">
+            <span class="inline-block px-3.5 py-1.5 rounded-full bg-white text-slate-800 font-black text-xs uppercase tracking-wider font-heading shadow-xs border border-slate-200">
+              Est. 2014 • The Co-Founders
             </span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
+              The Minds Behind QShala.
+            </h2>
           </div>
+          <p class="text-slate-600 font-semibold text-sm sm:text-base max-w-md">
+            Two national quizmasters on a singular mission to transform passive rote memorization into active inquiry and wonder.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
           <!-- Sachin Ravi -->
-          <div class="p-6 md:p-8 rounded-3xl bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-start gap-6">
-            <img 
-              src="/assets/team/sachin-ravi.jpg" 
-              alt="Sachin Ravi - Co-Founder QShala" 
-              class="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover object-top shadow-sm border-2 border-white shrink-0 bg-amber-50" 
-            />
-            <div class="space-y-1.5 flex-1">
-              <h3 class="text-2xl font-black text-slate-900 font-heading">Sachin Ravi</h3>
-              <p class="text-xs font-black uppercase tracking-wider text-amber-600 font-heading">Co-Founder</p>
-              <p class="text-slate-700 text-sm font-semibold leading-relaxed pt-1">
-                National-level quizmaster and TEDx speaker on a mission to replace rote memorization with socratic wonder. Passionate about empowering young minds to ask questions and explore through stories and quests.
+          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">
+            <div class="relative shrink-0">
+              <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-3 border-amber-300 shadow-md bg-amber-50 group-hover:scale-[1.02] transition-transform duration-300">
+                <img 
+                  src="/assets/team/sachin-ravi.jpg" 
+                  alt="Sachin Ravi - Co-Founder & Chief Quizmaster" 
+                  class="w-full h-full object-cover object-center" 
+                  loading="lazy"
+                />
+              </div>
+              <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-[11px] uppercase tracking-wider font-heading shadow-sm whitespace-nowrap">
+                Co-Founder
+              </span>
+            </div>
+
+            <div class="space-y-3 flex-1 text-center sm:text-left pt-2 sm:pt-0">
+              <div>
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Sachin Ravi</h3>
+                <p class="text-xs font-black uppercase tracking-wider text-amber-600 font-heading mt-0.5">
+                  Co-Founder &amp; Chief Quizmaster
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-1.5 justify-center sm:justify-start">
+                <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">National Quizmaster</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">TEDx Speaker</span>
+              </div>
+
+              <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                National-level quizmaster and TEDx speaker on a mission to replace rote memorization with socratic wonder. Passionate about empowering young minds to ask questions and explore through stories, logic, and curiosity quests.
               </p>
+
+              <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                <a 
+                  href="mailto:sachin@walnuts.co.in" 
+                  class="inline-flex items-center gap-1.5 text-xs font-black text-amber-700 hover:text-amber-800 hover:underline font-heading"
+                >
+                  ✉ sachin@walnuts.co.in
+                </a>
+              </div>
             </div>
           </div>
 
           <!-- Raghav Chakravarthy -->
-          <div class="p-6 md:p-8 rounded-3xl bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-start gap-6">
-            <img 
-              src="/assets/team/raghav-chakravarthy.jpg" 
-              alt="Raghav Chakravarthy - Co-Founder QShala" 
-              class="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover object-top shadow-sm border-2 border-white shrink-0 bg-sky-50" 
-            />
-            <div class="space-y-1.5 flex-1">
-              <h3 class="text-2xl font-black text-slate-900 font-heading">Raghav Chakravarthy</h3>
-              <p class="text-xs font-black uppercase tracking-wider text-sky-600 font-heading">Co-Founder</p>
-              <p class="text-slate-700 text-sm font-semibold leading-relaxed pt-1">
-                National quizmaster, TEDx speaker, and education innovator building India's largest curiosity ecosystem. Dedicated to transforming learning into an active sport driven by questioning and real-world quests.
+          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">
+            <div class="relative shrink-0">
+              <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-3 border-sky-300 shadow-md bg-sky-50 group-hover:scale-[1.02] transition-transform duration-300">
+                <img 
+                  src="/assets/team/raghav-chakravarthy.jpg" 
+                  alt="Raghav Chakravarthy - Co-Founder & Chief Quizmaster" 
+                  class="w-full h-full object-cover object-center" 
+                  loading="lazy"
+                />
+              </div>
+              <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider font-heading shadow-sm whitespace-nowrap">
+                Co-Founder
+              </span>
+            </div>
+
+            <div class="space-y-3 flex-1 text-center sm:text-left pt-2 sm:pt-0">
+              <div>
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Raghav Chakravarthy</h3>
+                <p class="text-xs font-black uppercase tracking-wider text-sky-600 font-heading mt-0.5">
+                  Co-Founder &amp; Chief Quizmaster
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-1.5 justify-center sm:justify-start">
+                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">National Quizmaster</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">TEDx Speaker</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">Education Innovator</span>
+              </div>
+
+              <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                National quizmaster, TEDx speaker, and education innovator building India's largest curiosity ecosystem. Dedicated to transforming learning into an active sport driven by questioning, cross-disciplinary curiosity, and real-world quests.
               </p>
+
+              <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                <a 
+                  href="mailto:qshala@walnuts.co.in" 
+                  class="inline-flex items-center gap-1.5 text-xs font-black text-sky-700 hover:text-sky-800 hover:underline font-heading"
+                >
+                  ✉ raghav@walnuts.co.in
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -158,7 +221,7 @@ const aboutSchema = {
 
     <!-- 3. SUPPORT (INVESTORS & PARTNERS): FIXED GRID -->
     <section id="investors" class="py-14 bg-[#E8F6FD] border-t border-b border-sky-100 relative w-full">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 space-y-8">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 space-y-8">
         
         <div class="text-center max-w-2xl mx-auto space-y-2">
           <span class="px-3.5 py-1 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase font-heading shadow-sm">

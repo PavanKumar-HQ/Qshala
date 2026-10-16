@@ -4,51 +4,93 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 
-const YEAR_LONG_PROGRAMS = [
+const CLASSROOM_PROGRAMS = [
   {
-    title: "1. Weekly Quriosity Clubs",
-    badge: "Grades 1 - 12",
-    tagline: "Timetabled Socratic Questioning & Thinking Sport",
-    description: "Weekly 45-minute inquiry-driven sessions built directly into the school timetable. Students explore the 'Why?' behind science, history, space, nature, and human inventions through interactive challenges.",
-    outcomes: ["Moves beyond rote memorization", "Fosters intrinsic motivation to learn", "Encourages creative problem solving"],
+    title: "Discover Curriculum",
+    tagline: "Making the syllabus come alive",
+    desc: "Science, social science and general knowledge, taught through quizzes, stories and activities, so students see why it matters.",
     accent: "#30B2E7",
     bg: "bg-[#E8F6FD]"
   },
   {
-    title: "2. Financial Literacy Program",
-    badge: "Grades 4 - 12",
-    tagline: "Money Mindsets, Smart Saving & Junior Economics",
-    description: "Gamified financial literacy curriculum covering budgeting, banking fundamentals, needs vs. wants, inflation, compound interest, entrepreneurship, and digital money safety through real-world simulations.",
-    outcomes: ["Practical money management habits", "Understanding economic concepts early", "Entrepreneurial thinking"],
+    title: "Discover Skills",
+    tagline: "Marks matter, but so does knowing how to think",
+    desc: "Sessions that build creativity, critical thinking and teamwork.",
     accent: "#75B543",
     bg: "bg-[#EDF7E5]"
   },
   {
-    title: "3. Public Speaking & Socratic Debate",
-    badge: "Grades 5 - 12",
-    tagline: "Confident Articulation, Logic & Persuasion",
-    description: "Interactive verbal expression labs where students learn to structure thoughts, analyze logical fallacies, deliver persuasive arguments, and speak on their feet without stage fright.",
-    outcomes: ["Overcoming stage anxiety", "Constructing evidence-based arguments", "Active listening and civil debate"],
+    title: "Quiz Hobby Program",
+    tagline: "Where curiosity turns into confidence",
+    desc: "An after-school program for students who love quizzing, with formats that build speed, teamwork and stage presence.",
     accent: "#FDB913",
     bg: "bg-[#FFF8E1]"
   },
   {
-    title: "4. GK & Current Affairs Storytelling",
-    badge: "Grades 3 - 12",
-    tagline: "Connecting Headlines to Context & Global Awareness",
-    description: "Transforming dry current affairs into gripping investigative stories. We decode global geopolitics, climate science, tech innovations, and cultural milestones into bite-sized discovery quests.",
-    outcomes: ["Global citizenship and awareness", "Media literacy & fact-checking skills", "Connecting textbooks to current news"],
+    title: "Financial Literacy",
+    tagline: "Money matters, made simple",
+    desc: "Practical lessons on saving, spending and choosing well.",
     accent: "#9333EA",
     bg: "bg-[#F3E8FF]"
+  }
+];
+
+const TEACHER_MODULES = [
+  {
+    title: "Teacher-Led Modules",
+    tagline: "Empowering teachers, inspiring students",
+    desc: "Ready-to-use modules on life skills and logical reasoning, with lesson plans and workbooks, so your own teachers can lead."
+  },
+  {
+    title: "Teacher Training Workshops",
+    tagline: "Delivery smooth from day one",
+    desc: "Teachers trained before the school year begins, so delivery is smooth from day one."
+  },
+  {
+    title: "Quiz Platform",
+    tagline: "Curiosity at your fingertips",
+    desc: "A bank of curated questions, plus QShots, short daily quizzes that keep students curious every day."
+  }
+];
+
+const FLAGSHIP_QUIZZES = [
+  {
+    title: "QQL Club",
+    badge: "Daily Habit • All Ages",
+    desc: "A daily quiz habit for your students. Five fresh questions arrive by email every day, with an answer review after each quiz and a Monthly Mega Quiz at the end of every month. ₹499 for six months from the day a student joins, and open to all ages.",
+    price: "₹499 / 6 months"
+  },
+  {
+    title: "QShala Quiz League (QQL)",
+    badge: "Annual National League",
+    desc: "Our annual national online quiz league. Weekly quizzes through the tournament, then a live Grand Finale.",
+    price: "National League"
+  },
+  {
+    title: "QShala Quriosity Quiz (QQQ)",
+    badge: "In-Person Bangalore Flagship",
+    desc: "An in-person quiz in Bangalore, held every year in junior and senior editions and open to all schools.",
+    price: "Bengaluru Flagship"
+  }
+];
+
+const COLLABORATIONS = [
+  {
+    title: "Neev Literature Festival",
+    desc: "Students read 30 books over three months as part of the NLF Reading Challenge and we run the quiz on them. Online preliminary rounds, semi-finals, and the final takes place on festival day in Bengaluru, with six teams from six schools."
+  },
+  {
+    title: "Safety Quest",
+    desc: "An online road-safety quiz, free to join and open nationwide, held every year with the Arundhati Foundation, a Bengaluru non-profit working on road safety."
   }
 ];
 
 const schoolServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/schools#service",
-  "name": "QShala for Schools & K-12",
-  "serviceType": "K-12 Educational Curriculum & Year-Long Quriosity Programs",
-  "description": "Year-long timetabled programs for K-12 schools including Quiz Clubs, Financial Literacy, Public Speaking, and General Knowledge storytelling.",
+  "name": "Quriosity Programs for Forward-Thinking Schools",
+  "serviceType": "K-12 Quriosity Curriculum & School Quizzing",
+  "description": "Making syllabus come alive, after-school quiz clubs, teacher modules, and national quiz leagues across 250+ schools.",
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -56,194 +98,244 @@ const schoolServiceSchema = {
 ---
 
 <BaseLayout 
-  title="QShala for Schools & K-12 | Year-Long Programs & Quiz Clubs"
-  description="Year-long school programs: Quiz Clubs, Financial Literacy, Public Speaking, and GK Storytelling across 250+ K-12 partner schools in India."
+  title="Schools | Quriosity Programs for Forward-Thinking Schools | QShala"
+  description="Some schools want the syllabus to come alive. Others want to train students to be quizzers, keep them up to date with current affairs, or to up-skill teachers. We do it all."
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "For Schools", item: "/schools" }
+    { name: "Schools", item: "/schools" }
   ]}
   schema={schoolServiceSchema}
 >
   <Navbar />
   
-  <main id="main-content" class="flex-grow pt-header-safe pb-24 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 bg-[#FFFDF5]">
-    
-    <!-- Hero Section -->
-    <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
-      <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-        K-12 Educational Partnerships
-      </span>
-      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-        Year-Long Programs for Forward-Thinking Schools.
-      </h1>
-      <p class="text-slate-600 font-semibold text-base sm:text-lg leading-relaxed">
-        We partner with 250+ K-12 schools to integrate structured, year-long learning tracks into the academic timetable. No rote drill worksheets—only active, wonder-led discovery.
-      </p>
-    </div>
-
-    <!-- Mascot Banner -->
-    <div class="flex justify-center">
-      <QTMascot client:visible variant="reading" size="lg" badgeText="250+ Partner Schools" />
-    </div>
-
-    <!-- Year-Long Programs Grid -->
-    <div class="space-y-8">
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
-          Our Core Year-Long School Programs
-        </h2>
-        <p class="text-slate-600 text-sm font-semibold">
-          Designed for standard 40 to 60-minute weekly timetable periods across Primary, Middle, and High School.
+  <main id="main-content" class="flex-grow pt-header-safe pb-24 w-full bg-[#FFFDF5]">
+    <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 space-y-16 sm:space-y-20">
+      
+      <!-- Hero Section -->
+      <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
+          Schools
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+          Quriosity Programs for Forward-Thinking Schools.
+        </h1>
+        <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
+          Some schools want the syllabus to come alive. Others want to train students to be quizzers, keep them up to date with current affairs, or to up-skill teachers. We do it all.
         </p>
+
+        <!-- Mascot Bubble -->
+        <div class="pt-4 flex justify-center">
+          <QTMascot client:visible variant="reading" size="lg" badgeText="Since 2014" />
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {YEAR_LONG_PROGRAMS.map((prog) => (
-          <div class={`rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all ${prog.bg} flex flex-col justify-between space-y-6`}>
-            <div class="space-y-4">
-              <div class="flex items-center justify-between gap-3">
+      <!-- 1. IN THE CLASSROOM -->
+      <section class="space-y-8">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-black uppercase tracking-wider text-[#30B2E7] font-heading">Section 01</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">In the Classroom</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {CLASSROOM_PROGRAMS.map((prog) => (
+            <div class={`rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all ${prog.bg} flex flex-col justify-between space-y-4`}>
+              <div class="space-y-2">
                 <span 
-                  class="px-3 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-sm"
+                  class="inline-block px-3 py-1 rounded-full text-white text-[11px] font-black uppercase font-heading shadow-xs"
                   style={`background-color: ${prog.accent};`}
                 >
-                  {prog.badge}
+                  Classroom
                 </span>
-              </div>
-
-              <div>
                 <h3 class="text-2xl font-black text-slate-900 font-heading leading-snug">
                   {prog.title}
                 </h3>
-                <p class="text-xs font-bold uppercase tracking-wider text-slate-600 font-heading mt-1">
+                <p class="text-xs font-black uppercase tracking-wider text-slate-600 font-heading">
                   {prog.tagline}
                 </p>
+                <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed pt-2">
+                  {prog.desc}
+                </p>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-              <p class="text-slate-700 text-sm font-semibold leading-relaxed">
-                {prog.description}
+      <!-- 2. FOR YOUR TEACHERS -->
+      <section class="space-y-8">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-black uppercase tracking-wider text-[#75B543] font-heading">Section 02</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">For Your Teachers</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {TEACHER_MODULES.map((item) => (
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-3">
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-1 rounded-full bg-[#75B543] text-white text-[11px] font-black uppercase font-heading shadow-xs">
+                  Teacher Support
+                </span>
+                <h3 class="text-xl font-black text-slate-900 font-heading leading-snug">
+                  {item.title}
+                </h3>
+                <p class="text-xs font-black uppercase tracking-wider text-emerald-700 font-heading">
+                  {item.tagline}
+                </p>
+                <p class="text-slate-700 text-sm font-semibold leading-relaxed pt-1">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 3. FLAGSHIP QUIZZES -->
+      <section class="space-y-8">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-black uppercase tracking-wider text-[#FDB913] font-heading">Section 03</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">Flagship Quizzes</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {FLAGSHIP_QUIZZES.map((quiz) => (
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 text-[11px] font-black uppercase font-heading shadow-xs">
+                  {quiz.badge}
+                </span>
+                <h3 class="text-2xl font-black text-slate-900 font-heading leading-tight">
+                  {quiz.title}
+                </h3>
+                <p class="text-slate-700 text-sm font-semibold leading-relaxed pt-1">
+                  {quiz.desc}
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs font-black uppercase text-amber-700 font-heading">{quiz.price}</span>
+                <a href="/contact" class="px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs font-heading">
+                  Enroll &rarr;
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 4. ANNUAL COLLABORATIONS -->
+      <section class="space-y-8">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-black uppercase tracking-wider text-purple-600 font-heading">Section 04</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">Annual Collaborations</h2>
+          <p class="text-slate-600 text-sm font-semibold mt-1">Quizzes we build together with other organisations:</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {COLLABORATIONS.map((collab) => (
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all space-y-3">
+              <span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-[11px] font-black uppercase font-heading">
+                Partnership Quiz
+              </span>
+              <h3 class="text-2xl font-black text-slate-900 font-heading leading-tight">
+                {collab.title}
+              </h3>
+              <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                {collab.desc}
               </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-              <div class="space-y-2 pt-2 border-t border-black/5">
-                <span class="text-xs font-black uppercase tracking-wider text-slate-500 font-heading">Key Learning Outcomes:</span>
-                <ul class="space-y-1.5">
-                  {prog.outcomes.map((outcome) => (
-                    <li class="text-xs font-bold text-slate-800 flex items-center gap-2">
-                      <span class="w-1.5 h-1.5 rounded-full bg-slate-900 shrink-0"></span>
-                      <span>{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
+      <!-- EXACT CONTACT BLOCK FROM COPY -->
+      <div class="bg-[#FFF8E1] rounded-3xl p-6 sm:p-10 md:p-12 border-2 border-amber-200 shadow-md text-center max-w-4xl mx-auto space-y-8">
+        <div class="space-y-2">
+          <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading shadow-xs">
+            Let's work together!
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-slate-900 font-heading">
+            Let's work together!
+          </h2>
+          <p class="text-slate-700 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Tell us what your institution is looking for. Every school is different. Let's find the right fit for you.
+          </p>
+        </div>
+
+        <!-- Direct Contact Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+          
+          <!-- Department Lead -->
+          <div class="p-6 rounded-2xl bg-white border border-amber-200 shadow-sm space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-black uppercase text-[#30B2E7] font-heading">Department Lead</div>
+              <div class="text-lg font-black text-slate-900 font-heading leading-tight mt-1">School Partnerships Team</div>
+            </div>
+            <div class="pt-2 space-y-2 border-t border-slate-100">
+              <a 
+                href="mailto:qshala@walnuts.co.in" 
+                class="inline-flex items-center gap-2 text-xs font-black text-slate-800 hover:text-[#30B2E7] font-heading break-all"
+              >
+                ✉ qshala@walnuts.co.in
+              </a>
+              <div>
+                <a 
+                  href="tel:+919789945181" 
+                  class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#30B2E7] text-white font-black text-xs font-heading shadow-xs hover:bg-sky-500 transition-colors w-full text-center min-h-[44px]"
+                >
+                  📞 Call: +91 97899 45181
+                </a>
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
 
-    <!-- Inter-School Quiz Championships & Events Banner -->
-    <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-8 space-y-3">
-        <span class="px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading">
-          State &amp; National Events
-        </span>
-        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
-          Inter-School Quiz Championships &amp; Science Bees
-        </h3>
-        <p class="text-slate-700 text-sm font-semibold leading-relaxed">
-          Beyond our weekly curriculum, we produce India's most celebrated school quiz tournaments with stage buzzers, digital scoreboards, and charismatic quizmasters.
-        </p>
-      </div>
-      <div class="lg:col-span-4 flex justify-center lg:justify-end">
-        <QTMascot client:visible variant="trophy" size="md" />
-      </div>
-    </div>    <!-- DIRECT DEPARTMENT CONTACT & CONSULTATIVE SALES (No Form) -->
-    <div class="bg-[#FFF8E1] rounded-3xl p-6 sm:p-8 md:p-12 border border-amber-200/80 shadow-sm text-center max-w-4xl mx-auto space-y-8">
-      <div class="space-y-3">
-        <span class="px-4 py-1.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading shadow-sm">
-          Consultative Partnerships
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
-          Speak Directly with Our School Partnerships Team
-        </h2>
-        <p class="text-slate-700 font-semibold text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-          Because every school timetable and curriculum is unique, we work closely with Principals, Trustees, and Academic Coordinators. Connect with our dedicated school lead or call Co-Founder Sachin directly.
-        </p>
-      </div>
-
-      <!-- Direct Contact Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
-        
-        {/* School Partnerships Lead */}
-        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-3">
-          <div class="text-xs font-black uppercase text-amber-600 font-heading">Department Lead</div>
-          <div class="text-lg font-black text-slate-900 font-heading">School Partnerships Team</div>
-          <div class="text-xs text-slate-600 font-semibold">Quriosity Clubs &amp; Year-Long Timetable Integration</div>
-          <div class="pt-2 space-y-2">
-            <a 
-              href="mailto:qshala@walnuts.co.in?subject=School%20Partnership%20Inquiry" 
-              class="inline-flex items-center gap-2 text-xs font-black text-[#30B2E7] hover:underline font-heading break-all"
-            >
-              ✉ qshala@walnuts.co.in
-            </a>
-            <div>
+          <!-- Co-Founder Sachin Ravi -->
+          <div class="p-6 rounded-2xl bg-white border border-amber-200 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="flex items-center gap-3.5">
+              <img 
+                src="/assets/team/sachin-ravi.jpg" 
+                alt="Sachin Ravi" 
+                class="w-14 h-14 rounded-xl object-cover object-center border-2 border-amber-300 shadow-xs shrink-0 aspect-square" 
+              />
+              <div>
+                <div class="text-xs font-black uppercase text-amber-600 font-heading">Co-Founder</div>
+                <div class="text-lg font-black text-slate-900 font-heading leading-tight">Sachin Ravi</div>
+              </div>
+            </div>
+            <div class="pt-2 space-y-2 border-t border-slate-100">
               <a 
-                href="tel:+918971676100" 
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#30B2E7] text-white font-black text-xs font-heading shadow-sm hover:bg-sky-500 transition-colors w-full text-center"
+                href="mailto:sachin@walnuts.co.in" 
+                class="inline-flex items-center gap-2 text-xs font-black text-slate-800 hover:text-amber-700 font-heading break-all"
               >
-                📞 Call School Team: +91 89716 76100
+                ✉ sachin@walnuts.co.in
               </a>
+              <div>
+                <a 
+                  href="tel:+919008043525" 
+                  class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs font-heading shadow-xs hover:bg-amber-400 transition-colors w-full text-center min-h-[44px]"
+                >
+                  📞 Call Sachin: +91 90080 43525
+                </a>
+              </div>
             </div>
           </div>
+
         </div>
 
-        {/* Sachin Ravi Direct */}
-        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-3">
-          <div class="flex items-center gap-3.5">
-            <img 
-              src="/assets/team/sachin-ravi.jpg" 
-              alt="Sachin Ravi" 
-              class="w-12 h-12 rounded-xl object-cover object-top border border-amber-200 shadow-xs shrink-0" 
-            />
-            <div>
-              <div class="text-xs font-black uppercase text-amber-600 font-heading">Founder &amp; Chief Quizmaster</div>
-              <div class="text-lg font-black text-slate-900 font-heading leading-tight">Sachin Ravi</div>
-            </div>
-          </div>
-          <div class="text-xs text-slate-600 font-semibold">Direct line for Principals, Trustees &amp; Keynotes</div>
-          <div class="pt-2 space-y-2">
-            <a 
-              href="mailto:sachin@walnuts.co.in?subject=School%20Inquiry%20for%20Sachin" 
-              class="inline-flex items-center gap-2 text-xs font-black text-amber-600 hover:underline font-heading break-all"
-            >
-              ✉ sachin@walnuts.co.in
-            </a>
-            <div>
-              <a 
-                href="tel:+918971676100" 
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs font-heading shadow-sm hover:bg-amber-400 transition-colors w-full text-center"
-              >
-                📞 Call Sachin: +91 89716 76100
-              </a>
-            </div>
-          </div>
+        <!-- Quick WhatsApp Action -->
+        <div class="pt-2">
+          <a 
+            href="https://wa.me/919008043525?text=Hi%20QShala,%20we%20would%20like%20to%20discuss%20Quriosity%20programs%20for%20our%20school." 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all w-full sm:w-auto text-center min-h-[44px]"
+          >
+            <span>Chat on WhatsApp &rarr;</span>
+          </a>
         </div>
-
       </div>
 
-      <!-- Quick WhatsApp Action -->
-      <div class="pt-2">
-        <a 
-          href="https://wa.me/918971676100?text=Hi%20QShala,%20we%20would%20like%20to%20discuss%20partnering%20for%20our%20school." 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all w-full sm:w-auto text-center"
-        >
-          <span>Chat on WhatsApp &rarr;</span>
-        </a>
-      </div>
     </div>
-
   </main>
   
   <Footer />
