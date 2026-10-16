@@ -40,6 +40,6 @@ export const sanityClient = createClient({
   dataset,
   apiVersion,
   useCdn: true,
-  token: token || undefined,
+  token: typeof window === 'undefined' ? (token || undefined) : undefined,
   perspective: 'published',
 });

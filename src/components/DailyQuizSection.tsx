@@ -3,48 +3,31 @@ import { QUESTION_BANK, type QuizCardData } from '../lib/data';
 import InteractiveQuizCard from './InteractiveQuizCard';
 import { RefreshCw } from 'lucide-react';
 
+const DIFFICULTIES = ['Difficult', 'Medium', 'Easy'] as const;
+
+function getRandomQuiz(difficulty: typeof DIFFICULTIES[number], excludeId?: string): QuizCardData {
+  const pool = QUESTION_BANK.filter((q) => q.difficulty === difficulty && q.id !== excludeId);
+  return pool[Math.floor(Math.random() * pool.length)] || QUESTION_BANK[0];
+}
+
+function getRandomQuizzes(): QuizCardData[] {
+  return DIFFICULTIES.map((diff) => getRandomQuiz(diff));
+}
+
 export default function DailyQuizSection({ initialQuizzes }: { initialQuizzes?: QuizCardData[] }) {
   const [quizzes, setQuizzes] = useState<QuizCardData[]>(() => {
-    if (initialQuizzes && initialQuizzes.length === 3) return initialQuizzes;
-    const difficultPool = QUESTION_BANK.filter((q) => q.difficulty === 'Difficult');
-    const mediumPool = QUESTION_BANK.filter((q) => q.difficulty === 'Medium');
-    const easyPool = QUESTION_BANK.filter((q) => q.difficulty === 'Easy');
-    return [
-      difficultPool[0] || QUESTION_BANK[0],
-      mediumPool[0] || QUESTION_BANK[17],
-      easyPool[0] || QUESTION_BANK[34],
-    ];
+    return initialQuizzes && initialQuizzes.length === 3 ? initialQuizzes : getRandomQuizzes();
   });
 
-  const pickRandomQuizzes = () => {
-    const difficultPool = QUESTION_BANK.filter((q) => q.difficulty === 'Difficult');
-    const mediumPool = QUESTION_BANK.filter((q) => q.difficulty === 'Medium');
-    const easyPool = QUESTION_BANK.filter((q) => q.difficulty === 'Easy');
-
-    const randomDifficult = difficultPool[Math.floor(Math.random() * difficultPool.length)];
-    const randomMedium = mediumPool[Math.floor(Math.random() * mediumPool.length)];
-    const randomEasy = easyPool[Math.floor(Math.random() * easyPool.length)];
-
-    setQuizzes([randomDifficult, randomMedium, randomEasy]);
-  };
+  const pickRandomQuizzes = () => setQuizzes(getRandomQuizzes());
 
   const shuffleCard = (index: number) => {
-    const difficulties: ('Difficult' | 'Medium' | 'Easy')[] = ['Difficult', 'Medium', 'Easy'];
-    const diff = difficulties[index] || quizzes[index]?.difficulty || 'Medium';
-    const currentId = quizzes[index]?.id;
-    const pool = QUESTION_BANK.filter((q) => q.difficulty === diff && q.id !== currentId);
-    if (pool.length > 0) {
-      const nextQuiz = pool[Math.floor(Math.random() * pool.length)];
-      setQuizzes((prev) => {
-        const copy = [...prev];
-        copy[index] = nextQuiz;
-        return copy;
-      });
-    }
+    const diff = DIFFICULTIES[index] || 'Medium';
+    const nextQuiz = getRandomQuiz(diff, quizzes[index]?.id);
+    setQuizzes((prev) => prev.map((q, i) => (i === index ? nextQuiz : q)));
   };
 
   useEffect(() => {
-    // Pick fresh random questions on every visit/refresh
     pickRandomQuizzes();
   }, []);
 
