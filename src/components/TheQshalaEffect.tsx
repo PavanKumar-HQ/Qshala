@@ -13,6 +13,14 @@ interface GalleryPhoto {
 
 const CATEGORIES = ['All Moments', 'Schools', 'Corporate', 'Colleges'] as const;
 
+const CATEGORY_LINKS: Record<string, string> = {
+  School: '/schools',
+  Schools: '/schools',
+  Corporate: '/companies',
+  College: '/colleges',
+  Colleges: '/colleges'
+};
+
 const AUDIENCE_PHOTOS: GalleryPhoto[] = [
   {
     id: 'school-1',
@@ -106,17 +114,18 @@ export default function TheQshalaEffect() {
           })}
         </div>
 
-        {/* Dynamic Curated Photo Gallery - Just Label Bubbles (No Titles) */}
+        {/* Dynamic Curated Photo Gallery - Interactive Clickable Cards */}
         {selectedTag === 'All Moments' ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
           
           {/* Main Large Feature Card */}
-          <motion.div
+          <motion.a
+            href={CATEGORY_LINKS[AUDIENCE_PHOTOS[0].tag] || CATEGORY_LINKS[AUDIENCE_PHOTOS[0].category] || '/services'}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-sm group min-h-[380px] md:min-h-[440px] flex flex-col justify-end"
+            className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-sm hover:shadow-xl group min-h-[380px] md:min-h-[440px] flex flex-col justify-end cursor-pointer block no-underline"
           >
             <img
               src={AUDIENCE_PHOTOS[0].image}
@@ -124,28 +133,35 @@ export default function TheQshalaEffect() {
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             
-            <div className="relative z-10 p-6 md:p-8">
+            <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-xs font-black uppercase font-heading px-3.5 py-1.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
+              <span>Explore Programs</span>
+              <span>&rarr;</span>
+            </span>
+
+            <div className="relative z-10 p-6 md:p-8 flex items-center justify-between">
               <span 
-                className="inline-block px-4 py-1.5 rounded-full text-white text-xs sm:text-sm font-black uppercase font-heading shadow-md"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs sm:text-sm font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
                 style={{ backgroundColor: AUDIENCE_PHOTOS[0].tagColor }}
               >
-                {AUDIENCE_PHOTOS[0].tag}
+                <span>{AUDIENCE_PHOTOS[0].tag}</span>
+                <span className="text-white/90 font-bold">&rarr;</span>
               </span>
             </div>
-          </motion.div>
+          </motion.a>
 
           {/* Right Column Stack (2 cards) */}
           <div className="flex flex-col gap-6">
             {AUDIENCE_PHOTOS.slice(1, 3).map((photo, idx) => (
-              <motion.div
+              <motion.a
                 key={photo.id}
+                href={CATEGORY_LINKS[photo.tag] || CATEGORY_LINKS[photo.category] || '/services'}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 * (idx + 1) }}
-                className="relative rounded-3xl overflow-hidden shadow-sm group min-h-[200px] flex flex-col justify-end flex-1"
+                className="relative rounded-3xl overflow-hidden shadow-sm hover:shadow-xl group min-h-[200px] flex flex-col justify-end flex-1 cursor-pointer block no-underline"
               >
                 <img
                   src={photo.image}
@@ -153,29 +169,36 @@ export default function TheQshalaEffect() {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 
+                <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
+                  <span>Explore</span>
+                  <span>&rarr;</span>
+                </span>
+
                 <div className="relative z-10 p-5">
                   <span 
-                    className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
                     style={{ backgroundColor: photo.tagColor }}
                   >
-                    {photo.tag}
+                    <span>{photo.tag}</span>
+                    <span className="text-white/90 font-bold">&rarr;</span>
                   </span>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
           {/* Bottom Row (2 Equal Width Cards) */}
           {AUDIENCE_PHOTOS.slice(3, 5).map((photo, idx) => (
-            <motion.div
+            <motion.a
               key={photo.id}
+              href={CATEGORY_LINKS[photo.tag] || CATEGORY_LINKS[photo.category] || '/services'}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 * (idx + 3) }}
-              className={`relative rounded-3xl overflow-hidden shadow-sm group min-h-[220px] flex flex-col justify-end ${idx === 0 ? 'md:col-span-1' : 'md:col-span-2'}`}
+              className={`relative rounded-3xl overflow-hidden shadow-sm hover:shadow-xl group min-h-[220px] flex flex-col justify-end cursor-pointer block no-underline ${idx === 0 ? 'md:col-span-1' : 'md:col-span-2'}`}
             >
               <img
                 src={photo.image}
@@ -183,28 +206,35 @@ export default function TheQshalaEffect() {
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               
+              <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
+                <span>Explore</span>
+                <span>&rarr;</span>
+              </span>
+
               <div className="relative z-10 p-5 md:p-6">
                 <span 
-                  className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
                   style={{ backgroundColor: photo.tagColor }}
                 >
-                  {photo.tag}
+                  <span>{photo.tag}</span>
+                  <span className="text-white/90 font-bold">&rarr;</span>
                 </span>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
           {filteredPhotos.map((photo, idx) => (
-            <motion.div
+            <motion.a
               key={photo.id}
+              href={CATEGORY_LINKS[photo.tag] || CATEGORY_LINKS[photo.category] || '/services'}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.08 }}
-              className="relative rounded-3xl overflow-hidden shadow-sm group min-h-[260px] sm:min-h-[300px] flex flex-col justify-end"
+              className="relative rounded-3xl overflow-hidden shadow-sm hover:shadow-xl group min-h-[260px] sm:min-h-[300px] flex flex-col justify-end cursor-pointer block no-underline"
             >
               <img
                 src={photo.image}
@@ -212,17 +242,23 @@ export default function TheQshalaEffect() {
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               
+              <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
+                <span>Explore</span>
+                <span>&rarr;</span>
+              </span>
+
               <div className="relative z-10 p-5 md:p-6">
                 <span 
-                  className="inline-block px-3.5 py-1 rounded-full text-white text-xs font-black uppercase font-heading shadow-md"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
                   style={{ backgroundColor: photo.tagColor }}
                 >
-                  {photo.tag}
+                  <span>{photo.tag}</span>
+                  <span className="text-white/90 font-bold">&rarr;</span>
                 </span>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       )}

@@ -133,14 +133,18 @@ const aboutSchema = {
                   </p>
 
                   {founder.linkedInUrl && (
-                    <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                    <div class="pt-3 flex items-center justify-center sm:justify-start">
                       <a 
                         href={founder.linkedInUrl} 
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5 text-xs font-black text-amber-700 hover:text-amber-800 hover:underline font-heading"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-black uppercase tracking-wider font-heading shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all min-h-[38px] group/btn"
                       >
-                        LinkedIn Profile &rarr;
+                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span>LinkedIn Profile</span>
+                        <span class="text-white/80 group-hover/btn:translate-x-0.5 transition-transform">&rarr;</span>
                       </a>
                     </div>
                   )}
