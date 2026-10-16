@@ -44,14 +44,19 @@ const FAQS = [
   },
 ];
 
-export default function FAQSection() {
+interface Props {
+  items?: Array<{ question: string; answer: string; mascot?: string }>;
+}
+
+export default function FAQSection({ items }: Props = {}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const data = items && items.length > 0 ? items : FAQS;
 
   return (
     <div className="space-y-10 w-full max-w-6xl mx-auto">
       {/* 2-Column Compact Grid (No harsh lines) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
-        {FAQS.map((faq, idx) => {
+        {data.map((faq, idx) => {
           const isOpen = openIdx === idx;
 
           return (

@@ -1,7 +1,11 @@
 ---
 // ClientMarquee.astro — QShala brand-aligned marquee of clients/partners
+import { getPartners } from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
 
-const CLIENTS_ROW1 = [
+const cmsPartners = await getPartners();
+
+const DEFAULT_ROW1 = [
   { name: "Google", category: "Tech", color: "#30B2E7", bg: "#E8F6FD", logo: "google.svg" },
   { name: "HDFC Bank", category: "Finance", color: "#FDB913", bg: "#FFF8E1", logo: "hdfcbank.svg" },
   { name: "Wipro", category: "Tech", color: "#75B543", bg: "#EDF7E5", logo: "wipro.svg" },
@@ -10,7 +14,7 @@ const CLIENTS_ROW1 = [
   { name: "Amazon", category: "E-Commerce", color: "#75B543", bg: "#EDF7E5", logo: "amazon.svg" },
 ];
 
-const CLIENTS_ROW2 = [
+const DEFAULT_ROW2 = [
   { name: "Infosys", category: "Tech", color: "#30B2E7", bg: "#E8F6FD", logo: "infosys.svg" },
   { name: "Netflix", category: "Entertainment", color: "#FDB913", bg: "#FFF8E1", logo: "netflix.svg" },
   { name: "Apple", category: "Consumer Tech", color: "#75B543", bg: "#EDF7E5", logo: "apple.svg" },
@@ -19,9 +23,30 @@ const CLIENTS_ROW2 = [
   { name: "Intel", category: "Hardware", color: "#75B543", bg: "#EDF7E5", logo: "intel.svg" },
 ];
 
-// Triple-duplicate to ensure seamless looping with no gap
-const row1 = [...CLIENTS_ROW1, ...CLIENTS_ROW1, ...CLIENTS_ROW1];
-const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
+// If CMS has custom partners, use them, otherwise fallback to defaults
+const hasCmsPartners = cmsPartners && cmsPartners.length >= 6;
+const activeList1 = hasCmsPartners 
+  ? cmsPartners.slice(0, Math.ceil(cmsPartners.length / 2)).map(p => ({
+      name: p.name,
+      category: p.category || 'Partner',
+      color: "#30B2E7",
+      bg: "#E8F6FD",
+      logoUrl: p.logo ? getImageUrl(p.logo, 200, 100) : `/assets/logos/${p.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`
+    }))
+  : DEFAULT_ROW1.map(p => ({ ...p, logoUrl: `/assets/logos/${p.logo}` }));
+
+const activeList2 = hasCmsPartners 
+  ? cmsPartners.slice(Math.ceil(cmsPartners.length / 2)).map(p => ({
+      name: p.name,
+      category: p.category || 'Partner',
+      color: "#FDB913",
+      bg: "#FFF8E1",
+      logoUrl: p.logo ? getImageUrl(p.logo, 200, 100) : `/assets/logos/${p.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`
+    }))
+  : DEFAULT_ROW2.map(p => ({ ...p, logoUrl: `/assets/logos/${p.logo}` }));
+
+const row1 = [...activeList1, ...activeList1, ...activeList1];
+const row2 = [...activeList2, ...activeList2, ...activeList2];
 ---
 
 <section class="py-12 bg-white overflow-hidden">
@@ -48,7 +73,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
               {client.name[0]}
             </div>
             <img
-              src={`/assets/logos/${client.logo}`}
+              src={client.logoUrl}
               alt={`${client.name} logo`}
               class="client-logo"
               style="opacity: 0; transition: opacity 0.2s;"
@@ -77,7 +102,7 @@ const row2 = [...CLIENTS_ROW2, ...CLIENTS_ROW2, ...CLIENTS_ROW2];
               {client.name[0]}
             </div>
             <img
-              src={`/assets/logos/${client.logo}`}
+              src={client.logoUrl}
               alt={`${client.name} logo`}
               class="client-logo"
               style="opacity: 0; transition: opacity 0.2s;"

@@ -3,6 +3,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
+import { getCuriosityCrew } from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
+
+const crew = await getCuriosityCrew();
+
+const CREW_THEMES: Record<string, { color: string; bg: string }> = {
+  Technology: { color: '#30B2E7', bg: '#E8F6FD' },
+  Curriculum: { color: '#75B543', bg: '#EDF7E5' },
+  Partnerships: { color: '#EC4899', bg: '#FCE7F3' },
+  Corporate: { color: '#75B543', bg: '#EDF7E5' },
+  Design: { color: '#FDB913', bg: '#FFF8E1' },
+};
+
+const formattedCrew = crew.map(c => {
+  const cat = c.category || 'General';
+  const theme = CREW_THEMES[cat] || { color: '#FDB913', bg: '#FFF8E1' };
+  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(c.name)}&background=75B543&color=fff&size=300`;
+
+  return {
+    id: c._id || c.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+    name: c.name,
+    role: c.role,
+    category: cat,
+    bio: c.bio || '',
+    image: c.image ? getImageUrl(c.image, 300, 300) : fallbackAvatar,
+    variant: (c.mascotVariant || 'curious') as any,
+    color: theme.color,
+    bg: theme.bg,
+    tag: cat
+  };
+});
+
 const teamSchema = {
   "@type": "AboutPage",
   "@id": "https://qshala.vercel.app/team#page",
@@ -28,7 +60,7 @@ const teamSchema = {
 
   <main id="main-content" class="flex-grow pt-header-safe pb-24 bg-[#FFFDF5] w-full">
     <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 py-4">
-      <InteractiveTeamShowcase client:load />
+      <InteractiveTeamShowcase client:load members={formattedCrew} />
     </div>
   </main>
 

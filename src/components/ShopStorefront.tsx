@@ -137,15 +137,21 @@ const PRODUCTS: ProductItem[] = [
 
 const CATEGORIES = ['All', 'Books', 'Games', 'Learning Kits', 'Stationery', 'QShala Merch'] as const;
 
-export default function ShopStorefront() {
+interface ShopStorefrontProps {
+  initialProducts?: ProductItem[];
+}
+
+export default function ShopStorefront({ initialProducts }: ShopStorefrontProps = {}) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [cart, setCart] = useState<{ product: ProductItem; quantity: number }[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  const productList = initialProducts && initialProducts.length > 0 ? initialProducts : PRODUCTS;
+
   const filteredProducts = selectedCategory === 'All'
-    ? PRODUCTS
-    : PRODUCTS.filter((p) => p.category === selectedCategory);
+    ? productList
+    : productList.filter((p) => p.category === selectedCategory);
 
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotalPrice = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);

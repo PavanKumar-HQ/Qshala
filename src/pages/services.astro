@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getAllServicePages } from '../lib/sanity/api';
 
-const SERVICE_MODULES = [
+const cmsServices = await getAllServicePages();
+
+const DEFAULT_SERVICE_MODULES = [
   {
     id: "schools",
     href: "/schools",
@@ -71,6 +74,18 @@ const SERVICE_MODULES = [
     bgTint: "#FFF8E1"
   }
 ];
+
+const SERVICE_MODULES = DEFAULT_SERVICE_MODULES.map((def) => {
+  const match = cmsServices.find((s) => s.slug === def.id || (typeof s.slug === 'object' && (s.slug as any).current === def.id));
+  if (!match) return def;
+  return {
+    ...def,
+    title: match.title || def.title,
+    badge: match.badge || def.badge,
+    description: match.intro || def.description,
+    mascotVariant: (match.mascotVariant || def.mascotVariant) as any,
+  };
+});
 
 const servicesSchema = {
   "@type": "ItemList",

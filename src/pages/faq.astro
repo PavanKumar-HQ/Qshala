@@ -2,88 +2,40 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getFAQs } from '../lib/sanity/api';
 
-const ALL_FAQS = [
-  {
-    category: "General & Philosophy",
-    items: [
-      {
-        question: "What makes QShala different from traditional quiz competitions?",
-        answer: "Traditional quizzes test rote memorization of static trivia. QShala focuses on Socratic storytelling, inquiry-led thinking, and 'Why?' questions. We turn learning into an active discovery quest rather than a memory test."
-      },
-      {
-        question: "Are QShala sessions conducted online, in-person, or hybrid?",
-        answer: "Both! We host live in-person auditoriums and stage championships, as well as hybrid and fully remote interactive sessions with proprietary digital buzzers and real-time leaderboards."
-      },
-      {
-        question: "Who founded QShala and where is the headquarters located?",
-        answer: "QShala was founded in 2014 by national quizmasters Sachin Ravi and Raghav Chakravarthy. Our headquarters is in JP Nagar, Bengaluru, and we conduct programs across India and globally."
-      }
-    ]
-  },
-  {
-    category: "For Schools & K-12",
-    items: [
-      {
-        question: "How do QShala Quriosity Clubs fit into a school timetable?",
-        answer: "QShala Quriosity Clubs are designed as 40 to 60-minute weekly timetabled modules that easily complement or replace standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12."
-      },
-      {
-        question: "What year-long programs do you offer for schools?",
-        answer: "We offer four distinct year-long curriculum programs: 1. Weekly Quriosity Clubs, 2. Financial Literacy for Kids, 3. Public Speaking & Socratic Debate, and 4. Current Affairs Storytelling, along with inter-school championships."
-      },
-      {
-        question: "What age groups are school programs designed for?",
-        answer: "We have age-tailored tracks for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers)."
-      }
-    ]
-  },
-  {
-    category: "For Corporates & Teams",
-    items: [
-      {
-        question: "How do QShala corporate trivia sessions help reduce attrition and build connection?",
-        answer: "Shared play builds psychological safety and cross-team camaraderie. Our low-pressure, high-fun trivia tournaments create environments where colleagues connect deeply beyond day-to-day work tasks."
-      },
-      {
-        question: "Can QShala customize trivia around company history and product onboarding?",
-        answer: "Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding quest cards tailored specifically to your corporate culture, values, and compliance lore."
-      },
-      {
-        question: "What group sizes can you accommodate for corporate offsites?",
-        answer: "We have hosted offsite sessions for intimate leadership teams of 15 to 30 people, all the way to massive annual townhalls with 3,000+ hybrid employees across multiple cities."
-      }
-    ]
-  },
-  {
-    category: "Campus & Community Quizzes",
-    items: [
-      {
-        question: "How do you handle collegiate quiz festivals and fests?",
-        answer: "We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India's top colleges."
-      },
-      {
-        question: "Can we host a family or apartment complex quiz night?",
-        answer: "Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams."
-      }
-    ]
+const faqs = await getFAQs();
+
+// Group by category dynamically preserving categories
+const categoryMap = new Map<string, { question: string; answer: string }[]>();
+faqs.forEach(faq => {
+  const cat = faq.category || 'General';
+  if (!categoryMap.has(cat)) {
+    categoryMap.set(cat, []);
   }
-];
+  categoryMap.get(cat)!.push({
+    question: faq.question,
+    answer: faq.answer
+  });
+});
+
+const groupedFaqs = Array.from(categoryMap.entries()).map(([category, items]) => ({
+  category,
+  items
+}));
 
 const faqSchema = {
   "@type": "FAQPage",
   "@id": "https://qshala.vercel.app/faq#page",
   "name": "QShala Frequently Asked Questions",
-  "mainEntity": ALL_FAQS.flatMap(group => 
-    group.items.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  )
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
 };
 ---
 
@@ -116,7 +68,7 @@ const faqSchema = {
 
     <!-- Categorized FAQ Groups -->
     <div class="space-y-12">
-      {ALL_FAQS.map((group) => (
+      {groupedFaqs.map((group) => (
         <div class="space-y-6">
           <div class="border-b border-slate-200 pb-2">
             <h2 class="text-2xl font-black text-slate-900 font-heading">

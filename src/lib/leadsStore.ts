@@ -12,7 +12,7 @@ export interface BookingLead {
   createdAt: string;
 }
 
-export const INITIAL_LEADS: BookingLead[] = [
+const INITIAL_LEADS: BookingLead[] = [
   {
     id: 'BK-101',
     type: 'quiz_booking',

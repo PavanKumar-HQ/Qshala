@@ -20,7 +20,7 @@ import {
   Check
 } from 'lucide-react';
 import {
-  getUpcomingEvents,
+  getLocalUpcomingEvents,
   saveUpcomingEvents,
   CATEGORY_OPTIONS,
   CATEGORY_BADGES,
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    setEvents(getUpcomingEvents());
+    setEvents(getLocalUpcomingEvents());
     setBookings(getStoredLeads());
     const unsubLeads = onLeadsChange((updatedLeads) => {
       setBookings(updatedLeads);

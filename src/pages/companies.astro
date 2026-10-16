@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getServicePage } from '../lib/sanity/api';
 
-const CORPORATE_OFFERINGS = [
+const pageData = await getServicePage('companies');
+
+const CORPORATE_OFFERINGS = pageData.offerings || [
   {
     title: "Team Quizzes",
     desc: "Planning an offsite or annual day? A quiz built around your team, or around your company's history, values and products.",
@@ -32,12 +35,17 @@ const CORPORATE_OFFERINGS = [
   }
 ];
 
+const badge = pageData.badge || "Companies";
+const headline = pageData.headline || "Quriosity That Brings Your Team Together.";
+const intro = pageData.intro || "Offsites, onboarding days, annual days, Friday evenings. We turn them into something your team talks about afterwards.";
+const mascotVariant = (pageData.mascotVariant || "professional") as any;
+
 const companyServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/companies#service",
-  "name": "Quriosity That Brings Your Team Together",
+  "name": headline,
   "serviceType": "Corporate Offsites, Team Building & Gamified Training",
-  "description": "Offsites, onboarding days, annual days, Friday evenings. We turn them into something your team talks about afterwards.",
+  "description": intro,
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -45,12 +53,12 @@ const companyServiceSchema = {
 ---
 
 <BaseLayout 
-  title="Companies | Quriosity That Brings Your Team Together | QShala"
-  description="Offsites, onboarding days, annual days, Friday evenings. We turn them into something your team talks about afterwards."
+  title={`${badge} | ${headline} | QShala`}
+  description={intro}
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "Companies", item: "/companies" }
+    { name: badge, item: "/companies" }
   ]}
   schema={companyServiceSchema}
 >
@@ -62,18 +70,18 @@ const companyServiceSchema = {
       <!-- Hero Section -->
       <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
         <span class="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Companies
+          {badge}
         </span>
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          Quriosity That Brings Your Team Together.
+          {headline}
         </h1>
         <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-          Offsites, onboarding days, annual days, Friday evenings. We turn them into something your team talks about afterwards.
+          {intro}
         </p>
 
         <!-- Mascot Bubble -->
         <div class="pt-4 flex justify-center">
-          <QTMascot client:visible variant="professional" size="lg" badgeText="Building Teams" />
+          <QTMascot client:visible variant={mascotVariant} size="lg" badgeText="Building Teams" />
         </div>
       </div>
 

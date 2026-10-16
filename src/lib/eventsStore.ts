@@ -88,7 +88,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
 const STORAGE_KEY = 'qshala_upcoming_events_v3';
 const EVENT_NAME = 'qshala_events_updated';
 
-export function getUpcomingEvents(): UpcomingEvent[] {
+export function getLocalUpcomingEvents(): UpcomingEvent[] {
   if (typeof window === 'undefined') {
     return DEFAULT_EVENTS;
   }
@@ -125,13 +125,13 @@ export function onUpcomingEventsChange(callback: (events: UpcomingEvent[]) => vo
     if (custom.detail) {
       callback(custom.detail);
     } else {
-      callback(getUpcomingEvents());
+      callback(getLocalUpcomingEvents());
     }
   };
   window.addEventListener(EVENT_NAME, handler);
   window.addEventListener('storage', (e) => {
     if (e.key === STORAGE_KEY) {
-      callback(getUpcomingEvents());
+      callback(getLocalUpcomingEvents());
     }
   });
   return () => {

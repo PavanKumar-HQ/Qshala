@@ -3,8 +3,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
-import BlogShowcase from '../components/BlogShowcase';
+import BlogShowcase, { type BlogPost } from '../components/BlogShowcase';
 import NewsletterSubscription from '../components/NewsletterSubscription';
+import { getPosts } from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
+
+const cmsPosts = await getPosts();
+
+const DEFAULT_POST_IMAGE = 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';
+
+function resolvePostImage(p: any): string {
+  if (p.mainImage) return getImageUrl(p.mainImage, 800, 500);
+  const firstGallery = p.gallery?.[0];
+  if (firstGallery?.url) return firstGallery.url;
+  if (firstGallery?.asset) return getImageUrl(firstGallery, 800, 500);
+  return DEFAULT_POST_IMAGE;
+}
+
+const formattedPosts: BlogPost[] = cmsPosts.map(p => ({
+  slug: typeof p.slug === 'string' ? p.slug : p.slug?.current || '',
+  title: p.title,
+  category: (p.category === 'Events' ? 'Events' : 'Blog') as any,
+  readTime: p.readTime || '5 min read',
+  summary: p.summary || '',
+  image: resolvePostImage(p),
+  date: p.publishedAt ? new Date(p.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Recent',
+  photoCount: p.gallery ? p.gallery.length : undefined
+}));
 
 const blogSchema = {
   "@type": "CollectionPage",
@@ -53,7 +78,7 @@ const blogSchema = {
 
     <!-- Interactive Blog & Event Reports Showcase -->
     <div class="w-full relative clear-both">
-      <BlogShowcase client:load />
+      <BlogShowcase client:load initialPosts={formattedPosts} />
     </div>
 
     <!-- Newsletter Digest Card -->

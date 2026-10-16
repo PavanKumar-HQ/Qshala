@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getServicePage } from '../lib/sanity/api';
 
-const COMMUNITY_OFFERINGS = [
+const pageData = await getServicePage('communities');
+
+const COMMUNITY_OFFERINGS = pageData.offerings || [
   {
     title: "Apartments & Neighbourhoods",
     desc: "A quiz night for your housing society, with teams and questions for every age.",
@@ -38,12 +41,17 @@ const COMMUNITY_OFFERINGS = [
   }
 ];
 
+const badge = pageData.badge || "Communities & Families";
+const headline = pageData.headline || "Host a Quiz at Your Next Gathering!";
+const intro = pageData.intro || "At home, in your apartment building, at a party. If there's a crowd and a reason to celebrate, we'll bring the questions. All ages welcome.";
+const mascotVariant = (pageData.mascotVariant || "curious") as any;
+
 const communityServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/communities#service",
-  "name": "Host a Quiz at Your Next Gathering",
+  "name": headline,
   "serviceType": "Community Quizzing, Society Tournaments & Family Game Nights",
-  "description": "At home, in your apartment building, at a party. If there's a crowd and a reason to celebrate, we'll bring the questions. All ages welcome.",
+  "description": intro,
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -51,12 +59,12 @@ const communityServiceSchema = {
 ---
 
 <BaseLayout 
-  title="Communities & Families | Host a Quiz at Your Next Gathering! | QShala"
-  description="At home, in your apartment building, at a party. If there's a crowd and a reason to celebrate, we'll bring the questions. All ages welcome."
+  title={`${badge} | ${headline} | QShala`}
+  description={intro}
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "Communities", item: "/communities" }
+    { name: badge, item: "/communities" }
   ]}
   schema={communityServiceSchema}
 >
@@ -68,18 +76,18 @@ const communityServiceSchema = {
       <!-- Hero Section -->
       <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
         <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Communities &amp; Families
+          {badge}
         </span>
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          Host a Quiz at Your Next Gathering!
+          {headline}
         </h1>
         <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-          At home, in your apartment building, at a party. If there's a crowd and a reason to celebrate, we'll bring the questions. All ages welcome.
+          {intro}
         </p>
 
         <!-- Mascot Bubble -->
         <div class="pt-4 flex justify-center">
-          <QTMascot client:visible variant="curious" size="lg" badgeText="All Ages Welcome!" />
+          <QTMascot client:visible variant={mascotVariant} size="lg" badgeText="All Ages Welcome!" />
         </div>
       </div>
 

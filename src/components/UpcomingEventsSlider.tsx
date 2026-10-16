@@ -1,21 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { 
-  getUpcomingEvents, 
+  getLocalUpcomingEvents, 
   onUpcomingEventsChange, 
   CATEGORY_BADGES, 
   type UpcomingEvent 
 } from '../lib/eventsStore';
 
-export default function UpcomingEventsSlider() {
-  const [events, setEvents] = useState<UpcomingEvent[]>(getUpcomingEvents);
+export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?: UpcomingEvent[] } = {}) {
+  const [events, setEvents] = useState<UpcomingEvent[]>(() => {
+    return initialEvents && initialEvents.length > 0 ? initialEvents : getLocalUpcomingEvents();
+  });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initial load
-    setEvents(getUpcomingEvents());
+    if (!initialEvents || initialEvents.length === 0) {
+      setEvents(getLocalUpcomingEvents());
+    }
 
     // Subscribe to admin updates
     const unsubscribe = onUpcomingEventsChange((updatedEvents) => {
@@ -23,7 +26,7 @@ export default function UpcomingEventsSlider() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [initialEvents]);
 
   const checkScroll = () => {
     const el = scrollContainerRef.current;

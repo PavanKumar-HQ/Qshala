@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { CASE_STUDIES_DATA } from '../lib/data';
+import { getAllCaseStudies } from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
+
+const caseStudies = await getAllCaseStudies();
 
 const CASE_STUDY_IMAGES: Record<string, string> = {
   'dps-bangalore-quriosity-league': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
@@ -28,7 +31,7 @@ const caseStudiesSchema = {
   "@type": "ItemList",
   "@id": "https://qshala.vercel.app/case-studies#list",
   "name": "QShala Learning Impact & Partner Case Studies",
-  "itemListElement": CASE_STUDIES_DATA.map((study, idx) => ({
+  "itemListElement": caseStudies.map((study, idx) => ({
     "@type": "ListItem",
     "position": idx + 1,
     "item": {
@@ -112,13 +115,14 @@ const caseStudiesSchema = {
 
     <!-- Blog-style 2-Column Wide Image Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-      {CASE_STUDIES_DATA.map((cs) => {
-        const image = CASE_STUDY_IMAGES[cs.slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
+      {caseStudies.map((cs) => {
+        const slug = typeof cs.slug === 'string' ? cs.slug : cs.slug?.current || '';
+        const image = (cs.coverImage ? getImageUrl(cs.coverImage, 800, 600) : null) || CASE_STUDY_IMAGES[slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
         const tagColor = CATEGORY_COLORS[cs.clientType] || '#30B2E7';
 
         return (
           <a 
-            href={`/blog/${cs.slug}`}
+            href={`/blog/${slug}`}
             data-category={cs.clientType} 
             class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer block"
             aria-label={`Read event story and view photos for ${cs.title}`}

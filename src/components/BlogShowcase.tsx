@@ -125,12 +125,18 @@ const FILTERS = [
   { id: 'Events', label: 'Event Photos' },
 ] as const;
 
-export default function BlogShowcase() {
+interface BlogShowcaseProps {
+  initialPosts?: BlogPost[];
+}
+
+export default function BlogShowcase({ initialPosts }: BlogShowcaseProps = {}) {
   const [filter, setFilter] = useState<'All' | 'Blog' | 'Events'>('All');
 
+  const sourcePosts = initialPosts && initialPosts.length > 0 ? initialPosts : ALL_BLOG_POSTS;
+
   const visiblePosts = filter === 'All'
-    ? ALL_BLOG_POSTS
-    : ALL_BLOG_POSTS.filter((p) => p.category === filter);
+    ? sourcePosts
+    : sourcePosts.filter((p) => p.category === filter);
 
   return (
     <div className="w-full space-y-8">

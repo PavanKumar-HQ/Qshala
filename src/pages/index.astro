@@ -13,75 +13,67 @@ import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
 import NewsletterSubscription from '../components/NewsletterSubscription';
-import { CASE_STUDIES_DATA } from '../lib/data';
+import { 
+  getHomePage, 
+  getSiteSettings, 
+  getFAQs, 
+  getAllCaseStudies,
+  getUpcomingEvents
+} from '../lib/sanity/api';
+
+const homeData = await getHomePage();
+const siteSettings = await getSiteSettings();
+const faqs = await getFAQs(true);
+const caseStudies = await getAllCaseStudies();
+const cmsEvents = await getUpcomingEvents();
+
+const formattedEvents = cmsEvents.map((ev, idx) => ({
+  id: ev._id || ev.id || `event-${idx}`,
+  title: ev.title,
+  category: ev.category,
+  date: ev.date,
+  desc: ev.desc || '',
+  buttonType: ev.buttonType || 'none',
+  buttonText: ev.buttonText || '',
+  buttonUrl: ev.buttonUrl || ''
+}));
+
+const heroBadge = homeData.heroBadge || "India's Quriosity Platform";
+const heroIntro = homeData.heroIntro || "QShala is India's premier curiosity platform and live quizmaster organization. Partnering with 250+ K-12 schools and 80+ top corporates to replace rote memorization with Socratic questioning, real-world discovery quests, and interactive buzzer championships.";
+const heroCtaLabel = homeData.heroCta?.label || "Book a Quriosity Experience →";
+const heroCtaUrl = homeData.heroCta?.url || "/book-a-quiz";
+
+const eventsHeading = homeData.eventsHeading || "Upcoming Events";
+const eventsSubtitle = homeData.eventsSubtitle || "Join us for live quizzes, offline tournaments, and community events.";
+
+const gameBadge = homeData.gameBadge || "Daily Game";
+const gameHeading = homeData.gameHeading || "Test Your Quriosity";
+const gameSubtitle = homeData.gameSubtitle || "Pick an answer below to trigger a celebration!";
+
+const storeBadge = homeData.storeBadge || "Quriosity Store";
+const storeHeading = homeData.storeHeading || "Books, Games & Thinking Kits.";
+const storeSubtitle = homeData.storeSubtitle || "Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.";
+
+const pageTitle = homeData.seo?.metaTitle || siteSettings.defaultSeo?.metaTitle || "QShala | Quizmaster in India & Bengaluru Quizzing — Questions • Quriosity • Quests";
+const pageDesc = homeData.seo?.metaDescription || siteSettings.defaultSeo?.metaDescription || "India's premier curiosity and live quiz platform. Replacing rote learning with Socratic wonder across 250+ partner schools and 80+ top corporates in Bengaluru and across India.";
 
 const faqSchema = {
   "@type": "FAQPage",
   "@id": "https://qshala.vercel.app/#faq",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What makes QShala different from traditional quiz competitions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Traditional quizzes test rote memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and \"Why?\" questions to turn learning into an active discovery quest."
-      }
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.answer,
     },
-    {
-      "@type": "Question",
-      "name": "Are QShala sessions conducted online or in-person?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both! We host live in-person workshops, auditoriums, and stage championships, as well as hybrid and fully remote sessions with digital buzzers and real-time leaderboards."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do QShala Quriosity Clubs fit into a school timetable?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "QShala Quriosity Clubs are 40 to 60-minute weekly modules that easily complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do corporate trivia sessions improve team bonding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Shared play creates psychological safety. Our low-pressure, high-fun trivia tournaments bond cross-functional teams and boost workplace connection across hybrid offices."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can QShala customize trivia around our company history and products?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What formats are offered for college campus fests and hackathons?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India's top colleges."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can families or community groups host a private quiz or game night?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams."
-      }
-    }
-  ]
+  })),
 };
 ---
 
 <BaseLayout 
-  title="QShala | Quizmaster in India & Bengaluru Quizzing — Questions • Quriosity • Quests"
-  description="India's premier curiosity and live quiz platform. Replacing rote learning with Socratic wonder across 250+ partner schools and 80+ top corporates in Bengaluru and across India."
+  title={pageTitle}
+  description={pageDesc}
   schema={faqSchema}
 >
   <Navbar />
@@ -104,7 +96,7 @@ const faqSchema = {
             <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
               <span class="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
               <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
-                India&apos;s Quriosity Platform
+                {heroBadge}
               </span>
             </div>
 
@@ -113,15 +105,15 @@ const faqSchema = {
             </div>
 
             <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-xl leading-relaxed">
-              QShala is India&apos;s premier curiosity platform and live quizmaster organization. Partnering with 250+ K-12 schools and 80+ top corporates to replace rote memorization with Socratic questioning, real-world discovery quests, and interactive buzzer championships.
+              {heroIntro}
             </p>
 
             <div class="pt-2 flex flex-wrap items-center gap-4">
               <a
-                href="/book-a-quiz"
+                href={heroCtaUrl}
                 class="w-full sm:w-auto text-center justify-center px-6 sm:px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm sm:text-base shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 font-heading"
               >
-                Book a Quriosity Experience →
+                {heroCtaLabel}
               </a>
             </div>
           </div>
@@ -141,16 +133,16 @@ const faqSchema = {
       <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12">
         <div class="text-center mb-10 flex flex-col items-center">
           <div class="inline-flex items-center justify-center gap-3 sm:gap-4 mb-3 flex-wrap">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading text-center">Upcoming Events</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading text-center">{eventsHeading}</h2>
             <div class="shrink-0">
                <QTMascot client:visible variant="happy" size="sm" className="sm:hidden" />
                <QTMascot client:visible variant="happy" size="md" className="hidden sm:inline-flex" />
             </div>
           </div>
-          <p class="text-slate-600 font-semibold text-sm sm:text-base">Join us for live quizzes, offline tournaments, and community events.</p>
+          <p class="text-slate-600 font-semibold text-sm sm:text-base">{eventsSubtitle}</p>
         </div>
         
-        <UpcomingEventsSlider client:load />
+        <UpcomingEventsSlider client:load initialEvents={formattedEvents} />
       </div>
     </section>
 
@@ -169,10 +161,10 @@ const faqSchema = {
       <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12">
         <div class="text-center max-w-xl mx-auto mb-12">
           <span class="px-4 py-1.5 rounded-full bg-[#75B543]/15 text-[#75B543] font-black text-xs uppercase font-heading">
-            Daily Game
+            {gameBadge}
           </span>
-          <h3 class="text-4xl font-black text-slate-900 mt-4 font-heading">Test Your Quriosity</h3>
-          <p class="text-sm font-semibold text-slate-600 mt-2">Pick an answer below to trigger a celebration!</p>
+          <h3 class="text-4xl font-black text-slate-900 mt-4 font-heading">{gameHeading}</h3>
+          <p class="text-sm font-semibold text-slate-600 mt-2">{gameSubtitle}</p>
         </div>
 
         <DailyQuizSection client:load />
@@ -186,13 +178,13 @@ const faqSchema = {
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div class="space-y-2">
             <span class="inline-block px-3.5 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading shadow-xs">
-              Quriosity Store
+              {storeBadge}
             </span>
             <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-              Books, Games &amp; Thinking Kits.
+              {storeHeading}
             </h2>
             <p class="text-slate-600 font-semibold text-sm sm:text-base max-w-xl">
-              Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.
+              {storeSubtitle}
             </p>
           </div>
           
@@ -357,7 +349,7 @@ const faqSchema = {
           </a>
         </div>
 
-        <InteractiveCaseStudiesShowcase caseStudies={CASE_STUDIES_DATA} client:visible />
+        <InteractiveCaseStudiesShowcase caseStudies={caseStudies as any} client:visible />
       </div>
     </section>
 
@@ -375,7 +367,7 @@ const faqSchema = {
           </span>
           <h2 class="text-4xl md:text-5xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
         </div>
-        <FAQSection client:load />
+        <FAQSection items={faqs} client:load />
       </div>
     </section>
   </main>

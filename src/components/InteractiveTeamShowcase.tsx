@@ -78,8 +78,13 @@ const CREW: TeamMember[] = [
   }
 ];
 
-export default function InteractiveTeamShowcase() {
-  const sortedCrew = [...CREW].sort((a, b) => a.name.localeCompare(b.name));
+interface Props {
+  members?: any[];
+}
+
+export default function InteractiveTeamShowcase({ members }: Props = {}) {
+  const sourceCrew = members && members.length > 0 ? members : CREW;
+  const sortedCrew = [...sourceCrew].sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="space-y-8 sm:space-y-10 w-full">

@@ -1,16 +1,15 @@
 ---
-// Pure static HTML Header component for maximum performance with active route highlighting
-const pathname = Astro.url.pathname;
+import { getNavigation, getSiteSettings } from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
 
-const NAV_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Store', href: '/shop' },
-  { name: 'Blog & Events', href: '/blog' },
-  { name: 'Contact', href: '/contact' },
-];
+const pathname = Astro.url.pathname;
+const navData = await getNavigation();
+const siteSettings = await getSiteSettings();
+
+const NAV_LINKS = navData.links;
+const logoUrl = getImageUrl(siteSettings.logo, '/assets/logos/QShala%20Logo%201.svg');
+const ctaLabel = navData.ctaButton?.label || 'Get in Touch';
+const ctaUrl = navData.ctaButton?.url || '/contact';
 
 const isLinkActive = (href: string) => {
   if (href === '/') return pathname === '/' || pathname === '';
@@ -26,8 +25,8 @@ const isLinkActive = (href: string) => {
     <!-- Official QShala SVG Logo -->
     <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="QShala Home">
       <img
-        src="/assets/logos/QShala%20Logo%201.svg"
-        alt="QShala Logo"
+        src={logoUrl}
+        alt={`${siteSettings.brandName} Logo`}
         width="140"
         height="36"
         class="h-8 sm:h-9 w-auto object-contain hover:scale-105 transition-transform duration-300"
@@ -60,11 +59,11 @@ const isLinkActive = (href: string) => {
     <!-- Action CTA -->
     <div class="hidden lg:flex items-center gap-3">
       <a
-        href="/contact"
+        href={ctaUrl}
         data-astro-prefetch="hover"
         class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all font-heading"
       >
-        Get in Touch
+        {ctaLabel}
       </a>
     </div>
 
@@ -109,10 +108,10 @@ const isLinkActive = (href: string) => {
       })}
 
       <a
-        href="/contact"
+        href={ctaUrl}
         class="mt-3 text-center py-3.5 min-h-[44px] rounded-2xl bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black shadow-sm uppercase tracking-wider text-xs font-heading flex items-center justify-center"
       >
-        Get in Touch &rarr;
+        {ctaLabel} &rarr;
       </a>
     </div>
   </div>

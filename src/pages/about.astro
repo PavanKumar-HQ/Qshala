@@ -4,63 +4,27 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTAnimatedPlayer from '../components/QTAnimatedPlayer';
 import InteractiveTeamShowcase from '../components/InteractiveTeamShowcase';
+import { 
+  getAboutPage, 
+  getCoFounders, 
+  getAdvisors, 
+  getCuriosityCrew 
+} from '../lib/sanity/api';
+import { getImageUrl } from '../lib/sanity/image';
 
-const INVESTORS_ADVISORS = [
-  {
-    name: "Nithin Kamath",
-    role: "Co-Founder & CEO, Zerodha",
-    company: "Zerodha",
-    color: "#387ED1",
-    badge: "Angel Backer",
-    logo: "/assets/logos/zerodha.svg"
-  },
-  {
-    name: "Kalyan Banerjee",
-    role: "Co-Founder, Mindtree",
-    company: "Mindtree",
-    color: "#FDB913",
-    badge: "Advisor & Angel",
-    logo: "/assets/logos/mindtree.svg"
-  },
-  {
-    name: "Preeti Sawhney",
-    role: "Former Director, Lowe Lintas",
-    company: "Lowe Lintas",
-    color: "#75B543",
-    badge: "Strategic Advisor",
-    logo: "/assets/logos/lowelintas.webp"
-  },
-  {
-    name: "Sanjay Tambwekar",
-    role: "CTO, Qwikcilver",
-    company: "Qwikcilver",
-    color: "#9333EA",
-    badge: "Angel Backer",
-    logo: "/assets/logos/qwikcilver.svg"
-  },
-  {
-    name: "Suresh Kumar Pinglay",
-    role: "Former VP, Oracle India",
-    company: "Oracle India",
-    color: "#F80000",
-    badge: "Strategic Advisor",
-    logo: "/assets/logos/oracle.svg"
-  },
-  {
-    name: "Chetan Vinchhi",
-    role: "India Head, Uptycs",
-    company: "Uptycs",
-    color: "#30B2E7",
-    badge: "Angel Backer",
-    logo: "/assets/logos/uptycs.webp"
-  }
-];
+const aboutData = await getAboutPage();
+const coFounders = await getCoFounders();
+const advisors = await getAdvisors();
+const crew = await getCuriosityCrew();
+
+const pageTitle = aboutData.seo?.metaTitle || "About Us — Our Story & Mission | QShala India";
+const pageDesc = aboutData.seo?.metaDescription || "Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by top leaders.";
 
 const aboutSchema = {
   "@type": "AboutPage",
   "@id": "https://qshala.vercel.app/about#page",
   "name": "About QShala — Our Story, Founders & Mission",
-  "description": "Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by Nithin Kamath and Kalyan Banerjee.",
+  "description": pageDesc,
   "mainEntity": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -68,8 +32,8 @@ const aboutSchema = {
 ---
 
 <BaseLayout 
-  title="About Us — Our Story & Mission | QShala India"
-  description="Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by top leaders."
+  title={pageTitle}
+  description={pageDesc}
   pageType="AboutPage"
   breadcrumbs={[
     { name: "Home", item: "/" },
@@ -92,16 +56,16 @@ const aboutSchema = {
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
             <span class="w-2.5 h-2.5 rounded-full bg-[#FDB913] animate-ping"></span>
             <span class="text-xs font-black uppercase tracking-wider font-heading text-slate-800">
-              Our Story
+              {aboutData.heroBadge || "Our Story"}
             </span>
           </div>
 
           <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-            We Believe <span class="text-[#30B2E7]">Curiosity</span> is the Greatest Superpower.
+            {aboutData.heroHeading || "We Believe Curiosity is the Greatest Superpower."}
           </h1>
 
           <p class="text-slate-700 text-base sm:text-lg font-semibold max-w-3xl mx-auto leading-relaxed pt-2">
-            Founded in 2014 by national quizmasters Sachin Ravi and Raghav Chakravarthy, QShala began with a singular conviction: education should cultivate thinkers who ask "Why?", not just memorizers who repeat "What". Over the past decade, we have engaged over 1,000 institutions across Bengaluru, Mumbai, Delhi NCR, and all of India with Socratic quests and live discovery experiences.
+            {aboutData.heroIntro || "Founded in 2014 by national quizmasters Sachin Ravi and Raghav Chakravarthy, QShala began with a singular conviction: education should cultivate thinkers who ask \"Why?\", not just memorizers who repeat \"What\"."}
           </p>
         </div>
       </div>
@@ -117,103 +81,73 @@ const aboutSchema = {
               Est. 2014 • The Co-Founders
             </span>
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
-              The Minds Behind QShala.
+              {aboutData.foundersHeading || "The Minds Behind QShala."}
             </h2>
           </div>
           <p class="text-slate-600 font-semibold text-sm sm:text-base max-w-md">
-            Two national quizmasters on a singular mission to transform passive rote memorization into active inquiry and wonder.
+            {aboutData.foundersSubtitle || "Two national quizmasters on a singular mission to transform passive rote memorization into active inquiry and wonder."}
           </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-          <!-- Sachin Ravi -->
-          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">
-            <div class="relative shrink-0">
-              <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-3 border-amber-300 shadow-md bg-amber-50 group-hover:scale-[1.02] transition-transform duration-300">
-                <img 
-                  src="/assets/team/sachin-ravi.jpg" 
-                  alt="Sachin Ravi - Co-Founder & Chief Quizmaster" 
-                  class="w-full h-full object-cover object-center" 
-                  loading="lazy"
-                />
+          {coFounders.map((founder, idx) => {
+            const isFirst = idx === 0;
+            const borderColor = isFirst ? 'border-amber-300' : 'border-sky-300';
+            const badgeBg = isFirst ? 'bg-[#FDB913] text-slate-950' : 'bg-[#30B2E7] text-white';
+            const imgPath = founder.imageUrl || getImageUrl(founder.image, isFirst ? '/assets/team/sachin-ravi.jpg' : '/assets/team/raghav-chakravarthy.jpg');
+
+            return (
+              <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">
+                <div class="relative shrink-0">
+                  <div class={`w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-3 ${borderColor} shadow-md bg-amber-50 group-hover:scale-[1.02] transition-transform duration-300`}>
+                    <img 
+                      src={imgPath} 
+                      alt={`${founder.name} - ${founder.role}`} 
+                      class="w-full h-full object-cover object-center" 
+                      loading="lazy"
+                    />
+                  </div>
+                  <span class={`absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full ${badgeBg} font-black text-[11px] uppercase tracking-wider font-heading shadow-sm whitespace-nowrap`}>
+                    Co-Founder
+                  </span>
+                </div>
+
+                <div class="space-y-3 flex-1 text-center sm:text-left pt-2 sm:pt-0">
+                  <div>
+                    <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">{founder.name}</h3>
+                    <p class="text-xs font-black uppercase tracking-wider text-amber-600 font-heading mt-0.5">
+                      {founder.role}
+                    </p>
+                  </div>
+
+                  {founder.coFounderBadge && (
+                    <div class="flex flex-wrap gap-1.5 justify-center sm:justify-start">
+                      <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">
+                        {founder.coFounderBadge}
+                      </span>
+                    </div>
+                  )}
+
+                  <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
+                    {founder.bio}
+                  </p>
+
+                  {founder.linkedInUrl && (
+                    <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                      <a 
+                        href={founder.linkedInUrl} 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-xs font-black text-amber-700 hover:text-amber-800 hover:underline font-heading"
+                      >
+                        LinkedIn Profile &rarr;
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
-              <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-[11px] uppercase tracking-wider font-heading shadow-sm whitespace-nowrap">
-                Co-Founder
-              </span>
-            </div>
-
-            <div class="space-y-3 flex-1 text-center sm:text-left pt-2 sm:pt-0">
-              <div>
-                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Sachin Ravi</h3>
-                <p class="text-xs font-black uppercase tracking-wider text-amber-600 font-heading mt-0.5">
-                  Co-Founder &amp; Chief Quizmaster
-                </p>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">National Quizmaster</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold">TEDx Speaker</span>
-              </div>
-
-              <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
-                National-level quizmaster and TEDx speaker on a mission to replace rote memorization with socratic wonder. Passionate about empowering young minds to ask questions and explore through stories, logic, and curiosity quests.
-              </p>
-
-              <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
-                <a 
-                  href="mailto:sachin@walnuts.co.in" 
-                  class="inline-flex items-center gap-1.5 text-xs font-black text-amber-700 hover:text-amber-800 hover:underline font-heading"
-                >
-                  ✉ sachin@walnuts.co.in
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Raghav Chakravarthy -->
-          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">
-            <div class="relative shrink-0">
-              <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-3 border-sky-300 shadow-md bg-sky-50 group-hover:scale-[1.02] transition-transform duration-300">
-                <img 
-                  src="/assets/team/raghav-chakravarthy.jpg" 
-                  alt="Raghav Chakravarthy - Co-Founder & Chief Quizmaster" 
-                  class="w-full h-full object-cover object-center" 
-                  loading="lazy"
-                />
-              </div>
-              <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[11px] uppercase tracking-wider font-heading shadow-sm whitespace-nowrap">
-                Co-Founder
-              </span>
-            </div>
-
-            <div class="space-y-3 flex-1 text-center sm:text-left pt-2 sm:pt-0">
-              <div>
-                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">Raghav Chakravarthy</h3>
-                <p class="text-xs font-black uppercase tracking-wider text-sky-600 font-heading mt-0.5">
-                  Co-Founder &amp; Chief Quizmaster
-                </p>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">National Quizmaster</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">TEDx Speaker</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[11px] font-bold">Education Innovator</span>
-              </div>
-
-              <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
-                National quizmaster, TEDx speaker, and education innovator building India's largest curiosity ecosystem. Dedicated to transforming learning into an active sport driven by questioning, cross-disciplinary curiosity, and real-world quests.
-              </p>
-
-              <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
-                <a 
-                  href="mailto:qshala@walnuts.co.in" 
-                  class="inline-flex items-center gap-1.5 text-xs font-black text-sky-700 hover:text-sky-800 hover:underline font-heading"
-                >
-                  ✉ raghav@walnuts.co.in
-                </a>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
       </div>
@@ -234,27 +168,32 @@ const aboutSchema = {
 
         <!-- Fixed 3-Column Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-          {INVESTORS_ADVISORS.map((inv) => (
-            <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between">
-              <div>
-                <div class="flex items-start justify-between gap-3">
-                  <span 
-                    class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-sm inline-block"
-                    style={`background-color: ${inv.color};`}
-                  >
-                    {inv.badge}
-                  </span>
-                  <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-sm shrink-0">
-                    <img src={inv.logo} alt={inv.name} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+          {advisors.map((inv) => {
+            const logoPath = inv.logoUrl || getImageUrl(inv.logo);
+            return (
+              <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between">
+                <div>
+                  <div class="flex items-start justify-between gap-3">
+                    <span 
+                      class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase text-white font-heading shadow-sm inline-block"
+                      style={`background-color: ${inv.color || '#30B2E7'};`}
+                    >
+                      {inv.badge}
+                    </span>
+                    {logoPath && (
+                      <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 shadow-sm shrink-0">
+                        <img src={logoPath} alt={inv.name} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                      </div>
+                    )}
                   </div>
+                  <h3 class="text-lg font-black text-slate-900 font-heading leading-tight pt-3">{inv.name}</h3>
+                  <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
+                    {inv.role}
+                  </p>
                 </div>
-                <h3 class="text-lg font-black text-slate-900 font-heading leading-tight pt-3">{inv.name}</h3>
-                <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
-                  {inv.role}
-                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
@@ -339,7 +278,7 @@ const aboutSchema = {
     <!-- 5. OUR TEAM: INTERACTIVE TEAM SHOWCASE -->
     <section id="our-team" class="py-16 md:py-20 bg-[#FFFDF5] relative w-full px-4 sm:px-8 md:px-12">
       <div class="w-full">
-        <InteractiveTeamShowcase client:visible />
+        <InteractiveTeamShowcase members={crew} client:visible />
       </div>
     </section>
 

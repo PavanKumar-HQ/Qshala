@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getServicePage } from '../lib/sanity/api';
 
-const COLLEGE_OFFERINGS = [
+const pageData = await getServicePage('colleges');
+
+const COLLEGE_OFFERINGS = pageData.offerings || [
   {
     title: "Zerodha Varsity Quiz",
     desc: "Want a finance quiz on your campus? Let's work towards financial literacy. Free of charge.",
@@ -28,12 +31,17 @@ const COLLEGE_OFFERINGS = [
   }
 ];
 
+const badge = pageData.badge || "Colleges";
+const headline = pageData.headline || "Bring Quizzing to Your Campus.";
+const intro = pageData.intro || "Law, finance, literature, medicine, anything. We run quizzes on any subject, for one department or for colleges across the country.";
+const mascotVariant = (pageData.mascotVariant || "idea") as any;
+
 const collegeServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/colleges#service",
-  "name": "Bring Quizzing to Your Campus",
+  "name": headline,
   "serviceType": "Collegiate Quizzes, Annual Fests & Campus Championships",
-  "description": "Law, finance, literature, medicine, anything. We run quizzes on any subject, for one department or for colleges across the country.",
+  "description": intro,
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -41,12 +49,12 @@ const collegeServiceSchema = {
 ---
 
 <BaseLayout 
-  title="Colleges | Bring Quizzing to Your Campus | QShala"
-  description="Law, finance, literature, medicine, anything. We run quizzes on any subject, for one department or for colleges across the country."
+  title={`${badge} | ${headline} | QShala`}
+  description={intro}
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "Colleges", item: "/colleges" }
+    { name: badge, item: "/colleges" }
   ]}
   schema={collegeServiceSchema}
 >
@@ -58,18 +66,18 @@ const collegeServiceSchema = {
       <!-- Hero Section -->
       <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
         <span class="inline-block px-4 py-1.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Colleges
+          {badge}
         </span>
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          Bring Quizzing to Your Campus.
+          {headline}
         </h1>
         <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-          Law, finance, literature, medicine, anything. We run quizzes on any subject, for one department or for colleges across the country.
+          {intro}
         </p>
 
         <!-- Mascot Bubble -->
         <div class="pt-4 flex justify-center">
-          <QTMascot client:visible variant="idea" size="lg" badgeText="Any topic!" />
+          <QTMascot client:visible variant={mascotVariant} size="lg" badgeText="Any topic!" />
         </div>
       </div>
 

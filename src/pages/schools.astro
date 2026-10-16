@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getServicePage } from '../lib/sanity/api';
 
-const CLASSROOM_PROGRAMS = [
+const pageData = await getServicePage('schools');
+
+const CLASSROOM_PROGRAMS = pageData.offerings || [
   {
     title: "Discover Curriculum",
     tagline: "Making the syllabus come alive",
@@ -35,7 +38,7 @@ const CLASSROOM_PROGRAMS = [
   }
 ];
 
-const TEACHER_MODULES = [
+const TEACHER_MODULES = pageData.specialModules || [
   {
     title: "Teacher-Led Modules",
     tagline: "Empowering teachers, inspiring students",
@@ -53,7 +56,7 @@ const TEACHER_MODULES = [
   }
 ];
 
-const FLAGSHIP_QUIZZES = [
+const FLAGSHIP_QUIZZES = pageData.flagshipQuizzes || [
   {
     title: "QQL Club",
     badge: "Daily Habit • All Ages",
@@ -74,7 +77,7 @@ const FLAGSHIP_QUIZZES = [
   }
 ];
 
-const COLLABORATIONS = [
+const COLLABORATIONS = pageData.collaborations || [
   {
     title: "Neev Literature Festival",
     desc: "Students read 30 books over three months as part of the NLF Reading Challenge and we run the quiz on them. Online preliminary rounds, semi-finals, and the final takes place on festival day in Bengaluru, with six teams from six schools."
@@ -85,12 +88,17 @@ const COLLABORATIONS = [
   }
 ];
 
+const headline = pageData.headline || "Quriosity Programs for Forward-Thinking Schools.";
+const intro = pageData.intro || "Some schools want the syllabus to come alive. Others want to train students to be quizzers, keep them up to date with current affairs, or to up-skill teachers. We do it all.";
+const badge = pageData.badge || "Schools";
+const mascotVariant = (pageData.mascotVariant || "reading") as any;
+
 const schoolServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/schools#service",
-  "name": "Quriosity Programs for Forward-Thinking Schools",
+  "name": headline,
   "serviceType": "K-12 Quriosity Curriculum & School Quizzing",
-  "description": "Making syllabus come alive, after-school quiz clubs, teacher modules, and national quiz leagues across 250+ schools.",
+  "description": intro,
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -98,12 +106,12 @@ const schoolServiceSchema = {
 ---
 
 <BaseLayout 
-  title="Schools | Quriosity Programs for Forward-Thinking Schools | QShala"
-  description="Some schools want the syllabus to come alive. Others want to train students to be quizzers, keep them up to date with current affairs, or to up-skill teachers. We do it all."
+  title={`${badge} | ${headline} | QShala`}
+  description={intro}
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "Schools", item: "/schools" }
+    { name: badge, item: "/schools" }
   ]}
   schema={schoolServiceSchema}
 >
@@ -115,18 +123,18 @@ const schoolServiceSchema = {
       <!-- Hero Section -->
       <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
         <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Schools
+          {badge}
         </span>
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          Quriosity Programs for Forward-Thinking Schools.
+          {headline}
         </h1>
         <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-          Some schools want the syllabus to come alive. Others want to train students to be quizzers, keep them up to date with current affairs, or to up-skill teachers. We do it all.
+          {intro}
         </p>
 
         <!-- Mascot Bubble -->
         <div class="pt-4 flex justify-center">
-          <QTMascot client:visible variant="reading" size="lg" badgeText="Since 2014" />
+          <QTMascot client:visible variant={mascotVariant} size="lg" badgeText="Since 2014" />
         </div>
       </div>
 

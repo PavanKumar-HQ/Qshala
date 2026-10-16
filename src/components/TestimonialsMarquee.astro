@@ -1,62 +1,32 @@
 ---
-// TestimonialsMarquee.astro — Static 5-card grid layout for clean, easy reading
-const STATIC_TESTIMONIALS = [
-  {
-    author: "Sunita Sharma",
-    role: "Principal",
-    org: "DPS Bangalore East",
-    type: "School",
-    quote: "QShala turned standard GK into the most anticipated hour of the school week. Children ask 'Why?' with real passion now!",
-    stars: 5,
-    accent: "#30B2E7",
-    bg: "#E8F6FD",
-    initials: "SS"
-  },
-  {
-    author: "Rajesh Nair",
-    role: "Head of Employee Experience",
-    org: "Flipkart",
-    type: "Corporate",
-    quote: "The energy QT and the QShala team brought to our townhalls was phenomenal. It bonded engineering and marketing seamlessly.",
-    stars: 5,
-    accent: "#FDB913",
-    bg: "#FFF8E1",
-    initials: "RN"
-  },
-  {
-    author: "Dr. Revathi Srinivasan",
-    role: "Academic Director",
-    org: "National Public School",
-    type: "School",
-    quote: "Our middle schoolers are engaged like never before. They don't just memorize science—they question it daily!",
-    stars: 5,
-    accent: "#75B543",
-    bg: "#EDF7E5",
-    initials: "RS"
-  },
-  {
-    author: "Priya & Anand V.",
-    role: "Parents of Grade 6 Learner",
-    org: "Quriosity Club",
-    type: "Parent",
-    quote: "The Sunday Quriosity Club is the highlight of our child's week. Instead of screen scrolling, she discusses space at dinner!",
-    stars: 5,
-    accent: "#30B2E7",
-    bg: "#E8F6FD",
-    initials: "PA"
-  },
-  {
-    author: "Manish Jain",
-    role: "Global L&D Director",
-    org: "Wipro",
-    type: "Corporate",
-    quote: "We've been working with QShala for over two months now and we can't get enough of them! It makes culture stick effortlessly.",
-    stars: 5,
-    accent: "#FDB913",
-    bg: "#FFF8E1",
-    initials: "MJ"
-  }
-];
+import { getTestimonials } from '../lib/sanity/api';
+
+const cmsTestimonials = await getTestimonials();
+
+const TYPE_THEMES: Record<string, { accent: string; bg: string }> = {
+  Corporate: { accent: '#FDB913', bg: '#FFF8E1' },
+  Parent: { accent: '#30B2E7', bg: '#E8F6FD' },
+  School: { accent: '#75B543', bg: '#EDF7E5' },
+  College: { accent: '#30B2E7', bg: '#E8F6FD' },
+};
+
+const testimonials = cmsTestimonials.map(t => {
+  const typeStr = t.type || 'School';
+  const theme = TYPE_THEMES[typeStr] || TYPE_THEMES.School;
+  const initials = t.initials || t.author.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+
+  return {
+    author: t.author,
+    role: t.role || '',
+    org: t.organization || '',
+    type: typeStr,
+    quote: t.quote,
+    stars: t.rating || 5,
+    accent: t.accentColor || theme.accent,
+    bg: t.bgColor || theme.bg,
+    initials
+  };
+});
 ---
 
 <section id="testimonials" class="py-14 bg-[#FFFDF5] border-t-2 border-b-2 border-slate-200/80 relative">
@@ -79,7 +49,7 @@ const STATIC_TESTIMONIALS = [
         class="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none py-4 snap-x snap-mandatory px-1 scroll-smooth"
         style="scrollbar-width: none; -ms-overflow-style: none;"
       >
-        {STATIC_TESTIMONIALS.map((item, idx) => (
+        {testimonials.map((item, idx) => (
           <div 
             id={`testimonial-card-${idx}`}
             class="testimonial-card w-[82vw] max-w-[320px] sm:w-[350px] md:w-[380px] shrink-0 snap-start"
@@ -125,7 +95,7 @@ const STATIC_TESTIMONIALS = [
     <!-- Mobile & Tablet Scroll Indicator and Controls -->
     <div class="flex items-center justify-between pt-3 px-2">
       <div class="flex items-center gap-1.5" id="testimonialsDots">
-        {STATIC_TESTIMONIALS.map((_, idx) => (
+        {testimonials.map((_, idx) => (
           <button
             type="button"
             data-index={idx}

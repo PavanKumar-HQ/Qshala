@@ -5,6 +5,12 @@ import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 import FAQSection from '../components/FAQSection';
 import ContactForm from '../components/ContactForm';
+import { getSiteSettings, getFAQs } from '../lib/sanity/api';
+
+const [siteSettings, faqs] = await Promise.all([
+  getSiteSettings(),
+  getFAQs()
+]);
 
 const CAREERS_ROLES = [
   {
@@ -42,16 +48,16 @@ const localBusinessSchema = {
   "@id": "https://qshala.vercel.app/contact#localbusiness",
   "name": "QShala Headquarters",
   "image": "https://qshala.vercel.app/og-image.webp",
-  "telephone": "+91-89716-76100",
-  "email": "qshala@walnuts.co.in",
+  "telephone": siteSettings.contactPhone || "+91-89716-76100",
+  "email": siteSettings.contactEmail || "qshala@walnuts.co.in",
   "priceRange": "$$",
   "currenciesAccepted": "INR",
   "paymentAccepted": "Credit Card, Debit Card, UPI, Net Banking",
   "openingHours": "Mo-Sa 09:00-18:00",
-  "hasMap": "https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru",
+  "hasMap": siteSettings.googleMapsUrl || "https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar",
+    "streetAddress": siteSettings.address || "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar",
     "addressLocality": "Bengaluru",
     "addressRegion": "Karnataka",
     "postalCode": "560078",
@@ -117,12 +123,12 @@ const localBusinessSchema = {
             </div>
 
             <p class="text-slate-700 text-sm sm:text-base font-semibold leading-relaxed">
-              1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078
+              {siteSettings.address || "1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078"}
             </p>
 
             <div class="pt-2">
               <a
-                href="https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru"
+                href={siteSettings.googleMapsUrl || "https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru"}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="px-6 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-400 text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-2"
@@ -142,7 +148,7 @@ const localBusinessSchema = {
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <!-- CALL US AT -->
               <a
-                href="tel:+918971676100"
+                href={`tel:${(siteSettings.contactPhone || "+918971676100").replace(/[^0-9+]/g, '')}`}
                 class="p-5 rounded-3xl bg-[#FFF8E1] hover:bg-amber-100 border border-amber-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-3 group"
               >
                 <span class="w-10 h-10 rounded-2xl bg-[#FDB913] text-slate-950 flex items-center justify-center text-lg font-bold shadow-sm shrink-0">
@@ -151,14 +157,14 @@ const localBusinessSchema = {
                 <div class="min-w-0">
                   <div class="text-[11px] font-black uppercase text-amber-800 tracking-wider font-heading">Call Us</div>
                   <div class="text-slate-900 font-heading font-black text-xs sm:text-sm group-hover:text-amber-900 transition-colors truncate">
-                    +91 89716 76100
+                    {siteSettings.contactPhone || "+91 89716 76100"}
                   </div>
                 </div>
               </a>
 
               <!-- WRITE TO US AT -->
               <a
-                href="mailto:qshala@walnuts.co.in"
+                href={`mailto:${siteSettings.contactEmail || "qshala@walnuts.co.in"}`}
                 class="p-5 rounded-3xl bg-[#E8F6FD] hover:bg-sky-100 border border-sky-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-3 group"
               >
                 <span class="w-10 h-10 rounded-2xl bg-[#30B2E7] text-white flex items-center justify-center text-lg font-bold shadow-sm shrink-0">
@@ -167,7 +173,7 @@ const localBusinessSchema = {
                 <div class="min-w-0">
                   <div class="text-[11px] font-black uppercase text-sky-800 tracking-wider font-heading">Email Us</div>
                   <div class="text-slate-900 font-heading font-black text-xs sm:text-sm group-hover:text-sky-900 transition-colors truncate">
-                    qshala@walnuts.co.in
+                    {siteSettings.contactEmail || "qshala@walnuts.co.in"}
                   </div>
                 </div>
               </a>
@@ -288,7 +294,7 @@ const localBusinessSchema = {
             Got questions about QShala programs, corporate trivia, or joining the team? Here is what most folks ask.
           </p>
         </div>
-        <FAQSection client:load />
+        <FAQSection client:load items={faqs.slice(0, 6)} />
       </div>
     </section>
 

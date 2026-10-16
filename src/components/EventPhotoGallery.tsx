@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Download, ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 
-export interface GalleryPhoto {
+interface GalleryPhoto {
   url: string;
   caption: string;
 }

@@ -1,8 +1,3 @@
-import { clsx, type ClassValue } from 'clsx';
-
-export function cn(...inputs: ClassValue[]) {
-  return clsx(inputs);
-}
 
 export async function triggerConfetti() {
   const { default: confetti } = await import('canvas-confetti');

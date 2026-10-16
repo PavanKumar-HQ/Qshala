@@ -8,18 +8,6 @@ export interface QuizCardData {
   difficulty: 'Easy' | 'Medium' | 'Difficult';
 }
 
-export interface ServiceItem {
-  id: string;
-  slug: string;
-  title: string;
-  subtitle: string;
-  targetAudience: string;
-  iconName: string;
-  description: string;
-  benefits: string[];
-  keyModules: string[];
-  accentColor: string;
-}
 
 export interface CaseStudyItem {
   id: string;
@@ -751,12 +739,6 @@ export const QUESTION_BANK: QuizCardData[] = [
     explanation: 'Water is one of the rare substances that expands as it freezes. Hydrogen bonds lock molecules into an open hexagonal lattice, reducing density!',
     difficulty: 'Easy'
   }
-];
-
-export const FEATURED_QUIZZES: QuizCardData[] = [
-  QUESTION_BANK.find(q => q.difficulty === 'Difficult') || QUESTION_BANK[0],
-  QUESTION_BANK.find(q => q.difficulty === 'Medium') || QUESTION_BANK[17],
-  QUESTION_BANK.find(q => q.difficulty === 'Easy') || QUESTION_BANK[34]
 ];
 
 export const CASE_STUDIES_DATA: CaseStudyItem[] = [

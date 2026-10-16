@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QTMascot from './QTMascot';
 
-export interface ArchiveEvent {
+interface ArchiveEvent {
   id: string;
   title: string;
   year: number;

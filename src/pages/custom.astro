@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
+import { getServicePage } from '../lib/sanity/api';
 
-const CUSTOM_OFFERINGS = [
+const pageData = await getServicePage('custom');
+
+const CUSTOM_OFFERINGS = pageData.offerings || [
   {
     title: "Conference Energizers",
     desc: "Wake the room up mid-conference. A short, high-energy quiz or game that gets people off their phones and into the conversation.",
@@ -28,12 +31,17 @@ const CUSTOM_OFFERINGS = [
   }
 ];
 
+const badge = pageData.badge || "Custom";
+const headline = pageData.headline || "Let's Build Something New.";
+const intro = pageData.intro || "If people are gathering, a quiz or a game can probably help. Have an idea we haven't tried yet? We'd love to hear it.";
+const mascotVariant = (pageData.mascotVariant || "trophy") as any;
+
 const customServiceSchema = {
   "@type": "Service",
   "@id": "https://qshala.vercel.app/custom#service",
-  "name": "Let's Build Something New",
+  "name": headline,
   "serviceType": "Bespoke Quriosity Experiences & Festival Quizzing",
-  "description": "If people are gathering, a quiz or a game can probably help. Have an idea we haven't tried yet? We'd love to hear it.",
+  "description": intro,
   "provider": {
     "@id": "https://qshala.vercel.app/#organization"
   }
@@ -41,12 +49,12 @@ const customServiceSchema = {
 ---
 
 <BaseLayout 
-  title="Custom | Let's Build Something New | QShala"
-  description="If people are gathering, a quiz or a game can probably help. Have an idea we haven't tried yet? We'd love to hear it."
+  title={`${badge} | ${headline} | QShala`}
+  description={intro}
   breadcrumbs={[
     { name: "Home", item: "/" },
     { name: "Services", item: "/services" },
-    { name: "Custom", item: "/custom" }
+    { name: badge, item: "/custom" }
   ]}
   schema={customServiceSchema}
 >
@@ -58,18 +66,18 @@ const customServiceSchema = {
       <!-- Hero Section -->
       <div class="text-center max-w-4xl mx-auto space-y-4 pt-4">
         <span class="inline-block px-4 py-1.5 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Custom
+          {badge}
         </span>
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          Let's Build Something New.
+          {headline}
         </h1>
         <p class="text-slate-700 font-semibold text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-          If people are gathering, a quiz or a game can probably help. Have an idea we haven't tried yet? We'd love to hear it.
+          {intro}
         </p>
 
         <!-- Mascot Bubble -->
         <div class="pt-4 flex justify-center">
-          <QTMascot client:visible variant="trophy" size="lg" badgeText="Open to Ideas" />
+          <QTMascot client:visible variant={mascotVariant} size="lg" badgeText="Open to Ideas" />
         </div>
       </div>
 

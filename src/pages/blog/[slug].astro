@@ -4,8 +4,12 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import QTMascot from '../../components/QTMascot';
 import EventPhotoGallery from '../../components/EventPhotoGallery';
+import SanityPortableText from '../../components/SanityPortableText.astro';
+import { getPosts } from '../../lib/sanity/api';
+import { getImageUrl } from '../../lib/sanity/image';
 
 export async function getStaticPaths() {
+  const cmsPosts = await getPosts();
   const posts = [
     {
       slug: 'bangalore-inter-school-quriosity-cup-2026',
@@ -641,7 +645,45 @@ export async function getStaticPaths() {
     }
   ];
 
-  return posts.map(post => ({
+  function formatCmsPost(cp: any, slugStr: string) {
+    const formattedDate = cp.publishedAt 
+      ? new Date(cp.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
+      : 'Recent';
+
+    const gallery = (cp.gallery || []).map((g: any) => ({
+      url: g.url || (g.asset ? getImageUrl(g, 1200, 800) : ''),
+      caption: g.caption || ''
+    }));
+
+    return {
+      slug: slugStr,
+      title: cp.title,
+      category: cp.category || 'Blog',
+      readTime: cp.readTime || '5 min read',
+      date: formattedDate,
+      isoDate: cp.publishedAt || '2026-10-14T10:00:00+05:30',
+      author: cp.author || 'Sachin Ravi',
+      authorRole: 'QShala Team',
+      summary: cp.summary || '',
+      color: '#30B2E7',
+      bg: 'bg-[#E8F6FD]',
+      body: cp.body || null,
+      content: typeof cp.content === 'string' ? cp.content : `<p>${cp.summary || ''}</p>`,
+      gallery
+    };
+  }
+
+  const cmsMap = new Map<string, any>();
+  cmsPosts.forEach(cp => {
+    const slugStr = typeof cp.slug === 'string' ? cp.slug : cp.slug?.current;
+    if (slugStr) {
+      cmsMap.set(slugStr, formatCmsPost(cp, slugStr));
+    }
+  });
+
+  const mergedPosts = [...posts.filter(p => !cmsMap.has(p.slug)), ...Array.from(cmsMap.values())];
+
+  return mergedPosts.map(post => ({
     params: { slug: post.slug },
     props: { post }
   }));
@@ -733,7 +775,7 @@ const articleSchema = {
         </div>
 
         <!-- Article Body -->
-        <div class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" set:html={post.content} />
+        <SanityPortableText value={post.body || post.content} class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" />
 
         <!-- Interactive Event Photo Gallery (Clickable, Openable in Full-Screen Lightbox & Downloadable) -->
         {post.gallery && post.gallery.length > 0 && (
